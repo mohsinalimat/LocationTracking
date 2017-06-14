@@ -12,36 +12,88 @@ import GooglePlaces
 
 class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
 
+    var locationManager = CLLocationManager()
+    var currentLocation = CLLocation()
+    var mapView: GMSMapView!
+    var placesClient: GMSPlacesClient!
+    var zoomLevel: Float = 10.0
+    // An array to hold the list of likely places.
+    var likelyPlaces: [GMSPlace] = []
+    
+    // The currently selected place.
+    var selectedPlace: GMSPlace?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadmapView()
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.initMapView()
+        self.getCurrentLocation()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-// MARK: - init Map View
-    func loadmapView() {
-        let camera = GMSCameraPosition.camera(withLatitude: -33.868,
-                                              longitude: 151.2086,
-                                              zoom: 14)
-        let mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-        mapView.mapType = GMSMapViewType.normal
+    //MARK: - Init map View
+    func initMapView() {
+        let camera = GMSCameraPosition.camera(withLatitude:0,
+                                              longitude:0,
+                                              zoom: zoomLevel)
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView.settings.myLocationButton = true
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.isMyLocationEnabled = true
         
-        let marker = GMSMarker()
-        marker.position = camera.target
-        marker.snippet = "Hello World"
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.map = mapView
-        
-        view = mapView
+        // Add the map to the view, hide it until we've got a location update.
+        view.addSubview(mapView)
     }
+    
+// MARK: - get current location
+    func getCurrentLocation() {
+        locationManager.delegate = self
+        placesClient = GMSPlacesClient.shared()
+        locationManager.requestWhenInUseAuthorization()
+        if #available(iOS 9.0, *) {
+            locationManager.requestLocation()
+        } else {
+            // Fallback on earlier versions
+        }
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+    }
+    
 // MARK: - GMSMapViewDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //Get current location
+        currentLocation = locations.last!
+        
+        //Get current coordinate
+        let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude, zoom: zoomLevel)
+            mapView.camera = camera
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         
     }
-
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        
+    }
 }
