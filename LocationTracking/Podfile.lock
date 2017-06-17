@@ -1,4 +1,97 @@
 PODS:
+  - Firebase (3.17.0):
+    - Firebase/Core (= 3.17.0)
+  - Firebase/AdMob (3.17.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (= 7.19.1)
+  - Firebase/Analytics (3.17.0):
+    - Firebase/Core
+  - Firebase/AppIndexing (3.17.0):
+    - Firebase/Core
+    - FirebaseAppIndexing (= 1.2.0)
+  - Firebase/Auth (3.17.0):
+    - Firebase/Core
+    - FirebaseAuth (= 3.1.1)
+  - Firebase/Core (3.17.0):
+    - FirebaseAnalytics (= 3.9.0)
+    - FirebaseCore (= 3.6.0)
+  - Firebase/Crash (3.17.0):
+    - Firebase/Core
+    - FirebaseCrash (= 1.1.6)
+  - Firebase/Database (3.17.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 3.1.2)
+  - Firebase/DynamicLinks (3.17.0):
+    - Firebase/Core
+    - FirebaseDynamicLinks (= 1.4.0)
+  - Firebase/Invites (3.17.0):
+    - Firebase/Core
+    - FirebaseInvites (= 1.3.0)
+  - Firebase/Messaging (3.17.0):
+    - Firebase/Core
+    - FirebaseMessaging (= 1.2.3)
+  - Firebase/RemoteConfig (3.17.0):
+    - Firebase/Core
+    - FirebaseRemoteConfig (= 1.3.4)
+  - Firebase/Storage (3.17.0):
+    - Firebase/Core
+    - FirebaseStorage (= 1.1.0)
+  - FirebaseAnalytics (3.9.0):
+    - FirebaseCore (~> 3.6)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseAppIndexing (1.2.0)
+  - FirebaseAuth (3.1.1):
+    - FirebaseAnalytics (~> 3.7)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (3.6.0):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCrash (1.1.6):
+    - FirebaseAnalytics (~> 3.7)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - Protobuf (~> 3.1)
+  - FirebaseDatabase (3.1.2):
+    - FirebaseAnalytics (~> 3.7)
+  - FirebaseDynamicLinks (1.4.0):
+    - FirebaseAnalytics (~> 3.9)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - FirebaseInvites (1.3.0):
+    - FirebaseAnalytics (~> 3.8)
+    - FirebaseDynamicLinks (~> 1.4)
+    - GoogleAPIClientForREST (~> 1.0)
+    - GoogleSignIn (~> 4.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
+    - GoogleToolboxForMac/StringEncoding (~> 2.1)
+    - GoogleToolboxForMac/URLBuilder (~> 2.1)
+    - GTMOAuth2 (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+    - GTMSessionFetcher/Full (~> 1.1)
+    - Protobuf (~> 3.1)
+  - FirebaseMessaging (1.2.3):
+    - FirebaseAnalytics (~> 3.8)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
+  - FirebaseRemoteConfig (1.3.4):
+    - FirebaseAnalytics (~> 3.7)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - Protobuf (~> 3.1)
+  - FirebaseStorage (1.1.0):
+    - FirebaseAnalytics (~> 3.7)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - Google-Mobile-Ads-SDK (7.19.1)
+  - GoogleAPIClientForREST (1.3.0):
+    - GoogleAPIClientForREST/Core (= 1.3.0)
+    - GTMSessionFetcher (>= 1.1.7)
+  - GoogleAPIClientForREST/Core (1.3.0):
+    - GTMSessionFetcher (>= 1.1.7)
   - GoogleMaps (2.3.0):
     - GoogleMaps/Maps (= 2.3.0)
   - GoogleMaps/Base (2.3.0)
@@ -6,15 +99,81 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.3.0):
     - GoogleMaps/Base (= 2.3.0)
+  - GoogleSignIn (4.0.2):
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
+    - GTMOAuth2 (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/Core (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/DebugUtils (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/Logger (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.1)
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
+  - GoogleToolboxForMac/StringEncoding (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/URLBuilder (2.1.1):
+    - GoogleToolboxForMac/Core (= 2.1.1)
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (= 2.1.1)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
+  - GTMOAuth2 (1.1.4):
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.1.10):
+    - GTMSessionFetcher/Full (= 1.1.10)
+  - GTMSessionFetcher/Core (1.1.10)
+  - GTMSessionFetcher/Full (1.1.10):
+    - GTMSessionFetcher/Core (= 1.1.10)
+  - Protobuf (3.3.0)
 
 DEPENDENCIES:
+  - Firebase (>= 2.5.0)
+  - Firebase/AdMob
+  - Firebase/Analytics
+  - Firebase/AppIndexing
+  - Firebase/Auth
+  - Firebase/Crash
+  - Firebase/Database
+  - Firebase/DynamicLinks
+  - Firebase/Invites
+  - Firebase/Messaging
+  - Firebase/RemoteConfig
+  - Firebase/Storage
   - GoogleMaps
   - GooglePlaces
 
 SPEC CHECKSUMS:
+  Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
+  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
+  FirebaseAppIndexing: adf2f3b14b6828f1d4c539fc72434962cf29ea2c
+  FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseCrash: db4c05d9c75baa050744d31b36357c8f1efba481
+  FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
+  FirebaseDynamicLinks: 0dbfd974f560dd1bda7498afc24697adb5cce72f
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  FirebaseInvites: 4b354fc85ac898e71ceaf8520f2f8126fd678942
+  FirebaseMessaging: 753d05a925e9eb8eadd09a0ffc9b808578b72fac
+  FirebaseRemoteConfig: af3003f4e8daa2bd1d5cf90d3cccc1fe224f8ed9
+  FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
+  Google-Mobile-Ads-SDK: 43ac87810e4961f5093024d3525bfe022f956da3
+  GoogleAPIClientForREST: bf724227a6ad1459aab09b73800aad9184a0f64c
   GoogleMaps: 340a6a0bebd17c2db8abcd3921976c7c53c86cb8
   GooglePlaces: 74d322c74184ea4576184089b496d291cf0dcd38
+  GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
+  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
 
-PODFILE CHECKSUM: 03f4ca3ed46cc1e7bb5803c029615ede14485cff
+PODFILE CHECKSUM: a7c7ea97619558adf29feb77144a82731fd0ea73
 
 COCOAPODS: 1.1.1

@@ -15,12 +15,20 @@ import GooglePlaces
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var firebaseObject = FirebaseAction()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        //Set up Google API Key
         GMSServices.provideAPIKey("AIzaSyB-vkbuoB24Hb8StdNS_mw4VaAN7oiZMe0")
         GMSPlacesClient.provideAPIKey("AIzaSyB-vkbuoB24Hb8StdNS_mw4VaAN7oiZMe0")
-        // Override point for customization after application launch.
+        
+        //Init Firebase
+        firebaseObject.initFirebase()
+        
+//        //init rootViewController
+//        let drawerController = self.initRevealViewController()
+//        window!.rootViewController = drawerController
         return true
     }
 
@@ -45,6 +53,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
+    }
+    
+    //MARK: - set rootViewController
+    func initRevealViewController() -> KYDrawerController{
+        //Init root view controller
+        //Main Controller
+        let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        let rootNavigation = UINavigationController.init(rootViewController:mapViewController)
+        
+        //Init reveal View Controller
+        //Left View Controller
+        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        let friendListNavigation = UINavigationController.init(rootViewController:contactViewController)
+        
+        //Set reveal View Controller
+        let drawerController = KYDrawerController(drawerDirection: .left, drawerWidth: screen_width - 80)
+        drawerController.mainViewController = rootNavigation
+        drawerController.drawerViewController = friendListNavigation
+        return drawerController
     }
 }
 

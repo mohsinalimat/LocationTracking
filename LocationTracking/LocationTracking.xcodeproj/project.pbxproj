@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BE46A6C35A1CD80550602C4 /* Pods_LocationTracking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B74AB3D7A8D8C10BDCBA9E2 /* Pods_LocationTracking.framework */; };
+		8417815E1EF562CF0020858C /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8417815D1EF562CF0020858C /* LocationTracking.xcmappingmodel */; };
+		841781601EF56B630020858C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8417815F1EF56B630020858C /* GoogleService-Info.plist */; };
+		841781631EF58F3F0020858C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841781621EF58F3F0020858C /* SignInViewController.swift */; };
+		841781651EF59E320020858C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841781641EF59E320020858C /* SignUpViewController.swift */; };
+		846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92A81EF4D7AB000993CE /* NavigationBarExtension.swift */; };
+		846C92AC1EF4D9D3000993CE /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AB1EF4D9D3000993CE /* Common.swift */; };
+		846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AD1EF4DAB7000993CE /* OriginalViewController.swift */; };
+		846C92B01EF4DC96000993CE /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AF1EF4DC96000993CE /* Define.swift */; };
+		846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BB1EF4E46B000993CE /* KYDrawerController.swift */; };
+		846C92BF1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */; };
+		846C92C01EF4E46B000993CE /* KYEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */; };
+		846C92C31EF512CA000993CE /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92C21EF512CA000993CE /* FriendListTableViewCell.swift */; };
+		846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92CB1EF5348B000993CE /* FirebaseAction.swift */; };
 		8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A2071EE869C800D79A61 /* MapViewController.swift */; };
 		8485A20A1EE86FC100D79A61 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8485A2091EE86FC100D79A61 /* MapKit.framework */; };
 		84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8A6A1EE07C6000B6F9A0 /* AppDelegate.swift */; };
@@ -15,12 +29,26 @@
 		84DC8A751EE07C6000B6F9A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84DC8A741EE07C6000B6F9A0 /* Assets.xcassets */; };
 		84DC8A781EE07C6000B6F9A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DC8A761EE07C6000B6F9A0 /* LaunchScreen.storyboard */; };
 		84DC8A811EE07C9B00B6F9A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DC8A801EE07C9B00B6F9A0 /* StoreKit.framework */; };
-		84F652C41EF1A6DB0009E3A5 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F652C31EF1A6DB0009E3A5 /* FriendListViewController.swift */; };
+		84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4044BF4F1532C538EA02B304 /* Pods-LocationTracking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTracking.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTracking/Pods-LocationTracking.debug.xcconfig"; sourceTree = "<group>"; };
+		5B74AB3D7A8D8C10BDCBA9E2 /* Pods_LocationTracking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationTracking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7228424A13E4588FBB83173A /* Pods-LocationTracking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationTracking.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationTracking/Pods-LocationTracking.release.xcconfig"; sourceTree = "<group>"; };
+		8417815D1EF562CF0020858C /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
+		8417815F1EF56B630020858C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		841781621EF58F3F0020858C /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		841781641EF59E320020858C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		846C92A81EF4D7AB000993CE /* NavigationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
+		846C92AB1EF4D9D3000993CE /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		846C92AD1EF4DAB7000993CE /* OriginalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginalViewController.swift; sourceTree = "<group>"; };
+		846C92AF1EF4DC96000993CE /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		846C92BB1EF4E46B000993CE /* KYDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYDrawerController.swift; path = Reveal/KYDrawerController.swift; sourceTree = "<group>"; };
+		846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYEmbedDrawerControllerSegue.swift; path = Reveal/KYEmbedDrawerControllerSegue.swift; sourceTree = "<group>"; };
+		846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYEmbedMainControllerSegue.swift; path = Reveal/KYEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
+		846C92C21EF512CA000993CE /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		846C92CB1EF5348B000993CE /* FirebaseAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAction.swift; sourceTree = "<group>"; };
 		8485A2071EE869C800D79A61 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8485A2091EE86FC100D79A61 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		84DC8A671EE07C6000B6F9A0 /* LocationTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,7 +60,7 @@
 		84DC8A791EE07C6000B6F9A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84DC8A801EE07C9B00B6F9A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		84DC8A821EE07CE000B6F9A0 /* LocationTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationTracking.entitlements; sourceTree = "<group>"; };
-		84F652C31EF1A6DB0009E3A5 /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +70,7 @@
 			files = (
 				84DC8A811EE07C9B00B6F9A0 /* StoreKit.framework in Frameworks */,
 				8485A20A1EE86FC100D79A61 /* MapKit.framework in Frameworks */,
+				4BE46A6C35A1CD80550602C4 /* Pods_LocationTracking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +84,79 @@
 				7228424A13E4588FBB83173A /* Pods-LocationTracking.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		841781611EF58EB10020858C /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				841781621EF58F3F0020858C /* SignInViewController.swift */,
+				841781641EF59E320020858C /* SignUpViewController.swift */,
+			);
+			name = SignIn;
+			sourceTree = "<group>";
+		};
+		846C92A71EF4D601000993CE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				846C92A81EF4D7AB000993CE /* NavigationBarExtension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		846C92AA1EF4D8E3000993CE /* Commom */ = {
+			isa = PBXGroup;
+			children = (
+				846C92AF1EF4DC96000993CE /* Define.swift */,
+				846C92AB1EF4D9D3000993CE /* Common.swift */,
+				846C92CB1EF5348B000993CE /* FirebaseAction.swift */,
+				846C92AD1EF4DAB7000993CE /* OriginalViewController.swift */,
+			);
+			name = Commom;
+			sourceTree = "<group>";
+		};
+		846C92B11EF4E40E000993CE /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				846C92BA1EF4E459000993CE /* Reveal */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		846C92BA1EF4E459000993CE /* Reveal */ = {
+			isa = PBXGroup;
+			children = (
+				846C92BB1EF4E46B000993CE /* KYDrawerController.swift */,
+				846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */,
+				846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */,
+			);
+			name = Reveal;
+			sourceTree = "<group>";
+		};
+		846C92C11EF512A6000993CE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				846C92C21EF512CA000993CE /* FriendListTableViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		846C92C61EF516ED000993CE /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				84DC8A711EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld */,
+				8417815D1EF562CF0020858C /* LocationTracking.xcmappingmodel */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		846C92C81EF5170C000993CE /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				841781611EF58EB10020858C /* SignIn */,
+				84F652C21EF1A6B90009E3A5 /* ContactList */,
+				8485A2061EE8694800D79A61 /* Map */,
+			);
+			name = ViewController;
 			sourceTree = "<group>";
 		};
 		8485A2061EE8694800D79A61 /* Map */ = {
@@ -86,15 +188,18 @@
 		84DC8A691EE07C6000B6F9A0 /* LocationTracking */ = {
 			isa = PBXGroup;
 			children = (
-				84F652C21EF1A6B90009E3A5 /* FriendList */,
-				8485A2061EE8694800D79A61 /* Map */,
-				84DC8A821EE07CE000B6F9A0 /* LocationTracking.entitlements */,
 				84DC8A6A1EE07C6000B6F9A0 /* AppDelegate.swift */,
 				84DC8A6E1EE07C6000B6F9A0 /* Main.storyboard */,
-				84DC8A741EE07C6000B6F9A0 /* Assets.xcassets */,
 				84DC8A761EE07C6000B6F9A0 /* LaunchScreen.storyboard */,
+				846C92C61EF516ED000993CE /* Database */,
+				846C92B11EF4E40E000993CE /* Library */,
+				846C92AA1EF4D8E3000993CE /* Commom */,
+				846C92A71EF4D601000993CE /* Extension */,
+				846C92C81EF5170C000993CE /* ViewController */,
+				84DC8A741EE07C6000B6F9A0 /* Assets.xcassets */,
+				84DC8A821EE07CE000B6F9A0 /* LocationTracking.entitlements */,
+				8417815F1EF56B630020858C /* GoogleService-Info.plist */,
 				84DC8A791EE07C6000B6F9A0 /* Info.plist */,
-				84DC8A711EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld */,
 			);
 			path = LocationTracking;
 			sourceTree = "<group>";
@@ -104,16 +209,18 @@
 			children = (
 				8485A2091EE86FC100D79A61 /* MapKit.framework */,
 				84DC8A801EE07C9B00B6F9A0 /* StoreKit.framework */,
+				5B74AB3D7A8D8C10BDCBA9E2 /* Pods_LocationTracking.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		84F652C21EF1A6B90009E3A5 /* FriendList */ = {
+		84F652C21EF1A6B90009E3A5 /* ContactList */ = {
 			isa = PBXGroup;
 			children = (
-				84F652C31EF1A6DB0009E3A5 /* FriendListViewController.swift */,
+				846C92C11EF512A6000993CE /* Cell */,
+				84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */,
 			);
-			name = FriendList;
+			name = ContactList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DC8A781EE07C6000B6F9A0 /* LaunchScreen.storyboard in Resources */,
+				841781601EF56B630020858C /* GoogleService-Info.plist in Resources */,
 				84DC8A751EE07C6000B6F9A0 /* Assets.xcassets in Resources */,
 				84DC8A701EE07C6000B6F9A0 /* Main.storyboard in Resources */,
 			);
@@ -254,10 +362,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F652C41EF1A6DB0009E3A5 /* FriendListViewController.swift in Sources */,
+				846C92BF1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift in Sources */,
+				846C92C01EF4E46B000993CE /* KYEmbedMainControllerSegue.swift in Sources */,
+				846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */,
+				84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */,
+				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
+				846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */,
+				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
+				8417815E1EF562CF0020858C /* LocationTracking.xcmappingmodel in Sources */,
+				841781631EF58F3F0020858C /* SignInViewController.swift in Sources */,
 				84DC8A731EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld in Sources */,
+				841781651EF59E320020858C /* SignUpViewController.swift in Sources */,
+				846C92C31EF512CA000993CE /* FriendListTableViewCell.swift in Sources */,
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
+				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,
+				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

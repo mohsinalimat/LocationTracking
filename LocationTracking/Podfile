@@ -6,6 +6,18 @@ target 'LocationTracking' do
   use_frameworks!
 	pod 'GoogleMaps'
 	pod 'GooglePlaces'
+	pod 'Firebase', '>= 2.5.0'
+	pod 'Firebase/AdMob'
+	pod 'Firebase/Analytics'
+	pod 'Firebase/AppIndexing'
+	pod 'Firebase/Auth'
+	pod 'Firebase/Crash'
+	pod 'Firebase/Database'
+	pod 'Firebase/DynamicLinks'
+	pod 'Firebase/Invites'
+	pod 'Firebase/Messaging'
+	pod 'Firebase/RemoteConfig'
+	pod 'Firebase/Storage'
   # Pods for LocationTracking
 
 end

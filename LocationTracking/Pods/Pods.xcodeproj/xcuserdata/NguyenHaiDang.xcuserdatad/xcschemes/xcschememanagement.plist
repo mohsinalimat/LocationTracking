@@ -4,7 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>GTMOAuth2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleAPIClientForREST.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LocationTracking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -12,7 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>665A2AD653E32B664140665748D0D5B2</key>
+		<key>1259183CF5E93844D8DE28E44A4D0710</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9021A9CF737B40AFE8628CC73C7235C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A2B49810D40D8145D174724927682D9B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D754D048A59EE2C949DB4030D58270DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E790A7B67F67B5D81BE60B90A0FD1322</key>
 		<dict>
 			<key>primary</key>
 			<true/>

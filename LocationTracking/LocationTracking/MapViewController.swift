@@ -10,13 +10,13 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
+class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
 
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 10.0
+    var zoomLevel: Float = 12.0
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
     
@@ -25,6 +25,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addLeftBarItem(imageName: "ic_menu")
+        self.addTitleNavigation(title: "Location Tracking")
         // Do any additional setup after loading the view.
     }
 
@@ -38,7 +40,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: - Init map View
+    //MARK: - Init View
+    //Init MapView
     func initMapView() {
         let camera = GMSCameraPosition.camera(withLatitude:0,
                                               longitude:0,
@@ -52,7 +55,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
         view.addSubview(mapView)
     }
     
-// MARK: - get current location
+    //Init Location
     func getCurrentLocation() {
         locationManager.delegate = self
         placesClient = GMSPlacesClient.shared()
@@ -63,6 +66,8 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
             // Fallback on earlier versions
         }
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        let camera = GMSCameraPosition.camera(withLatitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude, zoom: zoomLevel)
+            mapView.camera = camera
         locationManager.startUpdatingLocation()
     }
     
@@ -70,11 +75,9 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Get current location
         currentLocation = locations.last!
-        
-        //Get current coordinate
-        let camera = GMSCameraPosition.camera(withLatitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude, zoom: zoomLevel)
-            mapView.camera = camera
-        locationManager.stopUpdatingLocation()
+
+        //Update location
+        app_delegate.firebaseObject.updateLocation(id: "1", lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude )
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -95,5 +98,13 @@ class MapViewController: UIViewController,GMSMapViewDelegate,CLLocationManagerDe
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
+    }
+    
+    //MARK: - Action
+    override func tappedLeftBarButton(sender: UIButton) {
+        //Show Menu friends list
+        if let drawerController = self.parent?.parent as? KYDrawerController {
+            drawerController.setDrawerState(.opened, animated: true)
+        }
     }
 }
