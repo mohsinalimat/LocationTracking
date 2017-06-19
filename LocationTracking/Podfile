@@ -18,6 +18,7 @@ target 'LocationTracking' do
 	pod 'Firebase/Messaging'
 	pod 'Firebase/RemoteConfig'
 	pod 'Firebase/Storage'
+	pod 'MagicalRecord'
   # Pods for LocationTracking
 
 end

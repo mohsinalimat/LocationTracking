@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpViewController: OriginalViewController {
 
-    @IBOutlet weak var nickNameTextField: UITextField!
-    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     
@@ -25,11 +26,13 @@ class SignUpViewController: OriginalViewController {
     }
     
     @IBAction func tappedSignUp(_ sender: UIButton) {
-        if (nickNameTextField.text?.characters.count)! > 0 && (userNameTextField.text?.characters.count)! > 0 {
-            let birthday: String = (birthdayTextField.text?.characters.count)! > 0 ? birthdayTextField.text! : ""
-            app_delegate.firebaseObject.createUser(nickName: nickNameTextField.text!, userName: userNameTextField.text!, birthday: birthday)
-            let drawerController = app_delegate.initRevealViewController()
-            self.present(drawerController, animated: true, completion: nil)
+        if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 {
+            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+                let key = app_delegate.firebaseObject.createUser(email:self.emailTextField.text!)
+                
+                let drawerController = app_delegate.initRevealViewController()
+                self.present(drawerController, animated: true, completion: nil)
+            }
         }
     }
 }

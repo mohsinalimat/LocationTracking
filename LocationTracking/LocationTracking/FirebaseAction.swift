@@ -22,9 +22,24 @@ class FirebaseAction: NSObject {
         ref.child(id).child("currentLocations").setValue(["latitude":lat,"longitude":long])
     }
     
-    func createUser(nickName: String, userName: String, birthday: String) {
-        let userInfoDictionary = ["currentLocations": ["latitude":0,"longitude":0],"nickName":nickName,"userName":userName,"birthday":birthday] as [String : Any]
-        
-        ref.childByAutoId().setValue(userInfoDictionary)
+    //MARK: USER INFORMATION
+    //Create new user to sign up firebase
+    func createUser(email: String) -> String {
+        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        let userInfoDictionary = ["currentLocations": ["latitude":0,"longitude":0],"email":email] as [String : Any]
+        resultRef = ref.childByAutoId()
+        resultRef.setValue(userInfoDictionary)
+        return resultRef.key
+    }
+    
+    //Sign in
+    func signInWith(email:String, password: String, completionHandler: @escaping (Bool) -> ()) {
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
+            if error == nil {
+                completionHandler(true)
+            } else {
+                completionHandler(false)
+            }
+        }
     }
 }

@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LocationTracking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,22 +42,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1259183CF5E93844D8DE28E44A4D0710</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>9021A9CF737B40AFE8628CC73C7235C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A2B49810D40D8145D174724927682D9B</key>
+		<key>96D028D8410E9A401CDCEFD40406EEC0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A994C3D2745691DD928E2268F47E3170</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8454CB90BCE442B96C78052A7F7BBA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
