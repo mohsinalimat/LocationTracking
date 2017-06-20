@@ -33,7 +33,7 @@ class FirebaseAction: NSObject {
     }
     
     //Sign in
-    func signInWith(email:String, password: String, completionHandler: @escaping (Bool) -> ()) {
+    func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
             if error == nil {
                 completionHandler(true)
@@ -41,5 +41,13 @@ class FirebaseAction: NSObject {
                 completionHandler(false)
             }
         }
+    }
+    
+    func searchContactWithEmail(id: String, email: String ) {
+        ref.child(id).queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observe(.value, with: { snapshot in
+            for u in snapshot.children{
+                print(u)
+            }
+        })
     }
 }

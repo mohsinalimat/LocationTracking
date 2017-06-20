@@ -30,6 +30,11 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
+    //MARK: - Action
+    override func tappedLeftBarButton(sender: UIButton) {
+        //Add new contact
+        
+    }
     //MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contactArray.count
