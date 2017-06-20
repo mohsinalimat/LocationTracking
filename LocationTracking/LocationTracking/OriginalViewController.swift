@@ -25,7 +25,7 @@ class OriginalViewController: UIViewController {
     func addLeftBarItem(imageName : String) {
         let leftButton = UIButton.init(type: UIButtonType.custom)
         leftButton.setImage(UIImage.init(named: imageName), for: UIControlState.normal)
-        leftButton.frame = CGRect.init(x: 0, y: 0, width: 22, height: 22)
+        leftButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         leftButton.addTarget(self, action: #selector(tappedLeftBarButton(sender:)), for: UIControlEvents.touchUpInside)
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton)

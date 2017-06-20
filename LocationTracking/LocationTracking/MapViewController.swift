@@ -77,7 +77,10 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         currentLocation = locations.last!
 
         //Update location
-        app_delegate.firebaseObject.updateLocation(id: "1", lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude )
+        guard let profile = app_delegate.profile else {
+            return
+        }
+        app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude )
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

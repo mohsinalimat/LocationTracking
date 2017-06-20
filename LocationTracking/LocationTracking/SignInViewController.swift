@@ -37,6 +37,7 @@ class SignInViewController: OriginalViewController {
             app_delegate.firebaseObject.signInWith(email: emailTextField.text!, password: passwordTextField.text!, completionHandler: {(isSuccess) in
                 if isSuccess {
                     //SignIn is successful
+                    app_delegate.profile = DatabaseManager.getProfile()
                     let drawerController = app_delegate.initRevealViewController()
                     self.present(drawerController, animated: true, completion: nil)
                 } else {

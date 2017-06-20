@@ -28,8 +28,11 @@ class SignUpViewController: OriginalViewController {
     @IBAction func tappedSignUp(_ sender: UIButton) {
         if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 {
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-                let key = app_delegate.firebaseObject.createUser(email:self.emailTextField.text!)
+                let id = app_delegate.firebaseObject.createUser(email:self.emailTextField.text!)
+                DatabaseManager.updateProfile(id: id, userName: self.emailTextField.text!, latitude: 0, longitude: 0)
                 
+                //Present after updated profile
+                app_delegate.profile = DatabaseManager.getProfile()
                 let drawerController = app_delegate.initRevealViewController()
                 self.present(drawerController, animated: true, completion: nil)
             }

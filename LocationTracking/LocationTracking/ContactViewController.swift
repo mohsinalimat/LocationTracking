@@ -16,6 +16,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTitleNavigation(title: "Contact List")
+        self.addLeftBarItem(imageName: "icon_add_user")
         // Do any additional setup after loading the view.
     }
 

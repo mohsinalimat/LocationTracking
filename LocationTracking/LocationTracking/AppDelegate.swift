@@ -10,25 +10,25 @@ import UIKit
 import CoreData
 import GoogleMaps
 import GooglePlaces
+import MagicalRecord
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var firebaseObject = FirebaseAction()
+    var profile: Profile?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
         //Set up Google API Key
         GMSServices.provideAPIKey("AIzaSyB-vkbuoB24Hb8StdNS_mw4VaAN7oiZMe0")
         GMSPlacesClient.provideAPIKey("AIzaSyB-vkbuoB24Hb8StdNS_mw4VaAN7oiZMe0")
-        
+
+        //Init Magical Record
+        MagicalRecord.setupCoreDataStack()
         //Init Firebase
         firebaseObject.initFirebase()
-        
-//        //init rootViewController
-//        let drawerController = self.initRevealViewController()
-//        window!.rootViewController = drawerController
+        profile = DatabaseManager.getProfile()
         return true
     }
 
