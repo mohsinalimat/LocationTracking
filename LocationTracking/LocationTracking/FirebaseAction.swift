@@ -26,9 +26,9 @@ class FirebaseAction: NSObject {
     //Create new user to sign up firebase
     func createUser(email: String) -> String {
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-        let userInfoDictionary = ["currentLocations": ["latitude":0,"longitude":0],"email":email] as [String : Any]
+        let userInfoDictionary = [email:["currentLocations": ["latitude":0,"longitude":0],"email":email]] as [String:[String : Any]]
         resultRef = ref.childByAutoId()
-        resultRef.setValue(userInfoDictionary)
+        ref.setValue(userInfoDictionary)
         return resultRef.key
     }
     
