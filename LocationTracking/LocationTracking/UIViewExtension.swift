@@ -15,4 +15,15 @@ extension UIView {
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.clear.cgColor
     }
+    
+    func tappedDismissKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismisskeyboard))
+        tap.cancelsTouchesInView = false
+        self.addGestureRecognizer(tap)
+        
+    }
+    
+    func dismisskeyboard() {
+        self.endEditing(true)
+    }
 }

@@ -19,7 +19,8 @@ class SignInViewController: OriginalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.tappedDismissKeyboard()
+
         signInButton.setupBorder()
         signUpButton.setupBorder()
         signInFacebookButton.setupBorder()
