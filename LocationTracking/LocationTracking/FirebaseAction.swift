@@ -24,11 +24,12 @@ class FirebaseAction: NSObject {
     
     //MARK: USER INFORMATION
     //Create new user to sign up firebase
-    func createUser(email: String) -> String {
+    func createUser(email: String) -> String{
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-        let userInfoDictionary = [email:["currentLocations": ["latitude":0,"longitude":0],"email":email]] as [String:[String : Any]]
+
+        let userInfoDictionary = ["currentLocations": ["latitude":0,"longitude":0],"email":email] as [String : Any]
         resultRef = ref.childByAutoId()
-        ref.setValue(userInfoDictionary)
+        resultRef.setValue(userInfoDictionary)
         return resultRef.key
     }
     
@@ -43,8 +44,20 @@ class FirebaseAction: NSObject {
         }
     }
     
-    func searchContactWithEmail(id: String, email: String ) {
-        ref.child(id).queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observe(.value, with: { snapshot in
+    //Sign out
+    func signOut() -> Bool{
+        do{
+            try FIRAuth.auth()?.signOut()
+            return true
+        }catch{
+            print("Error while signing out!")
+            return false
+        }
+    }
+    
+    //Search contact to contact List
+    func searchContactWithEmail(email: String ) -> [String] {
+        ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observe(.value, with: { snapshot in
             for u in snapshot.children{
                 print(u)
             }

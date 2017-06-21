@@ -11,6 +11,9 @@
 		841781601EF56B630020858C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8417815F1EF56B630020858C /* GoogleService-Info.plist */; };
 		841781631EF58F3F0020858C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841781621EF58F3F0020858C /* SignInViewController.swift */; };
 		841781651EF59E320020858C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841781641EF59E320020858C /* SignUpViewController.swift */; };
+		843C03EB1EFADA4E00BE605B /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 843C03EA1EFADA4E00BE605B /* LocationTracking.xcmappingmodel */; };
+		843C03EE1EFADE4C00BE605B /* ContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C03ED1EFADE4C00BE605B /* ContactModel.swift */; };
+		843C03F01EFAE1B500BE605B /* SearchContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843C03EF1EFAE1B500BE605B /* SearchContactTableViewCell.swift */; };
 		846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92A81EF4D7AB000993CE /* NavigationBarExtension.swift */; };
 		846C92AC1EF4D9D3000993CE /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AB1EF4D9D3000993CE /* Common.swift */; };
 		846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AD1EF4DAB7000993CE /* OriginalViewController.swift */; };
@@ -18,7 +21,7 @@
 		846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BB1EF4E46B000993CE /* KYDrawerController.swift */; };
 		846C92BF1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */; };
 		846C92C01EF4E46B000993CE /* KYEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */; };
-		846C92C31EF512CA000993CE /* FriendListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92C21EF512CA000993CE /* FriendListTableViewCell.swift */; };
+		846C92C31EF512CA000993CE /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92C21EF512CA000993CE /* ContactTableViewCell.swift */; };
 		846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92CB1EF5348B000993CE /* FirebaseAction.swift */; };
 		8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A2071EE869C800D79A61 /* MapViewController.swift */; };
 		8485A20A1EE86FC100D79A61 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8485A2091EE86FC100D79A61 /* MapKit.framework */; };
@@ -30,7 +33,6 @@
 		84DC8A731EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8A711EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld */; };
 		84DC8A781EE07C6000B6F9A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DC8A761EE07C6000B6F9A0 /* LaunchScreen.storyboard */; };
 		84DC8A811EE07C9B00B6F9A0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84DC8A801EE07C9B00B6F9A0 /* StoreKit.framework */; };
-		84DF39C01EF954250055A5B1 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84DF39BF1EF954250055A5B1 /* LocationTracking.xcmappingmodel */; };
 		84E871BA1EF98B6000F9B817 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E871B91EF98B6000F9B817 /* AddContactViewController.swift */; };
 		84E871BC1EF9932200F9B817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E871BB1EF9932200F9B817 /* Assets.xcassets */; };
 		84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */; };
@@ -43,6 +45,9 @@
 		8417815F1EF56B630020858C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		841781621EF58F3F0020858C /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		841781641EF59E320020858C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		843C03EA1EFADA4E00BE605B /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
+		843C03ED1EFADE4C00BE605B /* ContactModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactModel.swift; sourceTree = "<group>"; };
+		843C03EF1EFAE1B500BE605B /* SearchContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContactTableViewCell.swift; sourceTree = "<group>"; };
 		846C92A81EF4D7AB000993CE /* NavigationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
 		846C92AB1EF4D9D3000993CE /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		846C92AD1EF4DAB7000993CE /* OriginalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginalViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +55,7 @@
 		846C92BB1EF4E46B000993CE /* KYDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYDrawerController.swift; path = Reveal/KYDrawerController.swift; sourceTree = "<group>"; };
 		846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYEmbedDrawerControllerSegue.swift; path = Reveal/KYEmbedDrawerControllerSegue.swift; sourceTree = "<group>"; };
 		846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYEmbedMainControllerSegue.swift; path = Reveal/KYEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
-		846C92C21EF512CA000993CE /* FriendListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListTableViewCell.swift; sourceTree = "<group>"; };
+		846C92C21EF512CA000993CE /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		846C92CB1EF5348B000993CE /* FirebaseAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAction.swift; sourceTree = "<group>"; };
 		8485A2071EE869C800D79A61 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		8485A2091EE86FC100D79A61 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -65,7 +70,6 @@
 		84DC8A791EE07C6000B6F9A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84DC8A801EE07C9B00B6F9A0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		84DC8A821EE07CE000B6F9A0 /* LocationTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationTracking.entitlements; sourceTree = "<group>"; };
-		84DF39BF1EF954250055A5B1 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
 		84E871B91EF98B6000F9B817 /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		84E871BB1EF9932200F9B817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,14 @@
 				841781641EF59E320020858C /* SignUpViewController.swift */,
 			);
 			name = SignIn;
+			sourceTree = "<group>";
+		};
+		843C03EC1EFADE3000BE605B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				843C03ED1EFADE4C00BE605B /* ContactModel.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		846C92A71EF4D601000993CE /* Extension */ = {
@@ -145,7 +157,8 @@
 		846C92C11EF512A6000993CE /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				846C92C21EF512CA000993CE /* FriendListTableViewCell.swift */,
+				846C92C21EF512CA000993CE /* ContactTableViewCell.swift */,
+				843C03EF1EFAE1B500BE605B /* SearchContactTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -153,8 +166,8 @@
 		846C92C61EF516ED000993CE /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				843C03EA1EFADA4E00BE605B /* LocationTracking.xcmappingmodel */,
 				84DC8A711EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld */,
-				84DF39BF1EF954250055A5B1 /* LocationTracking.xcmappingmodel */,
 				84B0FB4F1EF83FD100F3ABDE /* DatabaseManager.swift */,
 			);
 			name = Database;
@@ -203,6 +216,7 @@
 				84DC8A6E1EE07C6000B6F9A0 /* Main.storyboard */,
 				84DC8A761EE07C6000B6F9A0 /* LaunchScreen.storyboard */,
 				846C92C61EF516ED000993CE /* Database */,
+				843C03EC1EFADE3000BE605B /* Model */,
 				846C92B11EF4E40E000993CE /* Library */,
 				846C92AA1EF4D8E3000993CE /* Commom */,
 				846C92A71EF4D601000993CE /* Extension */,
@@ -377,18 +391,20 @@
 				846C92BF1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift in Sources */,
 				846C92C01EF4E46B000993CE /* KYEmbedMainControllerSegue.swift in Sources */,
 				846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */,
-				84DF39C01EF954250055A5B1 /* LocationTracking.xcmappingmodel in Sources */,
 				84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */,
 				84E871BA1EF98B6000F9B817 /* AddContactViewController.swift in Sources */,
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
 				846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,
+				843C03EB1EFADA4E00BE605B /* LocationTracking.xcmappingmodel in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
+				843C03EE1EFADE4C00BE605B /* ContactModel.swift in Sources */,
+				843C03F01EFAE1B500BE605B /* SearchContactTableViewCell.swift in Sources */,
 				841781631EF58F3F0020858C /* SignInViewController.swift in Sources */,
 				84DC8A731EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld in Sources */,
 				841781651EF59E320020858C /* SignUpViewController.swift in Sources */,
-				846C92C31EF512CA000993CE /* FriendListTableViewCell.swift in Sources */,
+				846C92C31EF512CA000993CE /* ContactTableViewCell.swift in Sources */,
 				84B0FB501EF83FD100F3ABDE /* DatabaseManager.swift in Sources */,
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,

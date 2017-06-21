@@ -8,12 +8,14 @@
 
 import UIKit
 
-class AddContactViewController: OriginalViewController {
+class AddContactViewController: OriginalViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var searchTextView: UITextField!
+    @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    
+    var contactArray = [ContactModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,22 @@ class AddContactViewController: OriginalViewController {
     }
     
     @IBAction func tappedSearchContact(_ sender: UIButton) {
-        app_delegate.firebaseObject.searchContactWithEmail(id: , email: <#T##String#>)
+        if (searchTextField.text?.characters.count)! > 0 {
+            app_delegate.firebaseObject.searchContactWithEmail(email: searchTextField.text!)
+        }
+    }
+    
+    //MARK: - UITableView Delegate,Datasource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return contactArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "") as! SearchContactTableViewCell
+        return cell
     }
 }

@@ -27,6 +27,7 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ic_menu")
         self.addTitleNavigation(title: "Location Tracking")
+        self.addRightBarItem(imageName: "icon_add_user")
         // Do any additional setup after loading the view.
     }
 
@@ -109,5 +110,12 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         if let drawerController = self.parent?.parent as? KYDrawerController {
             drawerController.setDrawerState(.opened, animated: true)
         }
+    }
+    
+    //MARK: - Action
+    override func tappedRightBarButton(sender: UIButton) {
+        //Add new contact
+        let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
+        self.present(addContactViewController, animated: true, completion: nil)
     }
 }

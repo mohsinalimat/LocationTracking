@@ -16,7 +16,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTitleNavigation(title: "Contact List")
-        self.addLeftBarItem(imageName: "icon_add_user")
         // Do any additional setup after loading the view.
     }
 
@@ -31,10 +30,15 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     //MARK: - Action
-    override func tappedLeftBarButton(sender: UIButton) {
-        //Add new contact
-        
+    @IBAction func tappedSignOut(_ sender: UIButton) {
+        let result = app_delegate.firebaseObject.signOut()
+        if result {
+            //Sign out is success
+        } else {
+            //Sign out is failure
+        }
     }
+    
     //MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contactArray.count
