@@ -56,11 +56,20 @@ class FirebaseAction: NSObject {
     }
     
     //Search contact to contact List
-    func searchContactWithEmail(email: String ) -> [String] {
+    func searchContactWithEmail(email: String, completionHandler: @escaping ([ContactModel]) -> ()) {
         ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observe(.value, with: { snapshot in
-            for u in snapshot.children{
-                print(u)
+            var array = [ContactModel]()
+            let snapDic = snapshot.value as? [String:Any]
+
+            for child in snapDic! {
+                var allDict = child.value as? [String:Any]
+                allDict?["id"] = child.key
+                let contactModel = ContactModel()
+                contactModel.initContactModel(dict: allDict!)
+                array.append(contactModel)
+                print(child)
             }
+            completionHandler(array)
         })
     }
 }

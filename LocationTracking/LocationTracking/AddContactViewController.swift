@@ -19,7 +19,7 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +34,14 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     
     @IBAction func tappedSearchContact(_ sender: UIButton) {
         if (searchTextField.text?.characters.count)! > 0 {
-            app_delegate.firebaseObject.searchContactWithEmail(email: searchTextField.text!)
+            app_delegate.firebaseObject.searchContactWithEmail(email: searchTextField.text!, completionHandler: {(array) in
+    
+                self.contactArray.removeAll()
+                self.contactArray.append(contentsOf: array)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
         }
     }
     
@@ -48,7 +55,8 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "") as! SearchContactTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchContactTableViewCell") as! SearchContactTableViewCell
+        cell.setupCell(contact: contactArray[indexPath.row])
         return cell
     }
 }
