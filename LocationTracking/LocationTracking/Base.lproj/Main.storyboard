@@ -457,7 +457,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWA-Cz-Gcc">
-                                                    <rect key="frame" x="260" y="10" width="40" height="40"/>
+                                                    <rect key="frame" x="270" y="10" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="CEW-7J-8JX"/>
                                                         <constraint firstAttribute="width" secondItem="qWA-Cz-Gcc" secondAttribute="height" multiplier="1:1" id="FsH-6j-B8E"/>
@@ -465,11 +465,14 @@
                                                     </constraints>
                                                     <state key="normal" image="check_off"/>
                                                     <state key="selected" image="check_on"/>
+                                                    <connections>
+                                                        <action selector="tappedSelectedContact:" destination="KQz-We-sOP" eventType="touchUpInside" id="WuU-Jg-e2g"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="WG9-i0-21A" secondAttribute="trailing" constant="20" id="0hr-1s-AYF"/>
-                                                <constraint firstAttribute="trailing" secondItem="qWA-Cz-Gcc" secondAttribute="trailing" constant="20" id="E2l-wb-Nl5"/>
+                                                <constraint firstAttribute="trailing" secondItem="qWA-Cz-Gcc" secondAttribute="trailing" constant="10" id="E2l-wb-Nl5"/>
                                                 <constraint firstItem="qWA-Cz-Gcc" firstAttribute="centerY" secondItem="YhF-h3-tXK" secondAttribute="centerY" id="IOq-rx-69f"/>
                                                 <constraint firstItem="0FE-PV-oZd" firstAttribute="centerY" secondItem="YhF-h3-tXK" secondAttribute="centerY" id="QGV-FY-Ffm"/>
                                                 <constraint firstItem="0FE-PV-oZd" firstAttribute="leading" secondItem="YhF-h3-tXK" secondAttribute="leading" constant="10" id="SLH-6E-RMI"/>
@@ -483,6 +486,7 @@
                                         <connections>
                                             <outlet property="emailLabel" destination="WG9-i0-21A" id="qa8-WG-ddG"/>
                                             <outlet property="locationLabel" destination="Fvn-pG-g0s" id="7DA-mL-Mgx"/>
+                                            <outlet property="selectionButton" destination="qWA-Cz-Gcc" id="WpR-dq-r1l"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

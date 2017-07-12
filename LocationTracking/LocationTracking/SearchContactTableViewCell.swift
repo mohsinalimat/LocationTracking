@@ -12,11 +12,18 @@ class SearchContactTableViewCell: UITableViewCell {
 
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var selectionButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+    //MARK: - Action
+    @IBAction func tappedSelectedContact(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+    }
+    
+    //MARK: - Function
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
