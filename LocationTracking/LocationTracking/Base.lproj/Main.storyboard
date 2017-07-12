@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfO-c7-M0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfO-c7-M0M">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aP-0D-MvR">
-                                <rect key="frame" x="20" y="220" width="280" height="47"/>
+                                <rect key="frame" x="20" y="220" width="280" height="46.5"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="6aP-0D-MvR" secondAttribute="height" multiplier="6:1" id="2d5-Ta-cxV"/>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQQ-Kd-HIK">
-                                <rect key="frame" x="20" y="277" width="280" height="46"/>
+                                <rect key="frame" x="20" y="276.5" width="280" height="47"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="WQQ-Kd-HIK" secondAttribute="height" multiplier="6:1" id="p91-hm-oi9"/>
@@ -56,7 +56,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8c-tq-TPY">
-                                <rect key="frame" x="20" y="333" width="280" height="47"/>
+                                <rect key="frame" x="20" y="333.5" width="280" height="46.5"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="T8c-tq-TPY" secondAttribute="height" multiplier="6:1" id="K1r-hV-SOk"/>
@@ -70,7 +70,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-fy-czQ">
-                                <rect key="frame" x="20" y="390" width="280" height="47"/>
+                                <rect key="frame" x="20" y="390" width="280" height="46.5"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="Sign In With Google +">
@@ -290,7 +290,7 @@
                                         <rect key="frame" x="0.0" y="179" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5TQ-gH-dvK" id="jsX-u9-gUg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avar" translatesAutoresizingMaskIntoConstraints="NO" id="D0w-EX-9GP">
@@ -390,10 +390,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o24-d3-1b2">
-                                <rect key="frame" x="15" y="50" width="290" height="40"/>
+                                <rect key="frame" x="15" y="65" width="290" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QME-dB-nQi">
-                                        <rect key="frame" x="0.0" y="3" width="290" height="35"/>
+                                        <rect key="frame" x="20" y="3" width="270" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="bQl-cZ-h46"/>
                                         </constraints>
@@ -410,16 +410,16 @@
                                             <constraint firstAttribute="height" constant="40" id="3xb-l5-8r8"/>
                                             <constraint firstAttribute="width" constant="40" id="Amg-JH-T3n"/>
                                         </constraints>
-                                        <state key="normal" image="ic_search"/>
+                                        <state key="normal" image="ico_search"/>
                                         <connections>
                                             <action selector="tappedSearchContact:" destination="GPV-4o-2kp" eventType="touchUpInside" id="2GB-fH-elA"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wgZ-Na-6RE" secondAttribute="trailing" id="Dxi-Ga-qdM"/>
-                                    <constraint firstItem="QME-dB-nQi" firstAttribute="leading" secondItem="o24-d3-1b2" secondAttribute="leading" id="MYJ-8Q-Ve0"/>
+                                    <constraint firstItem="QME-dB-nQi" firstAttribute="leading" secondItem="o24-d3-1b2" secondAttribute="leading" constant="20" id="MYJ-8Q-Ve0"/>
                                     <constraint firstAttribute="trailing" secondItem="QME-dB-nQi" secondAttribute="trailing" id="ZX9-Y2-NrU"/>
                                     <constraint firstItem="wgZ-Na-6RE" firstAttribute="top" secondItem="o24-d3-1b2" secondAttribute="top" id="eun-w5-Dgt"/>
                                     <constraint firstItem="wgZ-Na-6RE" firstAttribute="centerY" secondItem="QME-dB-nQi" secondAttribute="centerY" id="mkI-yB-Q2Z"/>
@@ -427,14 +427,14 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XO2-z8-Mgg">
-                                <rect key="frame" x="0.0" y="90" width="320" height="478"/>
+                                <rect key="frame" x="0.0" y="125" width="320" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchContactTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchContactTableViewCell" rowHeight="60" id="KQz-We-sOP" customClass="SearchContactTableViewCell" customModule="LocationTracking" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KQz-We-sOP" id="YhF-h3-tXK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WG9-i0-21A">
@@ -485,7 +485,7 @@
                                     <constraint firstAttribute="width" constant="35" id="2im-sP-oNx"/>
                                     <constraint firstAttribute="height" constant="35" id="Yyj-He-4S4"/>
                                 </constraints>
-                                <state key="normal" image="ic_close_popup"/>
+                                <state key="normal" image="ico_close"/>
                                 <connections>
                                     <action selector="tappedClose:" destination="GPV-4o-2kp" eventType="touchUpInside" id="loJ-Me-YsR"/>
                                 </connections>
@@ -495,11 +495,11 @@
                         <constraints>
                             <constraint firstItem="NeX-nJ-AaI" firstAttribute="top" secondItem="eYz-iw-fey" secondAttribute="top" id="0lG-mh-qup"/>
                             <constraint firstAttribute="trailing" secondItem="o24-d3-1b2" secondAttribute="trailing" constant="15" id="3K6-aP-73d"/>
-                            <constraint firstItem="o24-d3-1b2" firstAttribute="top" secondItem="1Be-rY-Efh" secondAttribute="bottom" constant="30" id="IP2-tF-yTZ"/>
                             <constraint firstItem="o24-d3-1b2" firstAttribute="leading" secondItem="eYz-iw-fey" secondAttribute="leading" constant="15" id="Riu-gk-NLh"/>
-                            <constraint firstItem="XO2-z8-Mgg" firstAttribute="top" secondItem="o24-d3-1b2" secondAttribute="bottom" id="Z3I-L8-aWD"/>
+                            <constraint firstItem="XO2-z8-Mgg" firstAttribute="top" secondItem="o24-d3-1b2" secondAttribute="bottom" constant="20" id="Z3I-L8-aWD"/>
                             <constraint firstItem="UUz-vR-wWR" firstAttribute="top" secondItem="XO2-z8-Mgg" secondAttribute="bottom" id="afn-k3-hcx"/>
                             <constraint firstAttribute="trailing" secondItem="XO2-z8-Mgg" secondAttribute="trailing" id="fK4-Rn-xOl"/>
+                            <constraint firstItem="o24-d3-1b2" firstAttribute="top" secondItem="qwf-6h-bVw" secondAttribute="bottom" constant="10" id="gyq-XZ-WZD"/>
                             <constraint firstItem="qwf-6h-bVw" firstAttribute="top" secondItem="eYz-iw-fey" secondAttribute="top" constant="20" id="iWG-I2-TwN"/>
                             <constraint firstAttribute="trailing" secondItem="NeX-nJ-AaI" secondAttribute="trailing" id="lfe-Ah-dSQ"/>
                             <constraint firstItem="qwf-6h-bVw" firstAttribute="leading" secondItem="eYz-iw-fey" secondAttribute="leading" constant="15" id="rm4-T4-rpG"/>
@@ -524,9 +524,9 @@
     <resources>
         <image name="background" width="372" height="696"/>
         <image name="ic_avar" width="75" height="75"/>
-        <image name="ic_close_popup" width="10" height="10"/>
         <image name="ic_img_alarm" width="375" height="284"/>
-        <image name="ic_search" width="12" height="12"/>
+        <image name="ico_close" width="16" height="16"/>
+        <image name="ico_search" width="18" height="18"/>
         <image name="sign_out" width="256" height="256"/>
     </resources>
 </document>

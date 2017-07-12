@@ -19,7 +19,7 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        self.initLayout()
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,6 +27,11 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Layout
+    func initLayout() {
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        searchView.setupBorder()
+    }
     //MARK: - Action
     @IBAction func tappedClose(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -35,7 +40,6 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     @IBAction func tappedSearchContact(_ sender: UIButton) {
         if (searchTextField.text?.characters.count)! > 0 {
             app_delegate.firebaseObject.searchContactWithEmail(email: searchTextField.text!, completionHandler: {(array) in
-    
                 self.contactArray.removeAll()
                 self.contactArray.append(contentsOf: array)
                 DispatchQueue.main.async {
