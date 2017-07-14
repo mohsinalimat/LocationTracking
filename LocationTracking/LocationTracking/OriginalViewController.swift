@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RappleProgressHUD
 
 class OriginalViewController: UIViewController {
 
@@ -22,22 +23,30 @@ class OriginalViewController: UIViewController {
     }
     
     //MARK: - UINavigation Bar
-    func addLeftBarItem(imageName : String) {
+    func addLeftBarItem(imageName : String, title : String) {
         let leftButton = UIButton.init(type: UIButtonType.custom)
-        leftButton.setImage(UIImage.init(named: imageName), for: UIControlState.normal)
         leftButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         leftButton.addTarget(self, action: #selector(tappedLeftBarButton(sender:)), for: UIControlEvents.touchUpInside)
-        
+        if title.characters.count > 0 {
+            leftButton.setTitle(title, for: UIControlState.normal)
+        }
+        if imageName.characters.count > 0 {
+            leftButton.setImage(UIImage.init(named: imageName), for: UIControlState.normal)
+        }
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton)
     }
     
-    func addRightBarItem(imageName : String) {
-        let leftButton = UIButton.init(type: UIButtonType.custom)
-        leftButton.setImage(UIImage.init(named: imageName), for: UIControlState.normal)
-        leftButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
-        leftButton.addTarget(self, action: #selector(tappedRightBarButton(sender:)), for: UIControlEvents.touchUpInside)
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: leftButton)
+    func addRightBarItem(imageName : String, title : String) {
+        let rightButton = UIButton.init(type: UIButtonType.custom)
+        rightButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
+        rightButton.addTarget(self, action: #selector(tappedRightBarButton(sender:)), for: UIControlEvents.touchUpInside)
+        if title.characters.count > 0 {
+            rightButton.setTitle(title, for: UIControlState.normal)
+        }
+        if imageName.characters.count > 0 {
+            rightButton.setImage(UIImage.init(named: imageName), for: UIControlState.normal)
+        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton)
     }
 
     func addTitleNavigation(title : String) {
@@ -55,9 +64,18 @@ class OriginalViewController: UIViewController {
     func tappedLeftBarButton(sender : UIButton) {
         
     }
-    
-    //MARK: - Action
+
     func tappedRightBarButton(sender : UIButton) {
         
+    }
+    
+    //MARK: - Function
+    
+    func showHUD() {
+        RappleActivityIndicatorView.startAnimating()
+    }
+    
+    func hideHUD() {
+        RappleActivityIndicatorView.stopAnimation()
     }
 }

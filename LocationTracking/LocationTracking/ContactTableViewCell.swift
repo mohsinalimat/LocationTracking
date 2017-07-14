@@ -14,6 +14,7 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var requestLocation: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,4 +24,6 @@ class ContactTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    @IBAction func tappedRequestLocation(_ sender: UIButton) {
+    }
 }

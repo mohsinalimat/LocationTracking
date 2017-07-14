@@ -136,6 +136,7 @@ PODS:
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
   - Protobuf (3.3.0)
+  - RappleProgressHUD (2.3.0)
 
 DEPENDENCIES:
   - Firebase (>= 2.5.0)
@@ -153,6 +154,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - MagicalRecord
+  - RappleProgressHUD
 
 SPEC CHECKSUMS:
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
@@ -178,7 +180,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  RappleProgressHUD: d29a931f7e867e9d9c3b88831f62e8366976eb41
 
-PODFILE CHECKSUM: e2b903c2fc23c997b1b594673ffc3e4b8b75669f
+PODFILE CHECKSUM: 308a3474ebd7f1309cbd837fbcca0681389dea41
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

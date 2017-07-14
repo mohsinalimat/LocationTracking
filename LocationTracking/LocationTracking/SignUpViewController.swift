@@ -17,7 +17,7 @@ class SignUpViewController: OriginalViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addLeftBarItem(imageName: "ic_close_popup")
+        self.addLeftBarItem(imageName: "ic_close_popup",title: "")
     }
 
     override func didReceiveMemoryWarning() {

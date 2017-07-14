@@ -29,14 +29,13 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     
     //MARK: - Layout
     func initLayout() {
+        self.addLeftBarItem(imageName: "ico_back",title: "")
+        self.addRightBarItem(imageName: "", title: "Save")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         searchView.setupBorder()
     }
-    //MARK: - Action
-    @IBAction func tappedClose(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
+    //MARK: - Action
     @IBAction func tappedSearchContact(_ sender: UIButton) {
         if (searchTextField.text?.characters.count)! > 0 {
             app_delegate.firebaseObject.searchContactWithEmail(email: searchTextField.text!, completionHandler: {(array) in
@@ -47,6 +46,16 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
                 }
             })
         }
+    }
+    
+    //Save contact into Favorite
+    override func tappedRightBarButton(sender: UIButton) {
+        
+    }
+    
+    //Tapped to back
+    override func tappedLeftBarButton(sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - UITableView Delegate,Datasource

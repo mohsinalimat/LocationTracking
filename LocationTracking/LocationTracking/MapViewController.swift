@@ -25,9 +25,9 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addLeftBarItem(imageName: "ic_menu")
+        self.addLeftBarItem(imageName: "ic_menu",title: "")
         self.addTitleNavigation(title: "Location Tracking")
-        self.addRightBarItem(imageName: "icon_add_user")
+        self.addRightBarItem(imageName: "icon_add_user",title: "")
         // Do any additional setup after loading the view.
     }
 
@@ -112,10 +112,9 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         }
     }
     
-    //MARK: - Action
     override func tappedRightBarButton(sender: UIButton) {
         //Add new contact
         let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
-        self.present(addContactViewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(addContactViewController, animated: true)
     }
 }
