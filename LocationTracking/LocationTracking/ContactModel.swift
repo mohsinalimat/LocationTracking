@@ -13,6 +13,7 @@ class ContactModel: NSObject {
     var latitude: Double = 0
     var longitude: Double = 0
     var id: String = ""
+    var isShare : Int = 0
     
     func initContactModel(dict: [String:Any]) {
         if dict["email"] != nil {

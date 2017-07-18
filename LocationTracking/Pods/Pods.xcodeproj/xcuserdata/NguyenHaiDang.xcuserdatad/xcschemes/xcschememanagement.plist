@@ -8,40 +8,74 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>GoogleAPIClientForREST.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-LocationTracking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>RappleProgressHUD.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3128830422B2A347492379E5A4199EBF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>46FB9B63D089844986388766C218CFED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>81348B1B4233636A4BFE9A75293C83CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9021A9CF737B40AFE8628CC73C7235C0</key>
 		<dict>
 			<key>primary</key>

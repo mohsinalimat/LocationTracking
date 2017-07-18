@@ -16,6 +16,12 @@ extension UIView {
         self.layer.borderColor = UIColor.clear.cgColor
     }
     
+    func customBorder(radius: CGFloat) {
+        self.layer.cornerRadius = self.frame.size.height/2
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.clear.cgColor
+    }
+    
     func tappedDismissKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismisskeyboard))
         tap.cancelsTouchesInView = false
