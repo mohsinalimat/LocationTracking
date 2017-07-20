@@ -34,7 +34,7 @@ class DatabaseManager: NSObject {
     }
     
     //MARK: - Contact
-    static func updateContact(id: String, email: String, latitude: Double, longitude: Double,isShared: Bool) {
+    static func updateContact(id: String, email: String, latitude: Double, longitude: Double,isShared: Int) {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var contact = self.getContact(id: id)
             if contact == nil {
@@ -44,7 +44,7 @@ class DatabaseManager: NSObject {
             contact?.email = email
             contact?.latitude = latitude
             contact?.longitude = longitude
-            contact?.isShare = isShared
+            contact?.isShare = Int16(isShared)
         })
     }
     
