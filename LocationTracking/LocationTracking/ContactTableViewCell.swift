@@ -32,11 +32,15 @@ class ContactTableViewCell: UITableViewCell {
     func setupCell(contact:Contact) {
         userNameLabel.text = contact.email
         currentLocationLabel.text = String(contact.latitude)
-        if contact.isShare == 0 {
+        if contact.isShare == Int16(ShareStatus.kNotYetShared.rawValue) {
             //Not yet shared location
             requestLocation.isHidden = false
             currentLocationLabel.isHidden = true
-        } else {
+        } else if contact.isShare == Int16(ShareStatus.kShared.rawValue) {
+            //Shared location
+            requestLocation.isHidden = true
+            currentLocationLabel.isHidden = false
+        } else if contact.isShare == Int16(ShareStatus.kSharedWaiting.rawValue) {
             //Shared location
             requestLocation.isHidden = true
             currentLocationLabel.isHidden = false
