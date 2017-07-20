@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource {
+class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var contactArray = [Contact]()
@@ -63,5 +63,16 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    //MARK: - ContactTableViewCell Delegate
+    func requestLocation(contact: Contact) {
+        self .showHUD()
+        app_delegate.firebaseObject.requestLocation(toContact: contact, onCompletetionHandler: {_ in
+            self.hideHUD()
+            DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kwaitingShared.rawValue, onCompletion: {_ in
+                
+            })
+        })
     }
 }

@@ -51,7 +51,7 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     //Save contact into Favorite
     override func tappedRightBarButton(sender: UIButton) {
         self.showHUD()
-        DatabaseManager.updateContact(contactArray: selectedContactArray,onCompletion: { _ in
+        DatabaseManager.saveContact(contactArray: selectedContactArray,onCompletion: { _ in
             self.hideHUD()
         })
     }

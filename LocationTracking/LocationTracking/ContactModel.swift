@@ -14,6 +14,7 @@ class ContactModel: NSObject {
     var longitude: Double = 0
     var id: String = ""
     var isShare : Int = 0
+    var waitingShare : String = ""
     
     func initContactModel(dict: [String:Any]) {
         if dict["email"] != nil {
@@ -31,5 +32,26 @@ class ContactModel: NSObject {
                 self.latitude = locationDictionary["latitude"] as! Double
             }
         }
+        if dict["shared"] != nil {
+            let profile = DatabaseManager.getProfile()
+            let shareList = dict["shared"] as! String
+            
+            if shareList.contains((profile?.id)!) {
+                //This contact shared location with user
+                isShare = ShareStatus.kShared.rawValue
+                return
+            }
+        }
+        if dict["waitingShare"] != nil {
+            let profile = DatabaseManager.getProfile()
+            let waitingShareList = dict["waitingShare"] as! String
+            
+            if waitingShareList.contains((profile?.id)!) {
+                //Requested share location with this contact
+                isShare = ShareStatus.kwaitingShared.rawValue
+                return
+            }
+        }
+        isShare = ShareStatus.kNotYetShared.rawValue
     }
 }

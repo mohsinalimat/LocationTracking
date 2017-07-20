@@ -34,7 +34,7 @@ class DatabaseManager: NSObject {
     }
     
     //MARK: - Contact
-    static func updateContact(contactArray : [ContactModel], onCompletion:@escaping (Void) -> Void)  {
+    static func saveContact(contactArray : [ContactModel], onCompletion:@escaping (Void) -> Void)  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             for contact in contactArray {
                 var newContact = self.getContact(id: contact.id)
@@ -47,6 +47,20 @@ class DatabaseManager: NSObject {
                 newContact?.longitude = contact.longitude
                 newContact?.isShare = Int16(contact.isShare)
             }
+        }, completion:{ didContext in
+            onCompletion()
+        })
+    }
+    
+    static func updateContact(id: String, latitude: Double, longitude: Double,isShare: Int, onCompletion:@escaping (Void) -> Void)  {
+        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+                var contact = self.getContact(id:id)
+                if contact == nil {
+                    contact = Contact.mr_createEntity(in: localContext)
+                }
+                contact?.latitude = latitude
+                contact?.longitude = longitude
+                contact?.isShare = Int16(isShare)
         }, completion:{ didContext in
             onCompletion()
         })

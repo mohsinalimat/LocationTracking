@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol ContactTableViewCellDelegate {
+    func requestLocation(contact: Contact)
+}
 class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -15,6 +18,9 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var requestLocation: UIButton!
+    var contactObject = Contact()
+    
+    var delegate: ContactTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,10 +32,12 @@ class ContactTableViewCell: UITableViewCell {
 
     //MARK: - Action
     @IBAction func tappedRequestLocation(_ sender: UIButton) {
+        delegate?.requestLocation(contact: contactObject)
     }
     
     //MARK: - Setup Cell
     func setupCell(contact:Contact) {
+        contactObject = contact
         userNameLabel.text = contact.email
         currentLocationLabel.text = String(contact.latitude)
         if contact.isShare == Int16(ShareStatus.kNotYetShared.rawValue) {
@@ -40,7 +48,7 @@ class ContactTableViewCell: UITableViewCell {
             //Shared location
             requestLocation.isHidden = true
             currentLocationLabel.isHidden = false
-        } else if contact.isShare == Int16(ShareStatus.kSharedWaiting.rawValue) {
+        } else if contact.isShare == Int16(ShareStatus.kwaitingShared.rawValue) {
             //Shared location
             requestLocation.isHidden = true
             currentLocationLabel.isHidden = false

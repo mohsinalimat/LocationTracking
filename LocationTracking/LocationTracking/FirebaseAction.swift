@@ -55,6 +55,7 @@ class FirebaseAction: NSObject {
         }
     }
     
+    //MARK: - Contact
     //Search contact to contact List
     func searchContactWithEmail(email: String, completionHandler: @escaping ([ContactModel]) -> ()) {
         ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observe(.value, with: { snapshot in
@@ -71,5 +72,16 @@ class FirebaseAction: NSObject {
             }
             completionHandler(array)
         })
+    }
+    
+    func requestLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
+        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        let profile = DatabaseManager.getProfile()
+        
+        let newWaitingShare = toContact.waitingShare! + (profile?.id)!
+        let userInfoDictionary = ["waitingShare": newWaitingShare] as [String : Any]
+        resultRef = ref.child((toContact.id)!)
+        resultRef.setValue(userInfoDictionary)
+        onCompletetionHandler()
     }
 }

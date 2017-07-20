@@ -11,7 +11,7 @@ import UIKit
 
 enum ShareStatus: Int {
     case kShared        = 0
-    case kSharedWaiting = 1
+    case kwaitingShared = 1
     case kNotYetShared  = 2
 }
 let main_storyboard = UIStoryboard(name: "Main", bundle: nil)
