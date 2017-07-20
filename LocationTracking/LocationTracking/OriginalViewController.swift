@@ -38,12 +38,14 @@ class OriginalViewController: UIViewController {
     
     func addRightBarItem(imageName : String, title : String) {
         let rightButton = UIButton.init(type: UIButtonType.custom)
-        rightButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         rightButton.addTarget(self, action: #selector(tappedRightBarButton(sender:)), for: UIControlEvents.touchUpInside)
         if title.characters.count > 0 {
+            rightButton.frame = CGRect.init(x: 0, y: 0, width: 80, height: 30)
             rightButton.setTitle(title, for: UIControlState.normal)
+            rightButton.setupBorder()
         }
         if imageName.characters.count > 0 {
+            rightButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
             rightButton.setImage(UIImage.init(named: imageName), for: UIControlState.normal)
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightButton)

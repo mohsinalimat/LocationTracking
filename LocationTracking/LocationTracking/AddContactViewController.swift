@@ -8,14 +8,14 @@
 
 import UIKit
 
-class AddContactViewController: OriginalViewController,UITableViewDelegate,UITableViewDataSource {
-    @IBOutlet weak var closeButton: UIButton!
+class AddContactViewController: OriginalViewController,UITableViewDelegate,UITableViewDataSource,SearchContactDelegate {
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
     var contactArray = [ContactModel]()
+    var selectedContactArray = [ContactModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,10 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     
     //Save contact into Favorite
     override func tappedRightBarButton(sender: UIButton) {
-        
+        self.showHUD()
+        DatabaseManager.updateContact(contactArray: selectedContactArray,onCompletion: { _ in
+            self.hideHUD()
+        })
     }
     
     //Tapped to back
@@ -69,7 +72,14 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchContactTableViewCell") as! SearchContactTableViewCell
+        cell.delegate = self
+        cell.indexPath = indexPath
         cell.setupCell(contact: contactArray[indexPath.row])
         return cell
+    }
+    
+    //MARK: - Cell Delegate
+    func SaveContact(indexPath: IndexPath) {
+        selectedContactArray.append(contactArray[indexPath.row])
     }
 }

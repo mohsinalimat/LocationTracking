@@ -34,24 +34,32 @@ class DatabaseManager: NSObject {
     }
     
     //MARK: - Contact
-    static func updateContact(id: String, email: String, latitude: Double, longitude: Double,isShared: Int) {
+    static func updateContact(contactArray : [ContactModel], onCompletion:@escaping (Void) -> Void)  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
-            var contact = self.getContact(id: id)
-            if contact == nil {
-                contact = Contact.mr_createEntity(in: localContext)
+            for contact in contactArray {
+                var newContact = self.getContact(id: contact.id)
+                if newContact == nil {
+                    newContact = Contact.mr_createEntity(in: localContext)
+                }
+                newContact?.id = contact.id
+                newContact?.email = contact.email
+                newContact?.latitude = contact.latitude
+                newContact?.longitude = contact.longitude
+                newContact?.isShare = Int16(contact.isShare)
             }
-            contact?.id = id
-            contact?.email = email
-            contact?.latitude = latitude
-            contact?.longitude = longitude
-            contact?.isShare = Int16(isShared)
+        }, completion:{ didContext in
+            onCompletion()
         })
     }
     
     static func getContact(id : String) -> Contact? {
         let predicate = NSPredicate(format: "id = %@",id)
         let contact = Contact.mr_findFirst(with: predicate)
-        
         return contact != nil ? contact : nil
+    }
+    
+    static func getAllContact() -> [Contact]! {
+        let contact = Contact.mr_findAll()
+        return contact != nil ? contact as! [Contact]! : []
     }
 }

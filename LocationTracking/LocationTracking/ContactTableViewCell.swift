@@ -24,6 +24,22 @@ class ContactTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    //MARK: - Action
     @IBAction func tappedRequestLocation(_ sender: UIButton) {
+    }
+    
+    //MARK: - Setup Cell
+    func setupCell(contact:Contact) {
+        userNameLabel.text = contact.email
+        currentLocationLabel.text = String(contact.latitude)
+        if contact.isShare == 0 {
+            //Not yet shared location
+            requestLocation.isHidden = false
+            currentLocationLabel.isHidden = true
+        } else {
+            //Shared location
+            requestLocation.isHidden = true
+            currentLocationLabel.isHidden = false
+        }
     }
 }
