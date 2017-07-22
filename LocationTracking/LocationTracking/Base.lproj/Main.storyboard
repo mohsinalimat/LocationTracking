@@ -263,24 +263,11 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_img_alarm" translatesAutoresizingMaskIntoConstraints="NO" id="Q7a-TH-rYf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bl7-fK-Pu9">
-                                            <rect key="frame" x="20" y="20" width="40" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="I2l-6b-Ila"/>
-                                                <constraint firstAttribute="width" constant="40" id="VPv-BK-piL"/>
-                                            </constraints>
-                                            <state key="normal" image="sign_out"/>
-                                            <connections>
-                                                <action selector="tappedSignOut:" destination="dlV-Ev-EFu" eventType="touchUpInside" id="E7l-fo-JeS"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Q7a-TH-rYf" secondAttribute="trailing" id="1CY-jJ-0CM"/>
-                                        <constraint firstItem="bl7-fK-Pu9" firstAttribute="leading" secondItem="N2N-Ow-o51" secondAttribute="leading" constant="20" id="1it-d3-T2n"/>
                                         <constraint firstItem="Q7a-TH-rYf" firstAttribute="leading" secondItem="N2N-Ow-o51" secondAttribute="leading" id="I4B-eh-Y5D"/>
-                                        <constraint firstItem="bl7-fK-Pu9" firstAttribute="top" secondItem="N2N-Ow-o51" secondAttribute="top" constant="20" id="IOc-45-knr"/>
                                         <constraint firstAttribute="bottom" secondItem="Q7a-TH-rYf" secondAttribute="bottom" id="MRV-TD-nWh"/>
                                         <constraint firstItem="Q7a-TH-rYf" firstAttribute="top" secondItem="N2N-Ow-o51" secondAttribute="top" id="agW-h5-LPO"/>
                                     </constraints>
@@ -556,6 +543,5 @@
         <image name="ic_avar" width="75" height="75"/>
         <image name="ic_img_alarm" width="375" height="284"/>
         <image name="ico_search" width="18" height="18"/>
-        <image name="sign_out" width="256" height="256"/>
     </resources>
 </document>

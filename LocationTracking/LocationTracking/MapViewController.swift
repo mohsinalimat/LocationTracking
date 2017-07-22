@@ -18,7 +18,8 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 12.0
     var currentContact: Contact?
-    
+    var marker: GMSMarker?
+
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
     
@@ -80,10 +81,21 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
     func referentCurrentContact(contactId:String) {
         if currentContact != nil {
             app_delegate.firebaseObject.referentToContact(contactId: contactId, onCompletionHandler: {_ in
-                let currentContact = DatabaseManager.getContact(id: contactId,contetxt: nil)
-                print(currentContact ?? "contact chaged")
+                self.currentContact = DatabaseManager.getContact(id: contactId,contetxt: nil)
+                self.updateMarker()
             })
+            self.updateMarker()
         }
+    }
+    
+    func updateMarker() {
+        mapView.clear()
+        let position = CLLocationCoordinate2DMake((currentContact?.latitude)!,(currentContact?.longitude)!)
+        marker = GMSMarker(position: position)
+        marker?.title = currentContact?.email
+        marker?.map = mapView
+        let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.zoomLevel)
+        mapView.camera = newCamera
     }
 // MARK: - GMSMapViewDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -30,6 +30,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - Init Object
     func initView() {
+        self.addLeftBarItem(imageName: "ic_logout", title: "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
@@ -40,7 +41,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         tableView.reloadData()
     }
     //MARK: - Action
-    @IBAction func tappedSignOut(_ sender: UIButton) {
+    override func tappedLeftBarButton(sender: UIButton) {
         let result = app_delegate.firebaseObject.signOut()
         if result {
             //Sign out is success
