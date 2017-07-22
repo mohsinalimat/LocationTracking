@@ -17,6 +17,8 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 12.0
+    var currentContact: Contact?
+    
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
     
@@ -35,6 +37,9 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         super.viewWillAppear(animated)
         self.initMapView()
         self.getCurrentLocation()
+        if currentContact != nil {
+            self.referentCurrentContact(contactId: (currentContact?.id)!)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,6 +77,14 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         locationManager.startUpdatingLocation()
     }
     
+    func referentCurrentContact(contactId:String) {
+        if currentContact != nil {
+            app_delegate.firebaseObject.referentToContact(contactId: contactId, onCompletionHandler: {_ in
+                let currentContact = DatabaseManager.getContact(id: contactId,contetxt: nil)
+                print(currentContact ?? "contact chaged")
+            })
+        }
+    }
 // MARK: - GMSMapViewDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Get current location

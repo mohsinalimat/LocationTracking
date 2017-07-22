@@ -17,10 +17,12 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         super.viewDidLoad()
         self.addTitleNavigation(title: "Contact List")
         self.initView()
-        self.initData()
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.initData()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,11 +60,24 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
         cell.setupCell(contact: contactArray[indexPath.row])
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Show Map View
+        if let drawerController = self.parent?.parent as? KYDrawerController {
+            drawerController.setDrawerState(.closed, animated: true)
+            let mapNavigationViewController = drawerController.mainViewController as! UINavigationController
+            let mapViewController = mapNavigationViewController.viewControllers.last as! MapViewController
+            mapViewController.currentContact = contactArray[indexPath.row]
+            //Add observer when changed contact
+            mapViewController.referentCurrentContact(contactId: (mapViewController.currentContact?.id)!)
+        }
     }
     
     //MARK: - ContactTableViewCell Delegate

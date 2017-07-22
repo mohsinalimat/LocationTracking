@@ -35,15 +35,28 @@ class FirebaseAction: NSObject {
     
     //Sign in
     func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { (user, error) in
-            if error == nil {
-                completionHandler(true)
+        FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
+            let profile = DatabaseManager.getProfile()
+            if profile == nil {
+                self.searchContactWithEmail(email: email, completionHandler: { array in
+                    if array.count > 0 {
+                        let profile: ContactModel = array.first!
+                        DatabaseManager.updateProfile(id: profile.id, email: profile.email, latitude: profile.latitude, longitude: profile.longitude)
+                        completionHandler(true)
+                    } else {
+                        completionHandler(false)
+                    }
+                })
             } else {
-                completionHandler(false)
+                if error == nil {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
             }
         }
     }
-    
+
     //Sign out
     func signOut() -> Bool{
         do{
@@ -77,11 +90,40 @@ class FirebaseAction: NSObject {
     func requestLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
         let profile = DatabaseManager.getProfile()
+        //get old waiting share
+        let waitingShare = toContact.waitingShare == nil ? "" : toContact.waitingShare!
         
-        let newWaitingShare = toContact.waitingShare! + (profile?.id)!
-        let userInfoDictionary = ["waitingShare": newWaitingShare] as [String : Any]
+        //add new contact to waiting share list
+        let newWaitingShare = waitingShare + (profile?.id)!
+        
+        //comform to contact id
         resultRef = ref.child((toContact.id)!)
-        resultRef.setValue(userInfoDictionary)
+        
+        //comform to waiting share property
+        resultRef.child("waitingShare").setValue(newWaitingShare)
         onCompletetionHandler()
+    }
+    
+    func referentToContact(contactId:String, onCompletionHandler: @escaping () -> ()) {
+        ref.observe(.childChanged, with: { (snapshot) in
+            let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
+            var isShared = ShareStatus.kNotYetShared
+            if snapDict["Shared"] != nil {
+                let shared = snapDict["Shared"] as! String
+                let profile = DatabaseManager.getProfile()
+                if shared.contains((profile?.id)!) {
+                    isShared = ShareStatus.kShared
+                } else if snapDict["WaitingShare"] != nil {
+                    let waitingShare = snapDict["WaitingShare"] as! String
+                    if waitingShare.contains((profile?.id)!) {
+                        isShared = ShareStatus.kwaitingShared
+                    }
+                }
+            }
+            let currentLocationDictionary = snapDict["currentLocations"] as! [String: Any]
+            DatabaseManager.updateContact(id: contactId, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, isShare: isShared.rawValue, onCompletion: {
+                onCompletionHandler()
+            })
+        })
     }
 }

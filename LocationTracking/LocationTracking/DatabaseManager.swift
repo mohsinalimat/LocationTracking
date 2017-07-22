@@ -16,7 +16,6 @@ class DatabaseManager: NSObject {
     //MARK: - Profile
     static func getProfile() -> Profile? {
         let profile = Profile.mr_findFirst()
-        
         return profile != nil ? profile : nil
     }
     
@@ -37,7 +36,7 @@ class DatabaseManager: NSObject {
     static func saveContact(contactArray : [ContactModel], onCompletion:@escaping (Void) -> Void)  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             for contact in contactArray {
-                var newContact = self.getContact(id: contact.id)
+                var newContact = self.getContact(id: contact.id,contetxt: localContext)
                 if newContact == nil {
                     newContact = Contact.mr_createEntity(in: localContext)
                 }
@@ -46,6 +45,7 @@ class DatabaseManager: NSObject {
                 newContact?.latitude = contact.latitude
                 newContact?.longitude = contact.longitude
                 newContact?.isShare = Int16(contact.isShare)
+                newContact?.waitingShare = contact.waitingShare
             }
         }, completion:{ didContext in
             onCompletion()
@@ -54,7 +54,7 @@ class DatabaseManager: NSObject {
     
     static func updateContact(id: String, latitude: Double, longitude: Double,isShare: Int, onCompletion:@escaping (Void) -> Void)  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
-                var contact = self.getContact(id:id)
+                var contact = self.getContact(id: id, contetxt: localContext)
                 if contact == nil {
                     contact = Contact.mr_createEntity(in: localContext)
                 }
@@ -66,9 +66,16 @@ class DatabaseManager: NSObject {
         })
     }
     
-    static func getContact(id : String) -> Contact? {
+    static func getContact(id : String, contetxt: NSManagedObjectContext?) -> Contact? {
+        let currentContext: NSManagedObjectContext?
+        
+        if contetxt == nil {
+            currentContext = NSManagedObjectContext.mr_default()
+        } else {
+            currentContext = contetxt
+        }
         let predicate = NSPredicate(format: "id = %@",id)
-        let contact = Contact.mr_findFirst(with: predicate)
+        let contact = Contact.mr_findFirst(with: predicate, in: currentContext!)
         return contact != nil ? contact : nil
     }
     
