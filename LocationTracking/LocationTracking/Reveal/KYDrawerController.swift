@@ -123,7 +123,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         set { setDrawerState(drawerState, animated: false) }
     }
     
-    @IBInspectable public var drawerWidth: CGFloat = 280 {
+    @IBInspectable public var drawerWidth: CGFloat = screen_width - 40 {
         didSet { _drawerWidthConstraint?.constant = drawerWidth }
     }
 

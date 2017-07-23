@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Init Firebase
         firebaseObject.initFirebase()
         profile = DatabaseManager.getProfile()
+        self.referentCurrentContact()
         return true
     }
 
@@ -74,6 +75,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController.mainViewController = rootNavigation
         drawerController.drawerViewController = friendListNavigation
         return drawerController
+    }
+    
+    //Update when contact changed location
+    func referentCurrentContact() {
+        app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
+            
+        })
     }
 }
 

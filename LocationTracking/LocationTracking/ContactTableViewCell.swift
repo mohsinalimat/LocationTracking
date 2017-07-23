@@ -39,6 +39,8 @@ class ContactTableViewCell: UITableViewCell {
     func setupCell(contact:Contact) {
         contactObject = contact
         userNameLabel.text = contact.email
+        statusLabel.text = "lat:" + String(contact.latitude) + "long:" + String(contact.longitude)
+        
         currentLocationLabel.text = String(contact.latitude)
         if contact.isShare == Int16(ShareStatus.kNotYetShared.rawValue) {
             //Not yet shared location

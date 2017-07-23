@@ -37,12 +37,12 @@ class SignUpViewController: OriginalViewController {
                 //Create new user on firebase
                 let id = app_delegate.firebaseObject.createUser(email:self.emailTextField.text!)
                 //Create profile in database
-                DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, latitude: 0, longitude: 0)
-                
-                //Present after updated profile
-                app_delegate.profile = DatabaseManager.getProfile()
-                let drawerController = app_delegate.initRevealViewController()
-                self.present(drawerController, animated: true, completion: nil)
+                DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                    //Present after updated profile
+                    app_delegate.profile = DatabaseManager.getProfile()
+                    let drawerController = app_delegate.initRevealViewController()
+                    self.present(drawerController, animated: true, completion: nil)
+                })
             }
         }
     }

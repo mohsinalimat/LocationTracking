@@ -10,18 +10,20 @@ import UIKit
 
 class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
 
+    @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     var contactArray = [Contact]()
+    var currentIndex = kContactListIndex
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTitleNavigation(title: "Contact List")
         self.initView()
+        self.initData()
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.initData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -31,16 +33,37 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     //MARK: - Init Object
     func initView() {
         self.addLeftBarItem(imageName: "ic_logout", title: "")
+        self.addRightBarItem(imageName: "refresh", title: "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
     //MARK: - Data
     func initData() {
         contactArray.removeAll()
-        contactArray += DatabaseManager.getAllContact()
+        contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
         tableView.reloadData()
     }
+    
     //MARK: - Action
+    @IBAction func tappedChangeSegmentedIndex(_ sender: UISegmentedControl) {
+        //Only reload when current index != selected index
+        if currentIndex != sender.selectedSegmentIndex {
+            currentIndex = sender.selectedSegmentIndex
+            switch sender.selectedSegmentIndex {
+            case kContactListIndex:
+                contactArray.removeAll()
+                contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
+                tableView.reloadData()
+                break
+            default:
+                contactArray.removeAll()
+                contactArray += DatabaseManager.getRequestToMeContact(contetxt: nil)
+                tableView.reloadData()
+                break
+            }
+        }
+    }
+    
     override func tappedLeftBarButton(sender: UIButton) {
         let result = app_delegate.firebaseObject.signOut()
         if result {
@@ -50,6 +73,28 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             }
         } else {
             //Sign out is failure
+        }
+    }
+    
+    //Refresh contact from server
+    override func tappedRightBarButton(sender: UIButton) {
+        self.showHUD()
+        switch segmented.selectedSegmentIndex {
+        case kContactListIndex:
+            break
+        case kRequestShareIndex:
+            let profile = DatabaseManager.getProfile()
+            let waitingShare = profile?.waitingShare
+            
+            app_delegate.firebaseObject.getProfile(onCompletionHandler: {_ in
+                let newProfile = DatabaseManager.getProfile()
+                if waitingShare?.characters.count != newProfile?.waitingShare?.characters.count {
+                
+                }
+            })
+            break
+        default:
+            break
         }
     }
     
@@ -77,7 +122,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             let mapViewController = mapNavigationViewController.viewControllers.last as! MapViewController
             mapViewController.currentContact = contactArray[indexPath.row]
             //Add observer when changed contact
-            mapViewController.referentCurrentContact(contactId: (mapViewController.currentContact?.id)!)
+//            mapViewController.referentCurrentContact(contactId: (mapViewController.currentContact?.id)!)
         }
     }
     

@@ -33,26 +33,41 @@ class FirebaseAction: NSObject {
         return resultRef.key
     }
     
+    func getProfile(onCompletionHandler: @escaping () -> ()) {
+        let profile = DatabaseManager.getProfile()        
+        ref.child((profile?.id)!).observe(.value, with: { (snapshot) in
+            let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
+            self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
+                
+            })
+        })
+    }
+    
     //Sign in
     func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
-            let profile = DatabaseManager.getProfile()
-            if profile == nil {
+            if error == nil {
                 self.searchContactWithEmail(email: email, completionHandler: { array in
                     if array.count > 0 {
-                        let profile: ContactModel = array.first!
-                        DatabaseManager.updateProfile(id: profile.id, email: profile.email, latitude: profile.latitude, longitude: profile.longitude)
-                        completionHandler(true)
+                        let newProfile: ContactModel = array.first!
+                        
+                        //Save profile after login
+                        DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
+                            for dict in newProfile.contact {
+                                
+                                self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,conCompletionHandler: {_ in
+                                    if dict.key == Array(newProfile.contact.keys).last {
+                                        completionHandler(true)
+                                    }
+                                })
+                            }
+                        })
                     } else {
                         completionHandler(false)
                     }
                 })
             } else {
-                if error == nil {
-                    completionHandler(true)
-                } else {
-                    completionHandler(false)
-                }
+                completionHandler(false)
             }
         }
     }
@@ -87,43 +102,76 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func getInformationForKey(contactId:String,isShare: Int?,conCompletionHandler: @escaping () -> ()) {
+        ref.child(contactId).observe(.value, with: { (snapshot) in
+            var snapDict = snapshot.value as? [String : AnyObject] ?? [:]
+            snapDict["isShare"] = isShare as AnyObject?
+            snapDict["id"] = contactId as AnyObject?
+            self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
+                conCompletionHandler()
+            })
+        })
+    }
+    
     func requestLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
         let profile = DatabaseManager.getProfile()
-        //get old waiting share
-        let waitingShare = toContact.waitingShare == nil ? "" : toContact.waitingShare!
-        
-        //add new contact to waiting share list
-        let newWaitingShare = waitingShare + (profile?.id)!
         
         //comform to contact id
         resultRef = ref.child((toContact.id)!)
         
         //comform to waiting share property
-        resultRef.child("waitingShare").setValue(newWaitingShare)
+        resultRef.child("contact").child((profile?.id)!).setValue(3)
         onCompletetionHandler()
     }
     
-    func referentToContact(contactId:String, onCompletionHandler: @escaping () -> ()) {
+    func referentToContact(onCompletionHandler: @escaping () -> ()) {
         ref.observe(.childChanged, with: { (snapshot) in
             let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-            var isShared = ShareStatus.kNotYetShared
-            if snapDict["Shared"] != nil {
-                let shared = snapDict["Shared"] as! String
-                let profile = DatabaseManager.getProfile()
-                if shared.contains((profile?.id)!) {
-                    isShared = ShareStatus.kShared
-                } else if snapDict["WaitingShare"] != nil {
-                    let waitingShare = snapDict["WaitingShare"] as! String
-                    if waitingShare.contains((profile?.id)!) {
-                        isShared = ShareStatus.kwaitingShared
-                    }
-                }
-            }
-            let currentLocationDictionary = snapDict["currentLocations"] as! [String: Any]
-            DatabaseManager.updateContact(id: contactId, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, isShare: isShared.rawValue, onCompletion: {
+            self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
                 onCompletionHandler()
             })
         })
+    }
+    
+    //MARK: - Save database
+    func saveToDatabase(snapDict: [String : AnyObject], onCompletionHandler: @escaping () -> ()) {
+        var id = ""
+        
+        if snapDict["id"] != nil {
+            id = snapDict["id"] as! String
+        }
+        if snapDict["email"] != nil {
+            let email = snapDict["email"] as! String
+            let currentLocationDictionary = snapDict["currentLocations"] as! [String: Any]
+            let profile = DatabaseManager.getProfile()
+            if profile?.email == email {
+                DatabaseManager.updateProfile(id: (profile?.id)!, email: email, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, onCompletionHandler: {_ in
+                    
+                    if snapDict["contact"] != nil {
+                        let contactDictionary = snapDict["contact"] as! [String:Any]
+                        for dict in contactDictionary {
+                            let isShare = (dict.value as! NSNumber).intValue
+                            DatabaseManager.updateContact(id: dict.key, latitude: nil, longitude: nil, isShare: isShare, onCompletion: {
+                                if dict.key == Array(contactDictionary.keys).last {
+                                    onCompletionHandler()
+                                }
+                            })
+                        }
+                    }
+                })
+            } else {
+                //changed contact
+                var isShare:Int? = nil
+                if snapDict["isShare"] != nil {
+                    isShare = snapDict["isShare"] as? Int
+                }
+                
+                DatabaseManager.updateContactWithEmail(id:id,email: email, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, isShare: isShare, onCompletion: {
+                    onCompletionHandler()
+                })
+            }
+            
+        }
     }
 }
