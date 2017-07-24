@@ -47,21 +47,9 @@ class FirebaseAction: NSObject {
     func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
             if error == nil {
-                self.searchContactWithEmail(email: email, completionHandler: { array in
-                    if array.count > 0 {
-                        let newProfile: ContactModel = array.first!
-                        
-                        //Save profile after login
-                        DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
-                            for dict in newProfile.contact {
-                                
-                                self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,conCompletionHandler: {_ in
-                                    if dict.key == Array(newProfile.contact.keys).last {
-                                        completionHandler(true)
-                                    }
-                                })
-                            }
-                        })
+                self.refreshData(email: email,completionHandler: {isSuccess in
+                    if isSuccess {
+                        completionHandler(true)
                     } else {
                         completionHandler(false)
                     }
@@ -131,6 +119,28 @@ class FirebaseAction: NSObject {
             self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
                 onCompletionHandler()
             })
+        })
+    }
+    
+    //MARK: - Refresh Data
+    func refreshData(email: String,completionHandler: @escaping (Bool) -> ()) {
+        self.searchContactWithEmail(email: email, completionHandler: { array in
+            if array.count > 0 {
+                let newProfile: ContactModel = array.first!
+                
+                //Save profile after login
+                DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
+                    for dict in newProfile.contact {
+                        self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,conCompletionHandler: {_ in
+                            if dict.key == Array(newProfile.contact.keys).last {
+                                completionHandler(true)
+                            }
+                        })
+                    }
+                })
+            } else {
+                completionHandler(false)
+            }
         })
     }
     
