@@ -18,7 +18,7 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var requestLocation: UIButton!
-    var contactObject = Contact()
+    var contactObject: Contact?
     
     var delegate: ContactTableViewCellDelegate?
     
@@ -32,7 +32,9 @@ class ContactTableViewCell: UITableViewCell {
 
     //MARK: - Action
     @IBAction func tappedRequestLocation(_ sender: UIButton) {
-        delegate?.requestLocation(contact: contactObject)
+        if contactObject != nil {
+            delegate?.requestLocation(contact: contactObject!)
+        }
     }
     
     //MARK: - Setup Cell
