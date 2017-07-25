@@ -38,9 +38,6 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         super.viewWillAppear(animated)
         self.initMapView()
         self.getCurrentLocation()
-        if currentContact != nil {
-//            self.referentCurrentContact(contactId: (currentContact?.id)!)
-        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,17 +75,6 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         locationManager.startUpdatingLocation()
     }
     
-//    func referentCurrentContact(contactId:String) {
-//        if currentContact != nil {
-//            app_delegate.firebaseObject.referentToContact(contactId: contactId, onCompletionHandler: {_ in
-//                self.currentContact = DatabaseManager.getContact(id: contactId,contetxt: nil)
-//                self.updateMarker()
-//                self.updateLocationContactList()
-//            })
-//            self.updateMarker()
-//        }
-//    }
-    
     func updateMarker() {
         mapView.clear()
         let position = CLLocationCoordinate2DMake((currentContact?.latitude)!,(currentContact?.longitude)!)
@@ -97,16 +83,6 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         marker?.map = mapView
         let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.zoomLevel)
         mapView.camera = newCamera
-    }
-    
-    func updateLocationContactList() {
-        if let drawerController = self.parent?.parent as? KYDrawerController {
-            drawerController.setDrawerState(.closed, animated: true)
-            let contactNavigationViewController = drawerController.mainViewController as! UINavigationController
-            let contactListViewController = contactNavigationViewController.viewControllers.last as! ContactViewController
-            contactListViewController.contactArray = DatabaseManager.getAllContact()
-            contactListViewController.tableView.reloadData()
-        }
     }
     
 // MARK: - GMSMapViewDelegate
