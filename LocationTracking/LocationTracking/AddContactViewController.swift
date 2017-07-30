@@ -38,13 +38,26 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     //MARK: - Action
     @IBAction func tappedSearchContact(_ sender: UIButton) {
         if (searchTextField.text?.characters.count)! > 0 {
-            app_delegate.firebaseObject.searchContactWithEmail(email: searchTextField.text!, completionHandler: {(array) in
-                self.contactArray.removeAll()
-                self.contactArray.append(contentsOf: array)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            })
+            self.showHUD()
+            if (searchTextField.text?.characters.count)! > 0 {
+                app_delegate.firebaseObject.searchContactWithEmail(email: searchTextField.text!, completionHandler: {(array) in
+                    self.contactArray.removeAll()
+                    let contactIdList = self.getListContactId()
+                    let profile = DatabaseManager.getProfile()
+                    
+                    if array.count > 0 {
+                        for contactModel in array as [ContactModel] {
+                            if !((contactIdList?.contains(contactModel.id)))! && profile?.id! != contactModel.id {
+                                self.contactArray.append(contactModel)
+                            }
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.hideHUD()
+                    }
+                })
+            }
         }
     }
     

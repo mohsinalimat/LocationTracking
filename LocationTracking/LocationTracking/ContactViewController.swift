@@ -123,7 +123,16 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         app_delegate.firebaseObject.requestLocation(toContact: contact, onCompletetionHandler: {_ in
             self.hideHUD()
             DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kwaitingShared.rawValue, onCompletion: {_ in
-                
+                self.tableView.reloadData()
+            })
+        })
+    }
+    
+    func shareLocation(contact: Contact) {
+        self .showHUD()
+        app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {_ in
+            DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
+                self.tableView.reloadData()
             })
         })
     }

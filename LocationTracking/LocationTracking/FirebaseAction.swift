@@ -47,6 +47,13 @@ class FirebaseAction: NSObject {
     func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
             if error == nil {
+                let userName = UserDefaults.standard.object(forKey: "userName") as? String
+                if userName != email {
+                    DatabaseManager.resetAllData(onCompletion: {_ in
+                        UserDefaults.standard.set(email, forKey: "userName")
+                        UserDefaults.standard.synchronize()
+                    })
+                }
                 self.refreshData(email: email,completionHandler: {isSuccess in
                     if isSuccess {
                         completionHandler(true)
@@ -77,7 +84,10 @@ class FirebaseAction: NSObject {
         ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observe(.value, with: { snapshot in
             var array = [ContactModel]()
             let snapDic = snapshot.value as? [String:Any]
-
+            guard snapDic != nil else {
+                completionHandler(array)
+                return
+            }
             for child in snapDic! {
                 var allDict = child.value as? [String:Any]
                 allDict?["id"] = child.key
@@ -107,9 +117,23 @@ class FirebaseAction: NSObject {
         
         //comform to contact id
         resultRef = ref.child((toContact.id)!)
-        
         //comform to waiting share property
-        resultRef.child("contact").child((profile?.id)!).setValue(3)
+        resultRef.child("contact").child((profile?.id)!).setValue(ShareStatus.kRequestShare.rawValue)
+        
+        ref.child((profile?.id)!).child("contact").child(toContact.id!).setValue(ShareStatus.kwaitingShared.rawValue)
+        onCompletetionHandler()
+    }
+    
+    func shareLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
+        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        let profile = DatabaseManager.getProfile()
+        
+        //comform to contact id
+        resultRef = ref.child((toContact.id)!)
+        //comform to waiting share property
+        resultRef.child("contact").child((profile?.id)!).setValue(ShareStatus.kShared.rawValue)
+        
+        ref.child((profile?.id)!).child("contact").child(toContact.id!).setValue(ShareStatus.kShared.rawValue)
         onCompletetionHandler()
     }
     
@@ -124,6 +148,7 @@ class FirebaseAction: NSObject {
     
     //MARK: - Refresh Data
     func refreshData(email: String,completionHandler: @escaping (Bool) -> ()) {
+        
         self.searchContactWithEmail(email: email, completionHandler: { array in
             if array.count > 0 {
                 let newProfile: ContactModel = array.first!

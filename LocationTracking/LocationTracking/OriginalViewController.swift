@@ -10,7 +10,9 @@ import UIKit
 import RappleProgressHUD
 
 class OriginalViewController: UIViewController {
-
+    
+    var progressHUD: ProgressView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = Common.mainColor()
@@ -54,10 +56,11 @@ class OriginalViewController: UIViewController {
     func addTitleNavigation(title : String) {
         let titleLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: screen_width - 120, height: 44))
         titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
         titleLabel.text = title
+        titleLabel.numberOfLines = 2
         
         self.navigationItem.titleView = titleLabel
     }
@@ -73,11 +76,32 @@ class OriginalViewController: UIViewController {
     
     //MARK: - Function
     
+    func getListContactId() -> [String]? {
+        let contactArray = DatabaseManager.getAllContact()
+        var array = [String]()
+        
+        if contactArray!.count > 0 {
+            for contact in contactArray! {
+                array.append(String(describing: contact.id!))
+            }
+        }
+        return array
+    }
+    
     func showHUD() {
         RappleActivityIndicatorView.startAnimating()
     }
     
     func hideHUD() {
         RappleActivityIndicatorView.stopAnimation()
+    }
+    
+    func showProgress(title: String) {
+        progressHUD = ProgressView(text: title)
+        self.navigationController?.view.addSubview(progressHUD!)
+    }
+    
+    func hideProgress() {
+        progressHUD?.removeFromSuperview()
     }
 }

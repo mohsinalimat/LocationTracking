@@ -156,4 +156,13 @@ class DatabaseManager: NSObject {
         let contact = Contact.mr_findAll()
         return contact != nil ? contact as! [Contact]! : []
     }
+    
+    static func resetAllData( onCompletion:@escaping (Void) -> Void) {
+        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+            Contact.mr_truncateAll(in: localContext)
+            Profile.mr_truncateAll(in: localContext)
+        }, completion:{ didContext in
+            onCompletion()
+        })
+    }
 }

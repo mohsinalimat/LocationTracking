@@ -29,7 +29,6 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ic_menu",title: "")
-        self.addTitleNavigation(title: "Location Tracking")
         self.addRightBarItem(imageName: "icon_add_user",title: "")
         // Do any additional setup after loading the view.
     }
@@ -38,6 +37,11 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         super.viewWillAppear(animated)
         self.initMapView()
         self.getCurrentLocation()
+        if currentContact == nil {
+            self.addTitleNavigation(title: "Location Tracking")
+        } else {
+            self.addTitleNavigation(title: (currentContact?.email)!)
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

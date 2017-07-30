@@ -28,6 +28,7 @@
 		84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0FB4D1EF8370500F3ABDE /* Toast.swift */; };
 		84B0FB501EF83FD100F3ABDE /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0FB4F1EF83FD100F3ABDE /* DatabaseManager.swift */; };
 		84BAAF131F23C6B600DC0718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84BAAF111F23C6B600DC0718 /* Main.storyboard */; };
+		84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF7F7C1F2A1902001B8A40 /* ProgressView.swift */; };
 		84CE2E081F24AB3A004044F6 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 84CE2E071F24AB3A004044F6 /* LocationTracking.xcmappingmodel */; };
 		84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8A6A1EE07C6000B6F9A0 /* AppDelegate.swift */; };
 		84DC8A731EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8A711EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld */; };
@@ -62,6 +63,7 @@
 		84B0FB4D1EF8370500F3ABDE /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		84B0FB4F1EF83FD100F3ABDE /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		84BAAF121F23C6B600DC0718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		84BF7F7C1F2A1902001B8A40 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		84CE2E071F24AB3A004044F6 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
 		84DC8A671EE07C6000B6F9A0 /* LocationTracking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationTracking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DC8A6A1EE07C6000B6F9A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				84B0FB4D1EF8370500F3ABDE /* Toast.swift */,
+				84BF7F7C1F2A1902001B8A40 /* ProgressView.swift */,
 				846C92BA1EF4E459000993CE /* Reveal */,
 			);
 			name = Library;
@@ -409,6 +412,7 @@
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
 				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,
 				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
+				84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */,
 				84CE2E081F24AB3A004044F6 /* LocationTracking.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

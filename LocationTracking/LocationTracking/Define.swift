@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 enum ShareStatus: Int {
-    case kNotYetShared  = 0
-    case kShared        = 1
-    case kwaitingShared = 2
-    case kRequestShare  = 3
+    case kShared        = 0
+    case kwaitingShared = 1
+    case kRequestShare  = 2
+    case kNotYetShared  = 3
 }
 
 let kContactListIndex   = 0
