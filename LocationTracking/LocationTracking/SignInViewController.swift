@@ -54,6 +54,13 @@ class SignInViewController: OriginalViewController {
         }
     }
     
+    @IBAction func tappedSignInWithFacebook(_ sender: UIButton) {
+
+    }
+    
+    @IBAction func tappedSignInWithGoogle(_ sender: UIButton) {
+    }
+    
     @IBAction func tappedSignUp(_ sender: UIButton) {
     }
 }

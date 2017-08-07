@@ -43,7 +43,7 @@ class FirebaseAction: NSObject {
         })
     }
     
-    //Sign in
+    //Sign in with Email
     func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
             if error == nil {
@@ -67,6 +67,32 @@ class FirebaseAction: NSObject {
         }
     }
 
+    //Sign in with Facebook
+    func signInWithCredential(completionHandler: @escaping (Bool) -> ()) {
+        let credential = FIRFacebookAuthProvider.credential(withAccessToken:FBSDKAccessToken.current().tokenString)
+
+        FIRAuth.auth()?.signIn(with: credential, completion: {(user, error) in
+            if error == nil {
+//                let userName = UserDefaults.standard.object(forKey: "userName") as? String
+//                if userName != email {
+//                    DatabaseManager.resetAllData(onCompletion: {_ in
+//                        UserDefaults.standard.set(email, forKey: "userName")
+//                        UserDefaults.standard.synchronize()
+//                    })
+//                }
+//                self.refreshData(email: email,completionHandler: {isSuccess in
+//                    if isSuccess {
+//                        completionHandler(true)
+//                    } else {
+//                        completionHandler(false)
+//                    }
+//                })
+            } else {
+                completionHandler(false)
+            }
+        })
+    }
+    
     //Sign out
     func signOut() -> Bool{
         do{

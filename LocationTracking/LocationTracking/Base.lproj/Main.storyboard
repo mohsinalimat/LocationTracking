@@ -47,7 +47,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="tappedSignIn:" destination="cfO-c7-M0M" eventType="touchUpInside" id="t4g-hs-Aig"/>
+                                    <action selector="tappedSignInWithFacebook:" destination="cfO-c7-M0M" eventType="touchUpInside" id="lAG-gu-sH5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-fy-czQ">
@@ -58,7 +58,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="tappedSignIn:" destination="cfO-c7-M0M" eventType="touchUpInside" id="8TI-hw-00G"/>
+                                    <action selector="tappedSignInWithGoogle:" destination="cfO-c7-M0M" eventType="touchUpInside" id="FA3-B0-O96"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIx-Ra-xZK">
@@ -68,6 +68,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="37.5"/>
                                         <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="cfO-c7-M0M" id="SZ3-pW-BEe"/>

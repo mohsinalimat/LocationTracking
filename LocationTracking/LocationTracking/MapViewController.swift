@@ -80,13 +80,15 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
     }
     
     func updateMarker() {
-        mapView.clear()
-        let position = CLLocationCoordinate2DMake((currentContact?.latitude)!,(currentContact?.longitude)!)
-        marker = GMSMarker(position: position)
-        marker?.title = currentContact?.email
-        marker?.map = mapView
-        let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.zoomLevel)
-        mapView.camera = newCamera
+        if (currentContact != nil) {
+            mapView.clear()
+            let position = CLLocationCoordinate2DMake((currentContact?.latitude)!,(currentContact?.longitude)!)
+            marker = GMSMarker(position: position)
+            marker?.title = currentContact?.email
+            marker?.map = mapView
+            let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.zoomLevel)
+            mapView.camera = newCamera
+        }
     }
     
 // MARK: - GMSMapViewDelegate
