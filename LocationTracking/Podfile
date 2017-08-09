@@ -21,5 +21,7 @@ target 'LocationTracking' do
 	pod 'Firebase/Storage'
 	pod 'MagicalRecord'
   # Pods for LocationTracking
-
+	pod 'FBSDKLoginKit'
+	pod 'GoogleSignIn'
+	pod 'TwitterKit'
 end

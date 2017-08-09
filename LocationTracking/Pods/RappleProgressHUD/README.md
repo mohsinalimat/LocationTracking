@@ -33,7 +33,7 @@ import RappleProgressHUD
 RappleActivityIndicatorView can be started using any of the starter methods mentioned below. 
 When calling these starter methods, two basic optional input values can be used to customize UIs.
 
-**`label`** this is the text value we are gonna display with the animated indicator
+**`label`** this is the text value you are gonna display with the animated indicator
 
 **`attributes`** this is a dictionary with following Keys.
 
@@ -43,8 +43,9 @@ When calling these starter methods, two basic optional input values can be used 
 - `RappleIndicatorStyleKey`          Style of the ActivityIndicator - see below section for styles
 - `RappleProgressBarColorKey`        Progress bar bg color - track bg color
 - `RappleProgressBarFillColorKey`    Progress bar filling color with progression - filled track color
+- `RappleIndicatorThicknessKey`      ActivityIndicator thicknes(width) - applicable for 'RappleStyleCircle' and completion indicators
 
-In above dictionary we can send 'RappleIndicatorStyleKey' with two styles (see the demo for more details)
+In above dictionary you can send 'RappleIndicatorStyleKey' with below three styles (see the demo for more details)
 
 - `RappleStyleApple`                Default Apple ActivityIndicator
 - `RappleStyleCircle`               Custom Circular ActivityIndicator
@@ -61,6 +62,7 @@ RappleActivityIndicatorView has two pre-defines attribute sets for ease of use
 - `RappleIndicatorStyleKey`          RappleStyleApple
 - `RappleProgressBarColorKey`        lightGray
 - `RappleProgressBarFillColorKey`    white
+- `RappleIndicatorThicknessKey`      4.0
 
 #### `RappleModernAttributes`  Predefined attribute dictionary with modern look & feel
 
@@ -70,6 +72,7 @@ RappleActivityIndicatorView has two pre-defines attribute sets for ease of use
 - `RappleIndicatorStyleKey`          RappleStyleCircle
 - `RappleProgressBarColorKey`        lightGray
 - `RappleProgressBarFillColorKey`    white
+- `RappleIndicatorThicknessKey`      4.0
 
 #### `RappleTextAttributes`  Predefined attribute dictionary with modern look & feel
 
@@ -79,15 +82,18 @@ RappleActivityIndicatorView has two pre-defines attribute sets for ease of use
 - `RappleIndicatorStyleKey`          RappleStyleText
 - `RappleProgressBarColorKey`        N/A
 - `RappleProgressBarFillColorKey`    N/A
+- `RappleIndicatorThicknessKey`      4.0
 
-Or we can send any custom made dictionary with these Key values to customize the look and feel
+Or you can send any custom made dictionary with these Key values to customize the look and feel
 
-to create custom attribute dictionary we can use below method
+to create custom attribute dictionary you can use below method, and all the parameters of this method comes with default values.
 
 ```ruby
-let attributes = RappleActivityIndicatorView.attribute(style: RappleStyleCircle, tintColor: .white, screenBG: nil, progressBG: .black, progressBarBG: .lightGray, progreeBarFill: .yellow)
-```
+let attributes = RappleActivityIndicatorView.attribute(style: RappleStyle.apple, tintColor: .yellow, screenBG: .purple, progressBG: .black, progressBarBG: .orange, progreeBarFill: .red, thickness: 4)
 
+let attributes = RappleActivityIndicatorView.attribute(style: RappleStyle.apple, tintColor: .yellow, progreeBarFill: .red, thickness: 2)
+
+```
 
 #### RappleActivityIndicatorView starter methods
 
@@ -121,7 +127,7 @@ RappleActivityIndicatorView can also be closed with completion indicator
 RappleActivityIndicatorView.stopAnimation(completionIndicator: .success, completionLabel: "Completed.", completionTimeout: 1.0)
 ```
 
-We can use any of the following RappleCompletion enum values as the indicator
+You can use any of the following RappleCompletion enum values as the indicator
 - `none`             Stop and hide animation with out completion indicator
 - `success`          ✓ symbol
 - `failed`           ✕ symbol
@@ -166,8 +172,6 @@ RappleActivityIndicatorView.isVisible()
 ## Example Project
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-Check [CocoaPodTester](https://github.com/rjeprasad/iSwift.tech/tree/master/CocoaPodTester) project for more 
 
 ## Author
 

@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>GTMOAuth2.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,17 +62,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3128830422B2A347492379E5A4199EBF</key>
+		<key>20C1B1B318153A74B348DA1F2DA5B893</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>46FB9B63D089844986388766C218CFED</key>
+		<key>44CAD6CE523055ED339E87154473A254</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>81348B1B4233636A4BFE9A75293C83CE</key>
+		<key>651568F6F407825A8E0FEFCADE65FBBA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8AB0CE1039FE082149B73BD2889A9505</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -73,6 +93,16 @@
 			<true/>
 		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC5000D645EEAF961C85907CDC796FE1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BEF7E6E85DB5CDE5D7A18F4F2EB8494B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
