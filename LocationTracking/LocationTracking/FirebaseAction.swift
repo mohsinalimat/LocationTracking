@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
 
 class FirebaseAction: NSObject {
     
@@ -68,9 +69,8 @@ class FirebaseAction: NSObject {
     }
 
     //Sign in with Facebook
-    func signInWithCredential(completionHandler: @escaping (Bool) -> ()) {
+    func signInByFacebook(completionHandler: @escaping (Bool) -> ()) {
         let credential = FIRFacebookAuthProvider.credential(withAccessToken:FBSDKAccessToken.current().tokenString)
-
         FIRAuth.auth()?.signIn(with: credential, completion: {(user, error) in
             if error == nil {
 //                let userName = UserDefaults.standard.object(forKey: "userName") as? String
@@ -87,6 +87,31 @@ class FirebaseAction: NSObject {
 //                        completionHandler(false)
 //                    }
 //                })
+            } else {
+                completionHandler(false)
+            }
+        })
+    }
+    
+    //Sign in with Facebook
+    func signInByGoogle(completionHandler: @escaping (Bool) -> ()) {
+        let credential = FIRFacebookAuthProvider.credential(withAccessToken:FBSDKAccessToken.current().tokenString)
+        FIRAuth.auth()?.signIn(with: credential, completion: {(user, error) in
+            if error == nil {
+                //                let userName = UserDefaults.standard.object(forKey: "userName") as? String
+                //                if userName != email {
+                //                    DatabaseManager.resetAllData(onCompletion: {_ in
+                //                        UserDefaults.standard.set(email, forKey: "userName")
+                //                        UserDefaults.standard.synchronize()
+                //                    })
+                //                }
+                //                self.refreshData(email: email,completionHandler: {isSuccess in
+                //                    if isSuccess {
+                //                        completionHandler(true)
+                //                    } else {
+                //                        completionHandler(false)
+                //                    }
+                //                })
             } else {
                 completionHandler(false)
             }
