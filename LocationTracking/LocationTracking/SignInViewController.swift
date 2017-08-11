@@ -55,7 +55,22 @@ class SignInViewController: OriginalViewController {
     }
     
     @IBAction func tappedSignInWithFacebook(_ sender: UIButton) {
+        app_delegate.firebaseObject.signInByFacebook(fromViewControlller: self,completionHandler: {isSuccess in
+            self.hideHUD()
+            if isSuccess {
+                //SignIn is successful
+                app_delegate.profile = DatabaseManager.getProfile()
+                let drawerController = app_delegate.initRevealViewController()
+                self.present(drawerController, animated: true, completion: nil)
+            } else {
+                /*
+                 SignIn is failure
+                 Show Toast to notify result
+                 */
+                self.view.makeToast("Sign in with facebook is error.\n Please try again", duration: 2.0, position: .center)
+            }
 
+        })
     }
     
     @IBAction func tappedSignInWithGoogle(_ sender: UIButton) {
