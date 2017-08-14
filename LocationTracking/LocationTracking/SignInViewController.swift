@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import GoogleSignIn
 
-class SignInViewController: OriginalViewController {
+class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
@@ -69,13 +70,41 @@ class SignInViewController: OriginalViewController {
                  */
                 self.view.makeToast("Sign in with facebook is error.\n Please try again", duration: 2.0, position: .center)
             }
-
         })
     }
     
     @IBAction func tappedSignInWithGoogle(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().signIn()
     }
     
     @IBAction func tappedSignUp(_ sender: UIButton) {
+    }
+    
+    //MARK: - Google Sign in Delegate
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        if error != nil {
+            return
+        }
+        guard let authentication = user.authentication else { return }
+        app_delegate.firebaseObject.signInByGoogle(authentication: authentication,fromViewControlller: self,completionHandler: {isSuccess in
+            self.hideHUD()
+            if isSuccess {
+                //SignIn is successful
+                app_delegate.profile = DatabaseManager.getProfile()
+                let drawerController = app_delegate.initRevealViewController()
+                self.present(drawerController, animated: true, completion: nil)
+            } else {
+                /*
+                 SignIn is failure
+                 Show Toast to notify result
+                 */
+                self.view.makeToast("Sign in with facebook is error.\n Please try again", duration: 2.0, position: .center)
+            }
+        })
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
     }
 }

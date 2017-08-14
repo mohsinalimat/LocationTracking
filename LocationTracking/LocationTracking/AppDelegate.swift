@@ -13,6 +13,7 @@ import GooglePlaces
 import MagicalRecord
 import Firebase
 import FBSDKCoreKit
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Init FBSDK
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
+        //Init GoogleSDK
+        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
+        
         profile = DatabaseManager.getProfile()
         
         //Save new profile information
@@ -44,8 +48,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-        return handled
+        let facebookHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        var googleHandled = false
+        if #available(iOS 9.0, *) {
+            googleHandled = GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                                    annotation: [:])
+        }
+        
+        if facebookHandled {
+            return facebookHandled
+        } else if googleHandled {
+            return googleHandled
+        } else {
+            return true
+        }
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url, sourceApplication: sourceApplication, annotation: annotation)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -106,4 +126,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
 }
-

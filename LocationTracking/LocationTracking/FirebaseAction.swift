@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import GoogleSignIn
 
 class FirebaseAction: NSObject {
     
@@ -69,7 +70,7 @@ class FirebaseAction: NSObject {
         }
     }
 
-    //Sign in with Facebook
+    //MARK: - Sign in with Facebook
     func signInByFacebook(fromViewControlller: OriginalViewController,completionHandler: @escaping (Bool) -> ()) {
         let fbLoginManager = FBSDKLoginManager()
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: fromViewControlller) { (result, error) in
@@ -92,33 +93,75 @@ class FirebaseAction: NSObject {
                 if error != nil {
                     completionHandler(false)
                 } else {
-                    completionHandler(true)
+                    var email = ""
+                    if user?.email != nil {
+                        email = (user?.email)!
+                    } else {
+                        email = (user?.refreshToken)! + "@gmail.com"
+                    }
+                    
+                    /**
+                     Check user information
+                     Reset data if signed other account (remove information in UserDefault)
+                     Keep data when signed old account
+                     **/
+                    let userName = UserDefaults.standard.object(forKey: "userName") as? String
+                    if userName != email {
+                        DatabaseManager.resetAllData(onCompletion: {_ in
+                            UserDefaults.standard.set(email, forKey: "userName")
+                            UserDefaults.standard.synchronize()
+                        })
+                    }
+                    
+                    //Update profile information
+                    self.refreshData(email: email,completionHandler: {isSuccess in
+                        if isSuccess {
+                            completionHandler(true)
+                        } else {
+                            completionHandler(false)
+                        }
+                    })
                 }
             })
         }
     }
     
-    //Sign in with Facebook
-    func signInByGoogle(completionHandler: @escaping (Bool) -> ()) {
-        let credential = FIRFacebookAuthProvider.credential(withAccessToken:FBSDKAccessToken.current().tokenString)
+    //MARK: - Sign in with Google
+    func signInByGoogle(authentication: GIDAuthentication,fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
+        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                          accessToken: authentication.accessToken)
         FIRAuth.auth()?.signIn(with: credential, completion: {(user, error) in
-            if error == nil {
-                //                let userName = UserDefaults.standard.object(forKey: "userName") as? String
-                //                if userName != email {
-                //                    DatabaseManager.resetAllData(onCompletion: {_ in
-                //                        UserDefaults.standard.set(email, forKey: "userName")
-                //                        UserDefaults.standard.synchronize()
-                //                    })
-                //                }
-                //                self.refreshData(email: email,completionHandler: {isSuccess in
-                //                    if isSuccess {
-                //                        completionHandler(true)
-                //                    } else {
-                //                        completionHandler(false)
-                //                    }
-                //                })
-            } else {
+            if error != nil {
                 completionHandler(false)
+            } else {
+                var email = ""
+                if user?.email != nil {
+                    email = (user?.email)!
+                } else {
+                    email = (user?.refreshToken)! + "@gmail.com"
+                }
+                
+                /**
+                 Check user information
+                 Reset data if signed other account (remove information in UserDefault)
+                 Keep data when signed old account
+                 **/
+                let userName = UserDefaults.standard.object(forKey: "userName") as? String
+                if userName != email {
+                    DatabaseManager.resetAllData(onCompletion: {_ in
+                        UserDefaults.standard.set(email, forKey: "userName")
+                        UserDefaults.standard.synchronize()
+                    })
+                }
+                
+                //Update profile information
+                self.refreshData(email: email,completionHandler: {isSuccess in
+                    if isSuccess {
+                        completionHandler(true)
+                    } else {
+                        completionHandler(false)
+                    }
+                })
             }
         })
     }
