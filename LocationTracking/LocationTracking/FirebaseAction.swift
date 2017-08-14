@@ -118,7 +118,14 @@ class FirebaseAction: NSObject {
                         if isSuccess {
                             completionHandler(true)
                         } else {
-                            completionHandler(false)
+                            //Create new user on firebase
+                            let id = app_delegate.firebaseObject.createUser(email:email)
+                            //Create profile in database
+                            DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                                //Present after updated profile
+                                app_delegate.profile = DatabaseManager.getProfile()
+                                completionHandler(true)
+                            })
                         }
                     })
                 }
@@ -159,7 +166,14 @@ class FirebaseAction: NSObject {
                     if isSuccess {
                         completionHandler(true)
                     } else {
-                        completionHandler(false)
+                        //Create new user on firebase
+                        let id = app_delegate.firebaseObject.createUser(email:email)
+                        //Create profile in database
+                        DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                            //Present after updated profile
+                            app_delegate.profile = DatabaseManager.getProfile()
+                            completionHandler(true)
+                        })
                     }
                 })
             }
@@ -247,7 +261,6 @@ class FirebaseAction: NSObject {
     
     //MARK: - Refresh Data
     func refreshData(email: String,completionHandler: @escaping (Bool) -> ()) {
-        
         self.searchContactWithEmail(email: email, completionHandler: { array in
             if array.count > 0 {
                 let newProfile: ContactModel = array.first!

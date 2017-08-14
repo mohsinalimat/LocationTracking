@@ -51,8 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let facebookHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
         var googleHandled = false
         if #available(iOS 9.0, *) {
-            googleHandled = GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                                    annotation: [:])
+            googleHandled = GIDSignIn.sharedInstance().handle(url,sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String, annotation: [:])
         }
         
         if facebookHandled {
