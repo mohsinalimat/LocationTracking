@@ -17,7 +17,7 @@ extension UIView {
     }
     
     func customBorder(radius: CGFloat) {
-        self.layer.cornerRadius = self.frame.size.height/2
+        self.layer.cornerRadius = radius
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.clear.cgColor
     }

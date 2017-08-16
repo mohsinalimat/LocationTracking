@@ -12,11 +12,13 @@ import Firebase
 class SignUpViewController: OriginalViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        signUpButton.customBorder(radius: 5)
         self.addLeftBarItem(imageName: "ic_close_popup",title: "")
     }
 
@@ -26,13 +28,14 @@ class SignUpViewController: OriginalViewController {
     }
     
     //MARK: - Action
-    override func tappedLeftBarButton(sender: UIButton) {
+    
+    @IBAction func tappedDismiss(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: - IBAction
     @IBAction func tappedSignUp(_ sender: UIButton) {
-        if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 {
+        if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 && (confirmPasswordTextField.text?.characters.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
             FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 //Create new user on firebase
                 let id = app_delegate.firebaseObject.createUser(email:self.emailTextField.text!)
@@ -44,6 +47,8 @@ class SignUpViewController: OriginalViewController {
                     self.present(drawerController, animated: true, completion: nil)
                 })
             }
+        } else {
+            view.makeToast("Please input correct information", duration: 2.0, position: .center)
         }
     }
 }

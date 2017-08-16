@@ -14,6 +14,7 @@ import MagicalRecord
 import Firebase
 import FBSDKCoreKit
 import GoogleSignIn
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Init GoogleSDK
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        
+                
         profile = DatabaseManager.getProfile()
         
         //Save new profile information

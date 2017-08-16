@@ -11,6 +11,8 @@ import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
+import TwitterKit
+import TwitterCore
 
 class FirebaseAction: NSObject {
     
@@ -177,6 +179,69 @@ class FirebaseAction: NSObject {
                     }
                 })
             }
+        })
+    }
+    
+    //MARK: - Sign in with Google
+    func signInByTwitter(fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
+        
+        Twitter.sharedInstance().logIn(completion: { (session, error) in
+            if let error = error {
+                fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
+                completionHandler(false)
+                return
+            }
+            
+            guard let authToken = session?.authToken else {
+                fromViewControlller.view.makeToast("Failed to get auth Token")
+                completionHandler(false)
+                return
+            }
+            
+            fromViewControlller.showHUD()
+            let credential = FIRTwitterAuthProvider.credential(withToken: authToken, secret: (session?.authTokenSecret)!)
+            // Perform login by calling Firebase APIs
+            FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+                if error != nil {
+                    completionHandler(false)
+                } else {
+                    var email = ""
+                    if user?.email != nil {
+                        email = (user?.email)!
+                    } else {
+                        email = (user?.refreshToken)! + "@gmail.com"
+                    }
+                    
+                    /**
+                     Check user information
+                     Reset data if signed other account (remove information in UserDefault)
+                     Keep data when signed old account
+                     **/
+                    let userName = UserDefaults.standard.object(forKey: "userName") as? String
+                    if userName != email {
+                        DatabaseManager.resetAllData(onCompletion: {_ in
+                            UserDefaults.standard.set(email, forKey: "userName")
+                            UserDefaults.standard.synchronize()
+                        })
+                    }
+                    
+                    //Update profile information
+                    self.refreshData(email: email,completionHandler: {isSuccess in
+                        if isSuccess {
+                            completionHandler(true)
+                        } else {
+                            //Create new user on firebase
+                            let id = app_delegate.firebaseObject.createUser(email:email)
+                            //Create profile in database
+                            DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                                //Present after updated profile
+                                app_delegate.profile = DatabaseManager.getProfile()
+                                completionHandler(true)
+                            })
+                        }
+                    })
+                }
+            })
         })
     }
     

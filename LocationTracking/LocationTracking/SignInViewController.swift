@@ -22,10 +22,10 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
         super.viewDidLoad()
         view.tappedDismissKeyboard()
 
-        signInButton.setupBorder()
-        signUpButton.setupBorder()
-        signInFacebookButton.setupBorder()
-        signInGoogleButton.setupBorder()
+        signInButton.customBorder(radius: 5)
+        signUpButton.customBorder(radius: 5)
+        signInFacebookButton.customBorder(radius: 5)
+        signInGoogleButton.customBorder(radius: 5)
         // Do any additional setup after loading the view.
     }
 
@@ -77,6 +77,25 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
+    }
+    
+    @IBAction func tappedSignWithTwitter(_ sender: UIButton) {
+        app_delegate.firebaseObject.signInByTwitter(fromViewControlller: self,completionHandler: {isSuccess in
+            self.hideHUD()
+            if isSuccess {
+                //SignIn is successful
+                app_delegate.profile = DatabaseManager.getProfile()
+                let drawerController = app_delegate.initRevealViewController()
+                self.present(drawerController, animated: true, completion: nil)
+            } else {
+                /*
+                 SignIn is failure
+                 Show Toast to notify result
+                 */
+                self.view.makeToast("Sign in with Twitter is error.\n Please try again", duration: 2.0, position: .center)
+            }
+        })
+
     }
     
     @IBAction func tappedSignUp(_ sender: UIButton) {
