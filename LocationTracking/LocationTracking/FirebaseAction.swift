@@ -267,6 +267,10 @@ class FirebaseAction: NSObject {
                 
                 //Save profile after login
                 DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
+                    if newProfile.contact.keys.count == 0 {
+                        completionHandler(true)
+                        return
+                    }
                     for dict in newProfile.contact {
                         self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,conCompletionHandler: {_ in
                             if dict.key == Array(newProfile.contact.keys).last {
