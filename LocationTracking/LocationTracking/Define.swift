@@ -17,8 +17,10 @@ enum ShareStatus: Int {
 }
 
 //MARK: - Key
-let kConsumerKey        = "tyUS13Zcb3luNoCF7MeUiiLyz"
-let kConsumerSecret     = "aNiteoUYaYJX5iG7j2yZuZkvjt2IYklv2o77oFJOg2cxYtXvMW"
+let kConsumerKey          = "tyUS13Zcb3luNoCF7MeUiiLyz"
+let kConsumerSecret       = "aNiteoUYaYJX5iG7j2yZuZkvjt2IYklv2o77oFJOg2cxYtXvMW"
+let kBannerAdUnitId       = "ca-app-pub-7161181863245899/7781642863"
+let kInterstitialAdUnitID = "ca-app-pub-3940256099942544/4411468910"
 
 //MARK: - Index
 let kContactListIndex   = 0

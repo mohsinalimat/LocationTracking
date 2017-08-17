@@ -9,9 +9,11 @@
 import UIKit
 import GoogleMaps
 import GooglePlaces
+import GoogleMobileAds
 
-class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationManagerDelegate {
+class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
+    @IBOutlet weak var bannerView: GADBannerView!
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var mapView: GMSMapView!
@@ -54,7 +56,7 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         let camera = GMSCameraPosition.camera(withLatitude:0,
                                               longitude:0,
                                               zoom: zoomLevel)
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
+        mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - bannerView.frame.size.height), camera: camera)
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
@@ -77,6 +79,14 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
         let camera = GMSCameraPosition.camera(withLatitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude, zoom: zoomLevel)
             mapView.camera = camera
         locationManager.startUpdatingLocation()
+    }
+    
+    
+    //Init Banner View
+    func initAdsView() {
+        bannerView.adUnitID = kBannerAdUnitId;
+        bannerView.rootViewController = self;
+        bannerView.load(GADRequest())
     }
     
     func updateMarker() {
@@ -121,6 +131,39 @@ class MapViewController: OriginalViewController,GMSMapViewDelegate,CLLocationMan
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
+    }
+    
+    //MARK: - Ads Delegate
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+    }
+    
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+                didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    /// Tells the delegate that a full screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    
+    /// Tells the delegate that the full screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    
+    /// Tells the delegate that the full screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
     }
     
     //MARK: - Action
