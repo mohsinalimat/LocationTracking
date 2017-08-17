@@ -86,7 +86,25 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     func initAdsView() {
         bannerView.adUnitID = kBannerAdUnitId;
         bannerView.rootViewController = self;
+        bannerView.delegate = self
         bannerView.load(GADRequest())
+        
+        // MARK: - Admob
+        func createAndLoadInterstitial() -> GADInterstitial {
+            let interstitial = GADInterstitial(adUnitID: MConfigs.GOOGLE_ADMOB_INTERSTITIAL_ID)
+            interstitial.delegate = self
+            interstitial.load(GADRequest())
+            
+            return GADInterstitial() //interstitial
+        }
+        
+        func showInterstitialAds() {
+//            if interstitial.isReady {
+//                interstitial.present(fromRootViewController: self)
+//            } else {
+//                print("[Admob] Ad wasn't ready!")
+//            }
+        }
     }
     
     func updateMarker() {
@@ -133,37 +151,58 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         
     }
     
-    //MARK: - Ads Delegate
+    //MARK: - Banner Admob Delegate
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceiveAd")
     }
     
-    /// Tells the delegate an ad request failed.
     func adView(_ bannerView: GADBannerView,
                 didFailToReceiveAdWithError error: GADRequestError) {
         print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
     }
     
-    /// Tells the delegate that a full screen view will be presented in response
-    /// to the user clicking on an ad.
     func adViewWillPresentScreen(_ bannerView: GADBannerView) {
         print("adViewWillPresentScreen")
     }
     
-    /// Tells the delegate that the full screen view will be dismissed.
     func adViewWillDismissScreen(_ bannerView: GADBannerView) {
         print("adViewWillDismissScreen")
     }
     
-    /// Tells the delegate that the full screen view has been dismissed.
     func adViewDidDismissScreen(_ bannerView: GADBannerView) {
         print("adViewDidDismissScreen")
     }
     
-    /// Tells the delegate that a user click will open another app (such as
-    /// the App Store), backgrounding the current app.
     func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
         print("adViewWillLeaveApplication")
+    }
+    
+    //MARK: - Interstitial Delegate
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+        print("interstitialDidReceiveAd")
+    }
+    
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+        print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    
+    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
+        print("interstitialWillPresentScreen")
+    }
+    
+    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+        print("interstitialWillDismissScreen")
+        
+        // [Admob] Init Interstal ads
+//        interstitial = createAndLoadInterstitial()
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        print("interstitialDidDismissScreen")
+    }
+    
+    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
+        print("interstitialWillLeaveApplication")
     }
     
     //MARK: - Action
