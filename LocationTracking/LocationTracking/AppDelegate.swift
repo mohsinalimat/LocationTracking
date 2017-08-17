@@ -40,7 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Init GoogleSDK
         GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-                
+        
+        //Init Twiter
+        Twitter.sharedInstance().start(withConsumerKey: kConsumerKey, consumerSecret: kConsumerSecret)
+        
+        
         profile = DatabaseManager.getProfile()
         
         //Save new profile information

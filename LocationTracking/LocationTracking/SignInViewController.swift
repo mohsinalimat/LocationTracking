@@ -80,6 +80,7 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
     }
     
     @IBAction func tappedSignWithTwitter(_ sender: UIButton) {
+        self.showHUD()
         app_delegate.firebaseObject.signInByTwitter(fromViewControlller: self,completionHandler: {isSuccess in
             self.hideHUD()
             if isSuccess {

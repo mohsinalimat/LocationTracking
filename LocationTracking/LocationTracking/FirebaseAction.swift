@@ -186,6 +186,7 @@ class FirebaseAction: NSObject {
     func signInByTwitter(fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
         
         Twitter.sharedInstance().logIn(completion: { (session, error) in
+            fromViewControlller.hideHUD()
             if let error = error {
                 fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
                 completionHandler(false)

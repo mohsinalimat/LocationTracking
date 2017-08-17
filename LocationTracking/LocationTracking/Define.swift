@@ -16,6 +16,11 @@ enum ShareStatus: Int {
     case kNotYetShared  = 3
 }
 
+//MARK: - Key
+let kConsumerKey        = "tyUS13Zcb3luNoCF7MeUiiLyz"
+let kConsumerSecret     = "aNiteoUYaYJX5iG7j2yZuZkvjt2IYklv2o77oFJOg2cxYtXvMW"
+
+//MARK: - Index
 let kContactListIndex   = 0
 let kRequestShareIndex  = 1
 

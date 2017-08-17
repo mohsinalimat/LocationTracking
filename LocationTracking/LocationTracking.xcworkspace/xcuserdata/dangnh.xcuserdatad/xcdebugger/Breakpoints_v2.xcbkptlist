@@ -25,14 +25,110 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LocationTracking/AppDelegate.swift"
-            timestampString = "524401894.454419"
+            filePath = "LocationTracking/FirebaseAction.swift"
+            timestampString = "524648316.197118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "application(_:open:sourceApplication:annotation:)"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "signInByTwitter(fromViewControlller:completionHandler:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocationTracking/FirebaseAction.swift"
+            timestampString = "524648542.790557"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "signInByTwitter(fromViewControlller:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LocationTracking.FirebaseAction.(signInByTwitter (fromViewControlller : LocationTracking.OriginalViewController, completionHandler : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "524648542.898368"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "1627">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LocationTracking.FirebaseAction.(signInByTwitter (fromViewControlller : LocationTracking.OriginalViewController, completionHandler : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "524648542.900876"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocationTracking/FirebaseAction.swift"
+            timestampString = "524648564.037122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "signInByTwitter(fromViewControlller:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LocationTracking.FirebaseAction.(signInByTwitter (fromViewControlller : LocationTracking.OriginalViewController, completionHandler : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "524648564.044441"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "2915">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[2] = Value Promoted from Box&gt; of LocationTracking.FirebaseAction.(signInByTwitter (fromViewControlller : LocationTracking.OriginalViewController, completionHandler : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #2)"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "524648564.048348"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "231"
+                  endingLineNumber = "231"
+                  offsetFromSymbolStart = "45">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
