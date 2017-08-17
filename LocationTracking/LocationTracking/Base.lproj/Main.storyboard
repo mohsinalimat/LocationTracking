@@ -124,7 +124,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="tappedSignInWithGoogle:" destination="cfO-c7-M0M" eventType="touchUpInside" id="GFF-61-BBf"/>
                                     <action selector="tappedSignWithTwitter:" destination="cfO-c7-M0M" eventType="touchUpInside" id="j2S-Ag-Hhh"/>
                                 </connections>
                             </button>

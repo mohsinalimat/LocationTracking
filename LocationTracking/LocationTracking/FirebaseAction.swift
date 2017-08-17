@@ -32,7 +32,7 @@ class FirebaseAction: NSObject {
     func createUser(email: String) -> String{
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
 
-        let userInfoDictionary = ["currentLocations": ["latitude":0,"longitude":0],"email":email] as [String : Any]
+        let userInfoDictionary = ["currentLocations": ["latitude":0.0,"longitude":0.0],"email":email] as [String : Any]
         resultRef = ref.childByAutoId()
         resultRef.setValue(userInfoDictionary)
         return resultRef.key
@@ -210,7 +210,7 @@ class FirebaseAction: NSObject {
                     if user?.email != nil {
                         email = (user?.email)!
                     } else {
-                        email = (user?.refreshToken)! + "@gmail.com"
+                        email = (user?.displayName)! + "@gmail.com"
                     }
                     
                     /**
