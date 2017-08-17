@@ -146,7 +146,7 @@ PODS:
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
-  - Protobuf (3.3.0)
+  - Protobuf (3.4.0)
   - RappleProgressHUD (2.3.1)
   - TwitterCore (2.8.0):
     - Fabric
@@ -201,11 +201,11 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
-  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   RappleProgressHUD: 3c776b1ac0a05e7d9b0165d819162581902d23a1
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
 PODFILE CHECKSUM: 170ed70a589dfb0af17cdfe4d74c546b186c9501
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.1.1

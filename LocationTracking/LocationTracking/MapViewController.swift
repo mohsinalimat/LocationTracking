@@ -14,6 +14,7 @@ import GoogleMobileAds
 class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
     @IBOutlet weak var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var mapView: GMSMapView!
@@ -88,22 +89,22 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         bannerView.rootViewController = self;
         bannerView.delegate = self
         bannerView.load(GADRequest())
-        
-        // MARK: - Admob
-        func createAndLoadInterstitial() -> GADInterstitial {
-            let interstitial = GADInterstitial(adUnitID: MConfigs.GOOGLE_ADMOB_INTERSTITIAL_ID)
-            interstitial.delegate = self
-            interstitial.load(GADRequest())
-            
-            return GADInterstitial() //interstitial
-        }
-        
-        func showInterstitialAds() {
-//            if interstitial.isReady {
-//                interstitial.present(fromRootViewController: self)
-//            } else {
-//                print("[Admob] Ad wasn't ready!")
-//            }
+        self.interstitial = createAndLoadInterstitial()
+    }
+    
+    // MARK: - Init Interstitial
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: kInterstitialAdUnitID)
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return GADInterstitial() //interstitial
+    }
+    
+    func showInterstitialAds() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("[Admob] Ad wasn't ready!")
         }
     }
     
