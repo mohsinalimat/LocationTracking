@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Twitter.sharedInstance().start(withConsumerKey: kConsumerKey, consumerSecret: kConsumerSecret)
         
         GADMobileAds.configure(withApplicationID: kApplicationId)
-        
+
         profile = DatabaseManager.getProfile()
         
         //Save new profile information

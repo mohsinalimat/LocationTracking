@@ -33,7 +33,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ic_menu",title: "")
         self.addRightBarItem(imageName: "icon_add_user",title: "")
-        // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +44,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         } else {
             self.addTitleNavigation(title: (currentContact?.email)!)
         }
+        //Init Ads
+        self.initAdsView()
+
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,6 +91,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         bannerView.rootViewController = self;
         bannerView.delegate = self
         bannerView.load(GADRequest())
+        bannerView.adSize = kGADAdSizeSmartBannerPortrait
         self.interstitial = createAndLoadInterstitial()
     }
     
@@ -195,7 +198,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         print("interstitialWillDismissScreen")
         
         // [Admob] Init Interstal ads
-//        interstitial = createAndLoadInterstitial()
+        interstitial = createAndLoadInterstitial()
     }
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {

@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -311,20 +310,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" restorationIdentifier="GADBannerView" translatesAutoresizingMaskIntoConstraints="NO" id="7J1-bL-8zx" customClass="GADBannerView">
-                                <rect key="frame" x="16" y="518" width="288" height="50"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="I7a-Pv-TLw"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-7161181863245899/7781642863"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Y38-fV-owj"/>
                                 </connections>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="7J1-bL-8zx" secondAttribute="trailing" id="YYN-2s-FqE"/>
+                            <constraint firstItem="7J1-bL-8zx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gwo-5h-Aha"/>
+                            <constraint firstAttribute="trailing" secondItem="7J1-bL-8zx" secondAttribute="trailing" id="gOS-pd-Jlb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7J1-bL-8zx" secondAttribute="bottom" id="oTO-LX-its"/>
-                            <constraint firstItem="7J1-bL-8zx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tEY-dX-dwo"/>
                         </constraints>
                     </view>
                     <connections>
@@ -333,7 +336,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="31" y="118"/>
+            <point key="canvasLocation" x="-4" y="117"/>
         </scene>
         <!--Contact View Controller-->
         <scene sceneID="WFo-lW-5G6">
