@@ -60,6 +60,14 @@ class FirebaseAction: NSObject {
                         UserDefaults.standard.synchronize()
                     })
                 }
+                
+                //Firebase analystic
+                FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                    kFIRParameterItemID:"SignEmail",
+                    kFIRParameterItemName:"Sign in Email",
+                    kFIRParameterContentType:"signIn"
+                    ])
+                
                 self.refreshData(email: email,completionHandler: {isSuccess in
                     if isSuccess {
                         completionHandler(true)
@@ -116,6 +124,13 @@ class FirebaseAction: NSObject {
                         })
                     }
                     
+                    //Firebase analystic
+                    FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                        kFIRParameterItemID:"SignFacebook",
+                        kFIRParameterItemName:"Sign in Facebook",
+                        kFIRParameterContentType:"signIn"
+                        ])
+                    
                     //Update profile information
                     self.refreshData(email: email,completionHandler: {isSuccess in
                         if isSuccess {
@@ -163,6 +178,13 @@ class FirebaseAction: NSObject {
                         UserDefaults.standard.synchronize()
                     })
                 }
+                
+                //Firebase analystic
+                FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                    kFIRParameterItemID:"SignGoogle",
+                    kFIRParameterItemName:"Sign in Google",
+                    kFIRParameterContentType:"signIn"
+                    ])
                 
                 //Update profile information
                 self.refreshData(email: email,completionHandler: {isSuccess in
@@ -228,6 +250,13 @@ class FirebaseAction: NSObject {
                             UserDefaults.standard.synchronize()
                         })
                     }
+                    
+                    //Firebase analystic
+                    FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+                        kFIRParameterItemID:"SignTwitter",
+                        kFIRParameterItemName:"Sign in Twitter",
+                        kFIRParameterContentType:"signIn"
+                        ])
                     
                     //Update profile information
                     self.refreshData(email: email,completionHandler: {isSuccess in

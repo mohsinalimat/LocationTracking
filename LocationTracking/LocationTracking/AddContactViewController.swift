@@ -67,6 +67,7 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
             self.showHUD()
             DatabaseManager.saveContact(contactArray: selectedContactArray,onCompletion: { _ in
                 self.hideHUD()
+                
             })
         } else {
             view.makeToast("Please choose a account from the list.", duration: 2.0, position: .center)
