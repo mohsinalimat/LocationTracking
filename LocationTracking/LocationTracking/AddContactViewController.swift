@@ -63,10 +63,14 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     
     //Save contact into Favorite
     override func tappedRightBarButton(sender: UIButton) {
-        self.showHUD()
-        DatabaseManager.saveContact(contactArray: selectedContactArray,onCompletion: { _ in
-            self.hideHUD()
-        })
+        if selectedContactArray.count > 0 {
+            self.showHUD()
+            DatabaseManager.saveContact(contactArray: selectedContactArray,onCompletion: { _ in
+                self.hideHUD()
+            })
+        } else {
+            view.makeToast("Please choose a account from the list.", duration: 2.0, position: .center)
+        }
     }
     
     //Tapped to back

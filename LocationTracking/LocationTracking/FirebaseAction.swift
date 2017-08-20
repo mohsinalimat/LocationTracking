@@ -13,6 +13,7 @@ import FBSDKLoginKit
 import GoogleSignIn
 import TwitterKit
 import TwitterCore
+import Social
 
 class FirebaseAction: NSObject {
     
@@ -184,9 +185,11 @@ class FirebaseAction: NSObject {
     
     //MARK: - Sign in with Google
     func signInByTwitter(fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
-        
+        if (Twitter.sharedInstance().sessionStore.session() != nil) {
+            fromViewControlller.showHUD()
+        }
         Twitter.sharedInstance().logIn(completion: { (session, error) in
-            fromViewControlller.hideHUD()
+            fromViewControlller.showHUD()
             if let error = error {
                 fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
                 completionHandler(false)

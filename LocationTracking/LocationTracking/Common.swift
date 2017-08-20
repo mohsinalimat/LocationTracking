@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GooglePlaces
+import GoogleMaps
 
 class Common: NSObject {
     static func color(withRGB RGB: UInt) -> UIColor {
@@ -43,5 +45,19 @@ class Common: NSObject {
             return getVisibleViewController(presented)
         }
         return nil
+    }
+    
+    static func convertToAddress(latitude: Double, longitude: Double, onCompletionHandler:@escaping (String) -> ()) {
+        let geocoder = GMSGeocoder()
+        var currentAddress = String()
+        let coordinate = CLLocationCoordinate2DMake(latitude,longitude)
+
+        geocoder.reverseGeocodeCoordinate(coordinate) { response , error in
+            if let address = response?.firstResult() {
+                let lines = address.lines! as [String]
+                currentAddress = lines.joined(separator: "\n")
+                onCompletionHandler(currentAddress)
+            }
+        }
     }
 }

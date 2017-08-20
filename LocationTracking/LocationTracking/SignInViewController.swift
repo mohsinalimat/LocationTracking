@@ -77,10 +77,12 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
+        if GIDSignIn.sharedInstance().currentUser != nil {
+            self.showHUD()
+        }
     }
     
     @IBAction func tappedSignWithTwitter(_ sender: UIButton) {
-        self.showHUD()
         app_delegate.firebaseObject.signInByTwitter(fromViewControlller: self,completionHandler: {isSuccess in
             self.hideHUD()
             if isSuccess {
@@ -108,6 +110,7 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
             return
         }
         guard let authentication = user.authentication else { return }
+        self.showHUD()
         app_delegate.firebaseObject.signInByGoogle(authentication: authentication,fromViewControlller: self,completionHandler: {isSuccess in
             self.hideHUD()
             if isSuccess {

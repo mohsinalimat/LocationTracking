@@ -16,8 +16,6 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var currentLocationLabel: UILabel!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var shareLocationButton: UIButton!
     @IBOutlet weak var requestLocationButton: UIButton!
     var contactObject: Contact?
@@ -49,7 +47,6 @@ class ContactTableViewCell: UITableViewCell {
     func setupCell(contact:Contact) {
         contactObject = contact
         userNameLabel.text = contact.email
-        statusLabel.text = "lat:" + String(contact.latitude) + "long:" + String(contact.longitude)
         currentLocationLabel.text = String(contact.latitude)
         
         if contact.isShare == Int16(ShareStatus.kShared.rawValue) {
@@ -57,7 +54,9 @@ class ContactTableViewCell: UITableViewCell {
             requestLocationButton.isHidden = true
             shareLocationButton.isHidden = true
             currentLocationLabel.isHidden = false
-            currentLocationLabel.text = "lat:" + String(contact.latitude) + "long:" + String(contact.longitude)
+            Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
+                self.currentLocationLabel.text = address
+            })
         } else if contact.isShare == Int16(ShareStatus.kwaitingShared.rawValue) {
             //Shared location
             requestLocationButton.isHidden = true

@@ -84,14 +84,15 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         locationManager.startUpdatingLocation()
     }
     
-    
     //Init Banner View
     func initAdsView() {
         bannerView.adUnitID = kBannerAdUnitId;
         bannerView.rootViewController = self;
         bannerView.delegate = self
-        bannerView.load(GADRequest())
         bannerView.adSize = kGADAdSizeSmartBannerPortrait
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID]
+        bannerView.load(request)
         self.interstitial = createAndLoadInterstitial()
     }
     
