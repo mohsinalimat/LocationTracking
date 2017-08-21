@@ -30,7 +30,7 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     //MARK: - Layout
     func initLayout() {
         self.addLeftBarItem(imageName: "ico_back",title: "")
-        self.addRightBarItem(imageName: "", title: "Save")
+        self.addRightBarItem(imageName: "save", title: "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         searchView.setupBorder()
     }
@@ -67,7 +67,13 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
             self.showHUD()
             DatabaseManager.saveContact(contactArray: selectedContactArray,onCompletion: { _ in
                 self.hideHUD()
-                
+            //Remove contacts that added to the list
+                for contact in self.selectedContactArray {
+                    if let ix = self.contactArray.index(of: contact) {
+                        self.contactArray.remove(at: ix)
+                    }
+                }
+                self.tableView.reloadData()
             })
         } else {
             view.makeToast("Please choose a account from the list.", duration: 2.0, position: .center)

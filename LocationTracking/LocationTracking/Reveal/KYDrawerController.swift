@@ -123,7 +123,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         set { setDrawerState(drawerState, animated: false) }
     }
     
-    @IBInspectable public var drawerWidth: CGFloat = screen_width - 40 {
+    @IBInspectable public var drawerWidth: CGFloat = screen_width - 30 {
         didSet { _drawerWidthConstraint?.constant = drawerWidth }
     }
 
@@ -429,7 +429,6 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
         setDrawerState(.closed, animated: true)
     }
     
-    
     /**************************************************************************/
     // MARK: - UIGestureRecognizerDelegate
     /**************************************************************************/
@@ -444,6 +443,5 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
             return touch.view == gestureRecognizer.view
         }
    }
-
 }
 

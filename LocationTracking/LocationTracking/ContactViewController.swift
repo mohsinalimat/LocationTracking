@@ -17,13 +17,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addTitleNavigation(title: "Contact List")
+        self.addTitleNavigation(title: "Contacts")
         self.initView()
-        self.initData()
         // Do any additional setup after loading the view.
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.initData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -40,7 +40,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     //MARK: - Data
     func initData() {
         contactArray.removeAll()
-        contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
+        contactArray += DatabaseManager.getAllContact()
+//        contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
         tableView.reloadData()
     }
     
@@ -90,6 +91,24 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     //MARK: - UITableView Delegate
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.showHUD()
+            let contact = contactArray[indexPath.row]
+            app_delegate.firebaseObject.deleteContact(contactId: contact.id!, atUserId: (app_delegate.profile?.id)!, onCompletionHandler: {_ in
+                tableView.beginUpdates()
+                self.contactArray.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .none);
+                tableView.endUpdates()
+                self.hideHUD()
+            })
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contactArray.count
     }
@@ -121,8 +140,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     func requestLocation(contact: Contact) {
         self .showHUD()
         app_delegate.firebaseObject.requestLocation(toContact: contact, onCompletetionHandler: {_ in
-            self.hideHUD()
             DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kwaitingShared.rawValue, onCompletion: {_ in
+                self.hideHUD()
                 self.tableView.reloadData()
             })
         })
@@ -132,6 +151,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self .showHUD()
         app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {_ in
             DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
+                self.hideHUD()
                 self.tableView.reloadData()
             })
         })

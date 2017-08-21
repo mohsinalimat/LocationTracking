@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfO-c7-M0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfO-c7-M0M">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -351,10 +351,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-yL-Pkl">
-                                <rect key="frame" x="40" y="30" width="240" height="31"/>
+                                <rect key="frame" x="50" y="30" width="220" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="aQ2-Es-xkQ"/>
-                                    <constraint firstAttribute="width" constant="240" id="m17-bf-jmT"/>
+                                    <constraint firstAttribute="width" constant="220" id="m17-bf-jmT"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Contacts"/>

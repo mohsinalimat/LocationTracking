@@ -157,6 +157,15 @@ class DatabaseManager: NSObject {
         return contact != nil ? contact as! [Contact]! : []
     }
     
+    static func deleteContact(contactId:String, onCompletion:@escaping (Void) -> Void) {
+        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+            let predicate = NSPredicate(format: "id = %@",contactId)
+            Contact.mr_deleteAll(matching: predicate, in: localContext)
+        }, completion:{ didContext in
+            onCompletion()
+        })
+    }
+    
     static func resetAllData( onCompletion:@escaping (Void) -> Void) {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             Contact.mr_truncateAll(in: localContext)

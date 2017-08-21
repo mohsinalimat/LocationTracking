@@ -322,6 +322,13 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func deleteContact(contactId: String, atUserId: String, onCompletionHandler: @escaping () -> ()) {
+        ref.child(atUserId).child("contact").child(contactId).removeValue()
+        DatabaseManager.deleteContact(contactId: contactId, onCompletion: {_ in
+            onCompletionHandler()
+        })
+    }
+    
     func requestLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
         let profile = DatabaseManager.getProfile()
