@@ -11,6 +11,8 @@ import GoogleSignIn
 
 class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
+    @IBOutlet weak var passwordView: UIView!
+    @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInFacebookButton: UIButton!
@@ -21,19 +23,22 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
     override func viewDidLoad() {
         super.viewDidLoad()
         view.tappedDismissKeyboard()
+    }
 
+    func CustomLayout() {
+        emailView.customBorder(radius: 10)
+        passwordView.customBorder(radius: 10)
         signInButton.customBorder(radius: 5)
         signUpButton.customBorder(radius: 5)
         signInFacebookButton.customBorder(radius: 5)
         signInGoogleButton.customBorder(radius: 5)
-        // Do any additional setup after loading the view.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Action
     @IBAction func tappedSignIn(_ sender: UIButton) {
         if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 {
             self.showHUD()
@@ -68,7 +73,6 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                  SignIn is failure
                  Show Toast to notify result
                  */
-                self.view.makeToast("Sign in with facebook is error.\n Please try again", duration: 2.0, position: .center)
             }
         })
     }
@@ -95,13 +99,13 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                  SignIn is failure
                  Show Toast to notify result
                  */
-                self.view.makeToast("Sign in with Twitter is error.\n Please try again", duration: 2.0, position: .center)
             }
         })
 
     }
     
     @IBAction func tappedSignUp(_ sender: UIButton) {
+        
     }
     
     //MARK: - Google Sign in Delegate
@@ -123,7 +127,6 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                  SignIn is failure
                  Show Toast to notify result
                  */
-                self.view.makeToast("Sign in with facebook is error.\n Please try again", duration: 2.0, position: .center)
             }
         })
     }

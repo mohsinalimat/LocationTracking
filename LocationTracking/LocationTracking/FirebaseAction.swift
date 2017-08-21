@@ -67,7 +67,6 @@ class FirebaseAction: NSObject {
                     kFIRParameterItemName:"Sign in Email",
                     kFIRParameterContentType:"signIn"
                     ])
-                
                 self.refreshData(email: email,completionHandler: {isSuccess in
                     if isSuccess {
                         completionHandler(true)
@@ -102,6 +101,7 @@ class FirebaseAction: NSObject {
             // Perform login by calling Firebase APIs
             FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
                 if error != nil {
+                    fromViewControlller.view.makeToast((error?.localizedDescription)!, duration: 2.0, position: .center)
                     completionHandler(false)
                 } else {
                     var email = ""
@@ -157,6 +157,7 @@ class FirebaseAction: NSObject {
                                                           accessToken: authentication.accessToken)
         FIRAuth.auth()?.signIn(with: credential, completion: {(user, error) in
             if error != nil {
+                fromViewControlller.view.makeToast((error?.localizedDescription)!, duration: 2.0, position: .center)
                 completionHandler(false)
             } else {
                 var email = ""

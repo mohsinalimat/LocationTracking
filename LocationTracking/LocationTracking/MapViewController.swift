@@ -46,8 +46,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
         //Init Ads
         self.initAdsView()
-
     }
+    
+    func updateLocationAddress(address: String) {
+        var titleLabel = self.navigationItem.titleView as! UILabel
+        titleLabel.text = address
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -121,6 +126,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             marker?.map = mapView
             let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.zoomLevel)
             mapView.camera = newCamera
+            Common.convertToAddress(latitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, onCompletionHandler: {address in
+                self.updateLocationAddress(address: address)
+            })
         }
     }
     
@@ -133,7 +141,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         guard let profile = app_delegate.profile else {
             return
         }
-        app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude )
+        app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
