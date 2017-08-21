@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation 
 import GoogleMaps
 import GooglePlaces
 import GoogleMobileAds
@@ -62,8 +63,20 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     //MARK: - Init View
     //Init MapView
     func initMapView() {
-        let camera = GMSCameraPosition.camera(withLatitude:0,
-                                              longitude:0,
+        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized {
+            // Already Authorized
+        } else {
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted: Bool) -> Void in
+                if granted == true {
+                    // User granted
+                } else {
+                    return
+                    // User Rejected
+                }
+            })
+        }
+        let camera = GMSCameraPosition.camera(withLatitude:0.0,
+                                              longitude:0.0,
                                               zoom: zoomLevel)
         mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - bannerView.frame.size.height), camera: camera)
         mapView.settings.myLocationButton = true
