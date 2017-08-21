@@ -23,7 +23,6 @@
 		846C92C31EF512CA000993CE /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92C21EF512CA000993CE /* ContactTableViewCell.swift */; };
 		846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92CB1EF5348B000993CE /* FirebaseAction.swift */; };
 		8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A2071EE869C800D79A61 /* MapViewController.swift */; };
-		8485A20A1EE86FC100D79A61 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8485A2091EE86FC100D79A61 /* MapKit.framework */; };
 		84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0FB4B1EF8303700F3ABDE /* UIViewExtension.swift */; };
 		84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0FB4D1EF8370500F3ABDE /* Toast.swift */; };
 		84B0FB501EF83FD100F3ABDE /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B0FB4F1EF83FD100F3ABDE /* DatabaseManager.swift */; };
@@ -58,7 +57,6 @@
 		846C92C21EF512CA000993CE /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		846C92CB1EF5348B000993CE /* FirebaseAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAction.swift; sourceTree = "<group>"; };
 		8485A2071EE869C800D79A61 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		8485A2091EE86FC100D79A61 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		84B0FB4B1EF8303700F3ABDE /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		84B0FB4D1EF8370500F3ABDE /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		84B0FB4F1EF83FD100F3ABDE /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84DC8A811EE07C9B00B6F9A0 /* StoreKit.framework in Frameworks */,
-				8485A20A1EE86FC100D79A61 /* MapKit.framework in Frameworks */,
 				4BE46A6C35A1CD80550602C4 /* Pods_LocationTracking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,7 +232,6 @@
 		84DC8A7F1EE07C9B00B6F9A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8485A2091EE86FC100D79A61 /* MapKit.framework */,
 				84DC8A801EE07C9B00B6F9A0 /* StoreKit.framework */,
 				5B74AB3D7A8D8C10BDCBA9E2 /* Pods_LocationTracking.framework */,
 			);

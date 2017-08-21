@@ -17,28 +17,43 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInFacebookButton: UIButton!
     @IBOutlet weak var signInGoogleButton: UIButton!
+    @IBOutlet weak var signInTwitterButton: UIButton!
+    @IBOutlet weak var showPasswordButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.tappedDismissKeyboard()
+        self.CustomLayout()
     }
 
+    //MARK: - Function
     func CustomLayout() {
-        emailView.customBorder(radius: 10)
-        passwordView.customBorder(radius: 10)
-        signInButton.customBorder(radius: 5)
-        signUpButton.customBorder(radius: 5)
-        signInFacebookButton.customBorder(radius: 5)
-        signInGoogleButton.customBorder(radius: 5)
+        emailView.customBorder(radius: 3)
+        passwordView.customBorder(radius: 3)
+        signInButton.customBorder(radius: 3)
+        signUpButton.customBorder(radius: 3)
+        signInFacebookButton.customBorder(radius: 3)
+        signInGoogleButton.customBorder(radius: 3)
+        signInTwitterButton.customBorder(radius: 3)
     }
+    
+    func resetTextField() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //MARK: - Action
+    @IBAction func tappedShowPassword(_ sender: UIButton) {
+        passwordTextField.isSecureTextEntry = sender.isSelected
+        sender.isSelected = !sender.isSelected
+    }
+    
     @IBAction func tappedSignIn(_ sender: UIButton) {
         if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 {
             self.showHUD()
@@ -48,7 +63,9 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                     //SignIn is successful
                     app_delegate.profile = DatabaseManager.getProfile()
                     let drawerController = app_delegate.initRevealViewController()
-                    self.present(drawerController, animated: true, completion: nil)
+                    self.present(drawerController, animated: true, completion: {_ in
+                        self.resetTextField()
+                    })
                 } else {
                     /*
                      SignIn is failure

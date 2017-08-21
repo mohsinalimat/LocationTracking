@@ -49,8 +49,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func updateLocationAddress(address: String) {
-        var titleLabel = self.navigationItem.titleView as! UILabel
+        let titleLabel = self.navigationItem.titleView as! UILabel
         titleLabel.text = address
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
     }
     
     override func didReceiveMemoryWarning() {

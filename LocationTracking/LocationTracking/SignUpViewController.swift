@@ -43,8 +43,11 @@ class SignUpViewController: OriginalViewController {
                 DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                     //Present after updated profile
                     app_delegate.profile = DatabaseManager.getProfile()
-                    let drawerController = app_delegate.initRevealViewController()
-                    self.present(drawerController, animated: true, completion: nil)
+                    self.dismiss(animated: false, completion: {_ in
+                        let drawerController = app_delegate.initRevealViewController()
+                        let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
+                        visibleViewController.present(drawerController, animated: true, completion: nil)
+                    })
                 })
             }
         } else {
