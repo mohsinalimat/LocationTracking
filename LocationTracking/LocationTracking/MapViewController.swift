@@ -98,7 +98,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             // Fallback on earlier versions
         }
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        let camera = GMSCameraPosition.camera(withLatitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude, zoom: zoomLevel)
+        
+        let latitude  = locationManager.location != nil ? locationManager.location!.coordinate.latitude : 0
+        let longitude = locationManager.location != nil ? locationManager.location!.coordinate.longitude : 0
+
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoomLevel)
             mapView.camera = camera
         locationManager.startUpdatingLocation()
     }
