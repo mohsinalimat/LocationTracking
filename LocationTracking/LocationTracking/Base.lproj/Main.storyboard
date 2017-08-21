@@ -651,6 +651,6 @@
         <image name="icon_close" width="20" height="20"/>
         <image name="shareLocation" width="30" height="30"/>
         <image name="showPassword" width="35" height="35"/>
-        <image name="twitter" width="30" height="30"/>
+        <image name="twitter" width="35" height="35"/>
     </resources>
 </document>
