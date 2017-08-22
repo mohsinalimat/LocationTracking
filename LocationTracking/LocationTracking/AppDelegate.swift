@@ -124,8 +124,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if drawerController.drawerState == .closed {
                     //MapViewController
                     let mapNavigationViewController = drawerController.mainViewController as! UINavigationController
-                    let mapViewController = mapNavigationViewController.viewControllers.last as! MapViewController
-                    mapViewController.updateMarker()
+                    if let mapViewController = mapNavigationViewController.viewControllers.last {
+                        if mapViewController is MapViewController {
+                            let mapVC = mapViewController as! MapViewController
+                            mapVC.updateMarker()
+                        }
+                    }
                 }
             }
         })

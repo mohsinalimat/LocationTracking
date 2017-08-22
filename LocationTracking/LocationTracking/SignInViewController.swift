@@ -62,10 +62,10 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                 if isSuccess {
                     //SignIn is successful
                     app_delegate.profile = DatabaseManager.getProfile()
+                    self.resetTextField()
+
                     let drawerController = app_delegate.initRevealViewController()
-                    self.present(drawerController, animated: true, completion: {_ in
-                        self.resetTextField()
-                    })
+                    self.present(drawerController, animated: true, completion: nil)
                 } else {
                     /*
                      SignIn is failure

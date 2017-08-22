@@ -38,6 +38,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         self.initMapView()
         self.getCurrentLocation()
         if currentContact == nil {
@@ -246,6 +247,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     override func tappedRightBarButton(sender: UIButton) {
         //Add new contact
+        sender.isEnabled = false
         let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
         self.navigationController?.pushViewController(addContactViewController, animated: true)
     }
