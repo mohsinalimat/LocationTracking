@@ -95,11 +95,12 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
     }
     
     @IBAction func tappedSignInWithGoogle(_ sender: UIButton) {
+        self.showHUD()
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
-        if GIDSignIn.sharedInstance().currentUser != nil {
-            self.showHUD()
+        if GIDSignIn.sharedInstance().currentUser == nil {
+            self.hideHUD()
         }
     }
     

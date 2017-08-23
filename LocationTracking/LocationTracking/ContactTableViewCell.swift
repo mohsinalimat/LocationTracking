@@ -49,7 +49,7 @@ class ContactTableViewCell: UITableViewCell {
     func setupCell(contact:Contact) {
         contactObject = contact
         userNameLabel.text = contact.email
-        currentLocationLabel.text = String(contact.latitude)
+        currentLocationLabel.text = "Locating,please wait a moment"
         
         if contact.isShare == Int16(ShareStatus.kShared.rawValue) {
             //Shared location
@@ -64,7 +64,7 @@ class ContactTableViewCell: UITableViewCell {
             requestLocationButton.isHidden = true
             shareLocationButton.isHidden = true
             currentLocationLabel.isHidden = false
-            currentLocationLabel.text = "waiting to share location"
+            currentLocationLabel.text = "Waiting to share location"
         } else if contact.isShare == Int16(ShareStatus.kRequestShare.rawValue) {
             //Users request share location
             requestLocationButton.isHidden = true

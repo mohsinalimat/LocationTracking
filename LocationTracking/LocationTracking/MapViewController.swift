@@ -38,7 +38,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.navigationItem.leftBarButtonItem?.isEnabled = true
+        
         self.initMapView()
         self.getCurrentLocation()
         if currentContact == nil {
@@ -169,7 +170,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             marker = GMSMarker(position: position)
             marker?.title = currentContact?.email
             marker?.map = mapView
-            let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.zoomLevel)
+            let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.mapView.camera.zoom)
             mapView.camera = newCamera
             Common.convertToAddress(latitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, onCompletionHandler: {address in
                 self.updateLocationAddress(address: address)
@@ -180,13 +181,15 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
 // MARK: - GMSMapViewDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Get current location
-        currentLocation = locations.last!
-
-        //Update location
-        guard let profile = app_delegate.profile else {
-            return
+        let lastLocation = locations.last!
+        if currentLocation.coordinate.latitude != lastLocation.coordinate.latitude || currentLocation.coordinate.longitude != lastLocation.coordinate.longitude {
+            //Update current location
+            currentLocation = locations.last!
+            
+            //Update location
+            guard let profile = app_delegate.profile else { return }
+            app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude)
         }
-        app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -273,7 +276,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     override func tappedRightBarButton(sender: UIButton) {
         //Add new contact
-        sender.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
         let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
         self.navigationController?.pushViewController(addContactViewController, animated: true)
     }

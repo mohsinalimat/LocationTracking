@@ -23,7 +23,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.initData()
+        self.refreshContactData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -38,12 +38,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     //MARK: - Data
-    func initData() {
-        contactArray.removeAll()
-        contactArray += DatabaseManager.getAllContact()
-//        contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
-        tableView.reloadData()
-    }
     
     func refreshContactData() {
         switch segmented.selectedSegmentIndex {
