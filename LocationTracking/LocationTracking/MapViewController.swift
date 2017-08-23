@@ -48,6 +48,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
         //Init Ads
         self.initAdsView()
+        self.referentCurrentContact()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        app_delegate.firebaseObject.removeObServerContact()
     }
     
     func updateLocationAddress(address: String) {
@@ -120,6 +125,27 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.interstitial = createAndLoadInterstitial()
     }
     
+    // MARK: - Update Location
+    //Update when contact changed location
+    func referentCurrentContact() {
+        app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
+            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
+            if visibleViewController.isKind(of:KYDrawerController.self) {
+                let drawerController = visibleViewController as! KYDrawerController
+                if drawerController.drawerState == .closed {
+                    //MapViewController
+                    let mapNavigationViewController = drawerController.mainViewController as! UINavigationController
+                    if let mapViewController = mapNavigationViewController.viewControllers.last {
+                        if mapViewController is MapViewController {
+                            let mapVC = mapViewController as! MapViewController
+                            mapVC.updateMarker()
+                        }
+                    }
+                }
+            }
+        })
+    }
+
     // MARK: - Init Interstitial
     func createAndLoadInterstitial() -> GADInterstitial {
         let interstitial = GADInterstitial(adUnitID: kInterstitialAdUnitID)

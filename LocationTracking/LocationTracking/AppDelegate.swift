@@ -49,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         profile = DatabaseManager.getProfile()
         
         //Save new profile information
-        self.referentCurrentContact()
         return true
     }
 
@@ -113,25 +112,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController.mainViewController = rootNavigation
         drawerController.drawerViewController = friendListNavigation
         return drawerController
-    }
-    
-    //Update when contact changed location
-    func referentCurrentContact() {
-        app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
-            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-            if visibleViewController.isKind(of:KYDrawerController.self) {
-                let drawerController = visibleViewController as! KYDrawerController
-                if drawerController.drawerState == .closed {
-                    //MapViewController
-                    let mapNavigationViewController = drawerController.mainViewController as! UINavigationController
-                    if let mapViewController = mapNavigationViewController.viewControllers.last {
-                        if mapViewController is MapViewController {
-                            let mapVC = mapViewController as! MapViewController
-                            mapVC.updateMarker()
-                        }
-                    }
-                }
-            }
-        })
     }
 }

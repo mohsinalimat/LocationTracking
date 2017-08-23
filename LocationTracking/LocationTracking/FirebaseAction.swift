@@ -18,7 +18,7 @@ import Social
 class FirebaseAction: NSObject {
     
     lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
-
+    
     func initFirebase() {
         FIRApp.configure()
         FIRDatabase.database().reference()
@@ -336,6 +336,10 @@ class FirebaseAction: NSObject {
                 onCompletionHandler()
             })
         })
+    }
+    
+    func removeObServerContact() {
+        ref.removeAllObservers()
     }
     
     //MARK: - Refresh Data
