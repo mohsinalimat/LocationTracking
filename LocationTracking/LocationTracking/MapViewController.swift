@@ -34,21 +34,23 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ic_menu",title: "")
         self.addRightBarItem(imageName: "icon_add_user",title: "")
+        self.initMapView()
+        //Init Ads
+        self.initAdsView()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         
-        self.initMapView()
         self.getCurrentLocation()
         if currentContact == nil {
             self.addTitleNavigation(title: "Location Tracking")
         } else {
             self.addTitleNavigation(title: (currentContact?.email)!)
         }
-        //Init Ads
-        self.initAdsView()
+        //Real time contact location
         self.referentCurrentContact()
     }
     
@@ -110,7 +112,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         let longitude = locationManager.location != nil ? locationManager.location!.coordinate.longitude : 0
 
         let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoomLevel)
-            mapView.camera = camera
+        mapView.camera = camera
         locationManager.startUpdatingLocation()
     }
     
