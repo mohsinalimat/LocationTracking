@@ -548,34 +548,34 @@
                                 <rect key="frame" x="0.0" y="90" width="320" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchContactTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchContactTableViewCell" rowHeight="60" id="KQz-We-sOP" customClass="SearchContactTableViewCell" customModule="LocationTracking" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchContactTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchContactTableViewCell" rowHeight="80" id="KQz-We-sOP" customClass="SearchContactTableViewCell" customModule="LocationTracking" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KQz-We-sOP" id="YhF-h3-tXK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WG9-i0-21A">
-                                                    <rect key="frame" x="55" y="14" width="245" height="16"/>
+                                                    <rect key="frame" x="55" y="24" width="245" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvn-pG-g0s">
-                                                    <rect key="frame" x="55" y="30" width="245" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvn-pG-g0s">
+                                                    <rect key="frame" x="55" y="40" width="210" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avar" translatesAutoresizingMaskIntoConstraints="NO" id="0FE-PV-oZd">
-                                                    <rect key="frame" x="10" y="12" width="35" height="35"/>
+                                                    <rect key="frame" x="10" y="22.5" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="2c0-Ig-JbG"/>
                                                         <constraint firstAttribute="width" constant="35" id="lFR-Ud-OP1"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWA-Cz-Gcc">
-                                                    <rect key="frame" x="270" y="10" width="40" height="40"/>
+                                                    <rect key="frame" x="270" y="20" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="CEW-7J-8JX"/>
                                                         <constraint firstAttribute="width" secondItem="qWA-Cz-Gcc" secondAttribute="height" multiplier="1:1" id="FsH-6j-B8E"/>
@@ -597,8 +597,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="WG9-i0-21A" secondAttribute="bottom" multiplier="2:1" id="daP-gU-ttM"/>
                                                 <constraint firstItem="Fvn-pG-g0s" firstAttribute="leading" secondItem="WG9-i0-21A" secondAttribute="leading" id="g8z-gO-eIs"/>
                                                 <constraint firstItem="WG9-i0-21A" firstAttribute="leading" secondItem="0FE-PV-oZd" secondAttribute="trailing" constant="10" id="gnE-QS-9kn"/>
+                                                <constraint firstItem="qWA-Cz-Gcc" firstAttribute="leading" secondItem="Fvn-pG-g0s" secondAttribute="trailing" constant="5" id="jbD-WU-slu"/>
                                                 <constraint firstItem="Fvn-pG-g0s" firstAttribute="top" secondItem="WG9-i0-21A" secondAttribute="bottom" id="oQU-me-5Gg"/>
-                                                <constraint firstItem="Fvn-pG-g0s" firstAttribute="trailing" secondItem="WG9-i0-21A" secondAttribute="trailing" id="q0a-FS-IYM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

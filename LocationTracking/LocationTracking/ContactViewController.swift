@@ -145,8 +145,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self .showHUD()
         app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {_ in
             DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
-                self.hideHUD()
                 self.tableView.reloadData()
+                self.segmented.selectedSegmentIndex = kContactListIndex
+                self.hideHUD()
             })
         })
     }
