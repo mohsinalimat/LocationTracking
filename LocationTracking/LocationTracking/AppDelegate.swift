@@ -113,4 +113,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerController.drawerViewController = friendListNavigation
         return drawerController
     }
+    
+    func autoSignIn() {
+        let userName = UserDefaults.standard.object(forKey: "userName") as? String
+        if userName != nil {
+            DatabaseManager.resetAllData(onCompletion: {_ in
+                UserDefaults.standard.set(email, forKey: "userName")
+                UserDefaults.standard.synchronize()
+            })
+        }
+    }
 }
