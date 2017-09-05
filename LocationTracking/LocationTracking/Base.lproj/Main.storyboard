@@ -51,7 +51,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-fy-czQ">
                                 <rect key="frame" x="20" y="353.5" width="280" height="36"/>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.050980392156862744" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Google" image="googleplus">
+                                <state key="normal" title="Google" image="googlePlus">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -129,7 +129,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXX-aV-kcM">
                                 <rect key="frame" x="20" y="395.5" width="280" height="36"/>
-                                <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.72941176470588232" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Twitter" image="twitter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -646,7 +646,7 @@
         <image name="check_off" width="22" height="22"/>
         <image name="check_on" width="22" height="22"/>
         <image name="facebook" width="30" height="31"/>
-        <image name="googleplus" width="40" height="30"/>
+        <image name="googlePlus" width="40" height="40"/>
         <image name="ic_avar" width="75" height="75"/>
         <image name="ico_search" width="18" height="18"/>
         <image name="icon_close" width="40" height="40"/>
