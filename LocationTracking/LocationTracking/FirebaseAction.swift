@@ -57,6 +57,7 @@ class FirebaseAction: NSObject {
                 if userName != email {
                     DatabaseManager.resetAllData(onCompletion: {_ in
                         UserDefaults.standard.set(email, forKey: "userName")
+                        UserDefaults.standard.set(password, forKey: "password")
                         UserDefaults.standard.synchronize()
                     })
                 }
@@ -114,6 +115,7 @@ class FirebaseAction: NSObject {
                     if userName != email {
                         DatabaseManager.resetAllData(onCompletion: {_ in
                             UserDefaults.standard.set(email, forKey: "userName")
+                            UserDefaults.standard.removeObject(forKey: "password")
                             UserDefaults.standard.synchronize()
                         })
                     }
@@ -163,6 +165,7 @@ class FirebaseAction: NSObject {
                 if userName != email {
                     DatabaseManager.resetAllData(onCompletion: {_ in
                         UserDefaults.standard.set(email, forKey: "userName")
+                        UserDefaults.standard.removeObject(forKey: "password")
                         UserDefaults.standard.synchronize()
                     })
                 }
@@ -228,6 +231,7 @@ class FirebaseAction: NSObject {
                     if userName != email {
                         DatabaseManager.resetAllData(onCompletion: {_ in
                             UserDefaults.standard.set(email, forKey: "userName")
+                            UserDefaults.standard.removeObject(forKey: "password")
                             UserDefaults.standard.synchronize()
                         })
                     }
@@ -260,6 +264,13 @@ class FirebaseAction: NSObject {
         }catch{
             print("Error while signing out!")
             return false
+        }
+    }
+    
+    //Reset password 
+    func resetPassword(email: String, onComplehandler: @escaping () -> ()) {
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email) { error in
+            onComplehandler()
         }
     }
     

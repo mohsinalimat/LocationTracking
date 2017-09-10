@@ -48,7 +48,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         profile = DatabaseManager.getProfile()
         
-        //Save new profile information
+        //Auto Signin
+        self.autoSignIn()
+
+        if self.window?.rootViewController != nil {
+            let rootViewController = self.window?.rootViewController as! OriginalViewController
+            rootViewController.showHUD()
+        }
         return true
     }
 
@@ -116,11 +122,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func autoSignIn() {
         let userName = UserDefaults.standard.object(forKey: "userName") as? String
-        if userName != nil {
-            DatabaseManager.resetAllData(onCompletion: {_ in
-                UserDefaults.standard.set(email, forKey: "userName")
-                UserDefaults.standard.synchronize()
+        let password = UserDefaults.standard.object(forKey: "password") as? String
+        
+        if userName != nil && password != nil {
+            self.firebaseObject.signInWith(email: userName!, password: password!, completionHandler: {(isSuccess) in
+                let visibleViewController: OriginalViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController) as! OriginalViewController
+                if isSuccess {
+                    //SignIn is successful
+                    app_delegate.profile = DatabaseManager.getProfile()
+                    let drawerController = app_delegate.initRevealViewController()
+                    visibleViewController.present(drawerController, animated: true, completion: nil)
+                }
+                visibleViewController.hideHUD()
             })
+        } else {
+            let rootViewController = self.window?.rootViewController as! OriginalViewController
+            rootViewController.hideHUD()
         }
     }
 }
