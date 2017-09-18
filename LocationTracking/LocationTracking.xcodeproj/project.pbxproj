@@ -36,6 +36,8 @@
 		84E871BA1EF98B6000F9B817 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E871B91EF98B6000F9B817 /* AddContactViewController.swift */; };
 		84E871BC1EF9932200F9B817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E871BB1EF9932200F9B817 /* Assets.xcassets */; };
 		84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */; };
+		EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379C1F6FC85600F7901D /* CommentViewController.swift */; };
+		EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,8 @@
 		84E871B91EF98B6000F9B817 /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		84E871BB1EF9932200F9B817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		EA0E379C1F6FC85600F7901D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 		846C92C81EF5170C000993CE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EA0E379B1F6FC82100F7901D /* Comment */,
 				841781611EF58EB10020858C /* SignIn */,
 				84F652C21EF1A6B90009E3A5 /* Contact */,
 				8485A2061EE8694800D79A61 /* Map */,
@@ -246,6 +251,15 @@
 				84E871B91EF98B6000F9B817 /* AddContactViewController.swift */,
 			);
 			name = Contact;
+			sourceTree = "<group>";
+		};
+		EA0E379B1F6FC82100F7901D /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				EA0E379C1F6FC85600F7901D /* CommentViewController.swift */,
+				EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */,
+			);
+			name = Comment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,6 +409,7 @@
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
 				846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
+				EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
 				843C03EE1EFADE4C00BE605B /* ContactModel.swift in Sources */,
@@ -404,6 +419,7 @@
 				841781651EF59E320020858C /* SignUpViewController.swift in Sources */,
 				846C92C31EF512CA000993CE /* ContactTableViewCell.swift in Sources */,
 				84B0FB501EF83FD100F3ABDE /* DatabaseManager.swift in Sources */,
+				EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */,
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
 				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,

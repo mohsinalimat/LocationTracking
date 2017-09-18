@@ -47,7 +47,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8c-tq-TPY">
-                                <rect key="frame" x="20" y="299.5" width="280" height="36"/>
+                                <rect key="frame" x="20" y="300.5" width="280" height="36"/>
                                 <color key="backgroundColor" red="0.16470588235294117" green="0.36470588235294116" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Facebook" image="facebook">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,7 +57,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-fy-czQ">
-                                <rect key="frame" x="20" y="341.5" width="280" height="36"/>
+                                <rect key="frame" x="20" y="342.5" width="280" height="36"/>
                                 <color key="backgroundColor" red="0.82745098039215681" green="0.050980392156862744" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Google" image="googlePlus">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,10 +90,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vy7-6h-lhH">
-                                <rect key="frame" x="20" y="162" width="280" height="36"/>
+                                <rect key="frame" x="20" y="162" width="280" height="36.5"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGB-iC-I9p">
-                                        <rect key="frame" x="3" y="2" width="234" height="32"/>
+                                        <rect key="frame" x="3" y="2" width="234" height="32.5"/>
                                         <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -125,7 +125,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aP-0D-MvR">
-                                <rect key="frame" x="20" y="258" width="280" height="35.5"/>
+                                <rect key="frame" x="20" y="258.5" width="280" height="36"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="Sign In">
@@ -136,7 +136,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vXX-aV-kcM">
-                                <rect key="frame" x="20" y="383.5" width="280" height="36"/>
+                                <rect key="frame" x="20" y="384.5" width="280" height="36.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.72941176470588232" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Twitter" image="twitter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -146,7 +146,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znq-JG-l15">
-                                <rect key="frame" x="191" y="203" width="109" height="30"/>
+                                <rect key="frame" x="191" y="203.5" width="109" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="K7S-1s-MXS"/>
                                 </constraints>
@@ -334,6 +334,160 @@
             </objects>
             <point key="canvasLocation" x="-328.98550724637681" y="820.92391304347836"/>
         </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="IDy-Py-Re3">
+            <objects>
+                <viewController storyboardIdentifier="CommentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z2X-BR-AA2" customClass="CommentViewController" customModule="LocationTracking" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cxp-Oo-Jgg"/>
+                        <viewControllerLayoutGuide type="bottom" id="21d-LA-jUc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BOQ-tk-ZsW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqN-MH-tWK">
+                                <rect key="frame" x="20" y="468" width="280" height="40"/>
+                                <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="KqN-MH-tWK" secondAttribute="height" multiplier="7:1" id="vhi-Lj-lDT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedSendComment:" destination="z2X-BR-AA2" eventType="touchUpInside" id="Rpm-8b-Dyr"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="ML5-xq-4Po">
+                                <rect key="frame" x="20" y="80" width="280" height="358"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="z2X-BR-AA2" id="y0G-AN-YMz"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="21d-LA-jUc" firstAttribute="top" secondItem="KqN-MH-tWK" secondAttribute="bottom" constant="60" id="AO7-mA-yIf"/>
+                            <constraint firstItem="KqN-MH-tWK" firstAttribute="leading" secondItem="BOQ-tk-ZsW" secondAttribute="leading" constant="20" id="Le4-KA-OCj"/>
+                            <constraint firstAttribute="trailing" secondItem="ML5-xq-4Po" secondAttribute="trailing" constant="20" id="Oa9-XM-jV8"/>
+                            <constraint firstItem="ML5-xq-4Po" firstAttribute="leading" secondItem="BOQ-tk-ZsW" secondAttribute="leading" constant="20" id="PrF-6B-A3R"/>
+                            <constraint firstItem="KqN-MH-tWK" firstAttribute="top" secondItem="ML5-xq-4Po" secondAttribute="bottom" constant="30" id="e22-oR-XiK"/>
+                            <constraint firstAttribute="trailing" secondItem="KqN-MH-tWK" secondAttribute="trailing" constant="20" id="km7-ms-RMn"/>
+                            <constraint firstItem="ML5-xq-4Po" firstAttribute="top" secondItem="Cxp-Oo-Jgg" secondAttribute="bottom" constant="60" id="q6M-P4-t5B"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commentButton" destination="KqN-MH-tWK" id="ScR-EH-bDp"/>
+                        <outlet property="commentTextView" destination="ML5-xq-4Po" id="K1k-0S-GAW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sSh-pQ-i6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="421.875" y="820.77464788732391"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="Uhw-Mp-ehE">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JDH-QB-9yJ" customClass="AboutViewController" customModule="LocationTracking" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rds-pX-JvC"/>
+                        <viewControllerLayoutGuide type="bottom" id="NLV-VF-51N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qUE-ki-UZ3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VL2-B9-VfR">
+                                <rect key="frame" x="20" y="40" width="280" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHd-aZ-t6v" userLabel="content">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="200"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhR-bD-Wtf">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="200"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <mutableString key="content">Theo đánh giá của trang thống kê Whoscored, Fellaini được chấm 8,0 điểm - ngang bằng với đồng đội Nemanja Matic và chỉ kém Romelu Lukaku (8,3 điểm). Fellaini đã chơi một trận đầy năng nổ, chạm bóng 66 lần, sở hữu 5,2% thời lượng bóng và tung 41 đường chuyền trúng đích (chiếm 80%). “Đầu xù” đóng vai trò trung chuyển và được tham gia nhiều hơn vào các pha tấn công của MU so với Matic.
+
+</mutableString>
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name=".SFNSText"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <mutableString key="content"> Khi HLV Mourinho nhận thấy khả năng phòng ngự của Everton suy giảm, ông tung Herrera vào sân ở phút 77. Chỉ 6 phút sau khi Cầu thủ xuất sắc nhất MU mùa giải 2016/17 hiện diện, MU có bàn thắng thứ hai. Khi đó, Herrera trám vào chỗ của Fellaini, còn “Đầu xù” chơi cao hơn, trực diện và gây áp lực nhiều hơn lên hàng thủ Everton, buộc Ashley Williams mắc sai lầm. Và rồi bàn thắng thứ hai, thứ ba, thứ tư đến như một lẽ tất yếu.</mutableString>
+                                                <attributes>
+                                                    <font key="NSFont" size="14" name=".SFNSText"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xHd-aZ-t6v" firstAttribute="centerY" secondItem="VL2-B9-VfR" secondAttribute="centerY" id="07x-lu-EQg"/>
+                                    <constraint firstAttribute="bottom" secondItem="xHd-aZ-t6v" secondAttribute="bottom" id="AFf-ee-SNU"/>
+                                    <constraint firstAttribute="height" constant="200" id="Je4-KW-EOl"/>
+                                    <constraint firstItem="xHd-aZ-t6v" firstAttribute="leading" secondItem="VL2-B9-VfR" secondAttribute="leading" id="Lg8-n7-WmH"/>
+                                    <constraint firstItem="xHd-aZ-t6v" firstAttribute="top" secondItem="VL2-B9-VfR" secondAttribute="top" id="NRe-bt-5E9"/>
+                                    <constraint firstAttribute="trailing" secondItem="xHd-aZ-t6v" secondAttribute="trailing" id="ZzV-Sk-2HH"/>
+                                    <constraint firstAttribute="trailing" secondItem="DhR-bD-Wtf" secondAttribute="trailing" id="bKe-ZV-kSy"/>
+                                    <constraint firstItem="DhR-bD-Wtf" firstAttribute="top" secondItem="VL2-B9-VfR" secondAttribute="top" id="blV-Bq-0A7"/>
+                                    <constraint firstAttribute="bottom" secondItem="DhR-bD-Wtf" secondAttribute="bottom" id="k2l-nr-gef"/>
+                                    <constraint firstItem="xHd-aZ-t6v" firstAttribute="centerX" secondItem="VL2-B9-VfR" secondAttribute="centerX" id="rT3-HU-Dfs"/>
+                                    <constraint firstItem="DhR-bD-Wtf" firstAttribute="leading" secondItem="VL2-B9-VfR" secondAttribute="leading" id="vkh-4r-YHh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="JDH-QB-9yJ" id="L0P-HO-xwf"/>
+                                </connections>
+                            </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lGj-fL-sa9">
+                                <rect key="frame" x="40" y="262" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="JDH-QB-9yJ" id="eMr-bi-Pe1"/>
+                                    <outlet property="delegate" destination="JDH-QB-9yJ" id="5FK-RR-Eyr"/>
+                                </connections>
+                            </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zcC-d7-DLe">
+                                <rect key="frame" x="40" y="531" width="240" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngK-ax-Y2t">
+                                <rect key="frame" x="274" y="530" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VL2-B9-VfR" firstAttribute="top" secondItem="Rds-pX-JvC" secondAttribute="bottom" constant="20" id="NgX-4l-ti7"/>
+                            <constraint firstAttribute="trailing" secondItem="VL2-B9-VfR" secondAttribute="trailing" constant="20" id="fjT-XU-2qO"/>
+                            <constraint firstItem="VL2-B9-VfR" firstAttribute="leading" secondItem="qUE-ki-UZ3" secondAttribute="leading" constant="20" id="o98-TL-fR4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="VL2-B9-VfR" id="Odd-z4-NIG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rTy-n7-afN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="747.88732394366195"/>
+        </scene>
         <!--Delegate-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -412,7 +566,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5TQ-gH-dvK" id="jsX-u9-gUg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avar" translatesAutoresizingMaskIntoConstraints="NO" id="D0w-EX-9GP">
@@ -575,7 +729,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KQz-We-sOP" id="YhF-h3-tXK">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WG9-i0-21A">

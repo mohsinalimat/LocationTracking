@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RappleProgressHUD
 
 class OriginalViewController: UIViewController {
     

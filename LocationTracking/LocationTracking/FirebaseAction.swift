@@ -425,4 +425,20 @@ class FirebaseAction: NSObject {
             
         }
     }
+    
+    //MARK: - Send Comment about App
+    func sendCommentAboutApp(comment: String, onCompletetionHandler: @escaping () -> ()) {
+        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        resultRef = ref.child("comment")
+        
+        let profile = DatabaseManager.getProfile()
+        /**
+         Key: profile id
+         Value: comment
+        **/
+        let commentDictionary = [profile?.id: comment]
+        
+        resultRef.setValue(commentDictionary)
+        onCompletetionHandler()
+    }
 }
