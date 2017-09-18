@@ -104,4 +104,22 @@ class OriginalViewController: UIViewController {
     func hideProgress() {
         progressHUD?.removeFromSuperview()
     }
+    
+    func showAlert(title: String, message: String, cancelTitle: String, okTitle: String) {
+        // create the alert
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add the actions (buttons)
+        if cancelTitle.characters.count > 0 {
+            alert.addAction(UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.cancel, handler: nil))
+        }
+        if okTitle.characters.count > 0 {
+            alert.addAction(UIAlertAction(title: okTitle, style: UIAlertActionStyle.cancel, handler: nil))
+        }
+        if cancelTitle.characters.count > 0 {
+            alert.addAction(UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.cancel, handler: nil))
+        }        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
 }

@@ -49,6 +49,12 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func resetPasswordToEmail(email: String, onCompletionHandler: @escaping () -> ()) {
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: {_ in
+            onCompletionHandler()
+        })
+    }
+    
     //Sign in with Email
     func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
