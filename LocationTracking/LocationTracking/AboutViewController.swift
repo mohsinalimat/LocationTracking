@@ -11,6 +11,9 @@ import UIKit
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var inputTextView: UITextView!
+    @IBOutlet weak var sendCommentButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,5 +23,8 @@ class AboutViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func tappedSendComment(_ sender: UIButton) {
+        
     }
 }

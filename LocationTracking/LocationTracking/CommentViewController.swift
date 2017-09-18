@@ -28,6 +28,7 @@ class CommentViewController: OriginalViewController {
         if commentTextView.text.characters.count > 0 {
             app_delegate.firebaseObject.sendCommentAboutApp(comment: commentTextView.text, onCompletetionHandler: {_ in
                 self.showAlert(title: "", message: "Thank you for your comment", cancelTitle: "OK", okTitle: "")
+                commentTextView.text = ""
             })
         } else {
             self.showAlert(title: "", message: "Please input your comment", cancelTitle: "OK", okTitle: "")
