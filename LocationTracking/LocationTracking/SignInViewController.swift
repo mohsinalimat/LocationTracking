@@ -55,9 +55,9 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
     }
     
     @IBAction func tappedForgotPassword(_ sender: UIButton) {
-        if emailTextField.text?.characters.count > 0 {
-            app_delegate.firebaseObject.resetPassword(email: emailTextField.text, onComplehandler: {_ in
-                self.showAlert(title: "", message: "New password sent to your emailm, please check your email.", cancelTitle: "", okTitle: "OK")
+        if (emailTextField.text?.characters.count)! > 0 {
+            app_delegate.firebaseObject.resetPassword(email: emailTextField.text!, onComplehandler: {_ in
+                self.showAlert(title: "", message: "New password sent to your email, please check your email.", cancelTitle: "", okTitle: "OK")
             })
         } else {
             self.showAlert(title: "", message: "Please input your email", cancelTitle: "", okTitle: "OK")

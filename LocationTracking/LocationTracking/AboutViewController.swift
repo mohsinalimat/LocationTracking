@@ -24,7 +24,14 @@ class AboutViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK: - IBAction
     @IBAction func tappedSendComment(_ sender: UIButton) {
         
     }
+    
+    @IBAction func tappedDismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

@@ -51,10 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Auto Signin
         self.autoSignIn()
 
-        if self.window?.rootViewController != nil {
-            let rootViewController = self.window?.rootViewController as! OriginalViewController
-            rootViewController.showHUD()
-        }
         return true
     }
 

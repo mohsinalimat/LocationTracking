@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RappleProgressHUD
 
-class OriginalViewController: UIViewController {
+class OriginalViewController: UIViewController,UITextViewDelegate {
     
     var progressHUD: ProgressView?
     
@@ -113,11 +114,8 @@ class OriginalViewController: UIViewController {
             alert.addAction(UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.cancel, handler: nil))
         }
         if okTitle.characters.count > 0 {
-            alert.addAction(UIAlertAction(title: okTitle, style: UIAlertActionStyle.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: okTitle, style: UIAlertActionStyle.default, handler: nil))
         }
-        if cancelTitle.characters.count > 0 {
-            alert.addAction(UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.cancel, handler: nil))
-        }        
         // show the alert
         self.present(alert, animated: true, completion: nil)
     }

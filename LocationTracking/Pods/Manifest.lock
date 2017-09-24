@@ -5,10 +5,10 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Fabric (1.6.12)
-  - FBSDKCoreKit (4.25.0):
+  - Fabric (1.6.13)
+  - FBSDKCoreKit (4.26.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.25.0):
+  - FBSDKLoginKit (4.26.0):
     - FBSDKCoreKit
   - Firebase (3.17.0):
     - Firebase/Core (= 3.17.0)
@@ -110,7 +110,7 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.4.0):
     - GoogleMaps/Base (= 2.4.0)
-  - GoogleSignIn (4.0.2):
+  - GoogleSignIn (4.1.0):
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GoogleToolboxForMac/NSString+URLArguments (~> 2.1)
     - GTMOAuth2 (~> 1.0)
@@ -136,7 +136,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
     - GoogleToolboxForMac/NSDictionary+URLArguments (= 2.1.1)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
-  - GTMOAuth2 (1.1.4):
+  - GTMOAuth2 (1.1.5):
     - GTMSessionFetcher (~> 1.1)
   - GTMSessionFetcher (1.1.11):
     - GTMSessionFetcher/Full (= 1.1.11)
@@ -176,9 +176,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
-  FBSDKCoreKit: 53e3f4bfb64e80c5f229dd30ae33ff57fbbbd2d1
-  FBSDKLoginKit: f628c09684dae9c17f071cf90b014e886f5093ea
+  Fabric: 2fb5676bc811af011a04513451f463dac6803206
+  FBSDKCoreKit: c8b8582311ec11b145451d8b9717dc6cc2ae5a76
+  FBSDKLoginKit: f3f03b94c21eb834af243c0a881d48641f47ca60
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseAppIndexing: adf2f3b14b6828f1d4c539fc72434962cf29ea2c
@@ -196,9 +196,9 @@ SPEC CHECKSUMS:
   GoogleAPIClientForREST: bf724227a6ad1459aab09b73800aad9184a0f64c
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
-  GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
+  GoogleSignIn: 8c599fc10d25b2af86a3f82fd9631e863f2b1400
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
+  GTMOAuth2: be83fd28d63ae3087e7d351b1f39c1a7e24ab6e7
   GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
@@ -206,6 +206,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: debb44d233916b05ef809c3a1ab33f76687b6edd
+PODFILE CHECKSUM: 5d8ed024e6d53c333f3a1617e592fa00a85b6d57
 
 COCOAPODS: 1.1.1
