@@ -439,4 +439,11 @@ class FirebaseAction: NSObject {
         resultRef.child((profile?.id)!).setValue(comment)
         onCompletetionHandler()
     }
+    
+    func getAbout(onCompletionHandler: @escaping () -> ()) {
+        ref.child("about").observe(.value, with: { (snapshot) in
+            UserDefaults.standard.set(snapshot.value as? String, forKey: "about")
+            onCompletionHandler()
+        })
+    }
 }

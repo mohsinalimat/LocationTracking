@@ -103,7 +103,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7Z-f5-gZy">
-                                        <rect key="frame" x="240" y="0.5" width="35" height="35"/>
+                                        <rect key="frame" x="240" y="1" width="35" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="esH-1U-Zwq"/>
                                             <constraint firstAttribute="width" constant="35" id="evd-4X-miL"/>
@@ -447,13 +447,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VL2-B9-VfR">
-                                <rect key="frame" x="20" y="75" width="280" height="433"/>
+                                <rect key="frame" x="10" y="75" width="300" height="433"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHd-aZ-t6v" userLabel="content">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="433"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="433"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhR-bD-Wtf">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="15.5"/>
+                                                <rect key="frame" x="10" y="0.0" width="280" height="16"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Xin chao">
                                                         <attributes>
@@ -467,9 +467,8 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="DhR-bD-Wtf" secondAttribute="trailing" id="Uxd-gT-Kh9"/>
-                                            <constraint firstItem="DhR-bD-Wtf" firstAttribute="leading" secondItem="xHd-aZ-t6v" secondAttribute="leading" id="ZFX-Re-tTM"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DhR-bD-Wtf" secondAttribute="bottom" constant="10" id="kVS-la-6eB"/>
+                                            <constraint firstAttribute="trailing" secondItem="DhR-bD-Wtf" secondAttribute="trailing" constant="10" id="Uxd-gT-Kh9"/>
+                                            <constraint firstItem="DhR-bD-Wtf" firstAttribute="leading" secondItem="xHd-aZ-t6v" secondAttribute="leading" constant="10" id="ZFX-Re-tTM"/>
                                             <constraint firstItem="DhR-bD-Wtf" firstAttribute="top" secondItem="xHd-aZ-t6v" secondAttribute="top" id="u2u-g2-tgK"/>
                                         </constraints>
                                     </view>
@@ -520,13 +519,14 @@
                             <constraint firstItem="Iwo-mk-45C" firstAttribute="centerX" secondItem="qUE-ki-UZ3" secondAttribute="centerX" id="GrA-J6-DCh"/>
                             <constraint firstAttribute="trailing" secondItem="Iwo-mk-45C" secondAttribute="trailing" constant="20" id="auF-DY-2Za"/>
                             <constraint firstItem="VL2-B9-VfR" firstAttribute="top" secondItem="bdv-YS-NfS" secondAttribute="bottom" constant="5" id="bcZ-0T-Ch7"/>
-                            <constraint firstAttribute="trailing" secondItem="VL2-B9-VfR" secondAttribute="trailing" constant="20" id="fjT-XU-2qO"/>
+                            <constraint firstAttribute="trailing" secondItem="VL2-B9-VfR" secondAttribute="trailing" constant="10" id="fjT-XU-2qO"/>
                             <constraint firstAttribute="bottom" secondItem="Iwo-mk-45C" secondAttribute="bottom" constant="10" id="hdR-Ib-Ql8"/>
-                            <constraint firstItem="VL2-B9-VfR" firstAttribute="leading" secondItem="qUE-ki-UZ3" secondAttribute="leading" constant="20" id="o98-TL-fR4"/>
+                            <constraint firstItem="VL2-B9-VfR" firstAttribute="leading" secondItem="qUE-ki-UZ3" secondAttribute="leading" constant="10" id="o98-TL-fR4"/>
                             <constraint firstItem="Iwo-mk-45C" firstAttribute="leading" secondItem="qUE-ki-UZ3" secondAttribute="leading" constant="20" id="pTS-Sl-Qnh"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="aboutLabel" destination="DhR-bD-Wtf" id="iKG-Xa-AmG"/>
                         <outlet property="scrollView" destination="VL2-B9-VfR" id="Odd-z4-NIG"/>
                     </connections>
                 </viewController>
@@ -807,7 +807,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_avar" translatesAutoresizingMaskIntoConstraints="NO" id="0FE-PV-oZd">
-                                                    <rect key="frame" x="10" y="23" width="35" height="35"/>
+                                                    <rect key="frame" x="10" y="22" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="2c0-Ig-JbG"/>
                                                         <constraint firstAttribute="width" constant="35" id="lFR-Ud-OP1"/>

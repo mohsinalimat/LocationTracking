@@ -11,15 +11,24 @@ import UIKit
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var inputTextView: UITextView!
-    @IBOutlet weak var sendCommentButton: UIButton!
+    @IBOutlet weak var aboutLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let about = UserDefaults.standard.object(forKey: "about")
+        self.aboutLabel.text = about as! String?
 
-        // Do any additional setup after loading the view.
+
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        app_delegate.firebaseObject.getAbout {
+            let about = UserDefaults.standard.object(forKey: "about")
+            self.aboutLabel.text = about as! String?
+            self.scrollView.contentSize = CGSize.init(width: self.scrollView.contentSize.width, height: self.aboutLabel.frame.size.height + 20)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
