@@ -436,7 +436,9 @@ class FirebaseAction: NSObject {
          Key: profile id
          Value: comment
         **/
-        resultRef.child((profile?.id)!).setValue(comment)
+        let dictionary = [(profile?.id)!: comment]
+        
+        resultRef.childByAutoId().setValue(dictionary)
         onCompletetionHandler()
     }
     

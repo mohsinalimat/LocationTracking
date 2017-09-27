@@ -90,6 +90,10 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return contactArray.count
     }

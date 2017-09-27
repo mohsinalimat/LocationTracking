@@ -119,6 +119,11 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedContact = contactArray[indexPath.row]
+        if selectedContact.isShare != 0 {
+            view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)
+            return
+        }
         //Show Map View
         if let drawerController = self.parent?.parent as? KYDrawerController {
             drawerController.setDrawerState(.closed, animated: true)

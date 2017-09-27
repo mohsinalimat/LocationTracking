@@ -10,15 +10,19 @@ import UIKit
 
 class CommentViewController: OriginalViewController {
 
-    @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sendButton.customBorder(radius: 3)
+
+        //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
+        
+        //Handle Keyboard when received notification
         self.handleKeyboard()
     }
 
@@ -37,10 +41,12 @@ class CommentViewController: OriginalViewController {
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillDisappear(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    //Show keyboard
     func keyboardWillAppear(notification: Notification){
         self.adjustKeyboardShow(open: true, notification: notification)
     }
     
+    //Hide keyboard
     func keyboardWillDisappear(notification: Notification){
         self.adjustKeyboardShow(open: false, notification: notification)
     }
@@ -53,6 +59,7 @@ class CommentViewController: OriginalViewController {
         scrollView.scrollIndicatorInsets.bottom += height
     }
     
+    //Hide keyboard
     func hideKeyboard() {
         view.endEditing(true)
     }

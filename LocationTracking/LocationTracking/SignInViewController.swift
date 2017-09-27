@@ -24,6 +24,13 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let userName = UserDefaults.standard.object(forKey: "userName") as? String
+        let password = UserDefaults.standard.object(forKey: "password") as? String
+        //Auto login
+        if userName != nil && password != nil {
+            self.showHUD()
+        }
+        
         view.tappedDismissKeyboard()
         self.CustomLayout()
     }
