@@ -16,8 +16,8 @@ class CommentViewController: OriginalViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sendButton.customBorder(radius: 3)
-
+        self.setupUI()
+        
         //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -35,6 +35,11 @@ class CommentViewController: OriginalViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Set up UI
+    func setupUI() {
+        sendButton.customBorder(radius: 3,color: .clear)
+        commentTextView.customBorder(radius: 4,color: .lightGray)
+    }
     //MARK: - Keyboard
     func handleKeyboard() {
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillAppear(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -74,7 +79,6 @@ class CommentViewController: OriginalViewController {
         } else {
             self.showAlert(title: "", message: "Please input your comment", cancelTitle: "OK", okTitle: "")
         }
-
     }
     
     @IBAction func tappedDismiss(_ sender: UIButton) {

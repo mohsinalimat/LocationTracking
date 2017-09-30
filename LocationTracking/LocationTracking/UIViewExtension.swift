@@ -16,10 +16,10 @@ extension UIView {
         self.layer.borderColor = UIColor.clear.cgColor
     }
     
-    func customBorder(radius: CGFloat) {
+    func customBorder(radius: CGFloat, color: UIColor) {
         self.layer.cornerRadius = radius
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.clear.cgColor
+        self.layer.borderColor = color.cgColor
     }
     
     func tappedDismissKeyboard() {

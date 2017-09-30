@@ -24,8 +24,8 @@ class ContactTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        shareLocationButton.customBorder(radius: 3)
-        requestLocationButton.customBorder(radius: 3)
+        shareLocationButton.customBorder(radius: 3,color: .clear)
+        requestLocationButton.customBorder(radius: 3,color: .clear)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

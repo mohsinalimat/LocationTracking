@@ -16,7 +16,7 @@ class AboutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        commentButton.customBorder(radius: 3)
+        commentButton.customBorder(radius: 3,color: .clear)
         
         //Display about from USerDefault
         let about = UserDefaults.standard.object(forKey: "about")

@@ -37,13 +37,13 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
 
     //MARK: - Function
     func CustomLayout() {
-        emailView.customBorder(radius: 3)
-        passwordView.customBorder(radius: 3)
-        signInButton.customBorder(radius: 3)
-        signUpButton.customBorder(radius: 3)
-        signInFacebookButton.customBorder(radius: 3)
-        signInGoogleButton.customBorder(radius: 3)
-        signInTwitterButton.customBorder(radius: 3)
+        emailView.customBorder(radius: 3,color: .clear)
+        passwordView.customBorder(radius: 3,color: .clear)
+        signInButton.customBorder(radius: 3,color: .clear)
+        signUpButton.customBorder(radius: 3,color: .clear)
+        signInFacebookButton.customBorder(radius: 3,color: .clear)
+        signInGoogleButton.customBorder(radius: 3,color: .clear)
+        signInTwitterButton.customBorder(radius: 3,color: .clear)
     }
     
     func resetTextField() {

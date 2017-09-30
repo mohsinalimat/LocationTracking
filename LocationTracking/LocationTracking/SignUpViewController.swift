@@ -18,7 +18,7 @@ class SignUpViewController: OriginalViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signUpButton.customBorder(radius: 5)
+        signUpButton.customBorder(radius: 5,color: .clear)
         self.addLeftBarItem(imageName: "ic_close_popup",title: "")
     }
 
