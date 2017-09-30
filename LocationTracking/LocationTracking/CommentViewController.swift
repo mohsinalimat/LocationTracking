@@ -38,7 +38,7 @@ class CommentViewController: OriginalViewController {
     //MARK: - Set up UI
     func setupUI() {
         sendButton.customBorder(radius: 3,color: .clear)
-        commentTextView.customBorder(radius: 4,color: .lightGray)
+        commentTextView.customBorder(radius: 4,color: .white)
     }
     //MARK: - Keyboard
     func handleKeyboard() {

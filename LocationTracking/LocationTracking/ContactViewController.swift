@@ -17,7 +17,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addTitleNavigation(title: "Contacts")
         self.initView()
         // Do any additional setup after loading the view.
     }
@@ -25,6 +24,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     override func viewWillAppear(_ animated: Bool) {
         self.refreshContactData()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -32,9 +32,12 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - Init Object
     func initView() {
+        let profile: Profile! = DatabaseManager.getProfile()
+        
         self.addLeftBarItem(imageName: "ic_logout", title: "")
         self.addRightBarItem(imageName: "refresh", title: "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        self.addButtonTitle(title: profile.email!)
     }
     
     //MARK: - Data
@@ -81,6 +84,16 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         app_delegate.firebaseObject.refreshData(email: (profile?.email)!, completionHandler: {isSuccess in
             self.hideHUD()
             self.refreshContactData()
+        })
+    }
+    
+    override func tappedTitleButton() {
+        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        
+        self.present(profileViewController, animated: true, completion: {_ in
+            if let drawerController = self.parent?.parent as? KYDrawerController {
+                drawerController.setDrawerState(.closed, animated: true)
+            }
         })
     }
     

@@ -65,12 +65,26 @@ class OriginalViewController: UIViewController,UITextViewDelegate {
         self.navigationItem.titleView = titleLabel
     }
     
+    func addButtonTitle(title : String) {
+        let titleButton = UIButton.init(type: .custom)
+        titleButton.frame = CGRect.init(x: 0, y: 0, width: screen_width - 120, height: 44)
+        titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        titleButton.titleLabel?.numberOfLines = 2
+        titleButton.setTitle(title, for: .normal)
+        titleButton.addTarget(self, action: #selector(tappedTitleButton), for: .touchUpInside)
+        self.navigationItem.titleView = titleButton
+    }
+    
     //MARK: - Action
     func tappedLeftBarButton(sender : UIButton) {
         
     }
 
     func tappedRightBarButton(sender : UIButton) {
+        
+    }
+    
+    func tappedTitleButton() {
         
     }
     
