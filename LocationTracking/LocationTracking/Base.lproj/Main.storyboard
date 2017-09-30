@@ -592,26 +592,26 @@
                                     <action selector="tappedUpdateAvatar:" destination="Ecd-9d-43U" eventType="touchUpInside" id="ffZ-Zu-GDW"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="old password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tdY-Rw-Qzd">
-                                <rect key="frame" x="120" y="185" width="180" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="old password" textAlignment="justified" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="tdY-Rw-Qzd">
+                                <rect key="frame" x="125" y="185" width="175" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Ecd-9d-43U" id="EDt-V4-3tS"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vd8-I9-GBD">
-                                <rect key="frame" x="120" y="225" width="180" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new password" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vd8-I9-GBD">
+                                <rect key="frame" x="125" y="225" width="175" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="Ecd-9d-43U" id="wyL-KK-9pm"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzP-Td-KhG">
-                                <rect key="frame" x="10" y="225" width="100" height="30"/>
+                                <rect key="frame" x="20" y="225" width="100" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -629,7 +629,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old Password:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPf-sh-far">
-                                <rect key="frame" x="10" y="185" width="100" height="30"/>
+                                <rect key="frame" x="20" y="185" width="100" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="oOJ-i7-DzJ"/>
                                     <constraint firstAttribute="width" constant="100" id="pnZ-SA-9XN"/>
@@ -643,7 +643,7 @@
                         <constraints>
                             <constraint firstItem="vd8-I9-GBD" firstAttribute="centerY" secondItem="nzP-Td-KhG" secondAttribute="centerY" id="36p-5L-LAq"/>
                             <constraint firstItem="nzP-Td-KhG" firstAttribute="top" secondItem="mPf-sh-far" secondAttribute="bottom" constant="10" id="4Lk-48-UwA"/>
-                            <constraint firstItem="tdY-Rw-Qzd" firstAttribute="leading" secondItem="mPf-sh-far" secondAttribute="trailing" constant="10" id="9sr-3J-jbV"/>
+                            <constraint firstItem="tdY-Rw-Qzd" firstAttribute="leading" secondItem="mPf-sh-far" secondAttribute="trailing" constant="5" id="9sr-3J-jbV"/>
                             <constraint firstItem="MEb-Hv-wj6" firstAttribute="leading" secondItem="IJI-WL-4fQ" secondAttribute="leading" constant="10" id="CXE-bN-8vp"/>
                             <constraint firstAttribute="trailing" secondItem="dZn-b6-NT2" secondAttribute="trailing" id="ChL-K0-mRp"/>
                             <constraint firstItem="vd8-I9-GBD" firstAttribute="leading" secondItem="tdY-Rw-Qzd" secondAttribute="leading" id="Ew0-Fu-Q7F"/>
@@ -654,7 +654,7 @@
                             <constraint firstItem="vd8-I9-GBD" firstAttribute="trailing" secondItem="tdY-Rw-Qzd" secondAttribute="trailing" id="LiI-0V-Mws"/>
                             <constraint firstItem="HGF-S6-0bL" firstAttribute="leading" secondItem="IJI-WL-4fQ" secondAttribute="leading" constant="20" id="N8G-NG-X09"/>
                             <constraint firstItem="nzP-Td-KhG" firstAttribute="width" secondItem="mPf-sh-far" secondAttribute="width" id="S82-g3-dLP"/>
-                            <constraint firstItem="mPf-sh-far" firstAttribute="leading" secondItem="IJI-WL-4fQ" secondAttribute="leading" constant="10" id="XDX-45-OBA"/>
+                            <constraint firstItem="mPf-sh-far" firstAttribute="leading" secondItem="IJI-WL-4fQ" secondAttribute="leading" constant="20" id="XDX-45-OBA"/>
                             <constraint firstItem="mPf-sh-far" firstAttribute="top" secondItem="DFT-za-rvD" secondAttribute="bottom" constant="20" id="cA4-6N-2Qg"/>
                             <constraint firstItem="DFT-za-rvD" firstAttribute="centerX" secondItem="IJI-WL-4fQ" secondAttribute="centerX" id="gOY-Sq-pmc"/>
                             <constraint firstItem="DFT-za-rvD" firstAttribute="top" secondItem="MEb-Hv-wj6" secondAttribute="bottom" constant="20" id="hsJ-vm-Nm1"/>
