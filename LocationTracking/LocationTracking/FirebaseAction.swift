@@ -302,13 +302,13 @@ class FirebaseAction: NSObject {
         })
     }
     
-    func getInformationForKey(contactId:String,isShare: Int?,conCompletionHandler: @escaping () -> ()) {
+    func getInformationForKey(contactId:String,isShare: Int?,onCompletionHandler: @escaping () -> ()) {
         ref.child(contactId).observe(.value, with: { (snapshot) in
             var snapDict = snapshot.value as? [String : AnyObject] ?? [:]
             snapDict["isShare"] = isShare as AnyObject?
             snapDict["id"] = contactId as AnyObject?
             self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
-                conCompletionHandler()
+                onCompletionHandler()
             })
         })
     }
@@ -372,8 +372,11 @@ class FirebaseAction: NSObject {
                         return
                     }
                     for dict in newProfile.contact {
-                        self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,conCompletionHandler: {_ in
-                            if dict.key == Array(newProfile.contact.keys).last {
+                        self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,onCompletionHandler: {_ in
+                            print( Array(newProfile.contact.keys).last!)
+                            print(dict.key)
+                            
+                            if dict.key == Array(newProfile.contact.keys).last! {
                                 completionHandler(true)
                             }
                         })

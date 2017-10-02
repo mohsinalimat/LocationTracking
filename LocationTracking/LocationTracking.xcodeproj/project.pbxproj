@@ -575,7 +575,7 @@
 				PROVISIONING_PROFILE = "91c1c903-fc88-42d7-a022-6363f377185a";
 				PROVISIONING_PROFILE_SPECIFIER = LocationShareDistribution;
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -598,7 +598,7 @@
 				PROVISIONING_PROFILE = "91c1c903-fc88-42d7-a022-6363f377185a";
 				PROVISIONING_PROFILE_SPECIFIER = LocationShareDistribution;
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
