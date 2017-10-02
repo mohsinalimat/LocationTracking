@@ -59,14 +59,11 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Used to change zoom level of the map.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location need to updated</string>
+	<string>Update your location on map when you moving.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to update profile</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>audio</string>
-		<string>fetch</string>
-		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
