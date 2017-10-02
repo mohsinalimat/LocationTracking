@@ -86,9 +86,7 @@ class FirebaseAction: NSObject {
         let fbLoginManager = FBSDKLoginManager()
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             if let user = user {
-                // User is signed in. Show home screen
-            } else {
-                // No User is signed in. Show user the login screen
+                self.signOut()
             }
         }
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: fromViewControlller) { (result, error) in
@@ -157,6 +155,11 @@ class FirebaseAction: NSObject {
     func signInByGoogle(authentication: GIDAuthentication,fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if let user = user {
+                self.signOut()
+            }
+        }
         FIRAuth.auth()?.signIn(with: credential, completion: {(user, error) in
             if error != nil {
                 fromViewControlller.view.makeToast((error?.localizedDescription)!, duration: 2.0, position: .center)
@@ -206,6 +209,11 @@ class FirebaseAction: NSObject {
     func signInByTwitter(fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
         if (Twitter.sharedInstance().sessionStore.session() != nil) {
             fromViewControlller.showHUD()
+        }
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if let user = user {
+                self.signOut()
+            }
         }
         Twitter.sharedInstance().logIn(completion: { (session, error) in
             fromViewControlller.showHUD()
