@@ -84,6 +84,13 @@ class FirebaseAction: NSObject {
     //MARK: - Sign in with Facebook
     func signInByFacebook(fromViewControlller: OriginalViewController,completionHandler: @escaping (Bool) -> ()) {
         let fbLoginManager = FBSDKLoginManager()
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
+            if let user = user {
+                // User is signed in. Show home screen
+            } else {
+                // No User is signed in. Show user the login screen
+            }
+        }
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: fromViewControlller) { (result, error) in
             if let error = error {
                 fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
