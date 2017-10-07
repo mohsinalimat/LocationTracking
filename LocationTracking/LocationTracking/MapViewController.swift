@@ -14,6 +14,7 @@ import GoogleMobileAds
 
 class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
+    @IBOutlet weak var allowUpdateLocationSwitch: UISwitch!
     @IBOutlet weak var bannerView: GADBannerView!
     var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
@@ -94,6 +95,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         
         // Add the map to the view, hide it until we've got a location update.
         view.addSubview(mapView)
+        view.bringSubview(toFront: allowUpdateLocationSwitch)
     }
     
     //Init Location
@@ -113,7 +115,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
 
         let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoomLevel)
         mapView.camera = camera
-        locationManager.startUpdatingLocation()
+        if allowUpdateLocationSwitch.isOn {
+            locationManager.startUpdatingLocation()
+        } else {
+            locationManager.stopUpdatingLocation()
+        }
     }
     
     //Init Banner View
@@ -281,5 +287,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.navigationItem.leftBarButtonItem?.isEnabled = false
         let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
         self.navigationController?.pushViewController(addContactViewController, animated: true)
+    }
+    
+    @IBAction func tappedAllowUpdateLocation(_ sender: UISwitch) {
+        if sender.isOn {
+            locationManager.startUpdatingLocation()
+        } else {
+            locationManager.stopUpdatingLocation()
+        }
     }
 }

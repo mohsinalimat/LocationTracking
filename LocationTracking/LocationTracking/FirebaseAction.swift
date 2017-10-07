@@ -84,11 +84,7 @@ class FirebaseAction: NSObject {
     //MARK: - Sign in with Facebook
     func signInByFacebook(fromViewControlller: OriginalViewController,completionHandler: @escaping (Bool) -> ()) {
         let fbLoginManager = FBSDKLoginManager()
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if let user = user {
-                self.signOut()
-            }
-        }
+
         fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: fromViewControlller) { (result, error) in
             if let error = error {
                 fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
@@ -211,7 +207,7 @@ class FirebaseAction: NSObject {
             fromViewControlller.showHUD()
         }
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if let user = user {
+            if user != nil {
                 self.signOut()
             }
         }
@@ -386,6 +382,14 @@ class FirebaseAction: NSObject {
                         completionHandler(true)
                         return
                     }
+                    
+                    //New Account which hasn't yet any contact in contacts list
+                    if newProfile.contact.keys.count == 0 {
+                        completionHandler(true)
+                        return
+                    }
+                    
+                    //update contact information in contacts list
                     for dict in newProfile.contact {
                         self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,onCompletionHandler: {_ in
                             print( Array(newProfile.contact.keys).last!)

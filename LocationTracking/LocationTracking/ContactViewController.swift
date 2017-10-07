@@ -88,13 +88,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     override func tappedTitleButton() {
-        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        
-        self.present(profileViewController, animated: true, completion: {_ in
-            if let drawerController = self.parent?.parent as? KYDrawerController {
-                drawerController.setDrawerState(.closed, animated: true)
-            }
-        })
+//        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+//        
+//        self.present(profileViewController, animated: true, completion: {_ in
+//            if let drawerController = self.parent?.parent as? KYDrawerController {
+//                drawerController.setDrawerState(.closed, animated: true)
+//            }
+//        })
     }
     
     //MARK: - UITableView Delegate
@@ -160,12 +160,14 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func shareLocation(contact: Contact) {
-        self .showHUD()
-        app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {_ in
-            DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
-                self.tableView.reloadData()
-                self.segmented.selectedSegmentIndex = kContactListIndex
-                self.hideHUD()
+        self.showAlert(title: "Confirm", message: "Do you want share your location with this friend", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {
+            self .showHUD()
+            app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {_ in
+                DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
+                    self.tableView.reloadData()
+                    self.segmented.selectedSegmentIndex = kContactListIndex
+                    self.hideHUD()
+                })
             })
         })
     }

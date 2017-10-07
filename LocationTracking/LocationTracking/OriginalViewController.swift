@@ -119,7 +119,7 @@ class OriginalViewController: UIViewController,UITextViewDelegate {
         progressHUD?.removeFromSuperview()
     }
     
-    func showAlert(title: String, message: String, cancelTitle: String, okTitle: String) {
+    func showAlert(title: String, message: String, cancelTitle: String, okTitle: String, onOKAction:@escaping () -> ()) {
         // create the alert
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
@@ -128,7 +128,9 @@ class OriginalViewController: UIViewController,UITextViewDelegate {
             alert.addAction(UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.cancel, handler: nil))
         }
         if okTitle.characters.count > 0 {
-            alert.addAction(UIAlertAction(title: okTitle, style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: okTitle, style: UIAlertActionStyle.default, handler: {_ in
+                onOKAction()
+            }))
         }
         // show the alert
         self.present(alert, animated: true, completion: nil)

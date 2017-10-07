@@ -122,14 +122,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if userName != nil && password != nil {
             self.firebaseObject.signInWith(email: userName!, password: password!, completionHandler: {(isSuccess) in
-                let visibleViewController: OriginalViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController) as! OriginalViewController
-                if isSuccess {
-                    //SignIn is successful
-                    app_delegate.profile = DatabaseManager.getProfile()
-                    let drawerController = app_delegate.initRevealViewController()
-                    visibleViewController.present(drawerController, animated: true, completion: nil)
+                
+                if let visibleViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController) as? OriginalViewController {
+                    if isSuccess {
+                        //SignIn is successful
+                        app_delegate.profile = DatabaseManager.getProfile()
+                        let drawerController = app_delegate.initRevealViewController()
+                        visibleViewController.present(drawerController, animated: true, completion: nil)
+                    }
+                    visibleViewController.hideHUD()
                 }
-                visibleViewController.hideHUD()
             })
         } else {
             let rootViewController = self.window?.rootViewController as! OriginalViewController

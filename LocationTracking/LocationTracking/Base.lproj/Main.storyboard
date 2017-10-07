@@ -703,14 +703,27 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Y38-fV-owj"/>
                                 </connections>
                             </view>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="EN0-G1-lHx">
+                                <rect key="frame" x="10" y="25" width="57" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="GII-gd-Yth"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ufo-dR-Ubq"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="tappedAllowUpdateLocation:" destination="BYZ-38-t0r" eventType="valueChanged" id="CLm-bb-4zx"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <constraints>
                             <constraint firstItem="7J1-bL-8zx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gwo-5h-Aha"/>
+                            <constraint firstItem="EN0-G1-lHx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Qy5-hM-fbh"/>
                             <constraint firstAttribute="trailing" secondItem="7J1-bL-8zx" secondAttribute="trailing" id="gOS-pd-Jlb"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7J1-bL-8zx" secondAttribute="bottom" id="oTO-LX-its"/>
+                            <constraint firstItem="EN0-G1-lHx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="zyL-xI-wdq"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="allowUpdateLocationSwitch" destination="EN0-G1-lHx" id="KCk-Wx-g5b"/>
                         <outlet property="bannerView" destination="7J1-bL-8zx" id="dOX-e0-by1"/>
                     </connections>
                 </viewController>
