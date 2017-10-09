@@ -88,13 +88,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     override func tappedTitleButton() {
-//        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-//        
-//        self.present(profileViewController, animated: true, completion: {_ in
-//            if let drawerController = self.parent?.parent as? KYDrawerController {
-//                drawerController.setDrawerState(.closed, animated: true)
-//            }
-//        })
+        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        
+        self.present(profileViewController, animated: true, completion: {_ in
+            if let drawerController = self.parent?.parent as? KYDrawerController {
+                drawerController.setDrawerState(.closed, animated: true)
+            }
+        })
     }
     
     //MARK: - UITableView Delegate
