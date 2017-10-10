@@ -14,6 +14,7 @@ import GoogleMobileAds
 
 class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
+    @IBOutlet weak var addNewLocationNameTextView: UITextView!
     @IBOutlet weak var allowUpdateLocationSwitch: UISwitch!
     @IBOutlet weak var bannerView: GADBannerView!
     var interstitial: GADInterstitial!
@@ -96,6 +97,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         // Add the map to the view, hide it until we've got a location update.
         view.addSubview(mapView)
         view.bringSubview(toFront: allowUpdateLocationSwitch)
+        view.bringSubview(toFront: addNewLocationNameTextView)
     }
     
     //Init Location
@@ -217,7 +219,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        
+//        addNewLocationNameTextView.isHidden = false
     }
     
     //MARK: - Banner Admob Delegate

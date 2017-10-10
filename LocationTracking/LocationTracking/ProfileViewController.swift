@@ -10,7 +10,6 @@ import UIKit
 
 class ProfileViewController: OriginalViewController {
     @IBOutlet weak var oldPasswordTextField: UITextField!
-
     @IBOutlet weak var newPasswordTextField: UITextField!
     
     override func viewDidLoad() {
@@ -29,5 +28,28 @@ class ProfileViewController: OriginalViewController {
     }
     
     @IBAction func tappedUpdateProfile(_ sender: UIButton) {
+        if (oldPasswordTextField.text?.characters.count)! > 0 && (newPasswordTextField.text?.characters.count)! > 0 {
+            //Show loading 
+            self.showHUD()
+
+            app_delegate.firebaseObject.changePassword(oldPassword: oldPasswordTextField.text!, newPassword: newPasswordTextField.text!, onCompletionHandler: {error in
+                //Hide loading
+                self.hideHUD()
+                
+                if error != nil {
+                    self.showAlert(title: "", message: (error?.localizedDescription)!, cancelTitle: "", okTitle: "OK", onOKAction: {_ in
+                        
+                    })
+                } else {
+                    self.view.makeToast("Changed password successfully", duration: 1.5, position: .center)
+                    self.oldPasswordTextField.text = ""
+                    self.newPasswordTextField.text = ""
+                }
+            })
+        } else {
+            self.showAlert(title: "Error", message: "Please input old password and new password", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+            })
+        }
+
     }
 }

@@ -366,6 +366,28 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func changePassword(oldPassword: String, newPassword: String, onCompletionHandler: @escaping (Error?) -> ()) {
+        let user = FIRAuth.auth()?.currentUser
+        let profile = DatabaseManager.getProfile()! as Profile
+        
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: profile.email!, password: oldPassword)
+        user?.reauthenticate(with: credential) { reAuthError in
+            if reAuthError != nil {
+                onCompletionHandler(reAuthError!)
+                // An error happened.
+            } else {
+                user?.updatePassword(newPassword) { error in
+                    if error != nil {
+                        onCompletionHandler(error!)
+                    } else {
+                        // Password updated.
+                        onCompletionHandler(nil)
+                    }
+                }
+            }
+        }
+    }
+    
     func removeObServerContact() {
         ref.removeAllObservers()
     }
