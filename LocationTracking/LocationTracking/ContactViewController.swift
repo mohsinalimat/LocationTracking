@@ -66,15 +66,17 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     override func tappedLeftBarButton(sender: UIButton) {
-        let result = app_delegate.firebaseObject.signOut()
-        if result {
-            //Sign out is success
-            if let drawerController = self.parent?.parent as? KYDrawerController {
-                drawerController .dismiss(animated: true, completion: nil)
+        self.showAlert(title: "", message: "Do you want sign out?", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+            let result = app_delegate.firebaseObject.signOut()
+            if result {
+                //Sign out is success
+                if let drawerController = self.parent?.parent as? KYDrawerController {
+                    drawerController .dismiss(animated: true, completion: nil)
+                }
+            } else {
+                //Sign out is failure
             }
-        } else {
-            //Sign out is failure
-        }
+        })
     }
     
     //Refresh contact from server

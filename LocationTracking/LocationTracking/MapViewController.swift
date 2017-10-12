@@ -294,8 +294,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBAction func tappedAllowUpdateLocation(_ sender: UISwitch) {
         if sender.isOn {
             locationManager.startUpdatingLocation()
+            view.makeToast("Shared your location to friends", duration: 2, position: .center)
         } else {
             locationManager.stopUpdatingLocation()
+            view.makeToast("Stoped sharing your location to friends", duration: 2, position: .center)
         }
     }
 }
