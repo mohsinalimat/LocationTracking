@@ -17,6 +17,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var addNewLocationNameTextView: UITextView!
     @IBOutlet weak var allowUpdateLocationSwitch: UISwitch!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var addContactButton: UIButton!
+    @IBOutlet weak var addGroupButton: UIButton!
+    @IBOutlet weak var addLocationButton: UIButton!
+    
     var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -35,11 +40,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ic_menu",title: "")
-        self.addRightBarItem(imageName: "icon_add_user",title: "")
+        self.addRightBarItem(imageName: "ic_add",title: "")
         self.initMapView()
         //Init Ads
         self.initAdsView()
-
+        self.setupLayer()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +63,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     override func viewWillDisappear(_ animated: Bool) {
         app_delegate.firebaseObject.removeObServerContact()
+        menuView.isHidden = true
     }
     
     func updateLocationAddress(address: String) {
@@ -72,6 +78,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     //MARK: - Init View
+    
+    func setupLayer() {
+        addContactButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
+        addGroupButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
+        addLocationButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
+    }
+    
     //Init MapView
     func initMapView() {
         if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized {
@@ -285,10 +298,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     override func tappedRightBarButton(sender: UIButton) {
-        //Add new contact
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-        let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
-        self.navigationController?.pushViewController(addContactViewController, animated: true)
+        //Show menu
+        menuView.isHidden = sender.isSelected
+        view.bringSubview(toFront: menuView)
+        sender.isSelected = !sender.isSelected
     }
     
     @IBAction func tappedAllowUpdateLocation(_ sender: UISwitch) {
@@ -300,4 +313,18 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             view.makeToast("Stoped sharing your location to friends", duration: 2, position: .center)
         }
     }
+    
+    @IBAction func tappedAddNewContact(_ sender: UIButton) {
+        //Add new contact
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
+        self.navigationController?.pushViewController(addContactViewController, animated: true)
+    }
+    
+    @IBAction func tappedAddNewgroup(_ sender: UIButton) {
+    }
+    
+    @IBAction func tappedAddNewLocation(_ sender: UIButton) {
+    }
+    
 }

@@ -157,6 +157,17 @@ class DatabaseManager: NSObject {
         return contact != nil ? contact as! [Contact]! : []
     }
     
+    static func getAllGroup(context: NSManagedObjectContext?) -> [GroupEntity]! {
+        let currentContext: NSManagedObjectContext?
+        if context == nil {
+            currentContext = NSManagedObjectContext.mr_default()
+        } else {
+            currentContext = context
+        }
+        let group = GroupEntity.mr_findAll(in: currentContext!)
+        return group != nil ? group as! [GroupEntity]! : []
+    }
+    
     static func deleteContact(contactId:String, onCompletion:@escaping (Void) -> Void) {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             let predicate = NSPredicate(format: "id = %@",contactId)

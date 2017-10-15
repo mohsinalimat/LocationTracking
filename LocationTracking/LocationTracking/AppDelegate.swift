@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let friendListNavigation = UINavigationController.init(rootViewController:contactViewController)
         
         //Set reveal View Controller
-        let drawerController = KYDrawerController(drawerDirection: .left, drawerWidth: screen_width - 80)
+        let drawerController = KYDrawerController(drawerDirection: .left, drawerWidth: screen_width - kDrawerWidth)
         drawerController.mainViewController = rootNavigation
         drawerController.drawerViewController = friendListNavigation
         return drawerController
