@@ -107,6 +107,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
+        mapView.delegate = self
         
         // Add the map to the view, hide it until we've got a location update.
         view.addSubview(mapView)
@@ -234,6 +235,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
 //        addNewLocationNameTextView.isHidden = false
+        print("tapped to: lat:%f \n long: %f",coordinate.latitude,coordinate.longitude)
     }
     
     //MARK: - Banner Admob Delegate
