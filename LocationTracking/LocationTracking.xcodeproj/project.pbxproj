@@ -308,8 +308,8 @@
 				TargetAttributes = {
 					84DC8A661EE07C6000B6F9A0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = Q38789M8SL;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = RT689AHQ26;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -563,17 +563,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LocationTracking/LocationTracking.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q38789M8SL;
+				DEVELOPMENT_TEAM = RT689AHQ26;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LocationTracking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LocationTracking;
+				PRODUCT_BUNDLE_IDENTIFIER = tenten.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "91c1c903-fc88-42d7-a022-6363f377185a";
-				PROVISIONING_PROFILE_SPECIFIER = LocationShareDistribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -586,17 +587,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = LocationTracking/LocationTracking.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q38789M8SL;
+				DEVELOPMENT_TEAM = RT689AHQ26;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LocationTracking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LocationTracking;
+				PRODUCT_BUNDLE_IDENTIFIER = tenten.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "91c1c903-fc88-42d7-a022-6363f377185a";
-				PROVISIONING_PROFILE_SPECIFIER = LocationShareDistribution;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
