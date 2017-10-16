@@ -12,6 +12,7 @@ protocol ContactTableViewCellDelegate {
     func requestLocation(contact: Contact)
     func shareLocation(contact: Contact)
 }
+
 class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!

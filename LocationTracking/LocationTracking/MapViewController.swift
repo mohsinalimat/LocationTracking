@@ -322,6 +322,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedAddNewgroup(_ sender: UIButton) {
+        //Add new contact
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+        let addGroupViewController = main_storyboard.instantiateViewController(withIdentifier: "CreateNewGroupViewController") as! CreateNewGroupViewController
+        self.navigationController?.pushViewController(addGroupViewController, animated: true)
     }
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
