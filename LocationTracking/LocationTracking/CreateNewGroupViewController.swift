@@ -8,18 +8,28 @@
 
 import UIKit
 
-class CreateNewGroupViewController: UIViewController {
+class CreateNewGroupViewController: OriginalViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var groupNameTextField: UITextField!
+    var memberArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.addRightBarItem(imageName: "save", title: "")
+        self.addTitleNavigation(title: "Add new group")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func tappedRightBarButton(sender: UIButton) {
+        if (groupNameTextField.text?.count)! > 0 {
+            app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: memberArray)
+        } else {
+            view.makeToast("Please input group name.", duration: 2.0, position: .center)
+        }
     }
 }
