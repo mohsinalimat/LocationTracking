@@ -39,6 +39,8 @@
 		D261FF171F931487008643CA /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D261FF161F931487008643CA /* LocationTracking.xcmappingmodel */; };
 		EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379C1F6FC85600F7901D /* CommentViewController.swift */; };
 		EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */; };
+		EA3FA1201F946EE400073FBA /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */; };
+		EA3FA1231F9479AB00073FBA /* CreateNewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3FA1221F9479AB00073FBA /* CreateNewGroupTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,8 @@
 		D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV3.xcdatamodel; sourceTree = "<group>"; };
 		EA0E379C1F6FC85600F7901D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
+		EA3FA1221F9479AB00073FBA /* CreateNewGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +187,7 @@
 		846C92C81EF5170C000993CE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EA3FA11E1F946EC200073FBA /* Group */,
 				D22585B91F7F636C004437E7 /* Profile */,
 				EA0E379B1F6FC82100F7901D /* Comment */,
 				841781611EF58EB10020858C /* SignIn */,
@@ -280,6 +285,23 @@
 				EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */,
 			);
 			name = Comment;
+			sourceTree = "<group>";
+		};
+		EA3FA11E1F946EC200073FBA /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				EA3FA1211F94798C00073FBA /* Cell */,
+				EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */,
+			);
+			name = Group;
+			sourceTree = "<group>";
+		};
+		EA3FA1211F94798C00073FBA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EA3FA1221F9479AB00073FBA /* CreateNewGroupTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3FA1201F946EE400073FBA /* CreateNewGroupViewController.swift in Sources */,
 				846C92BF1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift in Sources */,
 				846C92C01EF4E46B000993CE /* KYEmbedMainControllerSegue.swift in Sources */,
 				846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */,
@@ -430,6 +453,7 @@
 				846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
 				EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */,
+				EA3FA1231F9479AB00073FBA /* CreateNewGroupTableViewCell.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,
 				D22585BB1F7F6388004437E7 /* ProfileViewController.swift in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
