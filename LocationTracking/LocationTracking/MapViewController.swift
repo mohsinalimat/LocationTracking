@@ -30,7 +30,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     var zoomLevel: Float = 12.0
     var currentContact: Contact?
     var marker: GMSMarker?
-
+    var isAddLocation: Bool?
+    
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
     
@@ -329,6 +330,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
+        isAddLocation = true
     }
     
 }
