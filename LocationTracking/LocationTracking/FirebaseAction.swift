@@ -28,6 +28,19 @@ class FirebaseAction: NSObject {
         ref.child(id).child("currentLocations").setValue(["latitude":lat,"longitude":long])
     }
     
+    //MARK: - Create new group
+    func createGroup(name: String, array: [String]) -> String {
+        let profile = DatabaseManager.getProfile()
+        if profile?.id != nil {
+            var resultRef: FIRDatabaseReference = FIRDatabase.database().reference().child((profile?.id)!).child("group")
+            let userInfoDictionary = ["name": name,"member":array] as [String : Any]
+            resultRef.childByAutoId()
+            resultRef.setValue(userInfoDictionary)
+            return resultRef.key
+        }
+        return ""
+    }
+    
     //MARK: USER INFORMATION
     //Create new user to sign up firebase
     func createUser(email: String) -> String{
@@ -152,7 +165,7 @@ class FirebaseAction: NSObject {
         let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
         FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if let user = user {
+            if user != nil {
                 self.signOut()
             }
         }

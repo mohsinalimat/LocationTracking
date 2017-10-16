@@ -12,6 +12,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
 
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    var groupArray = [GroupEntity]()
     var contactArray = [Contact]()
     var currentIndex = kContactListIndex
     
@@ -47,6 +48,11 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         case kContactListIndex:
             contactArray.removeAll()
             contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
+            tableView.reloadData()
+            break
+        case kContactListIndex:
+            groupArray.removeAll()
+            groupArray += DatabaseManager.getAllGroup(context: nil)
             tableView.reloadData()
             break
         default:
@@ -119,12 +125,19 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if segmented.selectedSegmentIndex == kGroupListIndex {
+            return groupArray.count
+        }
         return contactArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
-        cell.setupCell(contact: contactArray[indexPath.row])
+        if segmented.selectedSegmentIndex != kGroupListIndex {
+            cell.setupCell(contact: contactArray[indexPath.row])
+        } else {
+            cell.setupGroupCell(group: groupArray[indexPath.row], memberCount: groupArray.count)
+        }
         cell.delegate = self
         return cell
     }
@@ -134,6 +147,12 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if segmented.selectedSegmentIndex == kGroupListIndex {
+            //Tapped group cell
+            return
+        }
+        
+        //Tapped contact cell
         let selectedContact = contactArray[indexPath.row]
         if selectedContact.isShare != 0 {
             view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)

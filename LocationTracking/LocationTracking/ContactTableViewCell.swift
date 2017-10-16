@@ -48,8 +48,12 @@ class ContactTableViewCell: UITableViewCell {
     //MARK: - Setup Cell
     func setupCell(contact:Contact) {
         contactObject = contact
-        userNameLabel.text = contact.email
-        currentLocationLabel.text = "Locating,please wait a moment"
+        if contact.name != nil {
+            userNameLabel.text = contact.name
+        } else {
+            userNameLabel.text = contact.email
+        }
+        currentLocationLabel.text = "Loading,please wait a moment."
         
         if contact.isShare == Int16(ShareStatus.kShared.rawValue) {
             //Shared location
@@ -76,5 +80,13 @@ class ContactTableViewCell: UITableViewCell {
             shareLocationButton.isHidden = true
             currentLocationLabel.isHidden = true
         }
+    }
+    
+    func setupGroupCell(group: GroupEntity,memberCount: NSInteger) {
+        userNameLabel.text = group.name
+        requestLocationButton.isHidden = true
+        shareLocationButton.isHidden = true
+        currentLocationLabel.isHidden = true
+        currentLocationLabel.text = String(memberCount) + "members"
     }
 }
