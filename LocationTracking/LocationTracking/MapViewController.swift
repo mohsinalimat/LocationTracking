@@ -234,8 +234,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-//        addNewLocationNameTextView.isHidden = false
-        print("tapped to: lat:%f \n long: %f",coordinate.latitude,coordinate.longitude)
+        menuView.isHidden = true
     }
     
     //MARK: - Banner Admob Delegate
