@@ -32,11 +32,13 @@ class FirebaseAction: NSObject {
     func createGroup(name: String, array: [String]) -> String {
         let profile = DatabaseManager.getProfile()
         if profile?.id != nil {
-            var resultRef: FIRDatabaseReference = FIRDatabase.database().reference().child((profile?.id)!).child("group")
+            //comform to contact id
+            var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+            resultRef = ref.child((profile?.id)!)
+            //comform to waiting share property
             let userInfoDictionary = ["name": name,"member":array] as [String : Any]
-            resultRef.childByAutoId()
-            resultRef.setValue(userInfoDictionary)
-            return resultRef.key
+            resultRef.child("group").childByAutoId().setValue(userInfoDictionary)
+            return resultRef.child("group").key
         }
         return ""
     }
