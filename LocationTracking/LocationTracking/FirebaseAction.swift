@@ -52,6 +52,22 @@ class FirebaseAction: NSObject {
         return resultRef.key
     }
     
+    func registerNewAccount(email: String,password: String, onCompletionHandler: @escaping (String) -> ()) {
+        let userName = UserDefaults.standard.object(forKey: "userName") as? String
+        if userName != email {
+            DatabaseManager.resetAllData(onCompletion: {_ in
+                UserDefaults.standard.set(email, forKey: "userName")
+                UserDefaults.standard.set(password, forKey: "password")
+                UserDefaults.standard.synchronize()
+                let id = self.createUser(email: email)
+                onCompletionHandler(id)
+            })
+        } else {
+            let id = self.createUser(email: email)
+            onCompletionHandler(id)
+        }
+    }
+    
     func getProfile(onCompletionHandler: @escaping () -> ()) {
         let profile = DatabaseManager.getProfile()        
         ref.child((profile?.id)!).observe(.value, with: { (snapshot) in

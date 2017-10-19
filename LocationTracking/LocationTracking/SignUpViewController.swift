@@ -56,22 +56,17 @@ class SignUpViewController: OriginalViewController {
                 }
                 
                 //Create new user on firebase
-                let id = app_delegate.firebaseObject.createUser(email:self.emailTextField.text!)
-                //Create profile in database
-                DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
-                    
-                    //Save sign in information
-                    UserDefaults.standard.set(self.emailTextField.text!, forKey: "userName")
-                    UserDefaults.standard.set(self.passwordTextField.text!, forKey: "password")
-                    UserDefaults.standard.synchronize()
-                    
-                    //Present after updated profile
-                    app_delegate.profile = DatabaseManager.getProfile()
-                    self.dismiss(animated: false, completion: {_ in
-                        let drawerController = app_delegate.initRevealViewController()
-                        let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-                        visibleViewController.present(drawerController, animated: true, completion: nil)
-                        self.hideHUD()
+                app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!, onCompletionHandler: {id in
+                    //Create profile in databasee
+                    DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                        //Present after updated profile
+                        app_delegate.profile = DatabaseManager.getProfile()
+                        self.dismiss(animated: false, completion: {_ in
+                            let drawerController = app_delegate.initRevealViewController()
+                            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
+                            visibleViewController.present(drawerController, animated: true, completion: nil)
+                            self.hideHUD()
+                        })
                     })
                 })
             }
