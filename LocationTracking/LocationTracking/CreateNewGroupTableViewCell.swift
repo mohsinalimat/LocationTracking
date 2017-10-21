@@ -8,13 +8,19 @@
 
 import UIKit
 
+protocol createGroupDelegate {
+    func saveGroup(indexPath:IndexPath)
+}
+
 class CreateNewGroupTableViewCell: UITableViewCell {
 
     @IBOutlet weak var selectedButton: UIButton!
     @IBOutlet weak var memberNameLabel: UILabel!
     @IBOutlet weak var memberLocationLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
-    
+    var indexPath = IndexPath()
+    var delegate: createGroupDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +31,14 @@ class CreateNewGroupTableViewCell: UITableViewCell {
     }
 
     @IBAction func tappedSelectedMember(_ sender: UIButton) {
-        
+        sender.isSelected = !sender.isSelected
+        delegate?.saveGroup(indexPath: indexPath)
+    }
+    
+    func setupCell(contact:Contact) {
+        memberNameLabel.text = contact.email
+        Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
+            self.memberLocationLabel.text = address
+        })
     }
 }

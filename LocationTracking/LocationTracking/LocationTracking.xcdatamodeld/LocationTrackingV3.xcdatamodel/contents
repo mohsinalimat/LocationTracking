@@ -12,6 +12,7 @@
     </entity>
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -26,7 +27,7 @@
     </entity>
     <elements>
         <element name="Contact" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="GroupEntity" positionX="61" positionY="-126" width="128" height="105"/>
         <element name="Profile" positionX="142" positionY="-18" width="128" height="150"/>
-        <element name="GroupEntity" positionX="61" positionY="-126" width="128" height="88"/>
     </elements>
 </model>

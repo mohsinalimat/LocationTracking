@@ -8,18 +8,21 @@
 
 import UIKit
 
-class CreateNewGroupViewController: OriginalViewController {
-
+class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, createGroupDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var groupNameTextField: UITextField!
-    var contactNameArray = [String]()
+    var selectedContactArray = [String]()
     var contactArray = [Contact]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addLeftBarItem(imageName: "ico_back",title: "")
         self.addRightBarItem(imageName: "save", title: "")
         self.addTitleNavigation(title: "Add new group")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        //Get contact list
+        self.getContactList()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,11 +31,21 @@ class CreateNewGroupViewController: OriginalViewController {
     }
     
     override func tappedRightBarButton(sender: UIButton) {
+        self.showHUD()
         if (groupNameTextField.text?.count)! > 0 {
-            app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: contactNameArray)
+            app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: selectedContactArray)
+            self.hideHUD()
+            self.navigationController?.popViewController(animated: true)
         } else {
+            self.hideHUD()
             view.makeToast("Please input group name.", duration: 2.0, position: .center)
         }
+    }
+    
+    //MARK: - Get contact list
+    func getContactList() {
+        contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
+        tableView.reloadData()
     }
     
     //MARK: - UITableView Delegate,Datasource
@@ -50,6 +63,15 @@ class CreateNewGroupViewController: OriginalViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CreateNewGroupTableViewCell") as! CreateNewGroupTableViewCell
+        cell.delegate = self
+        cell.indexPath = indexPath
+        cell.setupCell(contact: contactArray[indexPath.row])
         return cell
+    }
+    
+    //MARK: - Cell Delegate
+    func saveGroup(indexPath: IndexPath) {
+        let contact: Contact = contactArray[indexPath.row]
+        selectedContactArray.append(contact.id!)
     }
 }

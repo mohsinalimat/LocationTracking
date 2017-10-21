@@ -56,7 +56,7 @@ class SignUpViewController: OriginalViewController {
                     return
                 }
                 
-                let name = self.nameTextField.text != nil ? nameTextField.text! : ""
+                let name = self.nameTextField.text != nil ? self.nameTextField.text! : ""
                 
                 //Create new user on firebase
                 app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!,name: name,  onCompletionHandler: {id in

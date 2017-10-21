@@ -1143,9 +1143,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnB-uI-ftG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrY-52-wz0">
                                 <rect key="frame" x="20" y="50" width="101.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1222,7 +1219,7 @@
                                             <outlet property="avatarImageView" destination="FmL-eS-cDY" id="T5e-bc-WWI"/>
                                             <outlet property="memberLocationLabel" destination="onz-R4-6BS" id="i9U-Ot-9ZX"/>
                                             <outlet property="memberNameLabel" destination="6XE-Au-hIc" id="fIY-9Z-M4p"/>
-                                            <outlet property="selectionButton" destination="9Yi-vH-40G" id="X8I-o8-bYB"/>
+                                            <outlet property="selectedButton" destination="9Yi-vH-40G" id="ouB-ar-zLq"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1237,6 +1234,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XnB-uI-ftG">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
