@@ -45,27 +45,27 @@ class FirebaseAction: NSObject {
     
     //MARK: USER INFORMATION
     //Create new user to sign up firebase
-    func createUser(email: String) -> String{
+    func createUser(email: String, name:String) -> String{
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
 
-        let userInfoDictionary = ["currentLocations": ["latitude":0.0,"longitude":0.0],"email":email] as [String : Any]
+        let userInfoDictionary = ["currentLocations": ["latitude":0.0,"longitude":0.0],"email":email,"name":name] as [String : Any]
         resultRef = ref.childByAutoId()
         resultRef.setValue(userInfoDictionary)
         return resultRef.key
     }
     
-    func registerNewAccount(email: String,password: String, onCompletionHandler: @escaping (String) -> ()) {
+    func registerNewAccount(email: String,password: String, name: String, onCompletionHandler: @escaping (String) -> ()) {
         let userName = UserDefaults.standard.object(forKey: "userName") as? String
         if userName != email {
             DatabaseManager.resetAllData(onCompletion: {_ in
                 UserDefaults.standard.set(email, forKey: "userName")
                 UserDefaults.standard.set(password, forKey: "password")
                 UserDefaults.standard.synchronize()
-                let id = self.createUser(email: email)
+                let id = self.createUser(email: email,name: name)
                 onCompletionHandler(id)
             })
         } else {
-            let id = self.createUser(email: email)
+            let id = self.createUser(email: email,name: name)
             onCompletionHandler(id)
         }
     }
@@ -144,6 +144,13 @@ class FirebaseAction: NSObject {
                         email = (user?.refreshToken)! + "@gmail.com"
                     }
                     
+                    var name = ""
+                    if user?.displayName != nil {
+                        name = (user?.displayName)!
+                    } else {
+                        name = "contact"
+                    }
+                    
                     /**
                      Check user information
                      Reset data if signed other account (remove information in UserDefault)
@@ -164,7 +171,7 @@ class FirebaseAction: NSObject {
                             completionHandler(true)
                         } else {
                             //Create new user on firebase
-                            let id = app_delegate.firebaseObject.createUser(email:email)
+                            let id = app_delegate.firebaseObject.createUser(email:email,name: name)
                             //Create profile in database
                             DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                                 //Present after updated profile
@@ -199,6 +206,13 @@ class FirebaseAction: NSObject {
                     email = (user?.refreshToken)! + "@gmail.com"
                 }
                 
+                var name = ""
+                if user?.displayName != nil {
+                    name = (user?.displayName)!
+                } else {
+                    name = "contact"
+                }
+                
                 /**
                  Check user information
                  Reset data if signed other account (remove information in UserDefault)
@@ -219,7 +233,7 @@ class FirebaseAction: NSObject {
                         completionHandler(true)
                     } else {
                         //Create new user on firebase
-                        let id = app_delegate.firebaseObject.createUser(email:email)
+                        let id = app_delegate.firebaseObject.createUser(email:email,name: name)
                         //Create profile in database
                         DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                             //Present after updated profile
@@ -270,6 +284,13 @@ class FirebaseAction: NSObject {
                         email = (user?.displayName)! + "@gmail.com"
                     }
                     
+                    var name = ""
+                    if user?.displayName != nil {
+                        name = (user?.displayName)!
+                    } else {
+                        name = "contact"
+                    }
+                    
                     /**
                      Check user information
                      Reset data if signed other account (remove information in UserDefault)
@@ -290,7 +311,7 @@ class FirebaseAction: NSObject {
                             completionHandler(true)
                         } else {
                             //Create new user on firebase
-                            let id = app_delegate.firebaseObject.createUser(email:email)
+                            let id = app_delegate.firebaseObject.createUser(email:email,name: name)
                             //Create profile in database
                             DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                                 //Present after updated profile

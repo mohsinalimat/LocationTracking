@@ -248,6 +248,7 @@
                                 <rect key="frame" x="20" y="160" width="280" height="35"/>
                                 <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" secondItem="xe3-Zk-Fxt" secondAttribute="height" multiplier="8:1" id="AAJ-oZ-QJM"/>
                                     <constraint firstAttribute="width" secondItem="xe3-Zk-Fxt" secondAttribute="height" multiplier="8:1" id="AOf-Xi-l9O"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="zpm-JR-2gF"/>
                                 </constraints>
@@ -259,7 +260,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tV4-uA-XEV">
-                                <rect key="frame" x="20" y="305" width="280" height="35"/>
+                                <rect key="frame" x="20" y="350" width="280" height="35"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tV4-uA-XEV" secondAttribute="height" multiplier="8:1" id="bZ0-8f-TO2"/>
@@ -273,7 +274,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rbw-kg-nbU">
-                                <rect key="frame" x="20" y="205" width="280" height="35"/>
+                                <rect key="frame" x="20" y="250" width="280" height="35"/>
                                 <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Rbw-kg-nbU" secondAttribute="height" multiplier="8:1" id="Juj-cC-4eU"/>
@@ -286,7 +287,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hm8-si-SgI">
-                                <rect key="frame" x="20" y="250" width="280" height="35"/>
+                                <rect key="frame" x="20" y="295" width="280" height="35"/>
                                 <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Hm8-si-SgI" secondAttribute="height" multiplier="8:1" id="s3L-4K-5FY"/>
@@ -309,32 +310,48 @@
                                     <action selector="tappedDismiss:" destination="H6R-h1-k9P" eventType="touchUpInside" id="uJ0-2W-mjB"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xX1-yL-vmD">
+                                <rect key="frame" x="20" y="205" width="280" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xX1-yL-vmD" secondAttribute="height" multiplier="8:1" id="ArR-HE-WG8"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="H6R-h1-k9P" id="Eim-OU-fAy"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="xe3-Zk-Fxt" firstAttribute="leading" secondItem="6YF-KF-GxT" secondAttribute="leading" constant="20" id="6iO-qv-EBm"/>
                             <constraint firstItem="tV4-uA-XEV" firstAttribute="trailing" secondItem="Rbw-kg-nbU" secondAttribute="trailing" id="7j7-9m-lb8"/>
                             <constraint firstItem="mRB-3c-vaS" firstAttribute="top" secondItem="JJ9-IA-7v1" secondAttribute="bottom" id="9VJ-bu-Ffj"/>
+                            <constraint firstItem="xX1-yL-vmD" firstAttribute="leading" secondItem="xe3-Zk-Fxt" secondAttribute="leading" id="BWh-qg-NWC"/>
                             <constraint firstAttribute="trailing" secondItem="JJ9-IA-7v1" secondAttribute="trailing" id="C7G-eT-H6B"/>
                             <constraint firstItem="Hm8-si-SgI" firstAttribute="top" secondItem="Rbw-kg-nbU" secondAttribute="bottom" constant="10" id="EW8-ws-dcX"/>
+                            <constraint firstItem="xX1-yL-vmD" firstAttribute="top" secondItem="xe3-Zk-Fxt" secondAttribute="bottom" constant="10" id="FrS-3e-4oV"/>
                             <constraint firstItem="Hm8-si-SgI" firstAttribute="leading" secondItem="xe3-Zk-Fxt" secondAttribute="leading" id="IPP-Eq-Sxm"/>
                             <constraint firstItem="TWe-a7-pkX" firstAttribute="leading" secondItem="6YF-KF-GxT" secondAttribute="leading" constant="10" id="Ig5-RW-2TH"/>
                             <constraint firstItem="JJ9-IA-7v1" firstAttribute="leading" secondItem="6YF-KF-GxT" secondAttribute="leading" id="K8I-cS-3X2"/>
                             <constraint firstItem="xe3-Zk-Fxt" firstAttribute="top" secondItem="kWJ-Cr-AI8" secondAttribute="bottom" constant="140" id="Rt6-Qp-BX5"/>
-                            <constraint firstItem="Rbw-kg-nbU" firstAttribute="top" secondItem="xe3-Zk-Fxt" secondAttribute="bottom" constant="10" id="W2W-YI-SvJ"/>
                             <constraint firstItem="TWe-a7-pkX" firstAttribute="top" secondItem="kWJ-Cr-AI8" secondAttribute="bottom" id="bbd-zK-3M1"/>
                             <constraint firstItem="Hm8-si-SgI" firstAttribute="trailing" secondItem="xe3-Zk-Fxt" secondAttribute="trailing" id="ced-tX-Uzt"/>
                             <constraint firstAttribute="trailing" secondItem="xe3-Zk-Fxt" secondAttribute="trailing" constant="20" id="dLz-x9-Ygf"/>
                             <constraint firstItem="Rbw-kg-nbU" firstAttribute="leading" secondItem="xe3-Zk-Fxt" secondAttribute="leading" id="dvU-nZ-BpS"/>
+                            <constraint firstItem="xX1-yL-vmD" firstAttribute="trailing" secondItem="xe3-Zk-Fxt" secondAttribute="trailing" id="fGQ-ZP-y7q"/>
                             <constraint firstItem="tV4-uA-XEV" firstAttribute="top" secondItem="Hm8-si-SgI" secondAttribute="bottom" constant="20" id="lzY-FO-IIG"/>
                             <constraint firstItem="tV4-uA-XEV" firstAttribute="leading" secondItem="Rbw-kg-nbU" secondAttribute="leading" id="nJD-Nn-XsW"/>
                             <constraint firstItem="Rbw-kg-nbU" firstAttribute="trailing" secondItem="xe3-Zk-Fxt" secondAttribute="trailing" id="nLo-RW-55Q"/>
+                            <constraint firstItem="Rbw-kg-nbU" firstAttribute="top" secondItem="xX1-yL-vmD" secondAttribute="bottom" constant="10" id="nu2-Am-TMO"/>
                             <constraint firstItem="JJ9-IA-7v1" firstAttribute="top" secondItem="6YF-KF-GxT" secondAttribute="top" id="uc9-7p-aKq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="confirmPasswordTextField" destination="Hm8-si-SgI" id="3Ia-qd-oDT"/>
                         <outlet property="emailTextField" destination="xe3-Zk-Fxt" id="fzd-0u-PN2"/>
+                        <outlet property="nameTextField" destination="xX1-yL-vmD" id="bTI-wU-fU8"/>
                         <outlet property="passwordTextField" destination="Rbw-kg-nbU" id="88V-3j-d4N"/>
                         <outlet property="signUpButton" destination="tV4-uA-XEV" id="V8m-K1-cg0"/>
                     </connections>
@@ -1184,7 +1201,6 @@
                                                     <state key="normal" image="check_off"/>
                                                     <state key="selected" image="check_on"/>
                                                     <connections>
-                                                        <action selector="tappedSelectedContact:" destination="SJn-tH-WK1" eventType="touchUpInside" id="mIc-qx-cIn"/>
                                                         <action selector="tappedSelectedMember:" destination="SJn-tH-WK1" eventType="touchUpInside" id="8O7-cg-j09"/>
                                                     </connections>
                                                 </button>
@@ -1204,11 +1220,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avatarImageView" destination="FmL-eS-cDY" id="T5e-bc-WWI"/>
-                                            <outlet property="emailLabel" destination="6XE-Au-hIc" id="m0p-oE-Oeg"/>
-                                            <outlet property="locationLabel" destination="onz-R4-6BS" id="I65-IN-XzI"/>
                                             <outlet property="memberLocationLabel" destination="onz-R4-6BS" id="i9U-Ot-9ZX"/>
                                             <outlet property="memberNameLabel" destination="6XE-Au-hIc" id="fIY-9Z-M4p"/>
-                                            <outlet property="selectedButton" destination="9Yi-vH-40G" id="RFU-eQ-bAJ"/>
                                             <outlet property="selectionButton" destination="9Yi-vH-40G" id="X8I-o8-bYB"/>
                                         </connections>
                                     </tableViewCell>

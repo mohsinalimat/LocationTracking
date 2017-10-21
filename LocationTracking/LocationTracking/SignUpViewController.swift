@@ -13,6 +13,7 @@ class SignUpViewController: OriginalViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     
@@ -55,8 +56,10 @@ class SignUpViewController: OriginalViewController {
                     return
                 }
                 
+                let name = self.nameTextField.text != nil ? nameTextField.text! : ""
+                
                 //Create new user on firebase
-                app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!, onCompletionHandler: {id in
+                app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!,name: name,  onCompletionHandler: {id in
                     //Create profile in databasee
                     DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                         //Present after updated profile
