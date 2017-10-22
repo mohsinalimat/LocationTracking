@@ -50,7 +50,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
             tableView.reloadData()
             break
-        case kContactListIndex:
+        case kGroupListIndex:
             groupArray.removeAll()
             groupArray += DatabaseManager.getAllGroup(context: nil)
             tableView.reloadData()
@@ -89,7 +89,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     override func tappedRightBarButton(sender: UIButton) {
         self.showHUD()
         let profile = DatabaseManager.getProfile()
-        app_delegate.firebaseObject.refreshData(email: (profile?.email)!, completionHandler: {isSuccess in
+        app_delegate.firebaseObject.refreshData(email: (profile?.email)!, name: (profile?.name)!, completionHandler: {isSuccess in
             self.hideHUD()
             self.refreshContactData()
         })
@@ -172,8 +172,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     //MARK: - ContactTableViewCell Delegate
     func requestLocation(contact: Contact) {
         self .showHUD()
-        app_delegate.firebaseObject.requestLocation(toContact: contact, onCompletetionHandler: {_ in
-            DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kwaitingShared.rawValue, onCompletion: {_ in
+        app_delegate.firebaseObject.requestLocation(toContact: contact, onCompletetionHandler: {
+            DatabaseManager.updateContact(id: contact.id!, name: contact.name!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kwaitingShared.rawValue, onCompletion: {_ in
                 self.hideHUD()
                 self.tableView.reloadData()
             })
@@ -183,11 +183,18 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     func shareLocation(contact: Contact) {
         self.showAlert(title: "Confirm", message: "Do you want share your location with this friend", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {
             self .showHUD()
-            app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {_ in
-                DatabaseManager.updateContact(id: contact.id!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
-                    self.tableView.reloadData()
+            app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {
+                DatabaseManager.updateContact(id: contact.id!, name: contact.name, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
                     self.segmented.selectedSegmentIndex = kContactListIndex
-                    self.hideHUD()
+                    self.currentIndex = kContactListIndex
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                        self.contactArray.removeAll()
+                        self.contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
+                        self.tableView.reloadData()
+                        
+                        self.hideHUD()
+                    })
                 })
             })
         })

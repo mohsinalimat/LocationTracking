@@ -19,13 +19,14 @@ class DatabaseManager: NSObject {
         return profile != nil ? profile : nil
     }
     
-    static func updateProfile(id: String, email: String, latitude: Double, longitude: Double,onCompletionHandler: @escaping () -> ()) {
+    static func updateProfile(id: String, email: String,name: String, latitude: Double, longitude: Double,onCompletionHandler: @escaping () -> ()) {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var profile = Profile.mr_findFirst(in: localContext)
             if profile == nil {
                 profile = Profile.mr_createEntity(in: localContext)
                 profile?.id = id
             }
+            profile?.name = name
             profile?.email = email
             profile?.latitude = latitude
             profile?.longitude = longitude
@@ -42,6 +43,7 @@ class DatabaseManager: NSObject {
                 if newContact == nil {
                     newContact = Contact.mr_createEntity(in: localContext)
                 }
+                newContact?.name = contact.name
                 newContact?.id = contact.id
                 newContact?.email = contact.email
                 newContact?.latitude = contact.latitude
@@ -53,12 +55,15 @@ class DatabaseManager: NSObject {
         })
     }
     
-    static func updateContact(id: String, latitude: Double?, longitude: Double?,isShare: Int?, onCompletion:@escaping (Void) -> Void)  {
+    static func updateContact(id: String,name: String?, latitude: Double?, longitude: Double?,isShare: Int?, onCompletion:@escaping (Void) -> Void)  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var contact = self.getContact(id: id, contetxt: localContext)
             if contact == nil {
                 contact = Contact.mr_createEntity(in: localContext)
                 contact?.id = id
+            }
+            if name != nil {
+                contact?.name = name
             }
             if latitude != nil {
                 contact?.latitude = latitude!
@@ -74,7 +79,7 @@ class DatabaseManager: NSObject {
         })
     }
     
-    static func updateContactWithEmail(id:String, email: String, latitude: Double, longitude: Double,isShare: Int?, onCompletion:@escaping (Void) -> Void)  {
+    static func updateContactWithEmail(id:String, email: String,name: String, latitude: Double, longitude: Double,isShare: Int?, onCompletion:@escaping (Void) -> Void)  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var contact = self.getContactWithEmail(email: email, contetxt: localContext)
             if contact == nil {
@@ -84,6 +89,7 @@ class DatabaseManager: NSObject {
             }
             contact?.latitude = latitude
             contact?.longitude = longitude
+            contact?.name = name
             if isShare != nil {
                 contact?.isShare = Int16(isShare!)
             }
@@ -157,6 +163,29 @@ class DatabaseManager: NSObject {
         return contact != nil ? contact as! [Contact]! : []
     }
     
+    static func deleteContact(contactId:String, onCompletion:@escaping () -> ()) {
+        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+            let predicate = NSPredicate(format: "id = %@",contactId)
+            Contact.mr_deleteAll(matching: predicate, in: localContext)
+        }, completion:{ didContext in
+            onCompletion()
+        })
+    }
+    
+    //MARK: - Groups
+    static func getGroup(id : String, contetxt: NSManagedObjectContext?) -> GroupEntity? {
+        let currentContext: NSManagedObjectContext?
+        
+        if contetxt == nil {
+            currentContext = NSManagedObjectContext.mr_default()
+        } else {
+            currentContext = contetxt
+        }
+        let predicate = NSPredicate(format: "id = %@",id)
+        let group = GroupEntity.mr_findFirst(with: predicate, in: currentContext!)
+        return group != nil ? group : nil
+    }
+    
     static func getAllGroup(context: NSManagedObjectContext?) -> [GroupEntity]! {
         let currentContext: NSManagedObjectContext?
         if context == nil {
@@ -168,16 +197,37 @@ class DatabaseManager: NSObject {
         return group != nil ? group as! [GroupEntity]! : []
     }
     
-    static func deleteContact(contactId:String, onCompletion:@escaping (Void) -> Void) {
+    static func deleteGroup(grouptId:String, onCompletion:@escaping () -> ()) {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
-            let predicate = NSPredicate(format: "id = %@",contactId)
-            Contact.mr_deleteAll(matching: predicate, in: localContext)
+            let predicate = NSPredicate(format: "id = %@",grouptId)
+            GroupEntity.mr_deleteAll(matching: predicate, in: localContext)
         }, completion:{ didContext in
             onCompletion()
         })
     }
     
-    static func resetAllData( onCompletion:@escaping (Void) -> Void) {
+    static func updateGroup(id: String, name: String?, member: String?, owner: String?, onCompletion:@escaping (Void) -> Void)  {
+        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+            var group = self.getGroup(id: id, contetxt: localContext)
+            if group == nil {
+                group = GroupEntity.mr_createEntity(in: localContext)
+                group?.id = id
+            }
+            if name != nil {
+                group?.name = name
+            }
+            if member != nil {
+                group?.member = member!
+            }
+            if owner != nil {
+                group?.owner = owner!
+            }
+        }, completion:{ didContext in
+            onCompletion()
+        })
+    }
+    
+    static func resetAllData( onCompletion:@escaping () -> ()) {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             Contact.mr_truncateAll(in: localContext)
             Profile.mr_truncateAll(in: localContext)

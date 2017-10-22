@@ -16,13 +16,8 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addLeftBarItem(imageName: "ico_back",title: "")
-        self.addRightBarItem(imageName: "save", title: "")
-        self.addTitleNavigation(title: "Add new group")
-        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        
-        //Get contact list
-        self.getContactList()
+        self.setupNavigationBar()
+        self.setupTableView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +25,20 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    //SetupUI
+    func setupNavigationBar() {
+        self.addLeftBarItem(imageName: "ico_back",title: "")
+        self.addRightBarItem(imageName: "save", title: "")
+        self.addTitleNavigation(title: "Add new group")
+    }
+    
+    func setupTableView() {
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        //Get contact list
+        self.getContactList()
+    }
+    
+    //MARK: - Action
     override func tappedRightBarButton(sender: UIButton) {
         self.showHUD()
         if (groupNameTextField.text?.count)! > 0 {
@@ -40,6 +49,10 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
             self.hideHUD()
             view.makeToast("Please input group name.", duration: 2.0, position: .center)
         }
+    }
+    
+    override func tappedLeftBarButton(sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - Get contact list

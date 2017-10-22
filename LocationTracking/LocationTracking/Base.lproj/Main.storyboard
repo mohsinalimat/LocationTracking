@@ -841,14 +841,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-yL-Pkl">
-                                <rect key="frame" x="50" y="30" width="220" height="31"/>
+                                <rect key="frame" x="30" y="30" width="260" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="aQ2-Es-xkQ"/>
-                                    <constraint firstAttribute="width" constant="220" id="m17-bf-jmT"/>
+                                    <constraint firstAttribute="width" constant="260" id="m17-bf-jmT"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Contacts"/>
                                     <segment title="Requests"/>
+                                    <segment title="Groups"/>
                                 </segments>
                                 <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -999,7 +1000,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o24-d3-1b2">
                                 <rect key="frame" x="15" y="30" width="290" height="40"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="input email to search friend" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QME-dB-nQi">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="input user name to search friends" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QME-dB-nQi">
                                         <rect key="frame" x="20" y="3" width="225" height="35"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

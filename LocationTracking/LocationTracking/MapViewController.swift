@@ -31,7 +31,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     var currentContact: Contact?
     var marker: GMSMarker?
     var isAddLocation: Bool?
-    
+    var isAllowUpdateLocation: Bool?
+
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
     
@@ -40,6 +41,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isAllowUpdateLocation = true
         self.addLeftBarItem(imageName: "ic_menu",title: "")
         self.addRightBarItem(imageName: "ic_add",title: "")
         self.initMapView()
@@ -112,7 +114,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         // Add the map to the view, hide it until we've got a location update.
         view.addSubview(mapView)
         view.bringSubview(toFront: allowUpdateLocationSwitch)
-        view.bringSubview(toFront: addNewLocationNameTextView)
     }
     
     //Init Location
@@ -205,15 +206,25 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
 // MARK: - GMSMapViewDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //Get current location
-        let lastLocation = locations.last!
-        if currentLocation.coordinate.latitude != lastLocation.coordinate.latitude || currentLocation.coordinate.longitude != lastLocation.coordinate.longitude {
-            //Update current location
-            currentLocation = locations.last!
-            
-            //Update location
-            guard let profile = app_delegate.profile else { return }
-            app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: currentLocation.coordinate.latitude, long:currentLocation.coordinate.longitude)
+        if !isAllowUpdateLocation! {
+            return
+        } else {
+            isAllowUpdateLocation = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
+                //Get current location
+                let lastLocation = locations.last!
+                if self.currentLocation.coordinate.latitude != lastLocation.coordinate.latitude || self.currentLocation.coordinate.longitude != lastLocation.coordinate.longitude {
+                    //Update current location
+                    self.currentLocation = locations.last!
+                    
+                    //Update location
+                    guard let profile = app_delegate.profile else { return }
+                    app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: self.currentLocation.coordinate.latitude, long:self.currentLocation.coordinate.longitude)
+                }
+                
+                //Allow send location to server
+                self.isAllowUpdateLocation = true
+            })
         }
     }
     
@@ -301,9 +312,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     override func tappedRightBarButton(sender: UIButton) {
         //Show menu
-        menuView.isHidden = sender.isSelected
+        menuView.isHidden = !menuView.isHidden
         view.bringSubview(toFront: menuView)
-        sender.isSelected = !sender.isSelected
     }
     
     @IBAction func tappedAllowUpdateLocation(_ sender: UISwitch) {

@@ -22,11 +22,17 @@ class SignUpViewController: OriginalViewController {
         signUpButton.isExclusiveTouch = true
         signUpButton.customBorder(radius: 5,color: .clear)
         self.addLeftBarItem(imageName: "ic_close_popup",title: "")
+        view.tappedDismissKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     //MARK: - Action
@@ -39,7 +45,7 @@ class SignUpViewController: OriginalViewController {
     @IBAction func tappedSignUp(_ sender: UIButton) {
         self.showHUD()
         
-        if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 && (confirmPasswordTextField.text?.characters.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
+        if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 && (confirmPasswordTextField.text?.characters.count)! > 0 && (nameTextField.text?.characters.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
             if (passwordTextField.text?.count)! < 6 {
                 self.showAlert(title: "", message: "Password must be more than 6 characters", cancelTitle: "", okTitle: "OK", onOKAction: {_ in
                     
@@ -56,12 +62,10 @@ class SignUpViewController: OriginalViewController {
                     return
                 }
                 
-                let name = self.nameTextField.text != nil ? self.nameTextField.text! : ""
-                
                 //Create new user on firebase
-                app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!,name: name,  onCompletionHandler: {id in
+                app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!,name: self.nameTextField.text!,  onCompletionHandler: {id in
                     //Create profile in databasee
-                    DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                    DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, name: self.nameTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                         //Present after updated profile
                         app_delegate.profile = DatabaseManager.getProfile()
                         self.dismiss(animated: false, completion: {_ in
@@ -75,7 +79,7 @@ class SignUpViewController: OriginalViewController {
             }
         } else {
             self.hideHUD()
-            view.makeToast("Please check again email or password", duration: 2.0, position: .center)
+            view.makeToast("Please input email, username and password exactly", duration: 2.0, position: .center)
         }
     }
 }

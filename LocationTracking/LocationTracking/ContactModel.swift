@@ -10,18 +10,23 @@ import UIKit
 
 class ContactModel: NSObject {
     var email: String = ""
+    var name: String = ""
     var latitude: Double = 0
     var longitude: Double = 0
     var id: String = ""
     var isShare : Int = 0
     var contact = [String: Any]()
-    
+    var group = [String: Any]()
+
     func initContactModel(dict: [String:Any]) {
         if dict["email"] != nil {
             self.email = dict["email"] as! String
         }
         if dict["id"] != nil {
             self.id = dict["id"] as! String
+        }
+        if dict["name"] != nil {
+            self.name = dict["name"] as! String
         }
         if dict["currentLocations"] != nil {
             let locationDictionary = dict["currentLocations"] as! [String:Any]
@@ -44,6 +49,9 @@ class ContactModel: NSObject {
         }
         if dict["contact"] != nil {
             contact = dict["contact"] as! [String: Any]
+        }
+        if dict["group"] != nil {
+            group = dict["group"] as! [String: Any]
         }
         isShare = ShareStatus.kNotYetShared.rawValue
     }

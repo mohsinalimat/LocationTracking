@@ -121,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let password = UserDefaults.standard.object(forKey: "password") as? String
         
         if userName != nil && password != nil {
-            self.firebaseObject.signInWith(email: userName!, password: password!, completionHandler: {(isSuccess) in
+            self.firebaseObject.signInWith(email: userName!, name:nil, password: password!, completionHandler: {(isSuccess) in
                 
                 if let visibleViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController) as? OriginalViewController {
                     if isSuccess {

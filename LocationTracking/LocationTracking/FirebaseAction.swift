@@ -36,13 +36,37 @@ class FirebaseAction: NSObject {
             var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
             resultRef = ref.child((profile?.id)!)
             //comform to waiting share property
-            let userInfoDictionary = ["name": name,"member":array] as [String : Any]
+            let userInfoDictionary = ["name": name, "member":array, "owner": profile?.id!] as [String : Any]
             resultRef.child("group").childByAutoId().setValue(userInfoDictionary)
             return resultRef.child("group").key
         }
         return ""
     }
     
+    func updateGroup(snapArray: [String: Any], onCompletionHandler: @escaping ()-> ()) {
+        //Get groups list
+        for dict in snapArray {
+            let value = dict.value as! [String: Any]
+            var member = ""
+            var name = ""
+            var owner = ""
+            if value["member"] != nil {
+                let memberArray = value["member"] as! [String]
+                member = memberArray.joined(separator:",")
+            }
+            if value["name"] != nil {
+                name = value["name"] as! String
+            }
+            if value["owner"] != nil {
+                owner = value["owner"] as! String
+            }
+            DatabaseManager.updateGroup(id: dict.key, name: name, member: member, owner: owner, onCompletion: {_ in
+                if dict.key == Array(snapArray.keys).last {
+                    onCompletionHandler()
+                }
+            })
+        }
+    }
     //MARK: USER INFORMATION
     //Create new user to sign up firebase
     func createUser(email: String, name:String) -> String{
@@ -87,7 +111,7 @@ class FirebaseAction: NSObject {
     }
     
     //Sign in with Email
-    func signInWith(email: String, password: String, completionHandler: @escaping (Bool) -> ()) {
+    func signInWith(email: String, name: String?, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
             if error == nil {
                 let userName = UserDefaults.standard.object(forKey: "userName") as? String
@@ -99,7 +123,7 @@ class FirebaseAction: NSObject {
                     })
                 }
                 
-                self.refreshData(email: email,completionHandler: {isSuccess in
+                self.refreshData(email: email, name: name, completionHandler: {isSuccess in
                     if isSuccess {
                         completionHandler(true)
                     } else {
@@ -166,14 +190,14 @@ class FirebaseAction: NSObject {
                     }
                     
                     //Update profile information
-                    self.refreshData(email: email,completionHandler: {isSuccess in
+                    self.refreshData(email: email, name: name, completionHandler: {isSuccess in
                         if isSuccess {
                             completionHandler(true)
                         } else {
                             //Create new user on firebase
                             let id = app_delegate.firebaseObject.createUser(email:email,name: name)
                             //Create profile in database
-                            DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                            DatabaseManager.updateProfile(id:id, email:email,name:name, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                                 //Present after updated profile
                                 app_delegate.profile = DatabaseManager.getProfile()
                                 completionHandler(true)
@@ -228,14 +252,14 @@ class FirebaseAction: NSObject {
                 }
                 
                 //Update profile information
-                self.refreshData(email: email,completionHandler: {isSuccess in
+                self.refreshData(email: email, name: name, completionHandler: {isSuccess in
                     if isSuccess {
                         completionHandler(true)
                     } else {
                         //Create new user on firebase
                         let id = app_delegate.firebaseObject.createUser(email:email,name: name)
                         //Create profile in database
-                        DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                        DatabaseManager.updateProfile(id:id, email:email, name:name, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                             //Present after updated profile
                             app_delegate.profile = DatabaseManager.getProfile()
                             completionHandler(true)
@@ -306,14 +330,14 @@ class FirebaseAction: NSObject {
                     }
                     
                     //Update profile information
-                    self.refreshData(email: email,completionHandler: {isSuccess in
+                    self.refreshData(email: email, name: name, completionHandler: {isSuccess in
                         if isSuccess {
                             completionHandler(true)
                         } else {
                             //Create new user on firebase
                             let id = app_delegate.firebaseObject.createUser(email:email,name: name)
                             //Create profile in database
-                            DatabaseManager.updateProfile(id:id, email:email, latitude: 0, longitude: 0,onCompletionHandler: {_ in
+                            DatabaseManager.updateProfile(id:id, email:email, name:name, latitude: 0, longitude: 0,onCompletionHandler: {_ in
                                 //Present after updated profile
                                 app_delegate.profile = DatabaseManager.getProfile()
                                 completionHandler(true)
@@ -345,8 +369,19 @@ class FirebaseAction: NSObject {
     
     //MARK: - Contact
     //Search contact to contact List
-    func searchContactWithEmail(email: String, completionHandler: @escaping ([ContactModel]) -> ()) {
-        ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email+"\u{f8ff}").observe(.value, with: { snapshot in
+    func searchContactWithEmail(email: String?, name: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
+        var searchString = ""
+        var childName = "email"
+        
+        if email == nil && name != nil {
+            searchString = name!
+            childName = "name"
+        } else if email != nil && name == nil {
+            searchString = email!
+            childName = "email"
+        }
+        
+        ref.queryOrdered(byChild: childName).queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}").observe(.value, with: { snapshot in
             var array = [ContactModel]()
             let snapDic = snapshot.value as? [String:Any]
             guard snapDic != nil else {
@@ -445,13 +480,13 @@ class FirebaseAction: NSObject {
     }
     
     //MARK: - Refresh Data
-    func refreshData(email: String,completionHandler: @escaping (Bool) -> ()) {
-        self.searchContactWithEmail(email: email, completionHandler: { array in
+    func refreshData(email: String, name: String?, completionHandler: @escaping (Bool) -> ()) {
+        self.searchContactWithEmail(email: email,name: nil, completionHandler: { array in
             if array.count > 0 {
                 let newProfile: ContactModel = array.first!
                 
                 //Save profile after login
-                DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
+                DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, name: newProfile.name, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
                     if newProfile.contact.keys.count == 0 {
                         completionHandler(true)
                         return
@@ -470,7 +505,14 @@ class FirebaseAction: NSObject {
                             print(dict.key)
                             
                             if dict.key == Array(newProfile.contact.keys).last! {
-                                completionHandler(true)
+                                //Update group list
+                                if newProfile.group != nil {
+                                    self.updateGroup(snapArray: newProfile.group, onCompletionHandler: {
+                                        completionHandler(true)
+                                    })
+                                } else {
+                                    completionHandler(true)
+                                }
                             }
                         })
                     }
@@ -491,30 +533,42 @@ class FirebaseAction: NSObject {
         if snapDict["email"] != nil {
             let email = snapDict["email"] as! String
             let currentLocationDictionary = snapDict["currentLocations"] as! [String: Any]
+            let name = snapDict["name"] as! String
             let profile = DatabaseManager.getProfile()
             if profile?.email == email {
-                DatabaseManager.updateProfile(id: (profile?.id)!, email: email, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, onCompletionHandler: {_ in
+                //Update profile
+                DatabaseManager.updateProfile(id: (profile?.id)!, email: email, name: name, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, onCompletionHandler: {_ in
                     
                     if snapDict["contact"] != nil {
                         let contactDictionary = snapDict["contact"] as! [String:Any]
                         for dict in contactDictionary {
                             let isShare = (dict.value as! NSNumber).intValue
-                            DatabaseManager.updateContact(id: dict.key, latitude: nil, longitude: nil, isShare: isShare, onCompletion: {
+                            DatabaseManager.updateContact(id: dict.key, name: nil, latitude: nil, longitude: nil, isShare: isShare, onCompletion: {
                                 if dict.key == Array(contactDictionary.keys).last {
-                                    onCompletionHandler()
+                                    //Update group list
+                                    if snapDict["group"] != nil {
+                                        let groupArray = snapDict["group"] as! [String: Any]
+                                        self.updateGroup(snapArray: groupArray, onCompletionHandler: {
+                                            onCompletionHandler()
+                                        })
+                                    } else {
+                                        onCompletionHandler()
+                                    }
                                 }
                             })
                         }
                     }
                 })
             } else {
-                //changed contact
+                //Update contact
                 var isShare:Int? = nil
                 if snapDict["isShare"] != nil {
                     isShare = snapDict["isShare"] as? Int
                 }
                 
-                DatabaseManager.updateContactWithEmail(id:id,email: email, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, isShare: isShare, onCompletion: {
+                let name = snapDict["name"] == nil ? "" : snapDict["name"] as! String
+                
+                DatabaseManager.updateContactWithEmail(id:id,email: email, name: name, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, isShare: isShare, onCompletion: {
                     onCompletionHandler()
                 })
             }

@@ -9,7 +9,7 @@
 import UIKit
 import RappleProgressHUD
 
-class OriginalViewController: UIViewController,UITextViewDelegate {
+class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     var progressHUD: ProgressView?
     
@@ -27,6 +27,7 @@ class OriginalViewController: UIViewController,UITextViewDelegate {
     //MARK: - UINavigation Bar
     func addLeftBarItem(imageName : String, title : String) {
         let leftButton = UIButton.init(type: UIButtonType.custom)
+        leftButton.isExclusiveTouch = true
         leftButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         leftButton.addTarget(self, action: #selector(tappedLeftBarButton(sender:)), for: UIControlEvents.touchUpInside)
         if title.characters.count > 0 {
@@ -40,6 +41,7 @@ class OriginalViewController: UIViewController,UITextViewDelegate {
     
     func addRightBarItem(imageName : String, title : String) {
         let rightButton = UIButton.init(type: UIButtonType.custom)
+        rightButton.isExclusiveTouch = true
         rightButton.addTarget(self, action: #selector(tappedRightBarButton(sender:)), for: UIControlEvents.touchUpInside)
         if title.characters.count > 0 {
             rightButton.frame = CGRect.init(x: 0, y: 0, width: 80, height: 30)
@@ -67,6 +69,7 @@ class OriginalViewController: UIViewController,UITextViewDelegate {
     
     func addButtonTitle(title : String) {
         let titleButton = UIButton.init(type: .custom)
+        titleButton.isExclusiveTouch = true
         titleButton.frame = CGRect.init(x: 0, y: 0, width: screen_width - 120, height: 44)
         titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         titleButton.titleLabel?.numberOfLines = 2
