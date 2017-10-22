@@ -90,15 +90,17 @@ class ContactTableViewCell: UITableViewCell {
         shareLocationButton.isHidden = true
         let profile = DatabaseManager.getProfile()
         let ownerString = "Owner:"
+        let memberArray = group.member?.split(separator: ",")
+        let memberCount = "Members: " + String(describing: (memberArray?.count)! + 1) + "\n"
         
         if group.owner == profile?.id {
-            currentLocationLabel.text = ownerString + (profile?.name!)!
+            currentLocationLabel.text = memberCount + ownerString + (profile?.name!)!
         } else {
             let owner = DatabaseManager.getContact(id: group.owner!, contetxt: nil)
             if owner != nil {
-                currentLocationLabel.text = ownerString + (owner?.name!)!
+                currentLocationLabel.text = memberCount + ownerString + (owner?.name!)!
             } else {
-                currentLocationLabel.text = ""
+                currentLocationLabel.text = memberCount + ""
             }
         }
     }

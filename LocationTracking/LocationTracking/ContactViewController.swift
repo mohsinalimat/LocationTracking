@@ -149,6 +149,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segmented.selectedSegmentIndex == kGroupListIndex {
             //Tapped group cell
+            self.displayMarker(indexPath: indexPath)
             return
         }
         
@@ -158,17 +159,36 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)
             return
         }
+        self.displayMarker(indexPath: indexPath)
+    }
+    
+    func displayMarker(indexPath: IndexPath) {
         //Show Map View
         if let drawerController = self.parent?.parent as? KYDrawerController {
             drawerController.setDrawerState(.closed, animated: true)
             let mapNavigationViewController = drawerController.mainViewController as! UINavigationController
             let mapViewController = mapNavigationViewController.viewControllers.last as! MapViewController
-            mapViewController.currentContact = contactArray[indexPath.row]
+            
+            mapViewController.currentContactArray.removeAll()
+            if segmented.selectedSegmentIndex != kGroupListIndex {
+                //Tapped group cell
+                mapViewController.currentContact = contactArray[indexPath.row]
+                mapViewController.currentContactArray.append(contactArray[indexPath.row])
+            } else {
+                let sharedContactArray = DatabaseManager.getContactSharedLocation(contetxt: nil)
+                let group = groupArray[indexPath.row]
+                
+                for contact in sharedContactArray! {
+                    if (group.member?.contains(contact.id!))! {
+                        mapViewController.currentContactArray.append(contact)
+                    }
+                }
+            }
             //Add observer when changed contact
             mapViewController.updateMarker()
         }
+
     }
-    
     //MARK: - ContactTableViewCell Delegate
     func requestLocation(contact: Contact) {
         self .showHUD()

@@ -29,6 +29,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 12.0
     var currentContact: Contact?
+    var currentContactArray = [Contact]()
     var marker: GMSMarker?
     var isAddLocation: Bool?
     var isAllowUpdateLocation: Bool?
@@ -190,17 +191,19 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func updateMarker() {
-        if (currentContact != nil) {
-            mapView.clear()
-            let position = CLLocationCoordinate2DMake((currentContact?.latitude)!,(currentContact?.longitude)!)
-            marker = GMSMarker(position: position)
-            marker?.title = currentContact?.email
-            marker?.map = mapView
-            let newCamera = GMSCameraPosition.camera(withLatitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, zoom: self.mapView.camera.zoom)
-            mapView.camera = newCamera
-            Common.convertToAddress(latitude: (currentContact?.latitude)!, longitude: (currentContact?.longitude)!, onCompletionHandler: {address in
-                self.updateLocationAddress(address: address)
-            })
+        mapView.clear()
+        for contact in currentContactArray {
+            let position = CLLocationCoordinate2DMake(contact.latitude,contact.longitude)
+            let marker = GMSMarker(position: position)
+            marker.title = currentContact?.email
+            marker.map = mapView
+            if currentContactArray.count == 0 {
+                let newCamera = GMSCameraPosition.camera(withLatitude: contact.latitude, longitude: contact.longitude, zoom: self.mapView.camera.zoom)
+                mapView.camera = newCamera
+                Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
+                    self.updateLocationAddress(address: address)
+                })
+            }
         }
     }
     
@@ -210,7 +213,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             return
         } else {
             isAllowUpdateLocation = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 10.0, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
                 //Get current location
                 let lastLocation = locations.last!
                 if self.currentLocation.coordinate.latitude != lastLocation.coordinate.latitude || self.currentLocation.coordinate.longitude != lastLocation.coordinate.longitude {

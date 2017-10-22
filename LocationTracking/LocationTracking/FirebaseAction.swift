@@ -487,13 +487,8 @@ class FirebaseAction: NSObject {
                 
                 //Save profile after login
                 DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, name: newProfile.name, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
-                    if newProfile.contact.keys.count == 0 {
-                        completionHandler(true)
-                        return
-                    }
-                    
                     //New Account which hasn't yet any contact in contacts list
-                    if newProfile.contact.keys.count == 0 {
+                    if newProfile.contact.keys.count == 0 && newProfile.group.keys.count == 0 {
                         completionHandler(true)
                         return
                     }
@@ -501,12 +496,10 @@ class FirebaseAction: NSObject {
                     //update contact information in contacts list
                     for dict in newProfile.contact {
                         self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,onCompletionHandler: {_ in
-                            print( Array(newProfile.contact.keys).last!)
-                            print(dict.key)
                             
                             if dict.key == Array(newProfile.contact.keys).last! {
                                 //Update group list
-                                if newProfile.group != nil {
+                                if newProfile.group.count != 0 {
                                     self.updateGroup(snapArray: newProfile.group, onCompletionHandler: {
                                         completionHandler(true)
                                     })
@@ -514,6 +507,7 @@ class FirebaseAction: NSObject {
                                     completionHandler(true)
                                 }
                             }
+                            
                         })
                     }
                 })
