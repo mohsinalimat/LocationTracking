@@ -195,9 +195,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         for contact in currentContactArray {
             let position = CLLocationCoordinate2DMake(contact.latitude,contact.longitude)
             let marker = GMSMarker(position: position)
-            marker.title = currentContact?.email
+            marker.title = contact.email
             marker.map = mapView
-            if currentContactArray.count == 0 {
+            if currentContactArray.count == 1 {
                 let newCamera = GMSCameraPosition.camera(withLatitude: contact.latitude, longitude: contact.longitude, zoom: self.mapView.camera.zoom)
                 mapView.camera = newCamera
                 Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
