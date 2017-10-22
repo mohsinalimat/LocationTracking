@@ -85,9 +85,21 @@ class ContactTableViewCell: UITableViewCell {
     
     func setupGroupCell(group: GroupEntity,memberCount: NSInteger) {
         userNameLabel.text = group.name
+        currentLocationLabel.isHidden = false
         requestLocationButton.isHidden = true
         shareLocationButton.isHidden = true
-        currentLocationLabel.isHidden = true
-        currentLocationLabel.text = String(memberCount) + "members"
+        let profile = DatabaseManager.getProfile()
+        let ownerString = "Owner:"
+        
+        if group.owner == profile?.id {
+            currentLocationLabel.text = ownerString + (profile?.name!)!
+        } else {
+            let owner = DatabaseManager.getContact(id: group.owner!, contetxt: nil)
+            if owner != nil {
+                currentLocationLabel.text = ownerString + (owner?.name!)!
+            } else {
+                currentLocationLabel.text = ""
+            }
+        }
     }
 }
