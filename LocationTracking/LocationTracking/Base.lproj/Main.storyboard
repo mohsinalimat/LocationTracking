@@ -801,28 +801,53 @@
                                     <constraint firstItem="CwK-NR-nBO" firstAttribute="centerX" secondItem="9Eo-B9-pba" secondAttribute="centerX" id="ut2-fv-rwI"/>
                                 </constraints>
                             </view>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new location" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-hr-wzR">
-                                <rect key="frame" x="70" y="20" width="180" height="35"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.29249698067632851" colorSpace="calibratedWhite"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9Q-Ev-QUF">
+                                <rect key="frame" x="50" y="50" width="220" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDV-Hy-euQ">
+                                        <rect key="frame" x="185" y="2.5" width="35" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="QgW-6W-xWt"/>
+                                            <constraint firstAttribute="height" constant="35" id="Z6G-21-rTK"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="save"/>
+                                        <connections>
+                                            <action selector="tappedSaveNewLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qLD-95-0O1"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="new location" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gN0-hr-wzR">
+                                        <rect key="frame" x="5" y="0.0" width="175" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="UVJ-kC-C5p"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.30310235507246375" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="Swy-hC-nDz"/>
-                                    <constraint firstAttribute="width" constant="180" id="eIC-ix-RDn"/>
+                                    <constraint firstItem="gN0-hr-wzR" firstAttribute="top" secondItem="W9Q-Ev-QUF" secondAttribute="top" id="5hs-dO-W24"/>
+                                    <constraint firstAttribute="trailing" secondItem="EDV-Hy-euQ" secondAttribute="trailing" id="9Mk-fw-39D"/>
+                                    <constraint firstItem="EDV-Hy-euQ" firstAttribute="leading" secondItem="gN0-hr-wzR" secondAttribute="trailing" constant="5" id="GwF-Vl-VX5"/>
+                                    <constraint firstItem="EDV-Hy-euQ" firstAttribute="centerY" secondItem="W9Q-Ev-QUF" secondAttribute="centerY" id="JNY-hz-csO"/>
+                                    <constraint firstAttribute="bottom" secondItem="gN0-hr-wzR" secondAttribute="bottom" id="Kzi-ko-Xnd"/>
+                                    <constraint firstAttribute="width" constant="220" id="NQk-7O-A37"/>
+                                    <constraint firstAttribute="height" constant="40" id="Y5a-ba-FR2"/>
+                                    <constraint firstItem="gN0-hr-wzR" firstAttribute="leading" secondItem="W9Q-Ev-QUF" secondAttribute="leading" constant="5" id="egr-M9-L4C"/>
                                 </constraints>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="UVJ-kC-C5p"/>
-                                </connections>
-                            </textField>
+                            </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="W9Q-Ev-QUF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="90c-38-bNl"/>
                             <constraint firstItem="7J1-bL-8zx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gwo-5h-Aha"/>
                             <constraint firstItem="I2Y-ue-wS3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Hf1-aW-MKP"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Qy5-hM-fbh"/>
-                            <constraint firstItem="gN0-hr-wzR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="YKp-8S-rgG"/>
                             <constraint firstAttribute="trailing" secondItem="7J1-bL-8zx" secondAttribute="trailing" id="gOS-pd-Jlb"/>
-                            <constraint firstItem="gN0-hr-wzR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h7M-1A-oKV"/>
+                            <constraint firstItem="W9Q-Ev-QUF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nbU-wQ-KQn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7J1-bL-8zx" secondAttribute="bottom" id="oTO-LX-its"/>
                             <constraint firstAttribute="trailing" secondItem="I2Y-ue-wS3" secondAttribute="trailing" id="uF8-BK-5Tx"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="zyL-xI-wdq"/>
@@ -833,6 +858,7 @@
                         <outlet property="addGroupButton" destination="CwK-NR-nBO" id="Jbm-1I-uPP"/>
                         <outlet property="addLocationButton" destination="TRW-2h-DQd" id="ML5-Hk-vxu"/>
                         <outlet property="addNewLocationNameTextField" destination="gN0-hr-wzR" id="6kt-3F-pli"/>
+                        <outlet property="addNewLocationView" destination="W9Q-Ev-QUF" id="IPk-kl-Wbc"/>
                         <outlet property="allowUpdateLocationSwitch" destination="EN0-G1-lHx" id="KCk-Wx-g5b"/>
                         <outlet property="bannerView" destination="7J1-bL-8zx" id="dOX-e0-by1"/>
                         <outlet property="menuView" destination="I2Y-ue-wS3" id="nl3-Ms-rvH"/>
@@ -1294,6 +1320,7 @@
         <image name="ico_search" width="18" height="18"/>
         <image name="icon_close" width="40" height="40"/>
         <image name="logo-1" width="150" height="150"/>
+        <image name="save" width="40" height="39"/>
         <image name="shareLocation" width="30" height="30"/>
         <image name="showPassword" width="35" height="35"/>
         <image name="twitter" width="35" height="35"/>

@@ -94,6 +94,21 @@ class FirebaseAction: NSObject {
         }
     }
     
+    //MARK: - Create new location
+    func createNewLocation(latitude: Double, longitude: Double, name: String) -> String {
+        let profile = DatabaseManager.getProfile()
+        if profile?.id != nil {
+            //comform to contact id
+            var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+            resultRef = ref.child((profile?.id)!)
+            //comform to waiting share property
+            let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
+            resultRef.child("locationList").childByAutoId().setValue(userInfoDictionary)
+            return resultRef.child("locationList").key
+        }
+        return ""
+    }
+    
     func getProfile(onCompletionHandler: @escaping () -> ()) {
         let profile = DatabaseManager.getProfile()        
         ref.child((profile?.id)!).observe(.value, with: { (snapshot) in

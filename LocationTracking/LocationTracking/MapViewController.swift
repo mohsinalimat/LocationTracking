@@ -21,6 +21,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var addContactButton: UIButton!
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var addNewLocationView: UIView!
     
     var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
@@ -33,7 +34,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     var marker: GMSMarker?
     var isAddLocation: Bool?
     var isAllowUpdateLocation: Bool?
-
+    var newLocation: CLLocationCoordinate2D?
+    
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
     
@@ -344,9 +346,22 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
+        menuView.isHidden = true
         isAddLocation = true
     }
     
     @IBAction func tappedAddMyLocation(_ sender: UIButton) {
+        menuView.isHidden = true
+        addNewLocationView.isHidden = true
+    }
+    
+    @IBAction func tappedSaveNewLocation(_ sender: UIButton) {
+        guard newLocation != nil || addNewLocationNameTextField.text != nil else {
+            view.makeToast("Please input location name.", duration: 2.0, position: .center)
+            return
+        }
+        app_delegate.firebaseObject.createNewLocation(latitude: (newLocation?.latitude)!, longitude: (newLocation?.longitude)!, name: addNewLocationNameTextField.text!)
+        view.makeToast("Saved new location successfully.", duration: 2.0, position: .center)
+        addNewLocationView.isHidden = true
     }
 }
