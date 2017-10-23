@@ -14,7 +14,7 @@ import GoogleMobileAds
 
 class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
-    @IBOutlet weak var addNewLocationNameTextView: UITextView!
+    @IBOutlet weak var addNewLocationNameTextField: UITextField!
     @IBOutlet weak var allowUpdateLocationSwitch: UISwitch!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var menuView: UIView!
@@ -347,4 +347,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         isAddLocation = true
     }
     
+    @IBAction func tappedAddMyLocation(_ sender: UIButton) {
+    }
 }
