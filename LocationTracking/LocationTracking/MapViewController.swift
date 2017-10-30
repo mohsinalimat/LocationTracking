@@ -366,7 +366,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedSaveNewLocation(_ sender: UIButton) {
-        guard newLocation != nil || addNewLocationNameTextField.text != nil else {
+        if (newLocation == nil || (addNewLocationNameTextField.text?.count)! == 0) {
             view.makeToast("Please input location name.", duration: 2.0, position: .center)
             return
         }
