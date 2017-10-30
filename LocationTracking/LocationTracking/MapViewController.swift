@@ -202,7 +202,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         for contact in currentContactArray {
             let position = CLLocationCoordinate2DMake(contact.latitude,contact.longitude)
             let marker = GMSMarker(position: position)
-            marker.title = contact.email
+            marker.title = contact.name
             marker.map = mapView
             if currentContactArray.count == 1 {
                 let newCamera = GMSCameraPosition.camera(withLatitude: contact.latitude, longitude: contact.longitude, zoom: self.mapView.camera.zoom)
@@ -247,11 +247,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        return true
+        return false
     }
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
