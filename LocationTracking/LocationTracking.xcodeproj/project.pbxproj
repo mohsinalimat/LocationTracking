@@ -36,6 +36,7 @@
 		84E871BC1EF9932200F9B817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E871BB1EF9932200F9B817 /* Assets.xcassets */; };
 		84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */; };
 		D22585BB1F7F6388004437E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22585BA1F7F6388004437E7 /* ProfileViewController.swift */; };
+		D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269F6541FA789BF00BEDD9A /* TextField.swift */; };
 		D2ACC3AB1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D2ACC3AA1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel */; };
 		EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379C1F6FC85600F7901D /* CommentViewController.swift */; };
 		EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */; };
@@ -78,6 +79,7 @@
 		84E871BB1EF9932200F9B817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		D22585BA1F7F6388004437E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D269F6541FA789BF00BEDD9A /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D2ACC3AA1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
 		D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV3.xcdatamodel; sourceTree = "<group>"; };
 		EA0E379C1F6FC85600F7901D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				846C92A81EF4D7AB000993CE /* NavigationBarExtension.swift */,
 				84B0FB4B1EF8303700F3ABDE /* UIViewExtension.swift */,
+				D269F6541FA789BF00BEDD9A /* TextField.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				846C92C31EF512CA000993CE /* ContactTableViewCell.swift in Sources */,
 				84B0FB501EF83FD100F3ABDE /* DatabaseManager.swift in Sources */,
 				D2ACC3AB1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel in Sources */,
+				D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */,
 				EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */,
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,

@@ -14,7 +14,7 @@ import GoogleMobileAds
 
 class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
-    @IBOutlet weak var addNewLocationNameTextField: UITextField!
+    @IBOutlet weak var addNewLocationNameTextField: TextField!
     @IBOutlet weak var allowUpdateLocationSwitch: UISwitch!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var menuView: UIView!
@@ -22,6 +22,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var addNewLocationView: UIView!
+    
+    @IBOutlet weak var newLongitudeLabel: UILabel!
+    @IBOutlet weak var newLatitudeLabel: UILabel!
     
     var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
@@ -61,7 +64,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         if currentContact == nil {
             self.addTitleNavigation(title: "Location Tracking")
         } else {
-            self.addTitleNavigation(title: (currentContact?.email)!)
+            self.addTitleNavigation(title: (currentContact?.name)!)
         }
         //Real time contact location
         self.referentCurrentContact()
@@ -89,6 +92,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         addContactButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
         addGroupButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
         addLocationButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
+        addNewLocationNameTextField.customBorder(radius: addNewLocationNameTextField.frame.height/2, color: .lightGray)
+        addNewLocationNameTextField.textRect(forBounds: addNewLocationNameTextField.bounds)
     }
     
     //Init MapView
@@ -251,6 +256,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         menuView.isHidden = true
+        if !addNewLocationView.isHidden {
+            newLocation = coordinate
+            //Adding new location
+            self.setupNewLocation(newLocation: newLocation!)
+        }
     }
     
     //MARK: - Banner Admob Delegate
@@ -347,12 +357,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
         menuView.isHidden = true
-        isAddLocation = true
-    }
-    
-    @IBAction func tappedAddMyLocation(_ sender: UIButton) {
-        menuView.isHidden = true
-        addNewLocationView.isHidden = true
+        addNewLocationView.isHidden = false
+        view.bringSubview(toFront: addNewLocationView)
+        
+        //Show my location
+        let profile = DatabaseManager.getProfile()
+        newLocation = CLLocationCoordinate2DMake((profile?.latitude)!, (profile?.longitude)!)
+        self.setupNewLocation(newLocation: newLocation!)
     }
     
     @IBAction func tappedSaveNewLocation(_ sender: UIButton) {
@@ -363,5 +374,14 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         app_delegate.firebaseObject.createNewLocation(latitude: (newLocation?.latitude)!, longitude: (newLocation?.longitude)!, name: addNewLocationNameTextField.text!)
         view.makeToast("Saved new location successfully.", duration: 2.0, position: .center)
         addNewLocationView.isHidden = true
+    }
+    
+    @IBAction func tappedCloseAddingNewLocation(_ sender: UIButton) {
+        addNewLocationView.isHidden = true
+    }
+    
+    func setupNewLocation(newLocation: CLLocationCoordinate2D) {
+        newLatitudeLabel.text = String(format: "Lat: %.4f", newLocation.latitude)
+        newLongitudeLabel.text = String(format: "Long: %.4f", newLocation.longitude)
     }
 }
