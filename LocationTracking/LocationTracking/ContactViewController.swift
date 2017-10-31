@@ -10,6 +10,7 @@ import UIKit
 
 class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
 
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var shareTwitterButton: UIButton!
     @IBOutlet weak var shareFacebookButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
@@ -78,6 +79,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     @IBAction func tappedShareOnTwitter(_ sender: UIButton) {
+    }
+    
+    @IBAction func tappedDelete(_ sender: UIButton) {
     }
     
     override func tappedLeftBarButton(sender: UIButton) {

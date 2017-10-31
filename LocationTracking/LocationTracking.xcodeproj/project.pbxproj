@@ -342,7 +342,7 @@
 				TargetAttributes = {
 					84DC8A661EE07C6000B6F9A0 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = Q38789M8SL;
+						DevelopmentTeam = RT689AHQ26;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -603,7 +603,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q38789M8SL;
+				DEVELOPMENT_TEAM = RT689AHQ26;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LocationTracking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -627,7 +627,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Q38789M8SL;
+				DEVELOPMENT_TEAM = RT689AHQ26;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LocationTracking/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
