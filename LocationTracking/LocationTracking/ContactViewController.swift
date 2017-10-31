@@ -10,6 +10,9 @@ import UIKit
 
 class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
 
+    @IBOutlet weak var shareTwitterButton: UIButton!
+    @IBOutlet weak var shareFacebookButton: UIButton!
+    @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     var groupArray = [GroupEntity]()
@@ -69,6 +72,12 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             currentIndex = sender.selectedSegmentIndex
             self.refreshContactData()
         }
+    }
+    
+    @IBAction func tappedShareOnFacebook(_ sender: UIButton) {
+    }
+    
+    @IBAction func tappedShareOnTwitter(_ sender: UIButton) {
     }
     
     override func tappedLeftBarButton(sender: UIButton) {
