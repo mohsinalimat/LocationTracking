@@ -104,6 +104,7 @@ class FirebaseAction: NSObject {
             //comform to waiting share property
             let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
             resultRef.child("locationList").childByAutoId().setValue(userInfoDictionary)
+            ref.child("locationList").childByAutoId().setValue(userInfoDictionary)
             return resultRef.child("locationList").key
         }
         return ""

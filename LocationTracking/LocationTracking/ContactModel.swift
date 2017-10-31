@@ -17,7 +17,8 @@ class ContactModel: NSObject {
     var isShare : Int = 0
     var contact = [String: Any]()
     var group = [String: Any]()
-
+    var locationList = [String: Any]()
+    
     func initContactModel(dict: [String:Any]) {
         if dict["email"] != nil {
             self.email = dict["email"] as! String
@@ -52,6 +53,9 @@ class ContactModel: NSObject {
         }
         if dict["group"] != nil {
             group = dict["group"] as! [String: Any]
+        }
+        if dict["locationList"] != nil {
+            locationList = dict["locationList"] as! [String: Any]
         }
         isShare = ShareStatus.kNotYetShared.rawValue
     }

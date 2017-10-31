@@ -2,4 +2,102 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocationTracking/FirebaseAction.swift"
+            timestampString = "531161915.212835"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "getProfile(onCompletionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__ObjC.FIRDataSnapshot) -&gt; () in LocationTracking.FirebaseAction.getProfile(onCompletionHandler: () -&gt; ()) -&gt; ()"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "531161915.226664"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "825">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (__ObjC.FIRDataSnapshot) -&gt; () in LocationTracking.FirebaseAction.getProfile(onCompletionHandler: () -&gt; ()) -&gt; ()"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "531161915.230567"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocationTracking/FirebaseAction.swift"
+            timestampString = "531161915.213337"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
+            landmarkName = "refreshData(email:name:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;LocationTracking.ContactModel&gt;) -&gt; () in LocationTracking.FirebaseAction.refreshData(email: Swift.String, name: Swift.Optional&lt;Swift.String&gt;, completionHandler: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "531161915.274108"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "505"
+                  endingLineNumber = "505"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Array&lt;LocationTracking.ContactModel&gt;) -&gt; () in LocationTracking.FirebaseAction.refreshData(email: Swift.String, name: Swift.Optional&lt;Swift.String&gt;, completionHandler: (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "LocationTracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
+                  timestampString = "531161915.282495"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "507"
+                  endingLineNumber = "507"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
