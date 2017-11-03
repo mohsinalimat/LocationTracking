@@ -503,6 +503,10 @@ class FirebaseAction: NSObject {
                 
                 //Save profile after login
                 DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, name: newProfile.name, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
+                    
+                    self.getLocationList(fromId: newProfile.id) {
+                        
+                    }
                     //New Account which hasn't yet any contact in contacts list
                     if newProfile.contact.keys.count == 0 && newProfile.group.keys.count == 0 {
                         completionHandler(true)
@@ -533,6 +537,26 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func getLocationList(fromId: String, onCompletionHandler: @escaping () -> ()) {
+        ref.child(fromId).child("locationList").observe(.value, with: { (snapshot) in
+            let snapDict = snapshot.value as? [String: AnyObject] ?? [:]
+            
+            for dict in snapDict {
+                let location = dict.value as? [String: Any]
+                let name = location!["name"] as! String
+                let latitude = location!["latitude"] as! Double
+                let longitude = location!["longitude"] as! Double
+                
+                DatabaseManager.updateLocationList(id: dict.key, name: name , latitude: latitude, longitude: longitude, onCompletionHandler: {
+                    if dict.key == Array(snapDict.keys).last {
+                        print(snapDict.description)
+                        onCompletionHandler()
+                    }
+                })
+            }
+        })
+    }
+    
     //MARK: - Save database
     func saveToDatabase(snapDict: [String : AnyObject], onCompletionHandler: @escaping () -> ()) {
         var id = ""
@@ -548,6 +572,8 @@ class FirebaseAction: NSObject {
             if profile?.email == email {
                 //Update profile
                 DatabaseManager.updateProfile(id: (profile?.id)!, email: email, name: name, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, onCompletionHandler: {_ in
+                    self.getLocationList(fromId: (profile?.id)!, onCompletionHandler: {_ in
+                    })
                     
                     if snapDict["contact"] != nil {
                         let contactDictionary = snapDict["contact"] as! [String:Any]

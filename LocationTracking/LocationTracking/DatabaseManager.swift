@@ -35,6 +35,46 @@ class DatabaseManager: NSObject {
         })
     }
     
+    //MARK: - Location
+    static func updateLocationList(id: String, name: String, latitude: Double, longitude: Double,onCompletionHandler: @escaping () -> ()) {
+        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+            var location = self.getLocation(id: id, contetxt: localContext)
+            if location == nil {
+                location = LocationEntity.mr_createEntity(in: localContext)
+                location?.id = id
+            }
+            location?.name = name
+            location?.latitude = latitude
+            location?.longitude = longitude
+        }, completion: { didContext in
+            onCompletionHandler()
+        })
+    }
+    
+    static func getLocation(id : String, contetxt: NSManagedObjectContext?) -> LocationEntity? {
+        let currentContext: NSManagedObjectContext?
+        
+        if contetxt == nil {
+            currentContext = NSManagedObjectContext.mr_default()
+        } else {
+            currentContext = contetxt
+        }
+        let predicate = NSPredicate(format: "id = %@",id)
+        let location = LocationEntity.mr_findFirst(with: predicate, in: currentContext!)
+        return location != nil ? location : nil
+    }
+    
+    static func getAllLocationList(context: NSManagedObjectContext?) -> [LocationEntity]! {
+        let currentContext: NSManagedObjectContext?
+        if context == nil {
+            currentContext = NSManagedObjectContext.mr_default()
+        } else {
+            currentContext = context
+        }
+        let location = LocationEntity.mr_findAll(in: currentContext!)
+        return location != nil ? location as! [LocationEntity]! : []
+    }
+    
     //MARK: - Contact
     static func saveContact(contactArray : [ContactModel], onCompletion:@escaping (Void) -> Void)  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in

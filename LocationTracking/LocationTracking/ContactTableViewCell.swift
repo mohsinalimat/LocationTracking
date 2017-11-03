@@ -104,4 +104,14 @@ class ContactTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    func setupLocationCell(location: LocationEntity) {
+        userNameLabel.text = location.name
+        currentLocationLabel.isHidden = false
+        requestLocationButton.isHidden = true
+        shareLocationButton.isHidden = true
+        
+        let locationString = "Lat: " + String(describing: location.latitude) + "\n" + "Long:" + String(describing: location.longitude)
+        currentLocationLabel.text = locationString
+    }
 }

@@ -16,6 +16,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    
+    var locationArray = [LocationEntity]()
     var groupArray = [GroupEntity]()
     var contactArray = [Contact]()
     var currentIndex = kContactListIndex
@@ -57,6 +59,11 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         case kGroupListIndex:
             groupArray.removeAll()
             groupArray += DatabaseManager.getAllGroup(context: nil)
+            tableView.reloadData()
+            break
+        case kLocationListIndex:
+            locationArray.removeAll()
+            locationArray += DatabaseManager.getAllLocationList(context: nil)
             tableView.reloadData()
             break
         default:
@@ -141,15 +148,20 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         if segmented.selectedSegmentIndex == kGroupListIndex {
             return groupArray.count
         }
+        if segmented.selectedSegmentIndex == kLocationListIndex {
+            return locationArray.count
+        }
         return contactArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
-        if segmented.selectedSegmentIndex != kGroupListIndex {
-            cell.setupCell(contact: contactArray[indexPath.row])
-        } else {
+        if segmented.selectedSegmentIndex == kLocationListIndex {
+            cell.setupLocationCell(location: locationArray[indexPath.row])
+        } else if segmented.selectedSegmentIndex == kGroupListIndex {
             cell.setupGroupCell(group: groupArray[indexPath.row], memberCount: groupArray.count)
+        } else {
+            cell.setupCell(contact: contactArray[indexPath.row])
         }
         cell.delegate = self
         return cell
@@ -183,11 +195,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             let mapViewController = mapNavigationViewController.viewControllers.last as! MapViewController
             
             mapViewController.currentContactArray.removeAll()
-            if segmented.selectedSegmentIndex != kGroupListIndex {
+            if segmented.selectedSegmentIndex == kGroupListIndex {
                 //Tapped group cell
-                mapViewController.currentContact = contactArray[indexPath.row]
-                mapViewController.currentContactArray.append(contactArray[indexPath.row])
-            } else {
+
                 let sharedContactArray = DatabaseManager.getContactSharedLocation(contetxt: nil)
                 let group = groupArray[indexPath.row]
                 
@@ -196,6 +206,21 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                         mapViewController.currentContactArray.append(contact)
                     }
                 }
+            } else if segmented.selectedSegmentIndex == kLocationListIndex {
+                let contactModel = ContactModel()
+                let location = locationArray[indexPath.row]
+                var currentLocation = [String: AnyObject]()
+                currentLocation["latitude"] = location.latitude as AnyObject
+                currentLocation["longitude"] = location.longitude as AnyObject
+                
+                var allDict = [String: Any]()
+                allDict["currentLocations"] = currentLocation
+                allDict["name"] = location.name
+                
+                contactModel.initContactModel(dict: allDict)
+            } else {
+                mapViewController.currentContact = contactArray[indexPath.row]
+                mapViewController.currentContactArray.append(contactArray[indexPath.row])
             }
             //Add observer when changed contact
             mapViewController.updateMarker()

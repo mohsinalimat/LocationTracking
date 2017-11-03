@@ -30,6 +30,7 @@ let kApplicationId        = "ca-app-pub-7161181863245899~5560133192"
 let kContactListIndex   = 0
 let kRequestShareIndex  = 1
 let kGroupListIndex     = 2
+let kLocationListIndex  = 3
 
 let main_storyboard     = UIStoryboard(name: "Main", bundle: nil)
 let screen_width        = UIScreen.main.bounds.width

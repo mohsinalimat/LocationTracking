@@ -37,7 +37,7 @@
 		84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */; };
 		D22585BB1F7F6388004437E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22585BA1F7F6388004437E7 /* ProfileViewController.swift */; };
 		D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269F6541FA789BF00BEDD9A /* TextField.swift */; };
-		D2ACC3AB1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D2ACC3AA1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel */; };
+		D29ECA801FACC03B000801C3 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */; };
 		EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379C1F6FC85600F7901D /* CommentViewController.swift */; };
 		EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */; };
 		EA3FA1201F946EE400073FBA /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */; };
@@ -80,7 +80,8 @@
 		84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		D22585BA1F7F6388004437E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D269F6541FA789BF00BEDD9A /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		D2ACC3AA1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
+		D29ECA7C1FACBEBA000801C3 /* LocationTrackingV4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV4.xcdatamodel; sourceTree = "<group>"; };
+		D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
 		D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV3.xcdatamodel; sourceTree = "<group>"; };
 		EA0E379C1F6FC85600F7901D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -180,7 +181,7 @@
 		846C92C61EF516ED000993CE /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				D2ACC3AA1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel */,
+				D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */,
 				84DC8A711EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld */,
 				84B0FB4F1EF83FD100F3ABDE /* DatabaseManager.swift */,
 			);
@@ -467,8 +468,8 @@
 				841781651EF59E320020858C /* SignUpViewController.swift in Sources */,
 				846C92C31EF512CA000993CE /* ContactTableViewCell.swift in Sources */,
 				84B0FB501EF83FD100F3ABDE /* DatabaseManager.swift in Sources */,
-				D2ACC3AB1F9CB3D200F63E27 /* LocationTracking.xcmappingmodel in Sources */,
 				D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */,
+				D29ECA801FACC03B000801C3 /* LocationTracking.xcmappingmodel in Sources */,
 				EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */,
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
@@ -668,10 +669,11 @@
 		84DC8A711EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				D29ECA7C1FACBEBA000801C3 /* LocationTrackingV4.xcdatamodel */,
 				D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */,
 				84DC8A721EE07C6000B6F9A0 /* LocationTracking.xcdatamodel */,
 			);
-			currentVersion = D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */;
+			currentVersion = D29ECA7C1FACBEBA000801C3 /* LocationTrackingV4.xcdatamodel */;
 			path = LocationTracking.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
