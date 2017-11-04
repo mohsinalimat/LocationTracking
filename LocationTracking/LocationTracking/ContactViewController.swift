@@ -176,6 +176,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             //Tapped group cell
             self.displayMarker(indexPath: indexPath)
             return
+        } else if segmented.selectedSegmentIndex == kGroupListIndex {
+            self.displayMarker(indexPath: indexPath)
+            return
         }
         
         //Tapped contact cell
