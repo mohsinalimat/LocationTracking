@@ -9,46 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LocationTracking/FirebaseAction.swift"
-            timestampString = "531422524.39595"
+            filePath = "LocationTracking/ContactViewController.swift"
+            timestampString = "531680114.188305"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "getProfile(onCompletionHandler:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "refreshContactData()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.FIRDataSnapshot) -&gt; () in LocationTracking.FirebaseAction.getProfile(onCompletionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "LocationTracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "531465268.195449"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "117"
-                  endingLineNumber = "117"
-                  offsetFromSymbolStart = "825">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (__ObjC.FIRDataSnapshot) -&gt; () in LocationTracking.FirebaseAction.getProfile(onCompletionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "LocationTracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "531465268.198691"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "119"
-                  endingLineNumber = "119"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocationTracking/ContactViewController.swift"
+            timestampString = "531680114.188579"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "refreshContactData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LocationTracking/DatabaseManager.swift"
+            timestampString = "531680114.188752"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "getContactSharedLocation(contetxt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

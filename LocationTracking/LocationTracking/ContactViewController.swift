@@ -10,7 +10,6 @@ import UIKit
 
 class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
 
-    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var shareTwitterButton: UIButton!
     @IBOutlet weak var shareFacebookButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
@@ -40,7 +39,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     //MARK: - Init Object
     func initView() {
         let profile: Profile! = DatabaseManager.getProfile()
-        
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
         self.addLeftBarItem(imageName: "ic_logout", title: "")
         self.addRightBarItem(imageName: "refresh", title: "")
         self.addButtonTitle(title: profile.email!)
@@ -145,6 +145,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             cell.setupCell(contact: contactArray[indexPath.row])
         }
         cell.delegate = self
+        cell.indexPath = indexPath
         return cell
     }
     
@@ -221,13 +222,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                     self.segmented.selectedSegmentIndex = kContactListIndex
                     self.currentIndex = kContactListIndex
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                    DispatchQueue.main.async {
                         self.contactArray.removeAll()
                         self.contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
                         self.tableView.reloadData()
                         
                         self.hideHUD()
-                    })
+                    }
                 })
             })
         })
@@ -262,30 +263,21 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         case kGroupListIndex:
             let group = groupArray[indexPath.row]
             app_delegate.firebaseObject.deleteGroup(groupId: group.id!, onCompletionHandler: {_ in
-                self.tableView.beginUpdates()
-                self.groupArray.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .none);
-                self.tableView.endUpdates()
+                self.refreshContactData()
                 self.hideHUD()
             })
             break
         case kLocationListIndex:
             let location = locationArray[indexPath.row]
             app_delegate.firebaseObject.deleteLocation(locationId: location.id! ,onCompletionHandler: {_ in
-                self.tableView.beginUpdates()
-                self.locationArray.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .none);
-                self.tableView.endUpdates()
+                self.refreshContactData()
                 self.hideHUD()
             })
             break
         default:
             let contact = contactArray[indexPath.row]
             app_delegate.firebaseObject.deleteContact(contactId: contact.id!, atUserId: (app_delegate.profile?.id)!, onCompletionHandler: {_ in
-                self.tableView.beginUpdates()
-                self.contactArray.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .none);
-                self.tableView.endUpdates()
+                self.refreshContactData()
                 self.hideHUD()
             })
 

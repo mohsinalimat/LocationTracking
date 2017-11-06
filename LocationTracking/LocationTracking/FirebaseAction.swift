@@ -572,7 +572,7 @@ class FirebaseAction: NSObject {
     
     func deleteLocation(locationId: String, onCompletionHandler: @escaping () -> ()) {
         let profile = DatabaseManager.getProfile()
-        ref.child((profile?.id!)!).child("locaionList").child(locationId).removeValue()
+        ref.child((profile?.id!)!).child("locationList").child(locationId).removeValue()
         
         DatabaseManager.deleteLocation(locationId: locationId, onCompletion: {_ in
             onCompletionHandler()
