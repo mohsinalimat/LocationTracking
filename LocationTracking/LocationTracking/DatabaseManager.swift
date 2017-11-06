@@ -75,8 +75,17 @@ class DatabaseManager: NSObject {
         return location != nil ? location as! [LocationEntity]! : []
     }
     
+    static func deleteLocation(locationId: String, onCompletion:@escaping () -> ()) {
+        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+            let predicate = NSPredicate(format: "id = %@",locationId)
+            LocationEntity.mr_deleteAll(matching: predicate, in: localContext)
+        }, completion:{ didContext in
+            onCompletion()
+        })
+    }
+    
     //MARK: - Contact
-    static func saveContact(contactArray : [ContactModel], onCompletion:@escaping (Void) -> Void)  {
+    static func saveContact(contactArray : [ContactModel], onCompletion:@escaping () -> ())  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             for contact in contactArray {
                 var newContact = self.getContact(id: contact.id,contetxt: localContext)
@@ -268,9 +277,14 @@ class DatabaseManager: NSObject {
     }
     
     static func resetAllData( onCompletion:@escaping () -> ()) {
+        if let bundle = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundle)
+        }
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             Contact.mr_truncateAll(in: localContext)
             Profile.mr_truncateAll(in: localContext)
+            LocationEntity.mr_truncateAll(in: localContext)
+            GroupEntity.mr_truncateAll(in: localContext)
         }, completion:{ didContext in
             onCompletion()
         })

@@ -43,7 +43,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         
         self.addLeftBarItem(imageName: "ic_logout", title: "")
         self.addRightBarItem(imageName: "refresh", title: "")
-        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         self.addButtonTitle(title: profile.email!)
     }
     
@@ -126,24 +125,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     //MARK: - UITableView Delegate
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            self.showHUD()
-            let contact = contactArray[indexPath.row]
-            app_delegate.firebaseObject.deleteContact(contactId: contact.id!, atUserId: (app_delegate.profile?.id)!, onCompletionHandler: {_ in
-                tableView.beginUpdates()
-                self.contactArray.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .none);
-                tableView.endUpdates()
-                self.hideHUD()
-            })
-        }
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmented.selectedSegmentIndex == kGroupListIndex {
             return groupArray.count
@@ -172,24 +153,19 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if segmented.selectedSegmentIndex == kGroupListIndex {
-            //Tapped group cell
-            self.displayMarker(indexPath: indexPath)
-            return
-        } else if segmented.selectedSegmentIndex == kGroupListIndex {
-            self.displayMarker(indexPath: indexPath)
-            return
+        if segmented.selectedSegmentIndex == kContactListIndex || segmented.selectedSegmentIndex == kRequestShareIndex {
+            //Tapped contact cell
+            let selectedContact = contactArray[indexPath.row]
+            if selectedContact.isShare != 0 {
+                view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)
+                return
+            }
         }
         
-        //Tapped contact cell
-        let selectedContact = contactArray[indexPath.row]
-        if selectedContact.isShare != 0 {
-            view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)
-            return
-        }
         self.displayMarker(indexPath: indexPath)
     }
     
+    //MARK: - Marker
     func displayMarker(indexPath: IndexPath) {
         //Show Map View
         if let drawerController = self.parent?.parent as? KYDrawerController {
@@ -209,24 +185,20 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                         mapViewController.currentContactArray.append(contact)
                     }
                 }
+                //Add observer when changed contact
+                mapViewController.updateMarker()
+
             } else if segmented.selectedSegmentIndex == kLocationListIndex {
-                let contactModel = ContactModel()
                 let location = locationArray[indexPath.row]
-                var currentLocation = [String: AnyObject]()
-                currentLocation["latitude"] = location.latitude as AnyObject
-                currentLocation["longitude"] = location.longitude as AnyObject
-                
-                var allDict = [String: Any]()
-                allDict["currentLocations"] = currentLocation
-                allDict["name"] = location.name
-                
-                contactModel.initContactModel(dict: allDict)
+                //Add observer when changed contact
+                mapViewController.reDrawMarkerWithPosition(latitude: location.latitude, longitude: location.longitude, name: location.name!)
+
             } else {
                 mapViewController.currentContact = contactArray[indexPath.row]
                 mapViewController.currentContactArray.append(contactArray[indexPath.row])
+                //Add observer when changed contact
+                mapViewController.updateMarker()
             }
-            //Add observer when changed contact
-            mapViewController.updateMarker()
         }
 
     }
@@ -259,5 +231,65 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                 })
             })
         })
+    }
+    
+    //Delete cell
+    func deleteCellAtIndexPath(indexPath: IndexPath) {
+        var message = ""
+        
+        switch segmented.selectedSegmentIndex {
+        case kGroupListIndex:
+            let group = groupArray[indexPath.row]
+            message = "Do you want to delete group: " + group.name!
+            break
+        case kLocationListIndex:
+            let location = locationArray[indexPath.row]
+            message = "Do you want to delete location: " + location.name!
+            break
+        default:
+            let contact = contactArray[indexPath.row]
+            message = "Do you want to delete contact: " + contact.name!
+            break
+        }
+        self.showAlert(title: "", message: message, cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+            self.deleteObject(indexPath: indexPath)
+        })
+    }
+    
+    func deleteObject(indexPath: IndexPath) {
+        self.showHUD()
+        switch segmented.selectedSegmentIndex {
+        case kGroupListIndex:
+            let group = groupArray[indexPath.row]
+            app_delegate.firebaseObject.deleteGroup(groupId: group.id!, onCompletionHandler: {_ in
+                self.tableView.beginUpdates()
+                self.groupArray.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .none);
+                self.tableView.endUpdates()
+                self.hideHUD()
+            })
+            break
+        case kLocationListIndex:
+            let location = locationArray[indexPath.row]
+            app_delegate.firebaseObject.deleteLocation(locationId: location.id! ,onCompletionHandler: {_ in
+                self.tableView.beginUpdates()
+                self.locationArray.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .none);
+                self.tableView.endUpdates()
+                self.hideHUD()
+            })
+            break
+        default:
+            let contact = contactArray[indexPath.row]
+            app_delegate.firebaseObject.deleteContact(contactId: contact.id!, atUserId: (app_delegate.profile?.id)!, onCompletionHandler: {_ in
+                self.tableView.beginUpdates()
+                self.contactArray.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .none);
+                self.tableView.endUpdates()
+                self.hideHUD()
+            })
+
+            break
+        }
     }
 }

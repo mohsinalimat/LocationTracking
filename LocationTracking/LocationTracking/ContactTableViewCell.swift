@@ -11,15 +11,18 @@ import UIKit
 protocol ContactTableViewCellDelegate {
     func requestLocation(contact: Contact)
     func shareLocation(contact: Contact)
+    func deleteCellAtIndexPath(indexPath: IndexPath)
 }
 
 class ContactTableViewCell: UITableViewCell {
+    @IBOutlet weak var deleteCellButton: UIButton!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var shareLocationButton: UIButton!
     @IBOutlet weak var requestLocationButton: UIButton!
     var contactObject: Contact?
+    var indexPath = IndexPath()
     
     var delegate: ContactTableViewCellDelegate?
     
@@ -44,6 +47,10 @@ class ContactTableViewCell: UITableViewCell {
         if contactObject != nil {
             delegate?.shareLocation(contact: contactObject!)
         }
+    }
+    
+    @IBAction func tappedDeleteCell(_ sender: UIButton) {
+        delegate?.deleteCellAtIndexPath(indexPath: indexPath)
     }
     
     //MARK: - Setup Cell

@@ -214,6 +214,17 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
     }
     
+    func reDrawMarkerWithPosition(latitude: Double, longitude: Double, name: String) {
+        mapView.clear()
+
+        let position = CLLocationCoordinate2DMake(latitude,longitude)
+        let marker = GMSMarker(position: position)
+        marker.map = mapView
+        let newCamera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: self.mapView.camera.zoom)
+        mapView.camera = newCamera
+        self.updateLocationAddress(address: name)
+    }
+    
 // MARK: - GMSMapViewDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if !isAllowUpdateLocation! {

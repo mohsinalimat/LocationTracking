@@ -67,6 +67,16 @@ class FirebaseAction: NSObject {
             })
         }
     }
+    
+    func deleteGroup(groupId: String, onCompletionHandler: @escaping () -> ()) {
+        let profile = DatabaseManager.getProfile()
+        ref.child((profile?.id!)!).child("group").child(groupId).removeValue()
+        
+        DatabaseManager.deleteGroup(grouptId: groupId, onCompletion: {_ in
+            onCompletionHandler()
+        })
+    }
+    
     //MARK: USER INFORMATION
     //Create new user to sign up firebase
     func createUser(email: String, name:String) -> String{
@@ -156,7 +166,7 @@ class FirebaseAction: NSObject {
     func signInByFacebook(fromViewControlller: OriginalViewController,completionHandler: @escaping (Bool) -> ()) {
         let fbLoginManager = FBSDKLoginManager()
 
-        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: fromViewControlller) { (result, error) in
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "name"], from: fromViewControlller) { (result, error) in
             if let error = error {
                 fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
                 completionHandler(false)
@@ -429,6 +439,8 @@ class FirebaseAction: NSObject {
     
     func deleteContact(contactId: String, atUserId: String, onCompletionHandler: @escaping () -> ()) {
         ref.child(atUserId).child("contact").child(contactId).removeValue()
+        ref.child(contactId).child("contact").child(atUserId).removeValue()
+
         DatabaseManager.deleteContact(contactId: contactId, onCompletion: {_ in
             onCompletionHandler()
         })
@@ -537,6 +549,7 @@ class FirebaseAction: NSObject {
         })
     }
     
+    //MARK: - Location list
     func getLocationList(fromId: String, onCompletionHandler: @escaping () -> ()) {
         ref.child(fromId).child("locationList").observe(.value, with: { (snapshot) in
             let snapDict = snapshot.value as? [String: AnyObject] ?? [:]
@@ -554,6 +567,15 @@ class FirebaseAction: NSObject {
                     }
                 })
             }
+        })
+    }
+    
+    func deleteLocation(locationId: String, onCompletionHandler: @escaping () -> ()) {
+        let profile = DatabaseManager.getProfile()
+        ref.child((profile?.id!)!).child("locaionList").child(locationId).removeValue()
+        
+        DatabaseManager.deleteLocation(locationId: locationId, onCompletion: {_ in
+            onCompletionHandler()
         })
     }
     
