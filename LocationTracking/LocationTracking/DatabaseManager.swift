@@ -104,7 +104,7 @@ class DatabaseManager: NSObject {
         })
     }
     
-    static func updateContact(id: String,name: String?, latitude: Double?, longitude: Double?,isShare: Int?, onCompletion:@escaping (Void) -> Void)  {
+    static func updateContact(id: String,name: String?, latitude: Double?, longitude: Double?,isShare: Int?, onCompletion:@escaping () -> ())  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var contact = self.getContact(id: id, contetxt: localContext)
             if contact == nil {
