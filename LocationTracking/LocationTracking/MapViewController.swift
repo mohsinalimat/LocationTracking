@@ -96,6 +96,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         addNewLocationNameTextField.textRect(forBounds: addNewLocationNameTextField.bounds)
     }
     
+    func hideAllCustomView() {
+        menuView.isHidden = true
+        addNewLocationView.isHidden = true
+    }
+    
     //Init MapView
     func initMapView() {
         if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized {
@@ -203,6 +208,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             let position = CLLocationCoordinate2DMake(contact.latitude,contact.longitude)
             let marker = GMSMarker(position: position)
             marker.title = contact.name
+            marker.icon = UIImage.init(named: "requestLocation")
             marker.map = mapView
             if currentContactArray.count == 1 {
                 let newCamera = GMSCameraPosition.camera(withLatitude: contact.latitude, longitude: contact.longitude, zoom: self.mapView.camera.zoom)
@@ -219,6 +225,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
 
         let position = CLLocationCoordinate2DMake(latitude,longitude)
         let marker = GMSMarker(position: position)
+        marker.icon = UIImage.init(named: "requestLocation")
         marker.map = mapView
         let newCamera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: self.mapView.camera.zoom)
         mapView.camera = newCamera
@@ -331,6 +338,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     override func tappedLeftBarButton(sender: UIButton) {
         //Show Menu friends list
         if let drawerController = self.parent?.parent as? KYDrawerController {
+            self.hideAllCustomView()
             drawerController.setDrawerState(.opened, animated: true)
         }
     }

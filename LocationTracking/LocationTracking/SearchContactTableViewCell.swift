@@ -40,7 +40,7 @@ class SearchContactTableViewCell : UITableViewCell {
     }
     
     func setupCell(contact:ContactModel) {
-        emailLabel.text = contact.email
+        emailLabel.text = contact.name
         Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
             self.locationLabel.text = address
         })
