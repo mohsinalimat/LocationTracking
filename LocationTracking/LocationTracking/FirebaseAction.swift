@@ -467,8 +467,8 @@ class FirebaseAction: NSObject {
         resultRef = ref.child((toContact.id)!)
         //comform to waiting share property
         resultRef.child("contact").child((profile?.id)!).setValue(ShareStatus.kShared.rawValue)
-        
         ref.child((profile?.id)!).child("contact").child(toContact.id!).setValue(ShareStatus.kShared.rawValue)
+        
         onCompletetionHandler()
     }
     

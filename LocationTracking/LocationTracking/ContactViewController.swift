@@ -218,17 +218,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self.showAlert(title: "Confirm", message: "Do you want share your location with this friend", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {
             self .showHUD()
             app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {
-                DatabaseManager.updateContact(id: contact.id!, name: contact.name, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
+                let profile = DatabaseManager.getProfile()
+                app_delegate.firebaseObject.refreshData(email: (profile?.email)!, name: (profile?.name)!, completionHandler: {isSuccess in
                     self.segmented.selectedSegmentIndex = kContactListIndex
                     self.currentIndex = kContactListIndex
-                    
-                    DispatchQueue.main.async {
-                        self.contactArray.removeAll()
-                        self.contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
-                        self.tableView.reloadData()
-                        
-                        self.hideHUD()
-                    }
+
+                    self.refreshContactData()
+                    self.hideHUD()
                 })
             })
         })
