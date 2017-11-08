@@ -440,7 +440,6 @@ class FirebaseAction: NSObject {
     func deleteContact(contactId: String, atUserId: String, onCompletionHandler: @escaping () -> ()) {
         ref.child(atUserId).child("contact").child(contactId).removeValue()
         ref.child(contactId).child("contact").child(atUserId).removeValue()
-
         DatabaseManager.deleteContact(contactId: contactId, onCompletion: {_ in
             onCompletionHandler()
         })

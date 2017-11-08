@@ -923,7 +923,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rii-NB-TQb">
-                                <rect key="frame" x="0.0" y="85" width="320" height="448"/>
+                                <rect key="frame" x="0.0" y="85" width="320" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1028,11 +1028,11 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQA-gv-qIs">
-                                <rect key="frame" x="142.5" y="533" width="35" height="35"/>
+                                <rect key="frame" x="141" y="530" width="38" height="38"/>
                                 <color key="backgroundColor" red="0.1450980392" green="0.59607843140000005" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="kBR-KW-BmP"/>
-                                    <constraint firstAttribute="width" constant="35" id="ogH-3z-SDh"/>
+                                    <constraint firstAttribute="height" constant="38" id="kBR-KW-BmP"/>
+                                    <constraint firstAttribute="width" constant="38" id="ogH-3z-SDh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="About">
@@ -1043,15 +1043,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXq-ya-09Y">
-                                <rect key="frame" x="87.5" y="533" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="83" y="530" width="38" height="38"/>
                                 <connections>
                                     <action selector="tappedShareOnTwitter:" destination="dlV-Ev-EFu" eventType="touchUpInside" id="Iyl-Na-uqi"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6a1-bW-V5Z">
-                                <rect key="frame" x="197.5" y="533" width="35" height="35"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="199" y="530" width="38" height="38"/>
                                 <connections>
                                     <action selector="tappedShareOnFacebook:" destination="dlV-Ev-EFu" eventType="touchUpInside" id="Hxl-CH-9HF"/>
                                 </connections>

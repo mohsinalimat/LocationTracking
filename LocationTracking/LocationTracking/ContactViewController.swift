@@ -44,6 +44,11 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self.addLeftBarItem(imageName: "ic_logout", title: "")
         self.addRightBarItem(imageName: "refresh", title: "")
         self.addButtonTitle(title: profile.email!)
+        
+        //border
+        aboutButton.customBorder(radius: aboutButton.frame.size.height/2, color: .white)
+        shareFacebookButton.customBorder(radius: aboutButton.frame.size.height/2, color: .white)
+        shareTwitterButton.customBorder(radius: aboutButton.frame.size.height/2, color: .white)
     }
     
     //MARK: - Data
@@ -276,7 +281,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                 self.refreshContactData()
                 self.hideHUD()
             })
-
             break
         }
     }
