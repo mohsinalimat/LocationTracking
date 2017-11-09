@@ -452,7 +452,6 @@ class FirebaseAction: NSObject {
     func deleteContact(contactId: String, atUserId: String, onCompletionHandler: @escaping () -> ()) {
         ref.child(atUserId).child("contact").child(contactId).removeValue()
         ref.child(contactId).child("contact").child(atUserId).removeValue()
-
         DatabaseManager.deleteContact(contactId: contactId, onCompletion: {_ in
             onCompletionHandler()
         })
@@ -480,6 +479,7 @@ class FirebaseAction: NSObject {
         //comform to waiting share property
         resultRef.child("contact").child((profile?.id)!).setValue(ShareStatus.kShared.rawValue)
         ref.child((profile?.id)!).child("contact").child(toContact.id!).setValue(ShareStatus.kShared.rawValue)
+        
         onCompletetionHandler()
     }
     

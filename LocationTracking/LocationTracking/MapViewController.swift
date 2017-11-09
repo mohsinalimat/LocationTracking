@@ -227,6 +227,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         let position = CLLocationCoordinate2DMake(latitude,longitude)
         let marker = GMSMarker(position: position)
         marker.icon = UIImage.init(named: "requestLocation")
+        marker.title = name
         marker.map = mapView
         let newCamera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: self.mapView.camera.zoom)
         mapView.camera = newCamera
@@ -270,6 +271,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
