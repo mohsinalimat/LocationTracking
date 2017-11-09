@@ -29,6 +29,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
 
     override func viewWillAppear(_ animated: Bool) {
         self.refreshContactData()
+        self.referentCurrentContact()
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,6 +54,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         case kContactListIndex:
             contactArray.removeAll()
             contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
+            print("contat count: " + String(contactArray.count))
             tableView.reloadData()
             break
         case kGroupListIndex:
@@ -71,7 +73,29 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             tableView.reloadData()
             break
         }
+        self.hideHUD()
     }
+    
+    //Update when contact changed location
+    func referentCurrentContact() {
+        app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
+            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
+            if visibleViewController.isKind(of:KYDrawerController.self) {
+                let drawerController = visibleViewController as! KYDrawerController
+                if drawerController.drawerState == .opened {
+                    //MapViewController
+                    let contactNavigationViewController = drawerController.mainViewController as! UINavigationController
+                    if let contactViewController = contactNavigationViewController.viewControllers.last {
+                        if contactViewController is ContactViewController {
+                            let contactVC = contactViewController as! ContactViewController
+                            contactVC.refreshContactData()
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
     //MARK: - Action
     @IBAction func tappedChangeSegmentedIndex(_ sender: UISegmentedControl) {
         //Only reload when current index != selected index
@@ -208,8 +232,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self .showHUD()
         app_delegate.firebaseObject.requestLocation(toContact: contact, onCompletetionHandler: {
             DatabaseManager.updateContact(id: contact.id!, name: contact.name!, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kwaitingShared.rawValue, onCompletion: {_ in
-                self.hideHUD()
                 self.tableView.reloadData()
+                self.hideHUD()
             })
         })
     }
@@ -217,19 +241,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     func shareLocation(contact: Contact) {
         self.showAlert(title: "Confirm", message: "Do you want share your location with this friend", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {
             self .showHUD()
+            
+            //Change selected index of segmented
+            self.segmented.selectedSegmentIndex = kContactListIndex
+            self.currentIndex = kContactListIndex
+
             app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {
-                DatabaseManager.updateContact(id: contact.id!, name: contact.name, latitude: contact.latitude, longitude: contact.longitude, isShare: ShareStatus.kShared.rawValue, onCompletion: {_ in
-                    self.segmented.selectedSegmentIndex = kContactListIndex
-                    self.currentIndex = kContactListIndex
-                    
-                    DispatchQueue.main.async {
-                        self.contactArray.removeAll()
-                        self.contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
-                        self.tableView.reloadData()
-                        
-                        self.hideHUD()
-                    }
-                })
+                self.hideHUD()
             })
         })
     }

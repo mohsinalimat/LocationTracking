@@ -73,6 +73,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     override func viewWillDisappear(_ animated: Bool) {
         app_delegate.firebaseObject.removeObServerContact()
         menuView.isHidden = true
+        view.endEditing(true)
     }
     
     func updateLocationAddress(address: String) {
@@ -273,6 +274,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         menuView.isHidden = true
+        view.endEditing(true)
         if !addNewLocationView.isHidden {
             newLocation = coordinate
             //Adding new location

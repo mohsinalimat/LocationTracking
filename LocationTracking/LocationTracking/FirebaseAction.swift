@@ -18,7 +18,11 @@ import Social
 class FirebaseAction: NSObject {
     
     lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
-    
+    var isAllowUpdateData       = true
+    var isAllowUpdateLocation   = true
+    var isAllowUpdateProfile    = true
+    var isAllowUpdateContact    = true
+
     func initFirebase() {
         FIRApp.configure()
         FIRDatabase.database().reference()
@@ -123,10 +127,17 @@ class FirebaseAction: NSObject {
     func getProfile(onCompletionHandler: @escaping () -> ()) {
         let profile = DatabaseManager.getProfile()        
         ref.child((profile?.id)!).observe(.value, with: { (snapshot) in
-            let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-            self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
-                
-            })
+            if !self.isAllowUpdateProfile {
+                onCompletionHandler()
+                return
+            } else {
+                self.isAllowUpdateProfile = false
+                let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
+                self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
+                    self.isAllowUpdateProfile = true
+                    onCompletionHandler()
+                })
+            }
         })
     }
     
@@ -136,7 +147,7 @@ class FirebaseAction: NSObject {
         })
     }
     
-    //Sign in with Email
+    //MARK: - Sign in with Email
     func signInWith(email: String, name: String?, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
             if error == nil {
@@ -428,12 +439,13 @@ class FirebaseAction: NSObject {
     
     func getInformationForKey(contactId:String,isShare: Int?,onCompletionHandler: @escaping () -> ()) {
         ref.child(contactId).observe(.value, with: { (snapshot) in
-            var snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-            snapDict["isShare"] = isShare as AnyObject?
-            snapDict["id"] = contactId as AnyObject?
-            self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
-                onCompletionHandler()
-            })
+                 self.isAllowUpdateContact = false
+                var snapDict = snapshot.value as? [String : AnyObject] ?? [:]
+                snapDict["isShare"] = isShare as AnyObject?
+                snapDict["id"] = contactId as AnyObject?
+                self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
+                    onCompletionHandler()
+                })
         })
     }
     
@@ -467,17 +479,25 @@ class FirebaseAction: NSObject {
         resultRef = ref.child((toContact.id)!)
         //comform to waiting share property
         resultRef.child("contact").child((profile?.id)!).setValue(ShareStatus.kShared.rawValue)
-        
         ref.child((profile?.id)!).child("contact").child(toContact.id!).setValue(ShareStatus.kShared.rawValue)
         onCompletetionHandler()
     }
     
     func referentToContact(onCompletionHandler: @escaping () -> ()) {
         ref.observe(.childChanged, with: { (snapshot) in
-            let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-            self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
+            if !self.isAllowUpdateData {
                 onCompletionHandler()
-            })
+                return
+            } else {
+                self.isAllowUpdateData = false
+                //Update database
+                let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
+                self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
+                    //Allow update database
+                    self.isAllowUpdateData = true
+                    onCompletionHandler()
+                })
+            }
         })
     }
     
@@ -552,20 +572,27 @@ class FirebaseAction: NSObject {
     //MARK: - Location list
     func getLocationList(fromId: String, onCompletionHandler: @escaping () -> ()) {
         ref.child(fromId).child("locationList").observe(.value, with: { (snapshot) in
-            let snapDict = snapshot.value as? [String: AnyObject] ?? [:]
-            
-            for dict in snapDict {
-                let location = dict.value as? [String: Any]
-                let name = location!["name"] as! String
-                let latitude = location!["latitude"] as! Double
-                let longitude = location!["longitude"] as! Double
+            if !self.isAllowUpdateData {
+                onCompletionHandler()
+                return
+            } else {
+                self.isAllowUpdateLocation = false
+                let snapDict = snapshot.value as? [String: AnyObject] ?? [:]
                 
-                DatabaseManager.updateLocationList(id: dict.key, name: name , latitude: latitude, longitude: longitude, onCompletionHandler: {
-                    if dict.key == Array(snapDict.keys).last {
-                        print(snapDict.description)
-                        onCompletionHandler()
-                    }
-                })
+                for dict in snapDict {
+                    let location = dict.value as? [String: Any]
+                    let name = location!["name"] as! String
+                    let latitude = location!["latitude"] as! Double
+                    let longitude = location!["longitude"] as! Double
+                    
+                    DatabaseManager.updateLocationList(id: dict.key, name: name , latitude: latitude, longitude: longitude, onCompletionHandler: {
+                        if dict.key == Array(snapDict.keys).last {
+                            print(snapDict.description)
+                            self.isAllowUpdateLocation = true
+                            onCompletionHandler()
+                        }
+                    })
+                }
             }
         })
     }
@@ -615,6 +642,8 @@ class FirebaseAction: NSObject {
                                 }
                             })
                         }
+                    } else {
+                        onCompletionHandler()
                     }
                 })
             } else {

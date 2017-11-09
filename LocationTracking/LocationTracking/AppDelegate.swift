@@ -23,7 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var firebaseObject = FirebaseAction()
     var profile: Profile?
     var refHandler = FIRDatabaseReference()
-    
+    var savingContactIdArray  = [String]()
+    var savingGroupIdArray    = [String]()
+    var savingLocationIdArray = [String]()
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //Set up Google API Key
         GMSServices.provideAPIKey("AIzaSyB-vkbuoB24Hb8StdNS_mw4VaAN7oiZMe0")

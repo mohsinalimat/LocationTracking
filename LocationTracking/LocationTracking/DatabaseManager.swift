@@ -37,16 +37,21 @@ class DatabaseManager: NSObject {
     
     //MARK: - Location
     static func updateLocationList(id: String, name: String, latitude: Double, longitude: Double,onCompletionHandler: @escaping () -> ()) {
+        if app_delegate.savingLocationIdArray.contains(id) {
+            return
+        }
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var location = self.getLocation(id: id, contetxt: localContext)
             if location == nil {
                 location = LocationEntity.mr_createEntity(in: localContext)
+                app_delegate.savingLocationIdArray.append(id)
                 location?.id = id
             }
             location?.name = name
             location?.latitude = latitude
             location?.longitude = longitude
         }, completion: { didContext in
+            app_delegate.savingLocationIdArray = app_delegate.savingLocationIdArray.filter{ $0 == id }
             onCompletionHandler()
         })
     }
@@ -105,12 +110,17 @@ class DatabaseManager: NSObject {
     }
     
     static func updateContact(id: String,name: String?, latitude: Double?, longitude: Double?,isShare: Int?, onCompletion:@escaping () -> ())  {
+        if app_delegate.savingContactIdArray.contains(id) {
+            return
+        }
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var contact = self.getContact(id: id, contetxt: localContext)
             if contact == nil {
                 contact = Contact.mr_createEntity(in: localContext)
+                app_delegate.savingContactIdArray.append(id)
                 contact?.id = id
             }
+            
             if name != nil {
                 contact?.name = name
             }
@@ -124,11 +134,12 @@ class DatabaseManager: NSObject {
                 contact?.isShare = Int16(isShare!)
             }
         }, completion:{ didContext in
+            app_delegate.savingContactIdArray = app_delegate.savingContactIdArray.filter { $0 == id }
             onCompletion()
         })
     }
     
-    static func updateContactWithEmail(id:String, email: String,name: String, latitude: Double, longitude: Double,isShare: Int?, onCompletion:@escaping (Void) -> Void)  {
+    static func updateContactWithEmail(id:String, email: String,name: String, latitude: Double, longitude: Double,isShare: Int?, onCompletion:@escaping () -> ())  {
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var contact = self.getContactWithEmail(email: email, contetxt: localContext)
             if contact == nil {
@@ -255,11 +266,15 @@ class DatabaseManager: NSObject {
         })
     }
     
-    static func updateGroup(id: String, name: String?, member: String?, owner: String?, onCompletion:@escaping (Void) -> Void)  {
+    static func updateGroup(id: String, name: String?, member: String?, owner: String?, onCompletion:@escaping () -> ())  {
+        if app_delegate.savingGroupIdArray.contains(id) {
+            return
+        }
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
             var group = self.getGroup(id: id, contetxt: localContext)
             if group == nil {
                 group = GroupEntity.mr_createEntity(in: localContext)
+                app_delegate.savingGroupIdArray.append(id)
                 group?.id = id
             }
             if name != nil {
@@ -272,6 +287,7 @@ class DatabaseManager: NSObject {
                 group?.owner = owner!
             }
         }, completion:{ didContext in
+            app_delegate.savingGroupIdArray = app_delegate.savingGroupIdArray.filter { $0 == id }
             onCompletion()
         })
     }

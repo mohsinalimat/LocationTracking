@@ -22,7 +22,6 @@ class SearchContactTableViewCell : UITableViewCell {
     
     var delegate: SearchContactDelegate?
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
