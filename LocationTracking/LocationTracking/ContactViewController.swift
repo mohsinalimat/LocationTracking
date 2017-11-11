@@ -250,9 +250,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             //Change selected index of segmented
             self.segmented.selectedSegmentIndex = kContactListIndex
             self.currentIndex = kContactListIndex
-
+            let profile = DatabaseManager.getProfile()
+            
             app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {
-                self.hideHUD()
+                app_delegate.firebaseObject.refreshData(email: (profile?.email)!, name: (profile?.name)!, completionHandler: {isSuccess in
+                    self.hideHUD()
+                    self.refreshContactData()
+                })
             })
         })
     }

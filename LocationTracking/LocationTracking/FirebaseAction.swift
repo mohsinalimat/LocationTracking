@@ -545,11 +545,12 @@ class FirebaseAction: NSObject {
                         return
                     }
                     
+                    var count = 0
                     //update contact information in contacts list
                     for dict in newProfile.contact {
                         self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,onCompletionHandler: {_ in
-                            
-                            if dict.key == Array(newProfile.contact.keys).last! {
+                            count += 1
+                            if count == newProfile.contact.count {
                                 //Update group list
                                 if newProfile.group.count != 0 {
                                     self.updateGroup(snapArray: newProfile.group, onCompletionHandler: {
@@ -609,15 +610,17 @@ class FirebaseAction: NSObject {
     //MARK: - Save database
     func saveToDatabase(snapDict: [String : AnyObject], onCompletionHandler: @escaping () -> ()) {
         var id = ""
-        
+        let profile = DatabaseManager.getProfile()
+
         if snapDict["id"] != nil {
             id = snapDict["id"] as! String
         }
+        print(snapDict.description)
         if snapDict["email"] != nil {
+            print(snapDict["email"])
             let email = snapDict["email"] as! String
             let currentLocationDictionary = snapDict["currentLocations"] as! [String: Any]
             let name = snapDict["name"] as! String
-            let profile = DatabaseManager.getProfile()
             if profile?.email == email {
                 //Update profile
                 DatabaseManager.updateProfile(id: (profile?.id)!, email: email, name: name, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, onCompletionHandler: {_ in
