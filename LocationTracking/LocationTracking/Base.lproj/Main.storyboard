@@ -1008,7 +1008,7 @@
                                                         <action selector="tappedRequestLocation:" destination="5TQ-gH-dvK" eventType="touchUpInside" id="kCZ-Jf-QxP"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffC-6b-70Q">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffC-6b-70Q">
                                                     <rect key="frame" x="290" y="28" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="UGz-yK-1QP"/>
@@ -1408,13 +1408,13 @@
         <image name="facebook" width="30" height="31"/>
         <image name="googlePlus" width="40" height="40"/>
         <image name="hidePassword" width="35" height="35"/>
-        <image name="hybrid" width="50" height="50"/>
+        <image name="hybrid" width="40" height="40"/>
         <image name="ic_avar" width="75" height="75"/>
         <image name="ico_close" width="16" height="16"/>
         <image name="ico_search" width="18" height="18"/>
         <image name="icon_close" width="40" height="40"/>
         <image name="logo-1" width="150" height="150"/>
-        <image name="normal" width="50" height="50"/>
+        <image name="normal" width="40" height="40"/>
         <image name="remove" width="40" height="40"/>
         <image name="save" width="40" height="39"/>
         <image name="shareLocation" width="30" height="30"/>
