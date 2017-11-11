@@ -10,6 +10,8 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.26.0):
     - FBSDKCoreKit
+  - FBSDKShareKit (4.26.0):
+    - FBSDKCoreKit
   - Firebase (3.17.0):
     - Firebase/Core (= 3.17.0)
   - Firebase/AdMob (3.17.0):
@@ -155,6 +157,7 @@ PODS:
 
 DEPENDENCIES:
   - FBSDKLoginKit
+  - FBSDKShareKit
   - Firebase (>= 2.5.0)
   - Firebase/AdMob
   - Firebase/Analytics
@@ -179,6 +182,7 @@ SPEC CHECKSUMS:
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   FBSDKCoreKit: c8b8582311ec11b145451d8b9717dc6cc2ae5a76
   FBSDKLoginKit: f3f03b94c21eb834af243c0a881d48641f47ca60
+  FBSDKShareKit: 320712d8293fde6392872c91eb80ef0da5d73cc3
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseAppIndexing: adf2f3b14b6828f1d4c539fc72434962cf29ea2c
@@ -206,6 +210,6 @@ SPEC CHECKSUMS:
   TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
   TwitterKit: 3b6044a7320340326a4098f3e37aa1dbaeb94942
 
-PODFILE CHECKSUM: 5d8ed024e6d53c333f3a1617e592fa00a85b6d57
+PODFILE CHECKSUM: 3802d27c9382242d93679d3b6f44bd71cc362fe8
 
 COCOAPODS: 1.1.1

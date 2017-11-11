@@ -111,6 +111,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     @IBAction func tappedShareOnFacebook(_ sender: UIButton) {
+            app_delegate.firebaseObject.shareOnFacebook()
     }
     
     @IBAction func tappedShareOnTwitter(_ sender: UIButton) {

@@ -110,4 +110,10 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     func SaveContact(indexPath: IndexPath) {
         selectedContactArray.append(contactArray[indexPath.row])
     }
+    
+    //MARK: - TextField Delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.tappedSearchContact(searchButton)
+        return true
+    }
 }

@@ -861,16 +861,42 @@
                                     <constraint firstItem="0C5-Nc-5Yx" firstAttribute="top" secondItem="gN0-hr-wzR" secondAttribute="bottom" constant="5" id="yzM-Zm-QhZ"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-fS-Ex7">
+                                <rect key="frame" x="10" y="438" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KuH-y6-ojQ"/>
+                                    <constraint firstAttribute="width" constant="40" id="ePX-i1-wae"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="hybrid"/>
+                                <connections>
+                                    <action selector="tappedHybridMapType:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nWR-N0-1eA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ewk-ug-haI">
+                                <rect key="frame" x="10" y="383" width="40" height="40"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="normal"/>
+                                <connections>
+                                    <action selector="tappedNormalMapType:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CLK-f2-CnS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="W9Q-Ev-QUF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="90c-38-bNl"/>
+                            <constraint firstItem="jeo-fS-Ex7" firstAttribute="width" secondItem="Ewk-ug-haI" secondAttribute="width" id="CE0-Yj-cky"/>
                             <constraint firstItem="7J1-bL-8zx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gwo-5h-Aha"/>
                             <constraint firstItem="I2Y-ue-wS3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Hf1-aW-MKP"/>
+                            <constraint firstItem="jeo-fS-Ex7" firstAttribute="leading" secondItem="Ewk-ug-haI" secondAttribute="leading" id="KeT-pr-5PX"/>
+                            <constraint firstItem="jeo-fS-Ex7" firstAttribute="top" secondItem="Ewk-ug-haI" secondAttribute="bottom" constant="15" id="Kxg-JK-y0c"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Qy5-hM-fbh"/>
                             <constraint firstAttribute="trailing" secondItem="7J1-bL-8zx" secondAttribute="trailing" id="gOS-pd-Jlb"/>
+                            <constraint firstItem="jeo-fS-Ex7" firstAttribute="height" secondItem="Ewk-ug-haI" secondAttribute="height" id="gnh-Nz-Lvi"/>
                             <constraint firstItem="W9Q-Ev-QUF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="h9w-JY-8BU"/>
+                            <constraint firstItem="jeo-fS-Ex7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="kGp-15-ETC"/>
                             <constraint firstItem="W9Q-Ev-QUF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nbU-wQ-KQn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7J1-bL-8zx" secondAttribute="bottom" id="oTO-LX-its"/>
+                            <constraint firstItem="7J1-bL-8zx" firstAttribute="top" secondItem="jeo-fS-Ex7" secondAttribute="bottom" constant="40" id="rRE-QY-qUK"/>
                             <constraint firstAttribute="trailing" secondItem="I2Y-ue-wS3" secondAttribute="trailing" id="uF8-BK-5Tx"/>
                             <constraint firstAttribute="trailing" secondItem="W9Q-Ev-QUF" secondAttribute="trailing" id="vs6-dq-KyR"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="zyL-xI-wdq"/>
@@ -884,9 +910,11 @@
                         <outlet property="addNewLocationView" destination="W9Q-Ev-QUF" id="IPk-kl-Wbc"/>
                         <outlet property="allowUpdateLocationSwitch" destination="EN0-G1-lHx" id="KCk-Wx-g5b"/>
                         <outlet property="bannerView" destination="7J1-bL-8zx" id="dOX-e0-by1"/>
+                        <outlet property="hybridTypeButton" destination="jeo-fS-Ex7" id="qIu-bW-zx0"/>
                         <outlet property="menuView" destination="I2Y-ue-wS3" id="nl3-Ms-rvH"/>
                         <outlet property="newLatitudeLabel" destination="0C5-Nc-5Yx" id="Rfk-Ze-yVy"/>
                         <outlet property="newLongitudeLabel" destination="5HG-xz-d5B" id="yYr-iv-Tbr"/>
+                        <outlet property="normalTypeButton" destination="Ewk-ug-haI" id="vqK-5T-NmE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1380,11 +1408,13 @@
         <image name="facebook" width="30" height="31"/>
         <image name="googlePlus" width="40" height="40"/>
         <image name="hidePassword" width="35" height="35"/>
+        <image name="hybrid" width="50" height="50"/>
         <image name="ic_avar" width="75" height="75"/>
         <image name="ico_close" width="16" height="16"/>
         <image name="ico_search" width="18" height="18"/>
         <image name="icon_close" width="40" height="40"/>
         <image name="logo-1" width="150" height="150"/>
+        <image name="normal" width="50" height="50"/>
         <image name="remove" width="40" height="40"/>
         <image name="save" width="40" height="39"/>
         <image name="shareLocation" width="30" height="30"/>

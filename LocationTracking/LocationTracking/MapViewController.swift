@@ -22,7 +22,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
     @IBOutlet weak var addNewLocationView: UIView!
-    
+    @IBOutlet weak var normalTypeButton: UIButton!
+    @IBOutlet weak var hybridTypeButton: UIButton!
     @IBOutlet weak var newLongitudeLabel: UILabel!
     @IBOutlet weak var newLatitudeLabel: UILabel!
     
@@ -91,8 +92,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     func setupLayer() {
         addContactButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
-        addGroupButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
-        addLocationButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
+        addGroupButton.customBorder(radius: addGroupButton.frame.height/2, color: .white)
+        addLocationButton.customBorder(radius: addLocationButton.frame.height/2, color: .white)
+        normalTypeButton.customBorder(radius: normalTypeButton.frame.height/2, color: .clear)
+        hybridTypeButton.customBorder(radius: hybridTypeButton.frame.height/2, color: .clear)
         addNewLocationNameTextField.customBorder(radius: addNewLocationNameTextField.frame.height/2, color: .lightGray)
         addNewLocationNameTextField.textRect(forBounds: addNewLocationNameTextField.bounds)
     }
@@ -124,10 +127,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
-        
         // Add the map to the view, hide it until we've got a location update.
         view.addSubview(mapView)
+        
+        //Bring button to front
         view.bringSubview(toFront: allowUpdateLocationSwitch)
+        view.bringSubview(toFront: normalTypeButton)
+        view.bringSubview(toFront: hybridTypeButton)
     }
     
     //Init Location
@@ -400,6 +406,14 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     @IBAction func tappedCloseAddingNewLocation(_ sender: UIButton) {
         addNewLocationView.isHidden = true
+    }
+    
+    @IBAction func tappedNormalMapType(_ sender: UIButton) {
+        mapView.mapType = .normal
+    }
+    
+    @IBAction func tappedHybridMapType(_ sender: UIButton) {
+        mapView.mapType = .hybrid
     }
     
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {

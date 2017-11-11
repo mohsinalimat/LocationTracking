@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FBSDKShareKit
 import GoogleSignIn
 import TwitterKit
 import TwitterCore
@@ -687,5 +688,35 @@ class FirebaseAction: NSObject {
             UserDefaults.standard.set(snapshot.value as? String, forKey: "about")
             onCompletionHandler()
         })
+    }
+    
+    //MARK: - Share link
+    func shareOnFacebook() {
+        let content = FBSDKShareLinkContent()
+        content.contentURL = URL(string: "itms-apps://itunes.apple.com/app/id1290389869" )
+        let dialog : FBSDKShareDialog = FBSDKShareDialog()
+        dialog.mode = .native
+        // if you don't set this before canShow call, canShow would always return YES
+        if !dialog.canShow() {
+            // fallback presentation when there is no FB app
+            dialog.mode = .browser
+        }
+        dialog.show()
+    }
+    
+    func shareOnTwitter() {
+        let tweetText = "Location share"
+        let tweetUrl = URL(string: "itms-apps://itunes.apple.com/app/id1290389869")
+        
+        let shareString = "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(String(describing: tweetUrl))"
+        
+        // encode a space to %20 for example
+        let escapedShareString = shareString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+        // cast to an url
+        let url = URL(string: escapedShareString)
+        
+        // open in safari
+        UIApplication.shared.openURL(url!)
     }
 }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationTracking/FirebaseAction.swift"
-            timestampString = "532068263.61638"
+            timestampString = "532113825.783952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "referentToContact(onCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationTracking/FirebaseAction.swift"
-            timestampString = "532068263.616484"
+            timestampString = "532113825.784435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "getProfile(onCompletionHandler:)"
             landmarkType = "7">
             <Locations>
@@ -42,11 +42,11 @@
                   moduleName = "LocationTracking"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "532068263.853846"
+                  timestampString = "532113826.006232"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "136"
-                  endingLineNumber = "136"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
                   offsetFromSymbolStart = "984">
                </Location>
                <Location
@@ -57,11 +57,11 @@
                   moduleName = "LocationTracking"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "532068263.856977"
+                  timestampString = "532113826.008703"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
                   offsetFromSymbolStart = "22">
                </Location>
             </Locations>
