@@ -180,30 +180,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         return cell
     }
     
-     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .none
-    }
-    
-     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        if segmented.selectedSegmentIndex == kGroupListIndex {
-            let movedObject = self.groupArray[sourceIndexPath.row]
-            self.groupArray.remove(at: sourceIndexPath.row)
-            self.groupArray.insert(movedObject, at: destinationIndexPath.row)
-        }
-        if segmented.selectedSegmentIndex == kLocationListIndex {
-            let movedObject = self.locationArray[sourceIndexPath.row]
-            self.locationArray.remove(at: sourceIndexPath.row)
-            self.locationArray.insert(movedObject, at: destinationIndexPath.row)
-        }
-        let movedObject = self.contactArray[sourceIndexPath.row]
-        self.contactArray.remove(at: sourceIndexPath.row)
-        self.contactArray.insert(movedObject, at: destinationIndexPath.row)
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segmented.selectedSegmentIndex == kContactListIndex || segmented.selectedSegmentIndex == kRequestShareIndex {
             //Tapped contact cell

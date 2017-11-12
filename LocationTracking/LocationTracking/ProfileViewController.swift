@@ -9,8 +9,13 @@
 import UIKit
 
 class ProfileViewController: OriginalViewController {
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var oldPasswordTextField: UITextField!
     @IBOutlet weak var newPasswordTextField: UITextField!
+    
+    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var aboutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
