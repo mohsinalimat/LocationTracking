@@ -4,17 +4,13 @@
 //
 //  Created by Nguyen Hai Dang on 6/15/17.
 //  Copyright © 2017 Nguyen Hai Dang. All rights reserved.
-//
 
 import UIKit
 
 class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
-
-    @IBOutlet weak var shareTwitterButton: UIButton!
-    @IBOutlet weak var shareFacebookButton: UIButton!
-    @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     var locationArray = [LocationEntity]()
     var groupArray = [GroupEntity]()
@@ -46,15 +42,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self.addLeftBarItem(imageName: "ic_logout", title: "")
         self.addRightBarItem(imageName: "refresh", title: "")
         self.addButtonTitle(title: profile.email!)
-        
-        //border
-        aboutButton.customBorder(radius: aboutButton.frame.size.height/2, color: .white)
-        shareFacebookButton.customBorder(radius: aboutButton.frame.size.height/2, color: .white)
-        shareTwitterButton.customBorder(radius: aboutButton.frame.size.height/2, color: .white)
     }
     
     //MARK: - Data
-    
     func refreshContactData() {
         switch segmented.selectedSegmentIndex {
         case kContactListIndex:
@@ -119,6 +109,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     @IBAction func tappedDelete(_ sender: UIButton) {
+        tableView.setEditing(true, animated: true)
     }
     
     override func tappedLeftBarButton(sender: UIButton) {
@@ -164,6 +155,10 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             return locationArray.count
         }
         return contactArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

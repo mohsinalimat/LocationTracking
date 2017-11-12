@@ -992,7 +992,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rii-NB-TQb">
-                                <rect key="frame" x="0.0" y="85" width="320" height="445"/>
+                                <rect key="frame" x="0.0" y="85" width="320" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1011,13 +1011,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nguyễn Hải Đăng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSY-JT-urN">
-                                                    <rect key="frame" x="60" y="15" width="230" height="17"/>
+                                                    <rect key="frame" x="60" y="15" width="240" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                     <color key="textColor" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0Q-JC-jvl">
-                                                    <rect key="frame" x="60" y="37" width="230" height="0.0"/>
+                                                    <rect key="frame" x="60" y="37" width="240" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1049,27 +1049,14 @@
                                                         <action selector="tappedRequestLocation:" destination="5TQ-gH-dvK" eventType="touchUpInside" id="kCZ-Jf-QxP"/>
                                                     </connections>
                                                 </button>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffC-6b-70Q">
-                                                    <rect key="frame" x="290" y="28" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="UGz-yK-1QP"/>
-                                                        <constraint firstAttribute="width" constant="30" id="jrQ-ef-Kt6"/>
-                                                    </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" image="remove"/>
-                                                    <connections>
-                                                        <action selector="tappedDeleteCell:" destination="5TQ-gH-dvK" eventType="touchUpInside" id="Lqw-Pf-Fmp"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gSY-JT-urN" secondAttribute="trailing" constant="20" id="5Lf-XH-m2o"/>
                                                 <constraint firstItem="K0Q-JC-jvl" firstAttribute="trailing" secondItem="gSY-JT-urN" secondAttribute="trailing" id="9El-1Q-7IZ"/>
                                                 <constraint firstItem="K0Q-JC-jvl" firstAttribute="top" secondItem="gSY-JT-urN" secondAttribute="bottom" constant="5" id="D3t-mS-iHu"/>
-                                                <constraint firstItem="ffC-6b-70Q" firstAttribute="centerY" secondItem="jsX-u9-gUg" secondAttribute="centerY" id="EK3-oa-AGr"/>
                                                 <constraint firstItem="fO1-et-9M6" firstAttribute="leading" secondItem="gSY-JT-urN" secondAttribute="leading" id="GY1-NT-6QO"/>
                                                 <constraint firstItem="D0w-EX-9GP" firstAttribute="top" secondItem="jsX-u9-gUg" secondAttribute="top" constant="15" id="KGu-Vn-sUi"/>
                                                 <constraint firstItem="gSY-JT-urN" firstAttribute="top" secondItem="D0w-EX-9GP" secondAttribute="top" id="O2T-J8-uHL"/>
-                                                <constraint firstItem="ffC-6b-70Q" firstAttribute="leading" secondItem="gSY-JT-urN" secondAttribute="trailing" id="Wtc-mU-1Q6"/>
                                                 <constraint firstItem="fO1-et-9M6" firstAttribute="top" secondItem="Z9r-m7-Y0M" secondAttribute="top" id="YSZ-oE-4Tu"/>
                                                 <constraint firstItem="fO1-et-9M6" firstAttribute="leading" secondItem="Z9r-m7-Y0M" secondAttribute="leading" id="Ywb-3H-cH0"/>
                                                 <constraint firstItem="Z9r-m7-Y0M" firstAttribute="leading" secondItem="K0Q-JC-jvl" secondAttribute="leading" id="c9y-Om-mub"/>
@@ -1077,14 +1064,12 @@
                                                 <constraint firstItem="fO1-et-9M6" firstAttribute="bottom" secondItem="Z9r-m7-Y0M" secondAttribute="bottom" id="jdT-P8-dCd"/>
                                                 <constraint firstItem="fO1-et-9M6" firstAttribute="trailing" secondItem="Z9r-m7-Y0M" secondAttribute="trailing" id="lM2-ll-bC8"/>
                                                 <constraint firstItem="gSY-JT-urN" firstAttribute="leading" secondItem="D0w-EX-9GP" secondAttribute="trailing" constant="10" id="mfs-TN-i5Z"/>
-                                                <constraint firstAttribute="trailing" secondItem="ffC-6b-70Q" secondAttribute="trailing" id="n6i-0h-s43"/>
                                                 <constraint firstItem="Z9r-m7-Y0M" firstAttribute="top" secondItem="gSY-JT-urN" secondAttribute="bottom" constant="10" id="oMu-Gk-yx0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avatarImageView" destination="D0w-EX-9GP" id="bb3-SJ-b6P"/>
                                             <outlet property="currentLocationLabel" destination="K0Q-JC-jvl" id="Cx6-Ci-L6x"/>
-                                            <outlet property="deleteCellButton" destination="ffC-6b-70Q" id="WUT-58-NZf"/>
                                             <outlet property="requestLocationButton" destination="fO1-et-9M6" id="k7L-DJ-qnu"/>
                                             <outlet property="shareLocationButton" destination="Z9r-m7-Y0M" id="kSs-IN-bVx"/>
                                             <outlet property="userNameLabel" destination="gSY-JT-urN" id="JbF-A8-snW"/>
@@ -1097,30 +1082,31 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQA-gv-qIs">
-                                <rect key="frame" x="141" y="530" width="38" height="38"/>
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="kBR-KW-BmP"/>
-                                    <constraint firstAttribute="width" constant="38" id="ogH-3z-SDh"/>
+                                    <constraint firstAttribute="height" constant="40" id="9jz-8w-Dqo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Delete">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VQA-gv-qIs" firstAttribute="centerX" secondItem="Ogu-Gw-5OL" secondAttribute="centerX" id="4MR-Fo-8OH"/>
                             <constraint firstItem="VQA-gv-qIs" firstAttribute="top" secondItem="rii-NB-TQb" secondAttribute="bottom" id="DaG-6z-KZ5"/>
+                            <constraint firstAttribute="trailing" secondItem="VQA-gv-qIs" secondAttribute="trailing" id="E2t-96-B27"/>
                             <constraint firstAttribute="trailing" secondItem="rii-NB-TQb" secondAttribute="trailing" id="IFp-79-0hA"/>
                             <constraint firstItem="hMJ-yL-Pkl" firstAttribute="centerX" secondItem="Ogu-Gw-5OL" secondAttribute="centerX" id="O34-0u-mhS"/>
                             <constraint firstItem="zI8-hs-3v7" firstAttribute="top" secondItem="VQA-gv-qIs" secondAttribute="bottom" id="TV0-VB-157"/>
                             <constraint firstItem="hMJ-yL-Pkl" firstAttribute="top" secondItem="RfQ-c4-RGg" secondAttribute="bottom" constant="10" id="bk9-o5-vzA"/>
                             <constraint firstItem="rii-NB-TQb" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" id="jRB-be-B6N"/>
+                            <constraint firstItem="VQA-gv-qIs" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" id="jUD-nI-jJi"/>
                             <constraint firstItem="rii-NB-TQb" firstAttribute="top" secondItem="hMJ-yL-Pkl" secondAttribute="bottom" constant="20" id="xhO-bc-Aac"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteButton" destination="VQA-gv-qIs" id="O8y-wm-KZg"/>
                         <outlet property="segmented" destination="hMJ-yL-Pkl" id="xEW-dY-szn"/>
                         <outlet property="tableView" destination="rii-NB-TQb" id="KGW-Aq-GRh"/>
                     </connections>
@@ -1429,7 +1415,6 @@
         <image name="icon_close" width="40" height="40"/>
         <image name="logo-1" width="150" height="150"/>
         <image name="normal" width="40" height="40"/>
-        <image name="remove" width="40" height="40"/>
         <image name="save" width="40" height="39"/>
         <image name="shareLocation" width="30" height="30"/>
         <image name="showPassword" width="35" height="35"/>

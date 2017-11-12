@@ -11,7 +11,6 @@ import UIKit
 protocol ContactTableViewCellDelegate {
     func requestLocation(contact: Contact)
     func shareLocation(contact: Contact)
-    func deleteCellAtIndexPath(indexPath: IndexPath)
 }
 
 class ContactTableViewCell: UITableViewCell {
@@ -47,10 +46,6 @@ class ContactTableViewCell: UITableViewCell {
         if contactObject != nil {
             delegate?.shareLocation(contact: contactObject!)
         }
-    }
-    
-    @IBAction func tappedDeleteCell(_ sender: UIButton) {
-        delegate?.deleteCellAtIndexPath(indexPath: indexPath)
     }
     
     //MARK: - Setup Cell
