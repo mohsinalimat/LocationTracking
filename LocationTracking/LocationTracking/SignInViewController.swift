@@ -89,7 +89,6 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                     app_delegate.profile = DatabaseManager.getProfile()
                     self.resetTextField()
 
-                    let drawerController = app_delegate.initRevealViewController()
                     self.present(drawerController, animated: true, completion: nil)
                 } else {
                     /*

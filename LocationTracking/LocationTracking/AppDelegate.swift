@@ -130,8 +130,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if isSuccess {
                         //SignIn is successful
                         app_delegate.profile = DatabaseManager.getProfile()
-                        let drawerController = app_delegate.initRevealViewController()
-                        visibleViewController.present(drawerController, animated: true, completion: nil)
+                        let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                        visibleViewController.navigationController?.pushViewController(mapViewController, animated: true)
                     }
                     visibleViewController.hideHUD()
                 }

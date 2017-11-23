@@ -36,12 +36,30 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     //MARK: - Init Object
     func initView() {
         tableView.isEditing = true
-        let profile: Profile! = DatabaseManager.getProfile()
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
-        self.addLeftBarItem(imageName: "ic_logout", title: "")
-        self.addRightBarItem(imageName: "refresh", title: "")
-        self.addButtonTitle(title: profile.email!)
+        self.addLeftBarItem(imageName: "icon_close", title: "")
+        self.initRightBarView()
+    }
+    
+    func initRightBarView() {
+        let rightBarView = UIView.init(frame: CGRect.init(x: 0, y: 2, width: 100, height: 40))
+        
+        //Init fresh Button
+        let refreshButton = UIButton.init(type: UIButtonType.custom)
+        refreshButton.isExclusiveTouch = true
+        refreshButton.addTarget(self, action: #selector(tappedRefresh), for: UIControlEvents.touchUpInside)
+        refreshButton.frame = CGRect.init(x: 0, y: 0, width: rightBarView.frame.size.height, height: rightBarView.frame.size.height)
+        refreshButton.setImage(UIImage.init(named: "refresh"), for: UIControlState.normal)
+        rightBarView.addSubview(refreshButton)
+        
+        //Init profile button
+        let profileButton = UIButton.init(type: UIButtonType.custom)
+        profileButton.isExclusiveTouch = true
+        profileButton.addTarget(self, action: #selector(tappedEditProfile), for: UIControlEvents.touchUpInside)
+        profileButton.frame = CGRect.init(x: 60, y: 0, width: refreshButton.frame.size.height, height: refreshButton.frame.size.height)
+        profileButton.setImage(UIImage.init(named: "profile"), for: UIControlState.normal)
+        rightBarView.addSubview(profileButton)
     }
     
     //MARK: - Data
@@ -76,18 +94,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     func referentCurrentContact() {
         app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
             let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-            if visibleViewController.isKind(of:KYDrawerController.self) {
-                let drawerController = visibleViewController as! KYDrawerController
-                if drawerController.drawerState == .opened {
-                    //MapViewController
-                    let contactNavigationViewController = drawerController.mainViewController as! UINavigationController
-                    if let contactViewController = contactNavigationViewController.viewControllers.last {
-                        if contactViewController is ContactViewController {
-                            let contactVC = contactViewController as! ContactViewController
-                            contactVC.refreshContactData()
-                        }
-                    }
-                }
+            if visibleViewController is ContactViewController {
+                let contactVC = visibleViewController as! ContactViewController
+                contactVC.refreshContactData()
             }
         })
     }
@@ -113,21 +122,28 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     override func tappedLeftBarButton(sender: UIButton) {
-        self.showAlert(title: "", message: "Do you want sign out?", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
-            let result = app_delegate.firebaseObject.signOut()
-            if result {
-                //Sign out is success
-                if let drawerController = self.parent?.parent as? KYDrawerController {
-                    drawerController .dismiss(animated: true, completion: nil)
-                }
-            } else {
-                //Sign out is failure
-            }
-        })
+        //Init CATransition
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.popViewController(animated: true)
+        
+//        self.showAlert(title: "", message: "Do you want sign out?", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+//            let result = app_delegate.firebaseObject.signOut()
+//            if result {
+//                //Sign out is success
+//                self.navigationController?.popToRootViewController(animated: true)
+//            } else {
+//                //Sign out is failure
+//            }
+//        })
     }
     
     //Refresh contact from server
-    override func tappedRightBarButton(sender: UIButton) {
+    func tappedRefresh() {
         self.showHUD()
         let profile = DatabaseManager.getProfile()
         app_delegate.firebaseObject.refreshData(email: (profile?.email)!, name: (profile?.name)!, completionHandler: {isSuccess in
@@ -136,14 +152,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         })
     }
     
-    override func tappedTitleButton() {
+    func tappedEditProfile() {
         let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        
-        self.present(profileViewController, animated: true, completion: {_ in
-            if let drawerController = self.parent?.parent as? KYDrawerController {
-                drawerController.setDrawerState(.closed, animated: true)
-            }
-        })
+        self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     //MARK: - UITableView Delegate
@@ -191,10 +202,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     //MARK: - Marker
     func displayMarker(indexPath: IndexPath) {
         //Show Map View
-        if let drawerController = self.parent?.parent as? KYDrawerController {
-            drawerController.setDrawerState(.closed, animated: true)
-            let mapNavigationViewController = drawerController.mainViewController as! UINavigationController
-            let mapViewController = mapNavigationViewController.viewControllers.last as! MapViewController
+        let mapViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! MapViewController
             
             mapViewController.currentContactArray.removeAll()
             if segmented.selectedSegmentIndex == kGroupListIndex {
@@ -222,8 +230,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                 //Add observer when changed contact
                 mapViewController.updateMarker()
             }
-        }
-
     }
     //MARK: - ContactTableViewCell Delegate
     func requestLocation(contact: Contact) {

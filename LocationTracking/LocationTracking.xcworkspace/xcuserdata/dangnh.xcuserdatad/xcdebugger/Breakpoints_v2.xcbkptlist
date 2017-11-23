@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LocationTracking/ContactViewController.swift"
-            timestampString = "531913926.482414"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "referentCurrentContact()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LocationTracking/FirebaseAction.swift"
             timestampString = "531913926.48276"
             startingColumnNumber = "9223372036854775807"
@@ -42,27 +26,27 @@
                   moduleName = "LocationTracking"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "531913926.804901"
+                  timestampString = "533124521.250144"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "604"
                   endingLineNumber = "604"
-                  offsetFromSymbolStart = "816">
+                  offsetFromSymbolStart = "88">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in LocationTracking.FirebaseAction.deleteLocation(locationId: Swift.String, onCompletionHandler: () -&gt; ()) -&gt; ()"
+                  symbolName = "LocationTracking.FirebaseAction.deleteLocation(locationId: Swift.String, onCompletionHandler: () -&gt; ()) -&gt; ()"
                   moduleName = "LocationTracking"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "531913926.807526"
+                  timestampString = "533124521.253033"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "605"
-                  endingLineNumber = "605"
-                  offsetFromSymbolStart = "24">
+                  startingLineNumber = "604"
+                  endingLineNumber = "604"
+                  offsetFromSymbolStart = "960">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -74,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationTracking/ContactViewController.swift"
-            timestampString = "531913926.482997"
+            timestampString = "533124520.899565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "deleteObject(indexPath:)"
             landmarkType = "7">
          </BreakpointContent>

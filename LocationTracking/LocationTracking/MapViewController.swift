@@ -177,18 +177,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     func referentCurrentContact() {
         app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
             let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-            if visibleViewController.isKind(of:KYDrawerController.self) {
-                let drawerController = visibleViewController as! KYDrawerController
-                if drawerController.drawerState == .closed {
-                    //MapViewController
-                    let mapNavigationViewController = drawerController.mainViewController as! UINavigationController
-                    if let mapViewController = mapNavigationViewController.viewControllers.last {
-                        if mapViewController is MapViewController {
-                            let mapVC = mapViewController as! MapViewController
-                            mapVC.updateMarker()
-                        }
-                    }
-                }
+            if visibleViewController is MapViewController {
+                let mapVC = visibleViewController as! MapViewController
+                mapVC.updateMarker()
             }
         })
     }
@@ -346,11 +337,16 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     //MARK: - Action
     override func tappedLeftBarButton(sender: UIButton) {
-        //Show Menu friends list
-        if let drawerController = self.parent?.parent as? KYDrawerController {
-            self.hideAllCustomView()
-            drawerController.setDrawerState(.opened, animated: true)
-        }
+        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+
+        //Init CATransition
+        let transition:CATransition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromRight
+        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+        self.navigationController?.pushViewController(contactViewController, animated: true)
     }
     
     override func tappedRightBarButton(sender: UIButton) {
