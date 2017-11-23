@@ -66,7 +66,7 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
     }
     
     @IBAction func tappedForgotPassword(_ sender: UIButton) {
-        if (emailTextField.text?.characters.count)! > 0 {
+        if (emailTextField.text?.count)! > 0 {
             app_delegate.firebaseObject.resetPassword(email: emailTextField.text!, onComplehandler: {_ in
                 self.showAlert(title: "", message: "New password sent to your email, please check your email.", cancelTitle: "", okTitle: "OK",onOKAction: {_ in
                 
@@ -88,8 +88,9 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                     //SignIn is successful
                     app_delegate.profile = DatabaseManager.getProfile()
                     self.resetTextField()
-
-                    self.present(drawerController, animated: true, completion: nil)
+                    let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                    let nav = UINavigationController.init(rootViewController: mapViewController)
+                    self.present(nav, animated: true, completion: nil)
                 } else {
                     /*
                      SignIn is failure
@@ -107,8 +108,9 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
             if isSuccess {
                 //SignIn is successful
                 app_delegate.profile = DatabaseManager.getProfile()
-                let drawerController = app_delegate.initRevealViewController()
-                self.present(drawerController, animated: true, completion: nil)
+                let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                let nav = UINavigationController.init(rootViewController: mapViewController)
+                self.present(nav, animated: true, completion: nil)
             } else {
                 /*
                  SignIn is failure
@@ -134,8 +136,9 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
             if isSuccess {
                 //SignIn is successful
                 app_delegate.profile = DatabaseManager.getProfile()
-                let drawerController = app_delegate.initRevealViewController()
-                self.present(drawerController, animated: true, completion: nil)
+                let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                let nav = UINavigationController.init(rootViewController: mapViewController)
+                self.present(nav, animated: true, completion: nil)
             } else {
                 /*
                  SignIn is failure
@@ -162,8 +165,9 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
             if isSuccess {
                 //SignIn is successful
                 app_delegate.profile = DatabaseManager.getProfile()
-                let drawerController = app_delegate.initRevealViewController()
-                self.present(drawerController, animated: true, completion: nil)
+                let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                let nav = UINavigationController.init(rootViewController: mapViewController)
+                self.present(nav, animated: true, completion: nil)
             } else {
                 /*
                  SignIn is failure

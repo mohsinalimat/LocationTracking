@@ -45,7 +45,7 @@ class SignUpViewController: OriginalViewController {
     @IBAction func tappedSignUp(_ sender: UIButton) {
         self.showHUD()
         
-        if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 && (confirmPasswordTextField.text?.characters.count)! > 0 && (nameTextField.text?.characters.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
+        if (emailTextField.text?.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 && (confirmPasswordTextField.text?.characters.count)! > 0 && (nameTextField.text?.characters.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
             if (passwordTextField.text?.count)! < 6 {
                 self.showAlert(title: "", message: "Password must be more than 6 characters", cancelTitle: "", okTitle: "OK", onOKAction: {_ in
                     
@@ -69,9 +69,11 @@ class SignUpViewController: OriginalViewController {
                         //Present after updated profile
                         app_delegate.profile = DatabaseManager.getProfile()
                         self.dismiss(animated: false, completion: {_ in
-                            let drawerController = app_delegate.initRevealViewController()
+                            let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                            let nav = UINavigationController.init(rootViewController: mapViewController)
+                            
                             let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-                            visibleViewController.present(drawerController, animated: true, completion: nil)
+                            visibleViewController.present(nav, animated: true, completion: nil)
                             self.hideHUD()
                         })
                     })

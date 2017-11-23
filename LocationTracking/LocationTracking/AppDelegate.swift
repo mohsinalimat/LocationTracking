@@ -100,25 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
     }
     
-    //MARK: - set rootViewController
-    func initRevealViewController() -> KYDrawerController{
-        //Init root view controller
-        //Main Controller
-        let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-        let rootNavigation = UINavigationController.init(rootViewController:mapViewController)
-        
-        //Init reveal View Controller
-        //Left View Controller
-        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-        let friendListNavigation = UINavigationController.init(rootViewController:contactViewController)
-        
-        //Set reveal View Controller
-        let drawerController = KYDrawerController(drawerDirection: .left, drawerWidth: screen_width - kDrawerWidth)
-        drawerController.mainViewController = rootNavigation
-        drawerController.drawerViewController = friendListNavigation
-        return drawerController
-    }
-    
+    //MARK: - Sign in
     func autoSignIn() {
         let userName = UserDefaults.standard.object(forKey: "userName") as? String
         let password = UserDefaults.standard.object(forKey: "password") as? String
@@ -131,7 +113,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         //SignIn is successful
                         app_delegate.profile = DatabaseManager.getProfile()
                         let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                        visibleViewController.navigationController?.pushViewController(mapViewController, animated: true)
+                        let nav = UINavigationController.init(rootViewController: mapViewController)
+                        visibleViewController.present(nav, animated: true, completion: nil)
                     }
                     visibleViewController.hideHUD()
                 }

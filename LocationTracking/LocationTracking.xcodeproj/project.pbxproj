@@ -17,9 +17,6 @@
 		846C92AC1EF4D9D3000993CE /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AB1EF4D9D3000993CE /* Common.swift */; };
 		846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AD1EF4DAB7000993CE /* OriginalViewController.swift */; };
 		846C92B01EF4DC96000993CE /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92AF1EF4DC96000993CE /* Define.swift */; };
-		846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BB1EF4E46B000993CE /* KYDrawerController.swift */; };
-		846C92BF1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */; };
-		846C92C01EF4E46B000993CE /* KYEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */; };
 		846C92C31EF512CA000993CE /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92C21EF512CA000993CE /* ContactTableViewCell.swift */; };
 		846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846C92CB1EF5348B000993CE /* FirebaseAction.swift */; };
 		8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8485A2071EE869C800D79A61 /* MapViewController.swift */; };
@@ -56,9 +53,6 @@
 		846C92AB1EF4D9D3000993CE /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		846C92AD1EF4DAB7000993CE /* OriginalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginalViewController.swift; sourceTree = "<group>"; };
 		846C92AF1EF4DC96000993CE /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
-		846C92BB1EF4E46B000993CE /* KYDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYDrawerController.swift; path = Reveal/KYDrawerController.swift; sourceTree = "<group>"; };
-		846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYEmbedDrawerControllerSegue.swift; path = Reveal/KYEmbedDrawerControllerSegue.swift; sourceTree = "<group>"; };
-		846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KYEmbedMainControllerSegue.swift; path = Reveal/KYEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
 		846C92C21EF512CA000993CE /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		846C92CB1EF5348B000993CE /* FirebaseAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAction.swift; sourceTree = "<group>"; };
 		8485A2071EE869C800D79A61 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -151,19 +145,8 @@
 			children = (
 				84B0FB4D1EF8370500F3ABDE /* Toast.swift */,
 				84BF7F7C1F2A1902001B8A40 /* ProgressView.swift */,
-				846C92BA1EF4E459000993CE /* Reveal */,
 			);
 			name = Library;
-			sourceTree = "<group>";
-		};
-		846C92BA1EF4E459000993CE /* Reveal */ = {
-			isa = PBXGroup;
-			children = (
-				846C92BB1EF4E46B000993CE /* KYDrawerController.swift */,
-				846C92BC1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift */,
-				846C92BD1EF4E46B000993CE /* KYEmbedMainControllerSegue.swift */,
-			);
-			name = Reveal;
 			sourceTree = "<group>";
 		};
 		846C92C11EF512A6000993CE /* Cell */ = {
@@ -444,13 +427,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3FA1201F946EE400073FBA /* CreateNewGroupViewController.swift in Sources */,
-				846C92BF1EF4E46B000993CE /* KYEmbedDrawerControllerSegue.swift in Sources */,
-				846C92C01EF4E46B000993CE /* KYEmbedMainControllerSegue.swift in Sources */,
 				846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */,
 				84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */,
 				84E871BA1EF98B6000F9B817 /* AddContactViewController.swift in Sources */,
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
-				846C92BE1EF4E46B000993CE /* KYDrawerController.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
 				EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */,
 				EA3FA1231F9479AB00073FBA /* CreateNewGroupTableViewCell.swift in Sources */,
