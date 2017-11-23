@@ -109,11 +109,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.firebaseObject.signInWith(email: userName!, name:nil, password: password!, completionHandler: {(isSuccess) in
                 
                 if let visibleViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController) as? OriginalViewController {
-                    if isSuccess {
+                    
+                    if visibleViewController is MapViewController {return}
+                    
+                    if (isSuccess) {
                         //SignIn is successful
                         app_delegate.profile = DatabaseManager.getProfile()
                         let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
                         let nav = UINavigationController.init(rootViewController: mapViewController)
+                        
                         visibleViewController.present(nav, animated: true, completion: nil)
                     }
                     visibleViewController.hideHUD()

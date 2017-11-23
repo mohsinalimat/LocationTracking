@@ -344,7 +344,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
+        transition.subtype = kCATransitionFromLeft
         self.navigationController!.view.layer.add(transition, forKey: kCATransition)
         self.navigationController?.pushViewController(contactViewController, animated: true)
     }
