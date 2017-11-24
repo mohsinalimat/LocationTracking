@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfO-c7-M0M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="cfO-c7-M0M">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -992,7 +992,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rii-NB-TQb">
-                                <rect key="frame" x="0.0" y="85" width="320" height="443"/>
+                                <rect key="frame" x="0.0" y="85" width="320" height="483"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1081,32 +1081,18 @@
                                     <outlet property="delegate" destination="dlV-Ev-EFu" id="iII-FX-iMd"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQA-gv-qIs">
-                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="9jz-8w-Dqo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Edit">
-                                    <color key="titleColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="VQA-gv-qIs" firstAttribute="top" secondItem="rii-NB-TQb" secondAttribute="bottom" id="DaG-6z-KZ5"/>
-                            <constraint firstAttribute="trailing" secondItem="VQA-gv-qIs" secondAttribute="trailing" id="E2t-96-B27"/>
+                            <constraint firstItem="zI8-hs-3v7" firstAttribute="top" secondItem="rii-NB-TQb" secondAttribute="bottom" id="4VP-3B-Caa"/>
                             <constraint firstAttribute="trailing" secondItem="rii-NB-TQb" secondAttribute="trailing" id="IFp-79-0hA"/>
                             <constraint firstItem="hMJ-yL-Pkl" firstAttribute="centerX" secondItem="Ogu-Gw-5OL" secondAttribute="centerX" id="O34-0u-mhS"/>
-                            <constraint firstItem="zI8-hs-3v7" firstAttribute="top" secondItem="VQA-gv-qIs" secondAttribute="bottom" id="TV0-VB-157"/>
                             <constraint firstItem="hMJ-yL-Pkl" firstAttribute="top" secondItem="RfQ-c4-RGg" secondAttribute="bottom" constant="10" id="bk9-o5-vzA"/>
                             <constraint firstItem="rii-NB-TQb" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" id="jRB-be-B6N"/>
-                            <constraint firstItem="VQA-gv-qIs" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" id="jUD-nI-jJi"/>
                             <constraint firstItem="rii-NB-TQb" firstAttribute="top" secondItem="hMJ-yL-Pkl" secondAttribute="bottom" constant="20" id="xhO-bc-Aac"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="deleteButton" destination="VQA-gv-qIs" id="O8y-wm-KZg"/>
                         <outlet property="segmented" destination="hMJ-yL-Pkl" id="xEW-dY-szn"/>
                         <outlet property="tableView" destination="rii-NB-TQb" id="KGW-Aq-GRh"/>
                     </connections>

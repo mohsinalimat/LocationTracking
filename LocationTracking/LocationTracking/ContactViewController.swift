@@ -10,7 +10,6 @@ import UIKit
 class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var deleteButton: UIButton!
     
     var locationArray = [LocationEntity]()
     var groupArray = [GroupEntity]()
@@ -20,7 +19,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
-        // Do any additional setup after loading the view.
+        self.initRightBarView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +59,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         profileButton.frame = CGRect.init(x: 60, y: 0, width: refreshButton.frame.size.height, height: refreshButton.frame.size.height)
         profileButton.setImage(UIImage.init(named: "profile"), for: UIControlState.normal)
         rightBarView.addSubview(profileButton)
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBarView)
     }
     
     //MARK: - Data
@@ -115,10 +116,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     @IBAction func tappedShareOnTwitter(_ sender: UIButton) {
-    }
-    
-    @IBAction func tappedDelete(_ sender: UIButton) {
-        tableView.setEditing(true, animated: true)
     }
     
     override func tappedLeftBarButton(sender: UIButton) {
