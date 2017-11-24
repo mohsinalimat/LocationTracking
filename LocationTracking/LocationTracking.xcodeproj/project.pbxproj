@@ -34,6 +34,7 @@
 		D22585BB1F7F6388004437E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22585BA1F7F6388004437E7 /* ProfileViewController.swift */; };
 		D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269F6541FA789BF00BEDD9A /* TextField.swift */; };
 		D29ECA801FACC03B000801C3 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */; };
+		D2E763951FC8865F0099C737 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */; };
 		EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379C1F6FC85600F7901D /* CommentViewController.swift */; };
 		EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */; };
 		EA3FA1201F946EE400073FBA /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */; };
@@ -75,6 +76,7 @@
 		D29ECA7C1FACBEBA000801C3 /* LocationTrackingV4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV4.xcdatamodel; sourceTree = "<group>"; };
 		D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
 		D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV3.xcdatamodel; sourceTree = "<group>"; };
+		D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		EA0E379C1F6FC85600F7901D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				8485A2071EE869C800D79A61 /* MapViewController.swift */,
+				D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
 				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,
+				D2E763951FC8865F0099C737 /* SearchLocationViewController.swift in Sources */,
 				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
 				84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */,
 			);

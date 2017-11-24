@@ -21,6 +21,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var addContactButton: UIButton!
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var searchLocationButton: UIButton!
     @IBOutlet weak var addNewLocationView: UIView!
     @IBOutlet weak var normalTypeButton: UIButton!
     @IBOutlet weak var hybridTypeButton: UIButton!
@@ -388,6 +389,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         let profile = DatabaseManager.getProfile()
         newLocation = CLLocationCoordinate2DMake((profile?.latitude)!, (profile?.longitude)!)
         self.setupNewLocation(newLocation: newLocation!)
+    }
+    
+    @IBAction func tappedSearchLocation(_ sender: UIButton) {
+        let searchLocationViewController = main_storyboard.instantiateViewController(withIdentifier: "SearchLocationViewController") as! SearchLocationViewController
+        self.navigationController?.pushViewController(searchLocationViewController, animated: true)
     }
     
     @IBAction func tappedSaveNewLocation(_ sender: UIButton) {
