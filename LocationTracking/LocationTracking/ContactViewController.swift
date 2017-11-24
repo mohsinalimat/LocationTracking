@@ -42,7 +42,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func initRightBarView() {
-        let rightBarView = UIView.init(frame: CGRect.init(x: 0, y: 2, width: 100, height: 40))
+        let rightBarView = UIView.init(frame: CGRect.init(x: 0, y: 2, width: 80, height: 35))
         
         //Init fresh Button
         let refreshButton = UIButton.init(type: UIButtonType.custom)
@@ -56,7 +56,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         let profileButton = UIButton.init(type: UIButtonType.custom)
         profileButton.isExclusiveTouch = true
         profileButton.addTarget(self, action: #selector(tappedEditProfile), for: UIControlEvents.touchUpInside)
-        profileButton.frame = CGRect.init(x: 60, y: 0, width: refreshButton.frame.size.height, height: refreshButton.frame.size.height)
+        profileButton.frame = CGRect.init(x: 45, y: 0, width: refreshButton.frame.size.height, height: refreshButton.frame.size.height)
         profileButton.setImage(UIImage.init(named: "profile"), for: UIControlState.normal)
         rightBarView.addSubview(profileButton)
         
