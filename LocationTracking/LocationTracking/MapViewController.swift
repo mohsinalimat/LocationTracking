@@ -413,7 +413,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {
-        newLatitudeLabel.text = String(format: "Lat: %.4f", newLocation.latitude)
-        newLongitudeLabel.text = String(format: "Long: %.4f", newLocation.longitude)
+        newLatitudeLabel.text = String(format: "Lat: %.10f", newLocation.latitude)
+        newLongitudeLabel.text = String(format: "Long: %.10f", newLocation.longitude)
     }
 }

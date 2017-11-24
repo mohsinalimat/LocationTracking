@@ -127,16 +127,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         transition.subtype = kCATransitionFromRight
         self.navigationController!.view.layer.add(transition, forKey: kCATransition)
         self.navigationController?.popViewController(animated: true)
-        
-//        self.showAlert(title: "", message: "Do you want sign out?", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
-//            let result = app_delegate.firebaseObject.signOut()
-//            if result {
-//                //Sign out is success
-//                self.navigationController?.popToRootViewController(animated: true)
-//            } else {
-//                //Sign out is failure
-//            }
-//        })
     }
     
     //Refresh contact from server

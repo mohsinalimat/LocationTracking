@@ -388,13 +388,11 @@ class FirebaseAction: NSObject {
     }
     
     //Sign out
-    func signOut() -> Bool{
+    func signOut(){
         do{
             try FIRAuth.auth()?.signOut()
-            return true
         }catch{
             print("Error while signing out!")
-            return false
         }
     }
     

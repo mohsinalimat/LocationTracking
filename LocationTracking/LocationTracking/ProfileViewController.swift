@@ -19,17 +19,28 @@ class ProfileViewController: OriginalViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addLeftBarItem(imageName: "ico_back", title: "")
+        self.addTitleNavigation(title: "Profile")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func tappedDismiss(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+    //MARK: Action
+    override func tappedLeftBarButton(sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func tappedUpdateAvatar(_ sender: UIButton) {
+    }
+
+    @IBAction func tappedSignOut(_ sender: UIButton) {
+        self.showAlert(title: "", message: "Do you want sign out?", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+            app_delegate.firebaseObject.signOut()
+            let rootViewController = self.navigationController?.viewControllers.first
+            rootViewController?.dismiss(animated: true, completion: nil)
+        })
     }
     
     @IBAction func tappedUpdateProfile(_ sender: UIButton) {
