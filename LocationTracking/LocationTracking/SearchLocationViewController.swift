@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SearchLocationViewController: OriginalViewController {
+class SearchLocationViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchLocationTextField: UITextField!
-    
     @IBOutlet weak var searchButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initLayout()
