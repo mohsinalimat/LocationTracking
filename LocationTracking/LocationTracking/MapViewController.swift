@@ -135,6 +135,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         view.bringSubview(toFront: allowUpdateLocationSwitch)
         view.bringSubview(toFront: normalTypeButton)
         view.bringSubview(toFront: hybridTypeButton)
+        view.bringSubview(toFront: searchLocationButton)
     }
     
     //Init Location

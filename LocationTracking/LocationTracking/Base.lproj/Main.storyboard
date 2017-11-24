@@ -854,10 +854,13 @@
                                     <action selector="tappedAllowUpdateLocation:" destination="BYZ-38-t0r" eventType="valueChanged" id="CLm-bb-4zx"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGi-cb-GhH">
-                                <rect key="frame" x="19" y="95" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGi-cb-GhH">
+                                <rect key="frame" x="10" y="85" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RFx-o9-KB9"/>
+                                    <constraint firstAttribute="width" constant="40" id="U2T-hW-2dw"/>
+                                </constraints>
+                                <state key="normal" image="ico_search"/>
                                 <connections>
                                     <action selector="tappedSearchLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZHH-mH-Pgj"/>
                                 </connections>
@@ -1020,6 +1023,7 @@
                             <constraint firstItem="jeo-fS-Ex7" firstAttribute="width" secondItem="Ewk-ug-haI" secondAttribute="width" id="CE0-Yj-cky"/>
                             <constraint firstItem="7J1-bL-8zx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gwo-5h-Aha"/>
                             <constraint firstItem="I2Y-ue-wS3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Hf1-aW-MKP"/>
+                            <constraint firstItem="IGi-cb-GhH" firstAttribute="top" secondItem="EN0-G1-lHx" secondAttribute="bottom" constant="20" id="KQd-Ge-C2h"/>
                             <constraint firstItem="jeo-fS-Ex7" firstAttribute="leading" secondItem="Ewk-ug-haI" secondAttribute="leading" id="KeT-pr-5PX"/>
                             <constraint firstItem="jeo-fS-Ex7" firstAttribute="top" secondItem="Ewk-ug-haI" secondAttribute="bottom" constant="15" id="Kxg-JK-y0c"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Qy5-hM-fbh"/>
@@ -1030,6 +1034,7 @@
                             <constraint firstItem="W9Q-Ev-QUF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nbU-wQ-KQn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7J1-bL-8zx" secondAttribute="bottom" id="oTO-LX-its"/>
                             <constraint firstItem="7J1-bL-8zx" firstAttribute="top" secondItem="jeo-fS-Ex7" secondAttribute="bottom" constant="40" id="rRE-QY-qUK"/>
+                            <constraint firstItem="IGi-cb-GhH" firstAttribute="leading" secondItem="EN0-G1-lHx" secondAttribute="leading" id="u7D-dH-NeL"/>
                             <constraint firstAttribute="trailing" secondItem="I2Y-ue-wS3" secondAttribute="trailing" id="uF8-BK-5Tx"/>
                             <constraint firstAttribute="trailing" secondItem="W9Q-Ev-QUF" secondAttribute="trailing" id="vs6-dq-KyR"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="zyL-xI-wdq"/>
