@@ -91,6 +91,10 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         
     }
     
+    func tappedCancelAddingLocation() {
+        
+    }
+    
     //MARK: - Function
     
     func getListContactId() -> [String]? {
@@ -137,5 +141,19 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         }
         // show the alert
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showActionSheet(titleArray: [String], onTapped: @escaping (String) -> ()) {
+        //Create the AlertController
+        let actionSheetController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        for title in titleArray {
+            actionSheetController.addAction(UIAlertAction(title: title, style: UIAlertActionStyle.default, handler: {_ in
+                onTapped(title)
+            }))
+        }
+        
+        actionSheetController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(actionSheetController, animated: true, completion: nil)
     }
 }

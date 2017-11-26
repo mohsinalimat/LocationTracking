@@ -9,54 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LocationTracking/FirebaseAction.swift"
-            timestampString = "533238286.628644"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "getProfile(onCompletionHandler:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.FIRDataSnapshot) -&gt; () in LocationTracking.FirebaseAction.getProfile(onCompletionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "LocationTracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "533238286.92156"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "137"
-                  endingLineNumber = "137"
-                  offsetFromSymbolStart = "984">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (__ObjC.FIRDataSnapshot) -&gt; () in LocationTracking.FirebaseAction.getProfile(onCompletionHandler: () -&gt; ()) -&gt; ()"
-                  moduleName = "LocationTracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Thuyph312/Desktop/Location/LocationTracking/LocationTracking/FirebaseAction.swift"
-                  timestampString = "533238286.925226"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "138"
-                  endingLineNumber = "138"
-                  offsetFromSymbolStart = "22">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LocationTracking/ContactViewController.swift"
             timestampString = "533238286.62875"
             startingColumnNumber = "9223372036854775807"

@@ -706,56 +706,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oaA-C4-1Vk">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchContactTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchContactTableViewCell" rowHeight="80" id="pjp-Y7-R3d" customClass="SearchContactTableViewCell" customModule="LocationTracking" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pjp-Y7-R3d" id="C6t-OX-7HB">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4w-Lc-m5P">
-                                                    <rect key="frame" x="55" y="19" width="245" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="waiting..." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-62-fV6">
-                                                    <rect key="frame" x="55" y="35" width="47.5" height="13.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="locationMarker" translatesAutoresizingMaskIntoConstraints="NO" id="tbQ-BZ-9L9">
-                                                    <rect key="frame" x="10" y="22" width="35" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="IX8-ve-Y7G"/>
-                                                        <constraint firstAttribute="width" constant="35" id="q3G-lz-uIZ"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="tbQ-BZ-9L9" firstAttribute="leading" secondItem="C6t-OX-7HB" secondAttribute="leading" constant="10" id="3ED-XP-f4X"/>
-                                                <constraint firstItem="C4w-Lc-m5P" firstAttribute="leading" secondItem="tbQ-BZ-9L9" secondAttribute="trailing" constant="10" id="3VH-YQ-pTT"/>
-                                                <constraint firstItem="0QV-62-fV6" firstAttribute="top" secondItem="C4w-Lc-m5P" secondAttribute="bottom" id="DyI-S1-4qf"/>
-                                                <constraint firstItem="0QV-62-fV6" firstAttribute="leading" secondItem="C4w-Lc-m5P" secondAttribute="leading" id="gOg-vn-sjc"/>
-                                                <constraint firstAttribute="trailing" secondItem="C4w-Lc-m5P" secondAttribute="trailing" constant="20" id="rbK-qt-7yl"/>
-                                                <constraint firstAttribute="bottom" secondItem="C4w-Lc-m5P" secondAttribute="bottom" multiplier="2:1" constant="10" id="uWE-dH-gk6"/>
-                                                <constraint firstItem="tbQ-BZ-9L9" firstAttribute="centerY" secondItem="C6t-OX-7HB" secondAttribute="centerY" id="uZO-Jh-vYr"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="3nd-Bc-8W3" id="0Rl-Fy-ab0"/>
-                                    <outlet property="delegate" destination="3nd-Bc-8W3" id="nW7-EC-LCd"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYT-Pf-6Vb">
-                                <rect key="frame" x="10" y="5" width="300" height="40"/>
+                                <rect key="frame" x="10" y="30" width="300" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="input location name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b60-yW-9ci">
                                         <rect key="frame" x="20" y="3" width="235" height="35"/>
@@ -790,20 +742,88 @@
                                     <constraint firstAttribute="trailing" secondItem="Mcb-N4-8Jb" secondAttribute="trailing" id="3bx-KF-yx1"/>
                                     <constraint firstItem="b60-yW-9ci" firstAttribute="leading" secondItem="RYT-Pf-6Vb" secondAttribute="leading" constant="20" id="5nM-aP-dGO"/>
                                     <constraint firstItem="Mcb-N4-8Jb" firstAttribute="centerY" secondItem="b60-yW-9ci" secondAttribute="centerY" id="Ckw-EB-YJd"/>
-                                    <constraint firstItem="Mcb-N4-8Jb" firstAttribute="top" secondItem="RYT-Pf-6Vb" secondAttribute="top" id="Xys-MR-SB0"/>
                                     <constraint firstAttribute="bottom" secondItem="Mcb-N4-8Jb" secondAttribute="bottom" id="grq-r1-4Aq"/>
+                                    <constraint firstAttribute="height" constant="40" id="jbg-Yo-xwf"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oaA-C4-1Vk">
+                                <rect key="frame" x="0.0" y="80" width="320" height="488"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SearchLocationTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchLocationTableViewCell" rowHeight="80" id="pjp-Y7-R3d" customClass="SearchLocationTableViewCell" customModule="LocationTracking" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pjp-Y7-R3d" id="C6t-OX-7HB">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C4w-Lc-m5P">
+                                                    <rect key="frame" x="55" y="18" width="215" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="waiting..." textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QV-62-fV6">
+                                                    <rect key="frame" x="55" y="40" width="215" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shareLocation" translatesAutoresizingMaskIntoConstraints="NO" id="tbQ-BZ-9L9">
+                                                    <rect key="frame" x="10" y="22" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="IX8-ve-Y7G"/>
+                                                        <constraint firstAttribute="width" constant="35" id="q3G-lz-uIZ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vV-nC-ARm">
+                                                    <rect key="frame" x="275" y="18" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="Pxy-lD-77Z"/>
+                                                        <constraint firstAttribute="height" constant="40" id="sTv-PZ-HTa"/>
+                                                    </constraints>
+                                                    <state key="normal" image="check_off"/>
+                                                    <state key="selected" image="check_on"/>
+                                                    <connections>
+                                                        <action selector="tappedSelectedLocation:" destination="pjp-Y7-R3d" eventType="touchUpInside" id="Tc1-pD-16c"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tbQ-BZ-9L9" firstAttribute="leading" secondItem="C6t-OX-7HB" secondAttribute="leading" constant="10" id="3ED-XP-f4X"/>
+                                                <constraint firstItem="C4w-Lc-m5P" firstAttribute="leading" secondItem="tbQ-BZ-9L9" secondAttribute="trailing" constant="10" id="3VH-YQ-pTT"/>
+                                                <constraint firstItem="0QV-62-fV6" firstAttribute="top" secondItem="C4w-Lc-m5P" secondAttribute="bottom" constant="5" id="DyI-S1-4qf"/>
+                                                <constraint firstItem="4vV-nC-ARm" firstAttribute="leading" secondItem="C4w-Lc-m5P" secondAttribute="trailing" constant="5" id="Hx0-t6-h5H"/>
+                                                <constraint firstAttribute="trailing" secondItem="4vV-nC-ARm" secondAttribute="trailing" constant="5" id="VhN-fK-if2"/>
+                                                <constraint firstItem="0QV-62-fV6" firstAttribute="leading" secondItem="C4w-Lc-m5P" secondAttribute="leading" id="gOg-vn-sjc"/>
+                                                <constraint firstItem="4vV-nC-ARm" firstAttribute="leading" secondItem="0QV-62-fV6" secondAttribute="trailing" constant="5" id="l5L-fm-8hy"/>
+                                                <constraint firstItem="4vV-nC-ARm" firstAttribute="top" secondItem="C4w-Lc-m5P" secondAttribute="top" id="p4W-rt-3Xr"/>
+                                                <constraint firstAttribute="bottom" secondItem="C4w-Lc-m5P" secondAttribute="bottom" multiplier="2:1" constant="10" id="uWE-dH-gk6"/>
+                                                <constraint firstItem="tbQ-BZ-9L9" firstAttribute="centerY" secondItem="C6t-OX-7HB" secondAttribute="centerY" id="uZO-Jh-vYr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="locationIconImageView" destination="tbQ-BZ-9L9" id="Nsr-so-H6w"/>
+                                            <outlet property="locationLabel" destination="0QV-62-fV6" id="uGb-OO-FLY"/>
+                                            <outlet property="locationNameLabel" destination="C4w-Lc-m5P" id="kKa-mM-Ar8"/>
+                                            <outlet property="selectedButton" destination="4vV-nC-ARm" id="hj2-P2-Hdd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3nd-Bc-8W3" id="h9L-KE-2Jh"/>
+                                    <outlet property="delegate" destination="3nd-Bc-8W3" id="Xho-g3-XkU"/>
+                                </connections>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oaA-C4-1Vk" firstAttribute="top" secondItem="RYT-Pf-6Vb" secondAttribute="bottom" constant="20" id="4WR-HD-9Wk"/>
+                            <constraint firstItem="RYT-Pf-6Vb" firstAttribute="top" secondItem="va4-TK-VqT" secondAttribute="bottom" constant="10" id="8Dn-8e-jyo"/>
+                            <constraint firstItem="oaA-C4-1Vk" firstAttribute="top" secondItem="RYT-Pf-6Vb" secondAttribute="bottom" constant="10" id="DOb-Gs-vAf"/>
                             <constraint firstItem="FkM-jg-296" firstAttribute="top" secondItem="oaA-C4-1Vk" secondAttribute="bottom" id="EQk-xz-TVG"/>
-                            <constraint firstAttribute="trailing" secondItem="RYT-Pf-6Vb" secondAttribute="trailing" constant="10" id="GU1-zo-0Qd"/>
+                            <constraint firstItem="RYT-Pf-6Vb" firstAttribute="leading" secondItem="JIX-ch-WQk" secondAttribute="leading" constant="10" id="Fg6-r3-UVT"/>
                             <constraint firstAttribute="trailing" secondItem="oaA-C4-1Vk" secondAttribute="trailing" id="IY3-N3-t5t"/>
-                            <constraint firstItem="RYT-Pf-6Vb" firstAttribute="leading" secondItem="JIX-ch-WQk" secondAttribute="leading" constant="10" id="kwo-e1-dl1"/>
+                            <constraint firstAttribute="trailing" secondItem="RYT-Pf-6Vb" secondAttribute="trailing" constant="10" id="JYq-HW-waX"/>
                             <constraint firstItem="oaA-C4-1Vk" firstAttribute="leading" secondItem="JIX-ch-WQk" secondAttribute="leading" id="oSf-7j-FLC"/>
-                            <constraint firstItem="RYT-Pf-6Vb" firstAttribute="top" secondItem="JIX-ch-WQk" secondAttribute="top" constant="5" id="rLr-Qm-0hl"/>
                         </constraints>
                     </view>
                     <connections>
@@ -860,10 +880,7 @@
                                     <constraint firstAttribute="height" constant="40" id="RFx-o9-KB9"/>
                                     <constraint firstAttribute="width" constant="40" id="U2T-hW-2dw"/>
                                 </constraints>
-                                <state key="normal" image="ico_search"/>
-                                <connections>
-                                    <action selector="tappedSearchLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZHH-mH-Pgj"/>
-                                </connections>
+                                <state key="normal" image="button:IGi-cb-GhH:image"/>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I2Y-ue-wS3">
                                 <rect key="frame" x="190" y="20" width="130" height="180"/>
@@ -1487,6 +1504,79 @@
     </scenes>
     <resources>
         <image name="background" width="372" height="696"/>
+        <image name="button:IGi-cb-GhH:image" width="18" height="18">
+            <mutableData key="keyedArchiveRepresentation">
+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
+cHBsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALZGVzYwAAAQgA
+AABvZHNjbQAAAXgAAAWcY3BydAAABxQAAAA4d3RwdAAAB0wAAAAUclhZWgAAB2AAAAAUZ1hZWgAAB3QA
+AAAUYlhZWgAAB4gAAAAUclRSQwAAB5wAAAAOY2hhZAAAB6wAAAAsYlRSQwAAB5wAAAAOZ1RSQwAAB5wA
+AAAOZGVzYwAAAAAAAAAUR2VuZXJpYyBSR0IgUHJvZmlsZQAAAAAAAAAAAAAAFEdlbmVyaWMgUkdCIFBy
+b2ZpbGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG1sdWMA
+AAAAAAAAHwAAAAxza1NLAAAAKAAAAYRkYURLAAAALgAAAaxjYUVTAAAAJAAAAdp2aVZOAAAAJAAAAf5w
+dEJSAAAAJgAAAiJ1a1VBAAAAKgAAAkhmckZVAAAAKAAAAnJodUhVAAAAKAAAApp6aFRXAAAAFgAAAsJu
+Yk5PAAAAJgAAAthjc0NaAAAAIgAAAv5oZUlMAAAAHgAAAyBpdElUAAAAKAAAAz5yb1JPAAAAJAAAA2Zk
+ZURFAAAALAAAA4prb0tSAAAAFgAAA7ZzdlNFAAAAJgAAAth6aENOAAAAFgAAA8xqYUpQAAAAGgAAA+Jl
+bEdSAAAAIgAAA/xwdFBPAAAAJgAABB5ubE5MAAAAKAAABERlc0VTAAAAJgAABB50aFRIAAAAJAAABGx0
+clRSAAAAIgAABJBmaUZJAAAAKAAABLJockhSAAAAKAAABNpwbFBMAAAALAAABQJydVJVAAAAIgAABS5h
+ckVHAAAAJgAABVBlblVTAAAAJgAABXYAVgFhAGUAbwBiAGUAYwBuAP0AIABSAEcAQgAgAHAAcgBvAGYA
+aQBsAEcAZQBuAGUAcgBlAGwAIABSAEcAQgAtAGIAZQBzAGsAcgBpAHYAZQBsAHMAZQBQAGUAcgBmAGkA
+bAAgAFIARwBCACAAZwBlAG4A6AByAGkAYwBDHqUAdQAgAGgA7ABuAGgAIABSAEcAQgAgAEMAaAB1AG4A
+ZwBQAGUAcgBmAGkAbAAgAFIARwBCACAARwBlAG4A6QByAGkAYwBvBBcEMAQzBDAEOwRMBD0EOAQ5ACAE
+PwRABD4ERAQwBDkEOwAgAFIARwBCAFAAcgBvAGYAaQBsACAAZwDpAG4A6QByAGkAcQB1AGUAIABSAFYA
+QgDBAGwAdABhAGwA4QBuAG8AcwAgAFIARwBCACAAcAByAG8AZgBpAGyQGnUoACAAUgBHAEIAIIJyX2lj
+z4/wAEcAZQBuAGUAcgBpAHMAawAgAFIARwBCAC0AcAByAG8AZgBpAGwATwBiAGUAYwBuAP0AIABSAEcA
+QgAgAHAAcgBvAGYAaQBsBeQF6AXVBeQF2QXcACAAUgBHAEIAIAXbBdwF3AXZAFAAcgBvAGYAaQBsAG8A
+IABSAEcAQgAgAGcAZQBuAGUAcgBpAGMAbwBQAHIAbwBmAGkAbAAgAFIARwBCACAAZwBlAG4AZQByAGkA
+YwBBAGwAbABnAGUAbQBlAGkAbgBlAHMAIABSAEcAQgAtAFAAcgBvAGYAaQBsx3y8GAAgAFIARwBCACDV
+BLhc0wzHfGZukBoAIABSAEcAQgAgY8+P8GWHTvZOAIIsACAAUgBHAEIAIDDXMO0w1TChMKQw6wOTA7UD
+vQO5A7oDzAAgA8ADwQO/A8YDrwO7ACAAUgBHAEIAUABlAHIAZgBpAGwAIABSAEcAQgAgAGcAZQBuAOkA
+cgBpAGMAbwBBAGwAZwBlAG0AZQBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBlAGwOQg4bDiMORA4fDiUO
+TAAgAFIARwBCACAOFw4xDkgOJw5EDhsARwBlAG4AZQBsACAAUgBHAEIAIABQAHIAbwBmAGkAbABpAFkA
+bABlAGkAbgBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBpAGwAaQBHAGUAbgBlAHIAaQENAGsAaQAgAFIA
+RwBCACAAcAByAG8AZgBpAGwAVQBuAGkAdwBlAHIAcwBhAGwAbgB5ACAAcAByAG8AZgBpAGwAIABSAEcA
+QgQeBDEESQQ4BDkAIAQ/BEAEPgREBDgEOwRMACAAUgBHAEIGRQZEBkEAIAYqBjkGMQZKBkEAIABSAEcA
+QgAgBicGRAY5BicGRQBHAGUAbgBlAHIAaQBjACAAUgBHAEIAIABQAHIAbwBmAGkAbABldGV4dAAAAABD
+b3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRzIHJlc2VydmVkLgBYWVogAAAAAAAA81IA
+AQAAAAEWz1hZWiAAAAAAAAB0TQAAPe4AAAPQWFlaIAAAAAAAAFp1AACscwAAFzRYWVogAAAAAAAAKBoA
+ABWfAAC4NmN1cnYAAAAAAAAAAQHNAABzZjMyAAAAAAABDEIAAAXe///zJgAAB5IAAP2R///7ov///aMA
+AAPcAADAbNIlJicoWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU0JpdG1hcEltYWdlUmVwoycpKlpOU0lt
+YWdlUmVwWE5TT2JqZWN00iUmLC1XTlNBcnJheaIsKtIlJi8wXk5TTXV0YWJsZUFycmF5oy8sKtMyMwo0
+NTZXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgAzSJSY4OVdOU0NvbG9yojgq0iUmOzxXTlNJbWFn
+ZaI7Kl8QD05TS2V5ZWRBcmNoaXZlctE/QFRyb290gAEACAARABoAIwAtADIANwBGAEwAVwBeAGUAcgB5
+AIEAgwCFAIoAjACOAJcAnACnAKkAqwCtALIAtQC3ALkAuwC9AMIA2QDbAN0Ojw6UDp8OqA67Dr8Oyg7T
+DtgO4A7jDugO9w77DwIPCg8XDxwPHg8gDyUPLQ8wDzUPPQ9AD1IPVQ9aAAAAAAAAAgEAAAAAAAAAQQAA
+AAAAAAAAAAAAAAAAD1w
+</mutableData>
+        </image>
         <image name="check_off" width="22" height="22"/>
         <image name="check_on" width="22" height="22"/>
         <image name="hidePassword" width="35" height="35"/>
@@ -1495,10 +1585,9 @@
         <image name="ico_close" width="16" height="16"/>
         <image name="ico_search" width="18" height="18"/>
         <image name="icon_close" width="30" height="30"/>
-        <image name="locationMarker" width="35" height="35"/>
         <image name="logo-1" width="150" height="150"/>
         <image name="normal" width="40" height="40"/>
-        <image name="save" width="40" height="39"/>
+        <image name="save" width="30" height="30"/>
         <image name="shareLocation" width="30" height="30"/>
         <image name="showPassword" width="35" height="35"/>
     </resources>

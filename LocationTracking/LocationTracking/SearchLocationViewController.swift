@@ -8,13 +8,16 @@
 
 import UIKit
 
-class SearchLocationViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchLocationViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, SearchLocationDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchLocationTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     
+    var locationArray = [LocationModel]()
+    var selectedLocationArray = [LocationModel]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initLayout()
@@ -34,7 +37,46 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
         searchView.setupBorder()
     }
 
+    func getLocationList() -> [String] {
+        let currentLocationArray = DatabaseManager.getAllLocationList(context: nil)
+        var array = [String]()
+
+        if currentLocationArray!.count > 0 {
+            for location in currentLocationArray! {
+                array.append(String(describing: location.id!))
+            }
+        }
+        return array
+    }
+    
+    //MARK: - Action
     @IBAction func tappedSearchLocation(_ sender: UIButton) {
+        if (searchLocationTextField.text?.characters.count)! == 0 {
+            view.makeToast("Please input location name to search.", duration: 2.0, position: .center)
+            return
+        }
+        
+        if (searchLocationTextField.text?.characters.count)! > 0 {
+            self.showHUD()
+            if (searchLocationTextField.text?.characters.count)! > 0 {
+                app_delegate.firebaseObject.searchLocation(searchString: searchLocationTextField.text!, onCompletionHandler: {(array) in
+                    self.locationArray.removeAll()
+                    let locationIdList = self.getListContactId()
+                    
+                    if array.count > 0 {
+                        for locationModel in array as [LocationModel] {
+                            if !((locationIdList?.contains(locationModel.id)))! {
+                                self.locationArray.append(locationModel)
+                            }
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        self.hideHUD()
+                    }
+                })
+            }
+        }
     }
     
     //Tapped to back
@@ -42,10 +84,34 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
         self.navigationController?.popViewController(animated: true)
     }
     
+    override func tappedRightBarButton(sender: UIButton) {
+        if selectedLocationArray.count > 0 {
+            self.showHUD()
+            var count = 0
+            for location in selectedLocationArray {
+                app_delegate.firebaseObject.createNewLocationToId(id: location.id, latitude: location.latitude, longitude: location.longitude, name: location.name)
+                DatabaseManager.updateLocationList(id: location.id, name: location.name , latitude: location.latitude, longitude: location.longitude, onCompletionHandler: {
+                    count += 1
+                    if count == self.selectedLocationArray.count {
+                        self.tableView.reloadData()
+                        self.hideHUD()
+                    }
+                })
+            }
+        } else {
+            view.makeToast("Please choose a location from the list.", duration: 2.0, position: .center)
+        }
+    }
+    
     //MARK: - TextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.tappedSearchLocation(searchButton)
         return true
+    }
+    
+    //MARK: - Cell Delegate
+    func SaveLocation(indexPath: IndexPath) {
+        selectedLocationArray.append(locationArray[indexPath.row])
     }
     
     //MARK: - UITableView Delegate,Datasource
@@ -58,11 +124,15 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return locationArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchContactTableViewCell") as! SearchContactTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchLocationTableViewCell") as! SearchLocationTableViewCell
+        
+        cell.delegate = self
+        cell.indexPath = indexPath
+        cell.setupCell(location: locationArray[indexPath.row])
         return cell
     }
 }

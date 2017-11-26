@@ -382,19 +382,28 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
+        //Hide menu view
         menuView.isHidden = true
-        addNewLocationView.isHidden = false
-        view.bringSubview(toFront: addNewLocationView)
         
-        //Show my location
-        let profile = DatabaseManager.getProfile()
-        newLocation = CLLocationCoordinate2DMake((profile?.latitude)!, (profile?.longitude)!)
-        self.setupNewLocation(newLocation: newLocation!)
-    }
-    
-    @IBAction func tappedSearchLocation(_ sender: UIButton) {
-        let searchLocationViewController = main_storyboard.instantiateViewController(withIdentifier: "SearchLocationViewController") as! SearchLocationViewController
-        self.navigationController?.pushViewController(searchLocationViewController, animated: true)
+        //Show action sheet
+        self.showActionSheet(titleArray: ["Add new location","Search to add new location"], onTapped: {title in
+            if title == "Add new location" {
+                //Show view to add new location
+                self.addNewLocationView.isHidden = false
+                self.view.bringSubview(toFront: self.addNewLocationView)
+                
+                //Show my location
+                let profile = DatabaseManager.getProfile()
+                self.newLocation = CLLocationCoordinate2DMake((profile?.latitude)!, (profile?.longitude)!)
+                self.setupNewLocation(newLocation: self.newLocation!)
+                
+            } else if title == "Search to add new location" {
+                //Go to search location screen
+                let searchLocationViewController = main_storyboard.instantiateViewController(withIdentifier: "SearchLocationViewController") as! SearchLocationViewController
+                self.navigationController?.pushViewController(searchLocationViewController, animated: true)
+            }
+        })
+
     }
     
     @IBAction func tappedSaveNewLocation(_ sender: UIButton) {

@@ -110,7 +110,7 @@ class FirebaseAction: NSObject {
     }
     
     //MARK: - Create new location
-    func createNewLocation(latitude: Double, longitude: Double, name: String) -> String {
+    func createNewLocation(latitude: Double, longitude: Double, name: String) {
         let profile = DatabaseManager.getProfile()
         if profile?.id != nil {
             //comform to contact id
@@ -120,9 +120,17 @@ class FirebaseAction: NSObject {
             let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
             resultRef.child("locationList").childByAutoId().setValue(userInfoDictionary)
             ref.child("locationList").childByAutoId().setValue(userInfoDictionary)
-            return resultRef.child("locationList").key
         }
-        return ""
+    }
+    
+    //MARK: - Create new location
+    func createNewLocationToId(id: String, latitude: Double, longitude: Double, name: String) {
+        //comform to contact id
+        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        resultRef = ref.child(id)
+        //comform to waiting share property
+        let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
+        resultRef.child("locationList").child(id).setValue(userInfoDictionary)
     }
     
     func getProfile(onCompletionHandler: @escaping () -> ()) {
@@ -433,6 +441,26 @@ class FirebaseAction: NSObject {
                 print(child)
             }
             completionHandler(array)
+        })
+    }
+    
+    func searchLocation(searchString: String, onCompletionHandler: @escaping ([LocationModel]) -> ()) {
+        ref.child("locationList").queryOrdered(byChild: "name").queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}").observe(.value, with: { snapshot in
+            var array = [LocationModel]()
+            let snapDic = snapshot.value as? [String:Any]
+            guard snapDic != nil else {
+                onCompletionHandler(array)
+                return
+            }
+            for child in snapDic! {
+                var allDict = child.value as? [String:Any]
+                allDict?["id"] = child.key
+                let locationModel = LocationModel()
+                locationModel.initLocationModel(dict: allDict!)
+                array.append(locationModel)
+                print(child)
+            }
+            onCompletionHandler(array)
         })
     }
     
