@@ -25,6 +25,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     override func viewWillAppear(_ animated: Bool) {
         self.refreshContactData()
         self.referentCurrentContact()
+        
+        self.navigationController!.view.layer.removeAllAnimations()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,6 +37,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - Init Object
     func initView() {
+        segmented.selectedSegmentIndex = currentIndex
         tableView.isEditing = true
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
@@ -184,6 +188,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         }
         
         self.displayMarker(indexPath: indexPath)
+        self.tappedLeftBarButton(sender: UIButton())
     }
     
     //MARK: - Marker
@@ -218,6 +223,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                 mapViewController.updateMarker()
             }
     }
+    
     //MARK: - ContactTableViewCell Delegate
     func requestLocation(contact: Contact) {
         self .showHUD()

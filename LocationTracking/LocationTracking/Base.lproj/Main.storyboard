@@ -816,6 +816,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="RYT-Pf-6Vb" firstAttribute="top" secondItem="va4-TK-VqT" secondAttribute="bottom" constant="10" id="8Dn-8e-jyo"/>
                             <constraint firstItem="oaA-C4-1Vk" firstAttribute="top" secondItem="RYT-Pf-6Vb" secondAttribute="bottom" constant="10" id="DOb-Gs-vAf"/>
@@ -943,7 +944,7 @@
                                             <constraint firstAttribute="height" constant="35" id="Z6G-21-rTK"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="save"/>
+                                        <state key="normal" image="done"/>
                                         <connections>
                                             <action selector="tappedSaveNewLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qLD-95-0O1"/>
                                         </connections>
@@ -1105,7 +1106,7 @@
                                     <action selector="tappedChangeSegmentedIndex:" destination="dlV-Ev-EFu" eventType="valueChanged" id="oMR-p1-v8L"/>
                                 </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rii-NB-TQb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rii-NB-TQb">
                                 <rect key="frame" x="0.0" y="85" width="320" height="483"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1579,6 +1580,7 @@ AAAAAAAAAAAAAAAAD1w
         </image>
         <image name="check_off" width="22" height="22"/>
         <image name="check_on" width="22" height="22"/>
+        <image name="done" width="35" height="35"/>
         <image name="hidePassword" width="35" height="35"/>
         <image name="hybrid" width="40" height="40"/>
         <image name="ic_avar" width="75" height="75"/>
@@ -1587,7 +1589,6 @@ AAAAAAAAAAAAAAAAD1w
         <image name="icon_close" width="30" height="30"/>
         <image name="logo-1" width="150" height="150"/>
         <image name="normal" width="40" height="40"/>
-        <image name="save" width="30" height="30"/>
         <image name="shareLocation" width="30" height="30"/>
         <image name="showPassword" width="35" height="35"/>
     </resources>

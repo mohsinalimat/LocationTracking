@@ -118,19 +118,21 @@ class FirebaseAction: NSObject {
             resultRef = ref.child((profile?.id)!)
             //comform to waiting share property
             let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
-            resultRef.child("locationList").childByAutoId().setValue(userInfoDictionary)
-            ref.child("locationList").childByAutoId().setValue(userInfoDictionary)
+            let id = Common.getCurrentTimeStamp()
+            
+            resultRef.child("locationList").child(id).setValue(userInfoDictionary)
+            ref.child("locationList").child(id).setValue(userInfoDictionary)
         }
     }
     
     //MARK: - Create new location
-    func createNewLocationToId(id: String, latitude: Double, longitude: Double, name: String) {
+    func createNewLocationToId(contactId: String, locationId: String, latitude: Double, longitude: Double, name: String) {
         //comform to contact id
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-        resultRef = ref.child(id)
+        resultRef = ref.child(contactId)
         //comform to waiting share property
         let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
-        resultRef.child("locationList").child(id).setValue(userInfoDictionary)
+        resultRef.child("locationList").child(locationId).setValue(userInfoDictionary)
     }
     
     func getProfile(onCompletionHandler: @escaping () -> ()) {

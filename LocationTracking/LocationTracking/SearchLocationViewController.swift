@@ -37,7 +37,7 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
         searchView.setupBorder()
     }
 
-    func getLocationList() -> [String] {
+    func getLocationList() -> [String]? {
         let currentLocationArray = DatabaseManager.getAllLocationList(context: nil)
         var array = [String]()
 
@@ -61,11 +61,11 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
             if (searchLocationTextField.text?.characters.count)! > 0 {
                 app_delegate.firebaseObject.searchLocation(searchString: searchLocationTextField.text!, onCompletionHandler: {(array) in
                     self.locationArray.removeAll()
-                    let locationIdList = self.getListContactId()
+                    let locationIdList = self.getLocationList()
                     
                     if array.count > 0 {
                         for locationModel in array as [LocationModel] {
-                            if !((locationIdList?.contains(locationModel.id)))! {
+                            if !(locationIdList!.contains(locationModel.id)) {
                                 self.locationArray.append(locationModel)
                             }
                         }
@@ -88,13 +88,25 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
         if selectedLocationArray.count > 0 {
             self.showHUD()
             var count = 0
+            let profile = DatabaseManager.getProfile()
+            
             for location in selectedLocationArray {
-                app_delegate.firebaseObject.createNewLocationToId(id: location.id, latitude: location.latitude, longitude: location.longitude, name: location.name)
+                app_delegate.firebaseObject.createNewLocationToId(contactId: (profile?.id)!, locationId: location.id, latitude: location.latitude, longitude: location.longitude, name: location.name)
                 DatabaseManager.updateLocationList(id: location.id, name: location.name , latitude: location.latitude, longitude: location.longitude, onCompletionHandler: {
                     count += 1
                     if count == self.selectedLocationArray.count {
-                        self.tableView.reloadData()
                         self.hideHUD()
+                        //Index of Map View Controller
+                        let index = (self.navigationController?.viewControllers.count)! - 2
+                        let mapViewController = self.navigationController?.viewControllers[index]
+                        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+                        contactViewController.currentIndex = 3
+                        
+                        //Remove SearchLocationViewController
+                        self.navigationController?.viewControllers.removeLast()
+                        
+                        //Push to contactViewController from MapViewController
+                        mapViewController?.navigationController?.pushViewController(contactViewController, animated: true)
                     }
                 })
             }
