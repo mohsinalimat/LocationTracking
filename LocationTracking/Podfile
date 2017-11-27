@@ -24,4 +24,6 @@ target 'LocationTracking' do
 	pod 'FBSDKShareKit’
 	pod 'GoogleSignIn'
 	pod 'TwitterKit'
+	pod 'Alamofire'
+	pod 'SwiftyJSON'
 end
