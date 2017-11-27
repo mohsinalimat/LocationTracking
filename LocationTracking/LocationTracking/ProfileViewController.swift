@@ -27,6 +27,12 @@ class ProfileViewController: OriginalViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: - Init Data
+    func initData() {
+        let profile = DatabaseManager.getProfile()
+        nameTextField.text = profile?.name
+    }
+    
     //MARK: Action
     override func tappedLeftBarButton(sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -44,7 +50,7 @@ class ProfileViewController: OriginalViewController {
     }
     
     @IBAction func tappedUpdateProfile(_ sender: UIButton) {
-        if (oldPasswordTextField.text?.characters.count)! > 0 && (newPasswordTextField.text?.characters.count)! > 0 {
+        if (oldPasswordTextField.text?.count)! > 0 && (newPasswordTextField.text?.count)! > 0 {
             //Show loading 
             self.showHUD()
 

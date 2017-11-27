@@ -445,7 +445,7 @@ is meant to be preserved, you should use setValue:andPriority: instead.
  * The FIRDatabaseQuery instance returned by queryEqualToValue: will respond to events at nodes with a value equal
  * to the supplied argument.
  *
- * @param value The value that the data returned by this FIRDatabaseQuery will have
+ * @param value The value that the data returned by this FIRDatabaseQuery will ha+ve
  * @return A FIRDatabaseQuery instance, limited to data with the supplied value.
  */
 - (FIRDatabaseQuery *)queryEqualToValue:(nullable id)value;
