@@ -21,6 +21,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var addContactButton: UIButton!
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var searchLocationButton: UIButton!
     @IBOutlet weak var addNewLocationView: UIView!
     @IBOutlet weak var normalTypeButton: UIButton!
     @IBOutlet weak var hybridTypeButton: UIButton!
@@ -134,6 +135,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         view.bringSubview(toFront: allowUpdateLocationSwitch)
         view.bringSubview(toFront: normalTypeButton)
         view.bringSubview(toFront: hybridTypeButton)
+        view.bringSubview(toFront: searchLocationButton)
     }
     
     //Init Location
@@ -380,14 +382,28 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
+        //Hide menu view
         menuView.isHidden = true
-        addNewLocationView.isHidden = false
-        view.bringSubview(toFront: addNewLocationView)
         
-        //Show my location
-        let profile = DatabaseManager.getProfile()
-        newLocation = CLLocationCoordinate2DMake((profile?.latitude)!, (profile?.longitude)!)
-        self.setupNewLocation(newLocation: newLocation!)
+        //Show action sheet
+        self.showActionSheet(titleArray: ["Add new location","Search to add new location"], onTapped: {title in
+            if title == "Add new location" {
+                //Show view to add new location
+                self.addNewLocationView.isHidden = false
+                self.view.bringSubview(toFront: self.addNewLocationView)
+                
+                //Show my location
+                let profile = DatabaseManager.getProfile()
+                self.newLocation = CLLocationCoordinate2DMake((profile?.latitude)!, (profile?.longitude)!)
+                self.setupNewLocation(newLocation: self.newLocation!)
+                
+            } else if title == "Search to add new location" {
+                //Go to search location screen
+                let searchLocationViewController = main_storyboard.instantiateViewController(withIdentifier: "SearchLocationViewController") as! SearchLocationViewController
+                self.navigationController?.pushViewController(searchLocationViewController, animated: true)
+            }
+        })
+
     }
     
     @IBAction func tappedSaveNewLocation(_ sender: UIButton) {
@@ -413,7 +429,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {
-        newLatitudeLabel.text = String(format: "Lat: %.4f", newLocation.latitude)
-        newLongitudeLabel.text = String(format: "Long: %.4f", newLocation.longitude)
+        newLatitudeLabel.text = String(format: "Lat: %.10f", newLocation.latitude)
+        newLongitudeLabel.text = String(format: "Long: %.10f", newLocation.longitude)
     }
 }

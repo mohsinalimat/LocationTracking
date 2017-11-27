@@ -45,9 +45,9 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
         passwordView.customBorder(radius: 3,color: .clear)
         signInButton.customBorder(radius: 3,color: .clear)
         signUpButton.customBorder(radius: 3,color: .clear)
-        signInFacebookButton.customBorder(radius: 3,color: .clear)
-        signInGoogleButton.customBorder(radius: 3,color: .clear)
-        signInTwitterButton.customBorder(radius: 3,color: .clear)
+//        signInFacebookButton.customBorder(radius: 3,color: .clear)
+//        signInGoogleButton.customBorder(radius: 3,color: .clear)
+//        signInTwitterButton.customBorder(radius: 3,color: .clear)
     }
     
     func resetTextField() {

@@ -76,7 +76,7 @@ class DatabaseManager: NSObject {
         } else {
             currentContext = context
         }
-        let location = LocationEntity.mr_findAll(in: currentContext!)
+        let location = LocationEntity.mr_findAllSorted(by: "id", ascending: false, in: currentContext!)
         return location != nil ? location as! [LocationEntity]! : []
     }
     

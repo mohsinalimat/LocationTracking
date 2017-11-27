@@ -32,8 +32,11 @@
 		84E871BC1EF9932200F9B817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E871BB1EF9932200F9B817 /* Assets.xcassets */; };
 		84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */; };
 		D22585BB1F7F6388004437E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22585BA1F7F6388004437E7 /* ProfileViewController.swift */; };
+		D235E1981FCAA66400A87DAF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E1971FCAA66400A87DAF /* LocationModel.swift */; };
+		D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */; };
 		D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269F6541FA789BF00BEDD9A /* TextField.swift */; };
 		D29ECA801FACC03B000801C3 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */; };
+		D2E763951FC8865F0099C737 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */; };
 		EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379C1F6FC85600F7901D /* CommentViewController.swift */; };
 		EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */; };
 		EA3FA1201F946EE400073FBA /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */; };
@@ -72,10 +75,13 @@
 		84E871BB1EF9932200F9B817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F652C31EF1A6DB0009E3A5 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		D22585BA1F7F6388004437E7 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D235E1971FCAA66400A87DAF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewCell.swift; sourceTree = "<group>"; };
 		D269F6541FA789BF00BEDD9A /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D29ECA7C1FACBEBA000801C3 /* LocationTrackingV4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV4.xcdatamodel; sourceTree = "<group>"; };
 		D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
 		D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV3.xcdatamodel; sourceTree = "<group>"; };
+		D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		EA0E379C1F6FC85600F7901D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		EA3FA11F1F946EE400073FBA /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				843C03ED1EFADE4C00BE605B /* ContactModel.swift */,
+				D235E1971FCAA66400A87DAF /* LocationModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,7 +194,9 @@
 		8485A2061EE8694800D79A61 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				D235E1991FCAB03E00A87DAF /* Cell */,
 				8485A2071EE869C800D79A61 /* MapViewController.swift */,
+				D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -255,6 +264,14 @@
 				D22585BA1F7F6388004437E7 /* ProfileViewController.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		D235E1991FCAB03E00A87DAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		D261FF181F934420008643CA /* CustomView */ = {
@@ -472,6 +489,7 @@
 				84F652C41EF1A6DB0009E3A5 /* ContactViewController.swift in Sources */,
 				EA460EE71FCBC8770002D9BF /* APIManager.swift in Sources */,
 				84E871BA1EF98B6000F9B817 /* AddContactViewController.swift in Sources */,
+				D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */,
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
 				EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */,
@@ -480,6 +498,7 @@
 				D22585BB1F7F6388004437E7 /* ProfileViewController.swift in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
 				843C03EE1EFADE4C00BE605B /* ContactModel.swift in Sources */,
+				D235E1981FCAA66400A87DAF /* LocationModel.swift in Sources */,
 				843C03F01EFAE1B500BE605B /* SearchContactTableViewCell.swift in Sources */,
 				841781631EF58F3F0020858C /* SignInViewController.swift in Sources */,
 				84DC8A731EE07C6000B6F9A0 /* LocationTracking.xcdatamodeld in Sources */,
@@ -492,6 +511,7 @@
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
 				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,
+				D2E763951FC8865F0099C737 /* SearchLocationViewController.swift in Sources */,
 				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
 				84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */,
 			);

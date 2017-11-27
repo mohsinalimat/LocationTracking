@@ -25,6 +25,9 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     override func viewWillAppear(_ animated: Bool) {
         self.refreshContactData()
         self.referentCurrentContact()
+        
+        self.navigationController!.view.layer.removeAllAnimations()
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,6 +37,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - Init Object
     func initView() {
+        segmented.selectedSegmentIndex = currentIndex
         tableView.isEditing = true
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
@@ -42,7 +46,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func initRightBarView() {
-        let rightBarView = UIView.init(frame: CGRect.init(x: 0, y: 2, width: 100, height: 40))
+        let rightBarView = UIView.init(frame: CGRect.init(x: 0, y: 2, width: 80, height: 35))
         
         //Init fresh Button
         let refreshButton = UIButton.init(type: UIButtonType.custom)
@@ -56,7 +60,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         let profileButton = UIButton.init(type: UIButtonType.custom)
         profileButton.isExclusiveTouch = true
         profileButton.addTarget(self, action: #selector(tappedEditProfile), for: UIControlEvents.touchUpInside)
-        profileButton.frame = CGRect.init(x: 60, y: 0, width: refreshButton.frame.size.height, height: refreshButton.frame.size.height)
+        profileButton.frame = CGRect.init(x: 45, y: 0, width: refreshButton.frame.size.height, height: refreshButton.frame.size.height)
         profileButton.setImage(UIImage.init(named: "profile"), for: UIControlState.normal)
         rightBarView.addSubview(profileButton)
         
@@ -127,16 +131,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         transition.subtype = kCATransitionFromRight
         self.navigationController!.view.layer.add(transition, forKey: kCATransition)
         self.navigationController?.popViewController(animated: true)
-        
-//        self.showAlert(title: "", message: "Do you want sign out?", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
-//            let result = app_delegate.firebaseObject.signOut()
-//            if result {
-//                //Sign out is success
-//                self.navigationController?.popToRootViewController(animated: true)
-//            } else {
-//                //Sign out is failure
-//            }
-//        })
     }
     
     //Refresh contact from server
@@ -194,6 +188,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         }
         
         self.displayMarker(indexPath: indexPath)
+        self.tappedLeftBarButton(sender: UIButton())
     }
     
     //MARK: - Marker
@@ -228,6 +223,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
                 mapViewController.updateMarker()
             }
     }
+    
     //MARK: - ContactTableViewCell Delegate
     func requestLocation(contact: Contact) {
         self .showHUD()
