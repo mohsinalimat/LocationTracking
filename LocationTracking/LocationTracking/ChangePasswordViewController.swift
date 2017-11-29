@@ -17,6 +17,7 @@ class ChangePasswordViewController: OriginalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
+        self.addTitleNavigation(title: "Change password")
     }
 
     override func didReceiveMemoryWarning() {
