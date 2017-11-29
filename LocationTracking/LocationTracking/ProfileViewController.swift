@@ -10,19 +10,24 @@ import UIKit
 
 class ProfileViewController: OriginalViewController {
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var oldPasswordTextField: UITextField!
-    @IBOutlet weak var newPasswordTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
+        self.addRightBarItem(imageName: "", title: "Edit")
         self.addTitleNavigation(title: "Profile")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.initData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -30,12 +35,38 @@ class ProfileViewController: OriginalViewController {
     //MARK: - Init Data
     func initData() {
         let profile = DatabaseManager.getProfile()
+        let password = UserDefaults.standard.object(forKey: "password") as? String
+
         nameTextField.text = profile?.name
+        emailTextField.text = profile?.email
+        passwordTextField.text = password!
+
+        //disable textfield
+        nameTextField.isEnabled = false
+        emailTextField.isEnabled = false
+        passwordTextField.isEnabled = false
     }
     
     //MARK: Action
     override func tappedLeftBarButton(sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func tappedRightBarButton(sender: UIButton) {
+        if !nameTextField.isEnabled {
+            //Allow edit profile
+            self.addRightBarItem(imageName: "", title: "Save")
+            
+            nameTextField.isEnabled = true
+            emailTextField.isEnabled = true
+            passwordTextField.isEnabled = true
+        } else {
+            //Change profile
+            self.showHUD()
+            self.updateProfile {
+                self.hideHUD()
+            }
+        }
     }
     
     @IBAction func tappedUpdateAvatar(_ sender: UIButton) {
@@ -49,29 +80,47 @@ class ProfileViewController: OriginalViewController {
         })
     }
     
-    @IBAction func tappedUpdateProfile(_ sender: UIButton) {
-        if (oldPasswordTextField.text?.count)! > 0 && (newPasswordTextField.text?.count)! > 0 {
-            //Show loading 
-            self.showHUD()
-
-            app_delegate.firebaseObject.changePassword(oldPassword: oldPasswordTextField.text!, newPassword: newPasswordTextField.text!, onCompletionHandler: {error in
-                //Hide loading
-                self.hideHUD()
+    @IBAction func tappedChangePassword(_ sender: UIButton) {
+        let changePasswordViewController = main_storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
+        self.navigationController?.pushViewController(changePasswordViewController, animated: true)
+    }
+    
+    @IBAction func tappedAbout(_ sender: UIButton) {
+        let aboutViewController = main_storyboard.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
+        self.navigationController?.pushViewController(aboutViewController, animated: true)
+    }
+    
+    //MARK: - Function
+    func updateProfile(onCompletionHandler: @escaping () -> ()) {
+        if (passwordTextField.text?.count)! > 0 {
+            if (emailTextField.text?.count)! > 0 {
+                //Chang email in firebase Authentication
+                app_delegate.firebaseObject.changeEmail(newEmail: emailTextField.text!, password: passwordTextField.text!, onCompletionHandler: {error in
+                    //Update email infirebase database
+                    app_delegate.firebaseObject.updateEmail(email: self.emailTextField.text!)
+                    
+                    //Update user name
+                    self.updateUserName()
+                    
+                    //Call back after update successfull
+                    onCompletionHandler()
+                })
+            } else {
+                //Only change user name
+                self.updateUserName()
                 
-                if error != nil {
-                    self.showAlert(title: "", message: (error?.localizedDescription)!, cancelTitle: "", okTitle: "OK", onOKAction: {_ in
-                        
-                    })
-                } else {
-                    self.view.makeToast("Changed password successfully", duration: 1.5, position: .center)
-                    self.oldPasswordTextField.text = ""
-                    self.newPasswordTextField.text = ""
-                }
-            })
+                //Call back after update successfull
+                onCompletionHandler()                
+            }
         } else {
-            self.showAlert(title: "Error", message: "Please input old password and new password", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+            self.showAlert(title: "Error", message: "Please check again information", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
             })
         }
-
+    }
+    
+    func updateUserName() {
+        if (nameTextField.text?.count)! > 0 {
+            app_delegate.firebaseObject.updateName(name: nameTextField.text!)
+        }
     }
 }

@@ -33,6 +33,21 @@ class FirebaseAction: NSObject {
         ref.child(id).child("currentLocations").setValue(["latitude":lat,"longitude":long])
     }
     
+    func updateName(name: String) {
+        let profile = DatabaseManager.getProfile()
+        ref.child((profile?.id)!).child("name").setValue(name)
+        
+        DatabaseManager.updateProfile(id: (profile?.id)!, email: (profile?.email)!,name: name, latitude: (profile?.latitude)!, longitude: (profile?.longitude)!,onCompletionHandler: {_ in
+            //Present after updated profile
+            app_delegate.profile = DatabaseManager.getProfile()
+        })
+    }
+    
+    func updateEmail(email: String) {
+        let profile = DatabaseManager.getProfile()
+        ref.child((profile?.id)!).child("email").setValue(email)
+    }
+    
     //MARK: - Create new group
     func createGroup(name: String, array: [String]) -> String {
         let profile = DatabaseManager.getProfile()
@@ -545,9 +560,41 @@ class FirebaseAction: NSObject {
                         onCompletionHandler(error!)
                     } else {
                         // Password updated.
+                        UserDefaults.standard.set(newPassword, forKey: "password")
+                        UserDefaults.standard.synchronize()
+                        
                         onCompletionHandler(nil)
                     }
                 }
+            }
+        }
+    }
+    
+    func changeEmail(newEmail: String, password: String, onCompletionHandler: @escaping (Error?) -> ()) {
+        let user = FIRAuth.auth()?.currentUser
+        let profile = DatabaseManager.getProfile()! as Profile
+        
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: profile.email!, password: password)
+        user?.reauthenticate(with: credential) { reAuthError in
+            if reAuthError != nil {
+                onCompletionHandler(reAuthError!)
+                // An error happened.
+            } else {
+                user?.updateEmail(newEmail, completion: { error in
+                    if error != nil {
+                        onCompletionHandler(error!)
+                    } else {
+                        // Password updated.
+                        UserDefaults.standard.set(newEmail, forKey: "userName")
+                        UserDefaults.standard.synchronize()
+                        
+                        DatabaseManager.updateProfile(id: (profile.id)!, email: newEmail,name: profile.name!, latitude: profile.latitude, longitude: profile.longitude,onCompletionHandler: {_ in
+                            //Present after updated profile
+                            app_delegate.profile = DatabaseManager.getProfile()
+                            onCompletionHandler(nil)
+                        })
+                    }
+                })
             }
         }
     }

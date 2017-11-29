@@ -36,6 +36,7 @@
 		D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */; };
 		D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269F6541FA789BF00BEDD9A /* TextField.swift */; };
 		D29ECA801FACC03B000801C3 /* LocationTracking.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */; };
+		D2BC4DDC1FCF186800062538 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC4DDB1FCF186800062538 /* ChangePasswordViewController.swift */; };
 		D2E763951FC8865F0099C737 /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */; };
 		EA0E379D1F6FC85600F7901D /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379C1F6FC85600F7901D /* CommentViewController.swift */; };
 		EA0E379F1F6FD01E00F7901D /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA0E379E1F6FD01E00F7901D /* AboutViewController.swift */; };
@@ -80,6 +81,7 @@
 		D269F6541FA789BF00BEDD9A /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D29ECA7C1FACBEBA000801C3 /* LocationTrackingV4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV4.xcdatamodel; sourceTree = "<group>"; };
 		D29ECA7F1FACC03B000801C3 /* LocationTracking.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = LocationTracking.xcmappingmodel; sourceTree = "<group>"; };
+		D2BC4DDB1FCF186800062538 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		D2C1BF741F921DD0004573F2 /* LocationTrackingV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationTrackingV3.xcdatamodel; sourceTree = "<group>"; };
 		D2E763941FC8865F0099C737 /* SearchLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		EA0E379C1F6FC85600F7901D /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				D22585BA1F7F6388004437E7 /* ProfileViewController.swift */,
+				D2BC4DDB1FCF186800062538 /* ChangePasswordViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				EA3FA1231F9479AB00073FBA /* CreateNewGroupTableViewCell.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,
 				D22585BB1F7F6388004437E7 /* ProfileViewController.swift in Sources */,
+				D2BC4DDC1FCF186800062538 /* ChangePasswordViewController.swift in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
 				843C03EE1EFADE4C00BE605B /* ContactModel.swift in Sources */,
 				D235E1981FCAA66400A87DAF /* LocationModel.swift in Sources */,
