@@ -381,25 +381,12 @@
                                     <outlet property="delegate" destination="z2X-BR-AA2" id="lys-fP-7RO"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLt-yf-4t8">
-                                <rect key="frame" x="5" y="20" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="Get-Mn-uHZ"/>
-                                    <constraint firstAttribute="height" constant="45" id="RQS-9T-Y4O"/>
-                                </constraints>
-                                <state key="normal" image="ico_close"/>
-                                <connections>
-                                    <action selector="tappedDismiss:" destination="z2X-BR-AA2" eventType="touchUpInside" id="e4q-OG-tDb"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="21d-LA-jUc" firstAttribute="top" secondItem="Xip-fN-K3x" secondAttribute="bottom" id="8sG-vC-KPo"/>
-                            <constraint firstItem="SLt-yf-4t8" firstAttribute="top" secondItem="Cxp-Oo-Jgg" secondAttribute="bottom" id="Qtm-12-fxW"/>
                             <constraint firstAttribute="trailing" secondItem="a0R-fZ-PaU" secondAttribute="trailing" id="SW4-aR-dH2"/>
                             <constraint firstItem="Xip-fN-K3x" firstAttribute="leading" secondItem="BOQ-tk-ZsW" secondAttribute="leading" id="W0n-bn-dtV"/>
-                            <constraint firstItem="SLt-yf-4t8" firstAttribute="leading" secondItem="BOQ-tk-ZsW" secondAttribute="leading" constant="5" id="Xx8-rR-AiK"/>
                             <constraint firstItem="a0R-fZ-PaU" firstAttribute="leading" secondItem="BOQ-tk-ZsW" secondAttribute="leading" id="fiX-sm-VUM"/>
                             <constraint firstItem="a0R-fZ-PaU" firstAttribute="top" secondItem="BOQ-tk-ZsW" secondAttribute="top" id="hzK-IC-c7z"/>
                             <constraint firstItem="21d-LA-jUc" firstAttribute="top" secondItem="a0R-fZ-PaU" secondAttribute="bottom" id="kKT-ur-Ydz"/>
@@ -447,7 +434,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhR-bD-Wtf">
                                                 <rect key="frame" x="20" y="200" width="280" height="0.0"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -462,7 +449,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="z2X-BR-AA2" kind="show" id="9l7-vt-lGC"/>
+                                                    <action selector="tappedSendComment:" destination="JDH-QB-9yJ" eventType="touchUpInside" id="wTm-jI-EXZ"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -497,23 +484,10 @@
                                     <outlet property="delegate" destination="JDH-QB-9yJ" id="L0P-HO-xwf"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdv-YS-NfS">
-                                <rect key="frame" x="5" y="25" width="45" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="45" id="CWc-V7-lcN"/>
-                                    <constraint firstAttribute="height" constant="45" id="Qda-ep-na7"/>
-                                </constraints>
-                                <state key="normal" image="ico_close"/>
-                                <connections>
-                                    <action selector="tappedDismiss:" destination="JDH-QB-9yJ" eventType="touchUpInside" id="mV1-an-fg5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bdv-YS-NfS" firstAttribute="top" secondItem="Rds-pX-JvC" secondAttribute="bottom" constant="5" id="AFr-Im-50c"/>
                             <constraint firstItem="VL2-B9-VfR" firstAttribute="top" secondItem="qUE-ki-UZ3" secondAttribute="top" id="DwS-Ui-TrF"/>
-                            <constraint firstItem="bdv-YS-NfS" firstAttribute="leading" secondItem="qUE-ki-UZ3" secondAttribute="leading" constant="5" id="FaM-LY-jRD"/>
                             <constraint firstAttribute="trailing" secondItem="VL2-B9-VfR" secondAttribute="trailing" id="fjT-XU-2qO"/>
                             <constraint firstItem="VL2-B9-VfR" firstAttribute="leading" secondItem="qUE-ki-UZ3" secondAttribute="leading" id="o98-TL-fR4"/>
                             <constraint firstAttribute="bottom" secondItem="VL2-B9-VfR" secondAttribute="bottom" id="sRR-jK-Y3w"/>

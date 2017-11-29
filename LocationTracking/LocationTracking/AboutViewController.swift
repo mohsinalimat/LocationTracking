@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutViewController: UIViewController {
+class AboutViewController: OriginalViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var aboutLabel: UILabel!
@@ -17,11 +17,7 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commentButton.customBorder(radius: 3,color: .clear)
-        
-        //Display about from USerDefault
-        let about = UserDefaults.standard.object(forKey: "about")
-        self.aboutLabel.text = about as! String?
-        self.scrollView.contentSize = CGSize.init(width: self.scrollView.contentSize.width, height: self.aboutLabel.frame.size.height + commentButton.frame.height + 20)
+        initView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -38,13 +34,24 @@ class AboutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func initView() {
+        //Init navigation bar
+        self.addLeftBarItem(imageName: "ico_back", title: "")
+        self.addTitleNavigation(title: "About")
+        
+        //Display about from USerDefault
+        let about = UserDefaults.standard.object(forKey: "about")
+        self.aboutLabel.text = about as! String?
+        self.scrollView.contentSize = CGSize.init(width: self.scrollView.contentSize.width, height: self.aboutLabel.frame.size.height + commentButton.frame.height + 20)
+    }
+    
     //MARK: - IBAction
     @IBAction func tappedSendComment(_ sender: UIButton) {
-        
+        let commentViewController = main_storyboard.instantiateViewController(withIdentifier: "CommentViewController") as! CommentViewController
+        self.navigationController?.pushViewController(commentViewController, animated: true)
     }
     
-    @IBAction func tappedDismiss(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+    override func tappedLeftBarButton(sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
-    
 }

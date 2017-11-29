@@ -37,6 +37,8 @@ class CommentViewController: OriginalViewController {
     
     //MARK: - Set up UI
     func setupUI() {
+        self.addLeftBarItem(imageName: "ico_back", title: "")
+        self.addTitleNavigation(title: "Comment")
         sendButton.customBorder(radius: 3,color: .clear)
         commentTextView.customBorder(radius: 4,color: .white)
     }
@@ -83,8 +85,8 @@ class CommentViewController: OriginalViewController {
             })
         }
     }
-    
-    @IBAction func tappedDismiss(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+
+    override func tappedLeftBarButton(sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
