@@ -38,7 +38,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     //MARK: - Init Object
     func initView() {
         segmented.selectedSegmentIndex = currentIndex
-        tableView.isEditing = true
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
         self.addLeftBarItem(imageName: "icon_close", title: "")
@@ -148,6 +147,11 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
+    //Hide keyboard
+    func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
     //MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmented.selectedSegmentIndex == kGroupListIndex {
@@ -157,10 +161,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             return locationArray.count
         }
         return contactArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return false
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -190,6 +190,15 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self.displayMarker(indexPath: indexPath)
         self.tappedLeftBarButton(sender: UIButton())
     }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if (editingStyle == .delete) {
+//        }
+//    }
+//    
+//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+//        return .delete
+//    }
     
     //MARK: - Marker
     func displayMarker(indexPath: IndexPath) {

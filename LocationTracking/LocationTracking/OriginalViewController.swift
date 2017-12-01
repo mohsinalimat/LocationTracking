@@ -134,6 +134,7 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         if cancelTitle.characters.count > 0 {
             alert.addAction(UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.cancel, handler: nil))
         }
+        
         if okTitle.characters.count > 0 {
             alert.addAction(UIAlertAction(title: okTitle, style: UIAlertActionStyle.default, handler: {_ in
                 onOKAction()

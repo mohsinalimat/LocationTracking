@@ -22,6 +22,10 @@ class ProfileViewController: OriginalViewController {
         self.addLeftBarItem(imageName: "ico_back", title: "")
         self.addRightBarItem(imageName: "", title: "Edit")
         self.addTitleNavigation(title: "Profile")
+        
+        //Add tapGesture to View
+        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -88,6 +92,11 @@ class ProfileViewController: OriginalViewController {
     @IBAction func tappedAbout(_ sender: UIButton) {
         let aboutViewController = main_storyboard.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
         self.navigationController?.pushViewController(aboutViewController, animated: true)
+    }
+    
+    //Hide keyboard
+    func hideKeyboard() {
+        view.endEditing(true)
     }
     
     //MARK: - Function

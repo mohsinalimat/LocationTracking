@@ -75,7 +75,7 @@ class CommentViewController: OriginalViewController {
     @IBAction func tappedSendComment(_ sender: UIButton) {
         if commentTextView.text.characters.count > 0 {
             app_delegate.firebaseObject.sendCommentAboutApp(comment: commentTextView.text, onCompletetionHandler: {_ in
-                self.showAlert(title: "", message: "Thank you for your comment", cancelTitle: "OK", okTitle: "", onOKAction: {_ in
+                self.showAlert(title: "", message: "Thank you for your comment", cancelTitle: "", okTitle: "OK", onOKAction: {_ in
                     self.commentTextView.text = ""
                 })
             })

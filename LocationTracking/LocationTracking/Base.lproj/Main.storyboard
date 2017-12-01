@@ -1178,11 +1178,13 @@
                         <outlet property="addNewLocationView" destination="W9Q-Ev-QUF" id="IPk-kl-Wbc"/>
                         <outlet property="allowUpdateLocationSwitch" destination="EN0-G1-lHx" id="KCk-Wx-g5b"/>
                         <outlet property="bannerView" destination="7J1-bL-8zx" id="dOX-e0-by1"/>
+                        <outlet property="closeAddNewLocationButton" destination="LVc-um-tRL" id="RW7-F9-a4l"/>
                         <outlet property="hybridTypeButton" destination="jeo-fS-Ex7" id="qIu-bW-zx0"/>
                         <outlet property="menuView" destination="I2Y-ue-wS3" id="nl3-Ms-rvH"/>
                         <outlet property="newLatitudeLabel" destination="0C5-Nc-5Yx" id="Rfk-Ze-yVy"/>
                         <outlet property="newLongitudeLabel" destination="5HG-xz-d5B" id="yYr-iv-Tbr"/>
                         <outlet property="normalTypeButton" destination="Ewk-ug-haI" id="vqK-5T-NmE"/>
+                        <outlet property="saveNewLocationButton" destination="EDV-Hy-euQ" id="8Xy-qF-aQH"/>
                         <outlet property="searchLocationButton" destination="IGi-cb-GhH" id="P34-E9-jsH"/>
                     </connections>
                 </viewController>

@@ -18,6 +18,10 @@ class ChangePasswordViewController: OriginalViewController {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
         self.addTitleNavigation(title: "Change password")
+        
+        //Add tapGesture to View
+        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,5 +59,10 @@ class ChangePasswordViewController: OriginalViewController {
             self.showAlert(title: "Error", message: "Please check again old password, new password and confirm password", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
             })
         }
+    }
+    
+    //Hide keyboard
+    func hideKeyboard() {
+        view.endEditing(true)
     }
 }

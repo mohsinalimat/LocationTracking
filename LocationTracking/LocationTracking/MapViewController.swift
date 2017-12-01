@@ -21,6 +21,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var addContactButton: UIButton!
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var addLocationButton: UIButton!
+    @IBOutlet weak var saveNewLocationButton: UIButton!
+    @IBOutlet weak var closeAddNewLocationButton: UIButton!
     @IBOutlet weak var searchLocationButton: UIButton!
     @IBOutlet weak var addNewLocationView: UIView!
     @IBOutlet weak var normalTypeButton: UIButton!
@@ -92,6 +94,12 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     //MARK: - Init View
     
     func setupLayer() {
+        addContactButton.isExclusiveTouch = true
+        addLocationButton.isExclusiveTouch = true
+        addGroupButton.isExclusiveTouch = true
+        saveNewLocationButton.isExclusiveTouch = true
+        closeAddNewLocationButton.isExclusiveTouch = true
+        
         addContactButton.customBorder(radius: addContactButton.frame.height/2, color: .white)
         addGroupButton.customBorder(radius: addGroupButton.frame.height/2, color: .white)
         addLocationButton.customBorder(radius: addLocationButton.frame.height/2, color: .white)
@@ -339,6 +347,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     //MARK: - Action
     override func tappedLeftBarButton(sender: UIButton) {
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
+
         let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
 
         //Init CATransition
