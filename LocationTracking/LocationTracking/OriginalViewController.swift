@@ -30,10 +30,10 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         leftButton.isExclusiveTouch = true
         leftButton.frame = CGRect.init(x: 0, y: 0, width: 30, height: 30)
         leftButton.addTarget(self, action: #selector(tappedLeftBarButton(sender:)), for: UIControlEvents.touchUpInside)
-        if title.characters.count > 0 {
+        if title.count > 0 {
             leftButton.setTitle(title, for: UIControlState.normal)
         }
-        if imageName.characters.count > 0 {
+        if imageName.count > 0 {
             leftButton.setImage(UIImage.init(named: imageName), for: UIControlState.normal)
         }
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: leftButton)
