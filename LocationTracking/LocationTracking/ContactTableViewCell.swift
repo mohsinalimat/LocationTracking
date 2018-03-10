@@ -93,7 +93,7 @@ class ContactTableViewCell: UITableViewCell {
         let profile = DatabaseManager.getProfile()
         let ownerString = "Owner:"
         let memberArray = group.member?.split(separator: ",")
-        let memberCount = "Members: " + String(describing: (memberArray?.count)! + 1) + "\n"
+        let memberCount = "Members: " + String(describing: (memberArray?.count)!) + "\n"
         
         if group.owner == profile?.id {
             currentLocationLabel.text = memberCount + ownerString + (profile?.name!)!

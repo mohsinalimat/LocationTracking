@@ -49,50 +49,89 @@ class FirebaseAction: NSObject {
     }
     
     //MARK: - Create new group
-    func createGroup(name: String, array: [String]) -> String {
+    func createGroup(name: String, array: [String], onCompletionHandler: @escaping ()-> ()) {
         let profile = DatabaseManager.getProfile()
         if profile?.id != nil {
             //comform to contact id
-            var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-            resultRef = ref.child((profile?.id)!)
             //comform to waiting share property
             let userInfoDictionary = ["name": name, "member":array, "owner": profile?.id!] as [String : Any]
-            resultRef.child("group").childByAutoId().setValue(userInfoDictionary)
-            return resultRef.child("group").key
+            
+            //create group
+            let group = ref.child("group").childByAutoId()
+            group.setValue(userInfoDictionary)
+            
+            var count = 0
+            //referent to user
+            for user in array {
+                ref.child(user).child("group").observe(.value, with: { (snapshot) in
+                    count += 1
+                    var snapDict = snapshot.value as? [String] ?? []
+                    if !snapDict.contains(group.key) {
+                        snapDict.append(group.key)
+                    }
+                    self.ref.child(user).child("group").setValue(snapDict)
+                    if count == array.count {
+                        onCompletionHandler()
+                    }
+                })
+            }
         }
-        return ""
     }
     
-    func updateGroup(snapArray: [String: Any], onCompletionHandler: @escaping ()-> ()) {
+    func updateGroup(value: [String: Any], groupId: String, onCompletionHandler: @escaping ()-> ()) {
         //Get groups list
-        for dict in snapArray {
-            let value = dict.value as! [String: Any]
-            var member = ""
-            var name = ""
-            var owner = ""
-            if value["member"] != nil {
-                let memberArray = value["member"] as! [String]
-                member = memberArray.joined(separator:",")
+        var member = ""
+        var name = ""
+        var owner = ""
+        if value["member"] != nil {
+            let memberArray = value["member"] as! [String]
+            member = memberArray.joined(separator:",")
+        }
+        if value["name"] != nil {
+            name = value["name"] as! String
+        }
+        if value["owner"] != nil {
+            owner = value["owner"] as! String
+        }
+        DatabaseManager.updateGroup(id: groupId, name: name, member: member, owner: owner, onCompletion: {_ in
+            onCompletionHandler()
+        })
+    }
+    
+    func getGroup(groupIdArray: [String], onCompletionHandler: @escaping ()-> ()) {
+        var group = [Any]()
+        
+        if groupIdArray.count == 0 {
+            onCompletionHandler()
+        } else {
+            for groupId in groupIdArray {
+                ref.child("group").child(groupId).observe(.value, with: { (snapshot) in
+                    let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
+                    self.updateGroup(value: snapDict, groupId: groupId, onCompletionHandler: {_ in
+                        group.append(snapDict)
+                        if groupIdArray.count == group.count {
+                            onCompletionHandler()
+                        }
+                    })
+                })
             }
-            if value["name"] != nil {
-                name = value["name"] as! String
-            }
-            if value["owner"] != nil {
-                owner = value["owner"] as! String
-            }
-            DatabaseManager.updateGroup(id: dict.key, name: name, member: member, owner: owner, onCompletion: {_ in
-                if dict.key == Array(snapArray.keys).last {
-                    onCompletionHandler()
-                }
-            })
         }
     }
     
-    func deleteGroup(groupId: String, onCompletionHandler: @escaping () -> ()) {
+    func deleteGroup(group: GroupEntity, onCompletionHandler: @escaping () -> ()) {
         let profile = DatabaseManager.getProfile()
-        ref.child((profile?.id!)!).child("group").child(groupId).removeValue()
+        var memberArray = group.member?.components(separatedBy: ",")
         
-        DatabaseManager.deleteGroup(grouptId: groupId, onCompletion: {_ in
+        if (memberArray?.contains((profile?.id)!))! {
+            memberArray = memberArray?.filter{$0 != profile?.id!}
+            ref.child("group").child(group.id!).child("member").setValue(memberArray)
+
+            if memberArray?.count == 0 {
+                ref.child((profile?.id)!).child("group").child(group.id!).removeValue()
+            }
+        }
+        
+        DatabaseManager.deleteGroup(grouptId: group.id!, onCompletion: {_ in
             onCompletionHandler()
         })
     }
@@ -533,22 +572,6 @@ class FirebaseAction: NSObject {
         })
         ref.child(atUserId).child("contact").child(contactId).removeValue()
         ref.child(contactId).child("contact").child(atUserId).removeValue()
-        
-        let groupArray = DatabaseManager.getAllGroup(context: nil)
-        
-        for group in groupArray! {
-            var memberArray = group.member?.components(separatedBy: ",")
-            if (memberArray?.contains(contactId))! {
-                let profile = DatabaseManager.getProfile()
-                memberArray = memberArray?.filter{$0 != contactId}
-
-                if memberArray?.count == 0 {
-                    ref.child((profile?.id)!).child("group").child(group.id!).removeValue()
-                } else {
-                    ref.child((profile?.id)!).child("group").child(group.id!).child("member").setValue(memberArray)
-                }
-            }
-        }
     }
     
     func requestLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
@@ -666,28 +689,29 @@ class FirebaseAction: NSObject {
                         
                     }
                     //New Account which hasn't yet any contact in contacts list
-                    if newProfile.contact.keys.count == 0 && newProfile.group.keys.count == 0 {
-                        completionHandler(true)
-                        return
-                    }
-                    
-                    var count = 0
-                    //update contact information in contacts list
-                    for dict in newProfile.contact {
-                        self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,onCompletionHandler: {_ in
-                            count += 1
-                            if count == newProfile.contact.count {
-                                //Update group list
-                                if newProfile.group.count != 0 {
-                                    self.updateGroup(snapArray: newProfile.group, onCompletionHandler: {
+                    if newProfile.contact.keys.count == 0 {
+                        if newProfile.group.count == 0 {
+                            completionHandler(true)
+                        } else {
+                            self.getGroup(groupIdArray: newProfile.group, onCompletionHandler: {
+                                completionHandler(true)
+                            })
+                        }
+                    } else {
+                        var count = 0
+                        //update contact information in contacts list
+                        for dict in newProfile.contact {
+                            self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,onCompletionHandler: {_ in
+                                count += 1
+                                if newProfile.group.count == 0 {
+                                    completionHandler(true)
+                                } else {
+                                    self.getGroup(groupIdArray: newProfile.group, onCompletionHandler: {
                                         completionHandler(true)
                                     })
-                                } else {
-                                    completionHandler(true)
                                 }
-                            }
-                            
-                        })
+                            })
+                        }
                     }
                 })
             } else {
@@ -761,8 +785,8 @@ class FirebaseAction: NSObject {
                                 if dict.key == Array(contactDictionary.keys).last {
                                     //Update group list
                                     if snapDict["group"] != nil {
-                                        let groupArray = snapDict["group"] as! [String: Any]
-                                        self.updateGroup(snapArray: groupArray, onCompletionHandler: {
+                                        let groupArray = snapDict["group"] as! [String]
+                                        self.getGroup(groupIdArray: groupArray, onCompletionHandler: {
                                             onCompletionHandler()
                                         })
                                     } else {

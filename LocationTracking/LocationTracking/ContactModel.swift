@@ -16,7 +16,7 @@ class ContactModel: NSObject {
     var id: String = ""
     var isShare : Int = 0
     var contact = [String: Any]()
-    var group = [String: Any]()
+    var group = [String]()
     var locationList = [String: Any]()
     
     func initContactModel(dict: [String:Any]) {
@@ -52,7 +52,7 @@ class ContactModel: NSObject {
             contact = dict["contact"] as! [String: Any]
         }
         if dict["group"] != nil {
-            group = dict["group"] as! [String: Any]
+            group = dict["group"] as! [String]
         }
         if dict["locationList"] != nil {
             locationList = dict["locationList"] as! [String: Any]

@@ -18,6 +18,8 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         super.viewDidLoad()
         self.setupNavigationBar()
         self.setupTableView()
+        let profile = DatabaseManager.getProfile()
+        selectedContactArray.append((profile?.id)!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,9 +44,12 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     override func tappedRightBarButton(sender: UIButton) {
         self.showHUD()
         if (groupNameTextField.text?.count)! > 0 {
-            app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: selectedContactArray)
-            self.hideHUD()
-            self.navigationController?.popViewController(animated: true)
+            
+            app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: selectedContactArray, onCompletionHandler: {
+                self.hideHUD()
+                self.navigationController?.popViewController(animated: true)
+            })
+            
         } else {
             self.hideHUD()
             view.makeToast("Please input group name.", duration: 2.0, position: .center)

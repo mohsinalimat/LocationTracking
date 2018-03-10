@@ -295,7 +295,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         switch segmented.selectedSegmentIndex {
         case kGroupListIndex:
             let group = groupArray[indexPath.row]
-            app_delegate.firebaseObject.deleteGroup(groupId: group.id!, onCompletionHandler: {_ in
+            app_delegate.firebaseObject.deleteGroup(group: group, onCompletionHandler: {_ in
                 self.refreshContactData()
                 self.hideHUD()
             })
