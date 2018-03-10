@@ -71,23 +71,23 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         switch segmented.selectedSegmentIndex {
         case kContactListIndex:
             contactArray.removeAll()
-            contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
+            contactArray = DatabaseManager.getContactSharedLocation(contetxt: nil)
             print("contat count: " + String(contactArray.count))
             tableView.reloadData()
             break
         case kGroupListIndex:
             groupArray.removeAll()
-            groupArray += DatabaseManager.getAllGroup(context: nil)
+            groupArray = DatabaseManager.getAllGroup(context: nil)
             tableView.reloadData()
             break
         case kLocationListIndex:
             locationArray.removeAll()
-            locationArray += DatabaseManager.getAllLocationList(context: nil)
+            locationArray = DatabaseManager.getAllLocationList(context: nil)
             tableView.reloadData()
             break
         default:
             contactArray.removeAll()
-            contactArray += DatabaseManager.getRequestToMeContact(contetxt: nil)
+            contactArray = DatabaseManager.getRequestToMeContact(contetxt: nil)
             tableView.reloadData()
             break
         }

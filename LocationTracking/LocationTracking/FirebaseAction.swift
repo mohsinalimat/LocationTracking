@@ -656,6 +656,7 @@ class FirebaseAction: NSObject {
                 self.isAllowUpdateLocation = false
                 let snapDict = snapshot.value as? [String: AnyObject] ?? [:]
                 
+                LocationEntity.mr_truncateAll()
                 for dict in snapDict {
                     let location = dict.value as? [String: Any]
                     let name = location!["name"] as! String

@@ -63,7 +63,8 @@ class Common: NSObject {
     
     static func getCurrentTimeStamp() -> String{
         let date = Date()
-        let timestamp = Int(date.timeIntervalSince1970 * 1000) 
-        return String(timestamp)
+        let timestamp = date.timeIntervalSince1970 * 1000
+        let timeString = String.init(format: "%.0f", timestamp)
+        return timeString
     }
 }

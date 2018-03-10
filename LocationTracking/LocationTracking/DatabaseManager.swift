@@ -41,7 +41,7 @@ class DatabaseManager: NSObject {
             return
         }
         MagicalRecord.save({(localContext : NSManagedObjectContext) in
-            var location = self.getLocation(id: id, contetxt: localContext)
+            var location = self.getLocation(lat: latitude, long: longitude, contetxt: localContext)
             if location == nil {
                 location = LocationEntity.mr_createEntity(in: localContext)
                 app_delegate.savingLocationIdArray.append(id)
@@ -78,6 +78,22 @@ class DatabaseManager: NSObject {
         }
         let location = LocationEntity.mr_findAllSorted(by: "id", ascending: false, in: currentContext!)
         return location != nil ? location as! [LocationEntity]! : []
+    }
+    
+    static func getLocation(lat : Double ,long: Double, contetxt: NSManagedObjectContext?) -> LocationEntity? {
+        let currentContext: NSManagedObjectContext?
+        
+        if contetxt == nil {
+            currentContext = NSManagedObjectContext.mr_default()
+        } else {
+            currentContext = contetxt
+        }
+        let predicate1 = NSPredicate(format: "latitude = %d",lat)
+        let predicate2 = NSPredicate(format: "longitude = %d",long)
+        let predicate = NSCompoundPredicate.init(andPredicateWithSubpredicates: [predicate1,predicate2])
+
+        let location = LocationEntity.mr_findFirst(with: predicate, in: currentContext!)
+        return location != nil ? location : nil
     }
     
     static func deleteLocation(locationId: String, onCompletion:@escaping () -> ()) {
