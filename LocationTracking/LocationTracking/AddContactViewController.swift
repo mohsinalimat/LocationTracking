@@ -40,7 +40,7 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
         if (searchTextField.text?.count)! > 0 {
             self.showHUD()
             if (searchTextField.text?.count)! > 0 {
-                app_delegate.firebaseObject.searchContactWithEmail(email: nil,name: searchTextField.text!, completionHandler: {(array) in
+                app_delegate.firebaseObject.searchContactWithName(name: searchTextField.text!, completionHandler: {(array) in
                     self.contactArray.removeAll()
                     let contactIdList = self.getListContactId()
                     let profile = DatabaseManager.getProfile()

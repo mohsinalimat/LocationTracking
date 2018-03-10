@@ -51,14 +51,14 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
     
     //MARK: - Action
     @IBAction func tappedSearchLocation(_ sender: UIButton) {
-        if (searchLocationTextField.text?.characters.count)! == 0 {
+        if (searchLocationTextField.text?.count)! == 0 {
             view.makeToast("Please input location name to search.", duration: 2.0, position: .center)
             return
         }
         
-        if (searchLocationTextField.text?.characters.count)! > 0 {
+        if (searchLocationTextField.text?.count)! > 0 {
             self.showHUD()
-            if (searchLocationTextField.text?.characters.count)! > 0 {
+            if (searchLocationTextField.text?.count)! > 0 {
                 app_delegate.firebaseObject.searchLocation(searchString: searchLocationTextField.text!, onCompletionHandler: {(array) in
                     self.locationArray.removeAll()
                     let locationIdList = self.getLocationList()

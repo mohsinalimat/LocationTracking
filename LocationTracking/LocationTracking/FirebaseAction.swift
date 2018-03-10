@@ -430,19 +430,14 @@ class FirebaseAction: NSObject {
     
     //MARK: - Contact
     //Search contact to contact List
-    func searchContactWithEmail(email: String?, name: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
+    func searchContactWithEmail(email: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
         var searchString = ""
-        var childName = "email"
         
-        if email == nil && name != nil {
-            searchString = name!
-            childName = "name"
-        } else if email != nil && name == nil {
+        if email != nil {
             searchString = email!
-            childName = "email"
         }
         
-        ref.queryOrdered(byChild: childName).queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}").observe(.value, with: { snapshot in
+        ref.queryOrdered(byChild: "email").queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}").observe(.value, with: { snapshot in
             var array = [ContactModel]()
             let snapDic = snapshot.value as? [String:Any]
             guard snapDic != nil else {
@@ -461,8 +456,44 @@ class FirebaseAction: NSObject {
         })
     }
     
+    //Search contact to contact List
+    func searchContactWithName(name: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
+        var searchString = ""
+        
+        if name != nil {
+            searchString = name!
+        }
+        
+//        .queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}")
+        ref.queryOrdered(byChild: "name").observe(.value, with: { snapshot in
+            var array = [ContactModel]()
+            let snapDic = snapshot.value as? [String:Any]
+            guard snapDic != nil else {
+                completionHandler(array)
+                return
+            }
+            for child in snapDic! {
+                var allDict = child.value as? [String:Any]
+                allDict?["id"] = child.key
+                
+                var name = ""
+                if allDict?["name"] != nil {
+                    name = allDict?["name"] as! String
+                }
+                if name.contains(searchString) {
+                    let contactModel = ContactModel()
+                    contactModel.initContactModel(dict: allDict!)
+                    array.append(contactModel)
+                    print(child)
+                }
+            }
+            completionHandler(array)
+        })
+    }
+    
     func searchLocation(searchString: String, onCompletionHandler: @escaping ([LocationModel]) -> ()) {
-        ref.child("locationList").queryOrdered(byChild: "name").queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}").observe(.value, with: { snapshot in
+//        .queryOrdered(byChild: "name").queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}")
+        ref.child("locationList").observe(.value, with: { snapshot in
             var array = [LocationModel]()
             let snapDic = snapshot.value as? [String:Any]
             guard snapDic != nil else {
@@ -472,10 +503,13 @@ class FirebaseAction: NSObject {
             for child in snapDic! {
                 var allDict = child.value as? [String:Any]
                 allDict?["id"] = child.key
-                let locationModel = LocationModel()
-                locationModel.initLocationModel(dict: allDict!)
-                array.append(locationModel)
-                print(child)
+                let name = allDict?["name"] as! String
+                if name.contains(searchString) {
+                    let locationModel = LocationModel()
+                    locationModel.initLocationModel(dict: allDict!)
+                    array.append(locationModel)
+                    print(child)
+                }
             }
             onCompletionHandler(array)
         })
@@ -605,7 +639,7 @@ class FirebaseAction: NSObject {
     
     //MARK: - Refresh Data
     func refreshData(email: String, name: String?, completionHandler: @escaping (Bool) -> ()) {
-        self.searchContactWithEmail(email: email,name: nil, completionHandler: { array in
+        self.searchContactWithEmail(email: email, completionHandler: { array in
             if array.count > 0 {
                 let newProfile: ContactModel = array.first!
                 
