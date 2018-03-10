@@ -58,7 +58,7 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     func addTitleNavigation(title : String) {
         let titleLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: screen_width - 120, height: 44))
         titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
         titleLabel.text = title
@@ -131,11 +131,11 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
         // add the actions (buttons)
-        if cancelTitle.characters.count > 0 {
+        if cancelTitle.count > 0 {
             alert.addAction(UIAlertAction(title: cancelTitle, style: UIAlertActionStyle.cancel, handler: nil))
         }
         
-        if okTitle.characters.count > 0 {
+        if okTitle.count > 0 {
             alert.addAction(UIAlertAction(title: okTitle, style: UIAlertActionStyle.default, handler: {_ in
                 onOKAction()
             }))

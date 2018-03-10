@@ -77,7 +77,7 @@ class ProfileViewController: OriginalViewController {
     }
 
     @IBAction func tappedSignOut(_ sender: UIButton) {
-        self.showAlert(title: "", message: "Do you want sign out?", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+        self.showAlert(title: "Do you want sign out?", message: "", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
             app_delegate.firebaseObject.signOut()
             let rootViewController = self.navigationController?.viewControllers.first
             rootViewController?.dismiss(animated: true, completion: nil)

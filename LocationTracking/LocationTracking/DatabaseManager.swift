@@ -217,7 +217,7 @@ class DatabaseManager: NSObject {
         return contact != nil ? contact as! [Contact]! : []
     }
     
-    static func getContactSharedLocation(contetxt: NSManagedObjectContext?) -> [Contact]! {
+    static func getContactRequestedLocation(contetxt: NSManagedObjectContext?) -> [Contact]! {
         let currentContext: NSManagedObjectContext?
         let profile = DatabaseManager.getProfile()
 
@@ -230,6 +230,23 @@ class DatabaseManager: NSObject {
         let predicate2 = NSPredicate(format: "id != %@",(profile?.id)!)
         let filter = NSCompoundPredicate.init(andPredicateWithSubpredicates: [predicate1,predicate2])
 
+        let contact = Contact.mr_findAll(with: filter, in: currentContext!)
+        return contact != nil ? contact as! [Contact]! : []
+    }
+    
+    static func getContactSharedLocation(contetxt: NSManagedObjectContext?) -> [Contact]! {
+        let currentContext: NSManagedObjectContext?
+        let profile = DatabaseManager.getProfile()
+        
+        if contetxt == nil {
+            currentContext = NSManagedObjectContext.mr_default()
+        } else {
+            currentContext = contetxt
+        }
+        let predicate1 = NSPredicate(format: "isShare == %i",ShareStatus.kShared.rawValue)
+        let predicate2 = NSPredicate(format: "id != %@",(profile?.id)!)
+        let filter = NSCompoundPredicate.init(andPredicateWithSubpredicates: [predicate1,predicate2])
+        
         let contact = Contact.mr_findAll(with: filter, in: currentContext!)
         return contact != nil ? contact as! [Contact]! : []
     }

@@ -528,11 +528,27 @@ class FirebaseAction: NSObject {
     }
     
     func deleteContact(contactId: String, atUserId: String, onCompletionHandler: @escaping () -> ()) {
-        ref.child(atUserId).child("contact").child(contactId).removeValue()
-        ref.child(contactId).child("contact").child(atUserId).removeValue()
         DatabaseManager.deleteContact(contactId: contactId, onCompletion: {_ in
             onCompletionHandler()
         })
+        ref.child(atUserId).child("contact").child(contactId).removeValue()
+        ref.child(contactId).child("contact").child(atUserId).removeValue()
+        
+        let groupArray = DatabaseManager.getAllGroup(context: nil)
+        
+        for group in groupArray! {
+            var memberArray = group.member?.components(separatedBy: ",")
+            if (memberArray?.contains(contactId))! {
+                let profile = DatabaseManager.getProfile()
+                memberArray = memberArray?.filter{$0 != contactId}
+
+                if memberArray?.count == 0 {
+                    ref.child((profile?.id)!).child("group").child(group.id!).removeValue()
+                } else {
+                    ref.child((profile?.id)!).child("group").child(group.id!).child("member").setValue(memberArray)
+                }
+            }
+        }
     }
     
     func requestLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
@@ -728,7 +744,6 @@ class FirebaseAction: NSObject {
         }
         print(snapDict.description)
         if snapDict["email"] != nil {
-            print(snapDict["email"])
             let email = snapDict["email"] as! String
             let currentLocationDictionary = snapDict["currentLocations"] as! [String: Any]
             let name = snapDict["name"] as! String

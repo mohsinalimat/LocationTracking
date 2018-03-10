@@ -80,7 +80,7 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
     }
     
     @IBAction func tappedSignIn(_ sender: UIButton) {
-        if (emailTextField.text?.characters.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 {
+        if (emailTextField.text?.count)! > 0 && (passwordTextField.text?.count)! > 0 {
             self.showHUD()
             app_delegate.firebaseObject.signInWith(email: emailTextField.text!, name: nil, password: passwordTextField.text!, completionHandler: {(isSuccess) in
                 self.hideHUD()

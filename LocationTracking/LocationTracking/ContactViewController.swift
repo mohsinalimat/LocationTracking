@@ -71,7 +71,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         switch segmented.selectedSegmentIndex {
         case kContactListIndex:
             contactArray.removeAll()
-            contactArray = DatabaseManager.getContactSharedLocation(contetxt: nil)
+            contactArray = DatabaseManager.getContactRequestedLocation(contetxt: nil)
             print("contat count: " + String(contactArray.count))
             tableView.reloadData()
             break
@@ -191,6 +191,11 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         self.tappedLeftBarButton(sender: UIButton())
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.deleteCellAtIndexPath(indexPath: indexPath)
+        }
+    }
 //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 //        if (editingStyle == .delete) {
 //        }
@@ -280,7 +285,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             message = "Do you want to delete contact: " + contact.name!
             break
         }
-        self.showAlert(title: "", message: message, cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+        self.showAlert(title: message, message: "", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
             self.deleteObject(indexPath: indexPath)
         })
     }
