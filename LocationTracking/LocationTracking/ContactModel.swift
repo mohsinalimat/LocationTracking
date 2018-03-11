@@ -38,16 +38,7 @@ class ContactModel: NSObject {
                 self.latitude = locationDictionary["latitude"] as! Double
             }
         }
-        if dict["shared"] != nil {
-            let profile = DatabaseManager.getProfile()
-            let shareList = dict["shared"] as! String
-            
-            if shareList.contains((profile?.id)!) {
-                //This contact shared location with user
-                isShare = ShareStatus.kShared.rawValue
-                return
-            }
-        }
+
         if dict["contact"] != nil {
             contact = dict["contact"] as! [String: Any]
         }

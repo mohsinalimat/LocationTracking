@@ -50,9 +50,7 @@ class ChangePasswordViewController: OriginalViewController {
                 } else {
                     //Update password at Userdefault
                     self.view.makeToast("Changed password successfully", duration: 1.5, position: .center)
-                    self.oldPasswordTextfield.text = ""
-                    self.newPasswordTextField.text = ""
-                    self.confirmNewPasswordTextField.text = ""
+                    self.navigationController?.popViewController(animated: true)
                 }
             })
         } else {

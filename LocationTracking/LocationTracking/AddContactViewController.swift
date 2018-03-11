@@ -43,11 +43,10 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
                 app_delegate.firebaseObject.searchContactWithName(name: searchTextField.text!, completionHandler: {(array) in
                     self.contactArray.removeAll()
                     let contactIdList = self.getListContactId()
-                    let profile = DatabaseManager.getProfile()
                     
                     if array.count > 0 {
                         for contactModel in array as [ContactModel] {
-                            if !((contactIdList?.contains(contactModel.id)))! && profile?.id! != contactModel.id {
+                            if !((contactIdList?.contains(contactModel.id)))! && app_delegate.profile.id != contactModel.id {
                                 self.contactArray.append(contactModel)
                             }
                         }
@@ -64,9 +63,6 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     //Save contact into Favorite
     override func tappedRightBarButton(sender: UIButton) {
         if selectedContactArray.count > 0 {
-            self.showHUD()
-            DatabaseManager.saveContact(contactArray: selectedContactArray,onCompletion: { _ in
-                self.hideHUD()
             //Remove contacts that added to the list
                 for contact in self.selectedContactArray {
                     if let ix = self.contactArray.index(of: contact) {
@@ -74,7 +70,6 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
                     }
                 }
                 self.tableView.reloadData()
-            })
         } else {
             view.makeToast("Please choose a account from the list.", duration: 2.0, position: .center)
         }

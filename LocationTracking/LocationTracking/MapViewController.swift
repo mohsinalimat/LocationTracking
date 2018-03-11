@@ -36,8 +36,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 12.0
-    var currentContact: Contact?
-    var currentContactArray = [Contact]()
+    var currentContactArray = [ContactModel]()
     var marker: GMSMarker?
     var isAddLocation: Bool?
     var isAllowUpdateLocation: Bool?
@@ -65,17 +64,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         
         self.getCurrentLocation()
-        if currentContact == nil {
-            self.addTitleNavigation(title: "Location Tracking")
-        } else {
-            self.addTitleNavigation(title: (currentContact?.name)!)
-        }
+        self.addTitleNavigation(title: "Location Tracking")
+
         //Real time contact location
         self.referentCurrentContact()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        app_delegate.firebaseObject.removeObServerContact()
         menuView.isHidden = true
         view.endEditing(true)
     }
@@ -185,13 +180,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     // MARK: - Update Location
     //Update when contact changed location
     func referentCurrentContact() {
-        app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
-            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-            if visibleViewController is MapViewController {
-                let mapVC = visibleViewController as! MapViewController
-                mapVC.updateMarker()
-            }
-        })
+//        app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
+//            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
+//            if visibleViewController is MapViewController {
+//                let mapVC = visibleViewController as! MapViewController
+//                mapVC.updateMarker()
+//            }
+//        })
     }
 
     // MARK: - Init Interstitial
@@ -255,8 +250,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                     self.currentLocation = locations.last!
                     
                     //Update location
-                    guard let profile = app_delegate.profile else { return }
-                    app_delegate.firebaseObject.updateLocation(id:profile.id!, lat: self.currentLocation.coordinate.latitude, long:self.currentLocation.coordinate.longitude)
+                    app_delegate.firebaseObject.updateLocation(id:app_delegate.profile.id, lat: self.currentLocation.coordinate.latitude, long:self.currentLocation.coordinate.longitude)
                 }
                 
                 //Allow send location to server
@@ -347,18 +341,18 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     //MARK: - Action
     override func tappedLeftBarButton(sender: UIButton) {
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-
-        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-
-        //Init CATransition
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-        self.navigationController?.pushViewController(contactViewController, animated: true)
+//        self.navigationItem.leftBarButtonItem?.isEnabled = false
+//
+//        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+//
+//        //Init CATransition
+//        let transition:CATransition = CATransition()
+//        transition.duration = 0.5
+//        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+//        transition.type = kCATransitionPush
+//        transition.subtype = kCATransitionFromLeft
+//        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
+//        self.navigationController?.pushViewController(contactViewController, animated: true)
     }
     
     override func tappedRightBarButton(sender: UIButton) {
@@ -379,32 +373,32 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     @IBAction func tappedAddNewContact(_ sender: UIButton) {
         //Add new contact
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-        let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
-        self.navigationController?.pushViewController(addContactViewController, animated: true)
+//        self.navigationItem.leftBarButtonItem?.isEnabled = false
+//        let addContactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactViewController") as! AddContactViewController
+//        self.navigationController?.pushViewController(addContactViewController, animated: true)
     }
     
     @IBAction func tappedAddNewgroup(_ sender: UIButton) {
         //Add new contact
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-        let addGroupViewController = main_storyboard.instantiateViewController(withIdentifier: "CreateNewGroupViewController") as! CreateNewGroupViewController
-        self.navigationController?.pushViewController(addGroupViewController, animated: true)
+//        self.navigationItem.leftBarButtonItem?.isEnabled = false
+//        let addGroupViewController = main_storyboard.instantiateViewController(withIdentifier: "CreateNewGroupViewController") as! CreateNewGroupViewController
+//        self.navigationController?.pushViewController(addGroupViewController, animated: true)
     }
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
         //Hide menu view
-        menuView.isHidden = true
-        
-        //Show action sheet
+//        menuView.isHidden = true
+//        
+//        //Show action sheet
         self.showActionSheet(titleArray: ["Add new location","Search to add new location"], onTapped: {title in
             if title == "Add new location" {
                 //Show view to add new location
                 self.addNewLocationView.isHidden = false
+                self.menuView.isHidden = true
                 self.view.bringSubview(toFront: self.addNewLocationView)
                 
                 //Show my location
-                let profile = DatabaseManager.getProfile()
-                self.newLocation = CLLocationCoordinate2DMake((profile?.latitude)!, (profile?.longitude)!)
+                self.newLocation = CLLocationCoordinate2DMake(app_delegate.profile.latitude, app_delegate.profile.longitude)
                 self.setupNewLocation(newLocation: self.newLocation!)
                 
             } else if title == "Search to add new location" {

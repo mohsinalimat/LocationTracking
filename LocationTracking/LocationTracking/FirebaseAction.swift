@@ -19,121 +19,35 @@ import Social
 class FirebaseAction: NSObject {
     
     lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
-    var isAllowUpdateData       = true
-    var isAllowUpdateLocation   = true
-    var isAllowUpdateProfile    = true
-    var isAllowUpdateContact    = true
-
+    
     func initFirebase() {
         FIRApp.configure()
         FIRDatabase.database().reference()
     }
     
+    //MARK: - Get from firebase
+    func getContact(email: String, onCompletionHandler: @escaping ([String:Any]) -> ()) {
+        ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email + "\u{f8ff}").observe(.value, with: { snapshot in
+            let snapDic = snapshot.value as? [String:Any]
+            guard snapDic != nil else {
+                onCompletionHandler([String:Any]())
+                return
+            }
+            onCompletionHandler(snapDic!)
+        })
+    }
+    
+    //MARK: - Update to firebase
     func updateLocation(id: String, lat: Double, long: Double) {
         ref.child(id).child("currentLocations").setValue(["latitude":lat,"longitude":long])
     }
     
     func updateName(name: String) {
-        let profile = DatabaseManager.getProfile()
-        ref.child((profile?.id)!).child("name").setValue(name)
-        
-        DatabaseManager.updateProfile(id: (profile?.id)!, email: (profile?.email)!,name: name, latitude: (profile?.latitude)!, longitude: (profile?.longitude)!,onCompletionHandler: {_ in
-            //Present after updated profile
-            app_delegate.profile = DatabaseManager.getProfile()
-        })
+        ref.child(app_delegate.profile.id).child("name").setValue(name)
     }
     
     func updateEmail(email: String) {
-        let profile = DatabaseManager.getProfile()
-        ref.child((profile?.id)!).child("email").setValue(email)
-    }
-    
-    //MARK: - Create new group
-    func createGroup(name: String, array: [String], onCompletionHandler: @escaping ()-> ()) {
-        let profile = DatabaseManager.getProfile()
-        if profile?.id != nil {
-            //comform to contact id
-            //comform to waiting share property
-            let userInfoDictionary = ["name": name, "member":array, "owner": profile?.id!] as [String : Any]
-            
-            //create group
-            let group = ref.child("group").childByAutoId()
-            group.setValue(userInfoDictionary)
-            
-            var count = 0
-            //referent to user
-            for user in array {
-                ref.child(user).child("group").observe(.value, with: { (snapshot) in
-                    count += 1
-                    var snapDict = snapshot.value as? [String] ?? []
-                    if !snapDict.contains(group.key) {
-                        snapDict.append(group.key)
-                    }
-                    self.ref.child(user).child("group").setValue(snapDict)
-                    if count == array.count {
-                        onCompletionHandler()
-                    }
-                })
-            }
-        }
-    }
-    
-    func updateGroup(value: [String: Any], groupId: String, onCompletionHandler: @escaping ()-> ()) {
-        //Get groups list
-        var member = ""
-        var name = ""
-        var owner = ""
-        if value["member"] != nil {
-            let memberArray = value["member"] as! [String]
-            member = memberArray.joined(separator:",")
-        }
-        if value["name"] != nil {
-            name = value["name"] as! String
-        }
-        if value["owner"] != nil {
-            owner = value["owner"] as! String
-        }
-        DatabaseManager.updateGroup(id: groupId, name: name, member: member, owner: owner, onCompletion: {_ in
-            onCompletionHandler()
-        })
-    }
-    
-    func getGroup(groupIdArray: [String], onCompletionHandler: @escaping ()-> ()) {
-        var group = [Any]()
-        
-        if groupIdArray.count == 0 {
-            onCompletionHandler()
-        } else {
-            for groupId in groupIdArray {
-                ref.child("group").child(groupId).observe(.value, with: { (snapshot) in
-                    let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-                    self.updateGroup(value: snapDict, groupId: groupId, onCompletionHandler: {_ in
-                        group.append(snapDict)
-                        if groupIdArray.count == group.count {
-                            onCompletionHandler()
-                        }
-                    })
-                })
-            }
-        }
-    }
-    
-    func deleteGroup(group: GroupEntity, onCompletionHandler: @escaping () -> ()) {
-        let profile = DatabaseManager.getProfile()
-        var memberArray = group.member?.components(separatedBy: ",")
-        
-        if (memberArray?.contains((profile?.id)!))! {
-            memberArray = memberArray?.filter{$0 != profile?.id!}
-            ref.child("group").child(group.id!).child("member").setValue(memberArray)
-
-            if memberArray?.count == 0 {
-                ref.child((profile?.id)!).child("group").child(group.id!).removeValue()
-            }
-        }
-        
-        DatabaseManager.deleteGroup(grouptId: group.id!, onCompletion: {_ in
-            onCompletionHandler()
-        })
+        ref.child(app_delegate.profile.id).child("email").setValue(email)
     }
     
     //MARK: USER INFORMATION
@@ -148,62 +62,36 @@ class FirebaseAction: NSObject {
     }
     
     func registerNewAccount(email: String,password: String, name: String, onCompletionHandler: @escaping (String) -> ()) {
-        let userName = UserDefaults.standard.object(forKey: "userName") as? String
-        if userName != email {
-            DatabaseManager.resetAllData(onCompletion: {_ in
-                UserDefaults.standard.set(email, forKey: "userName")
-                UserDefaults.standard.set(password, forKey: "password")
-                UserDefaults.standard.synchronize()
-                let id = self.createUser(email: email,name: name)
-                onCompletionHandler(id)
-            })
-        } else {
-            let id = self.createUser(email: email,name: name)
-            onCompletionHandler(id)
-        }
+        UserDefaults.standard.set(email, forKey: "userName")
+        UserDefaults.standard.set(password, forKey: "password")
+        UserDefaults.standard.synchronize()
+        let id = self.createUser(email: email,name: name)
+        onCompletionHandler(id)
     }
     
     //MARK: - Create new location
     func createNewLocation(latitude: Double, longitude: Double, name: String) {
-        let profile = DatabaseManager.getProfile()
-        if profile?.id != nil {
             //comform to contact id
             var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-            resultRef = ref.child((profile?.id)!)
+            resultRef = ref.child(app_delegate.profile.id)
             //comform to waiting share property
             let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
             let id = Common.getCurrentTimeStamp()
             
             resultRef.child("locationList").child(id).setValue(userInfoDictionary)
             ref.child("locationList").child(id).setValue(userInfoDictionary)
-        }
     }
     
     //MARK: - Create new location
-    func createNewLocationToId(contactId: String, locationId: String, latitude: Double, longitude: Double, name: String) {
+    func addLocationToContact(id: String, locationAray: [LocationModel]) {
         //comform to contact id
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-        resultRef = ref.child(contactId)
+        resultRef = ref.child(id)
         //comform to waiting share property
-        let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
-        resultRef.child("locationList").child(locationId).setValue(userInfoDictionary)
-    }
-    
-    func getProfile(onCompletionHandler: @escaping () -> ()) {
-        let profile = DatabaseManager.getProfile()        
-        ref.child((profile?.id)!).observe(.value, with: { (snapshot) in
-            if !self.isAllowUpdateProfile {
-                onCompletionHandler()
-                return
-            } else {
-                self.isAllowUpdateProfile = false
-                let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-                self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
-                    self.isAllowUpdateProfile = true
-                    onCompletionHandler()
-                })
-            }
-        })
+        for location in locationAray {
+            let userInfoDictionary = ["name": location.name, "latitude": location.latitude, "longitude": location.longitude] as [String : Any]
+            resultRef.child("locationList").child(location.id).setValue(userInfoDictionary)
+        }
     }
     
     func resetPasswordToEmail(email: String, onCompletionHandler: @escaping () -> ()) {
@@ -216,239 +104,23 @@ class FirebaseAction: NSObject {
     func signInWith(email: String, name: String?, password: String, completionHandler: @escaping (Bool) -> ()) {
         FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
             if error == nil {
-                let userName = UserDefaults.standard.object(forKey: "userName") as? String
-                if userName != email {
-                    DatabaseManager.resetAllData(onCompletion: {_ in
-                        UserDefaults.standard.set(email, forKey: "userName")
-                        UserDefaults.standard.set(password, forKey: "password")
-                        UserDefaults.standard.synchronize()
-                    })
-                }
+                UserDefaults.standard.set(email, forKey: "userName")
+                UserDefaults.standard.set(password, forKey: "password")
+                UserDefaults.standard.synchronize()
                 
-                self.refreshData(email: email, name: name, completionHandler: {isSuccess in
-                    if isSuccess {
-                        completionHandler(true)
-                    } else {
-                        completionHandler(false)
-                    }
+                //Init profile
+                self.getContact(email: email, onCompletionHandler: {snapDict in
+                    var dict = snapDict.values.first as! [String: Any]
+                    dict["id"] = snapDict.keys.first
+                    app_delegate.profile.initContactModel(dict: dict)
+                    print("profile" + app_delegate.profile.id)
+                    completionHandler(true)
                 })
+
             } else {
                 completionHandler(false)
             }
         }
-    }
-
-    //MARK: - Sign in with Facebook
-    func signInByFacebook(fromViewControlller: OriginalViewController,completionHandler: @escaping (Bool) -> ()) {
-        let fbLoginManager = FBSDKLoginManager()
-
-        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email", "name"], from: fromViewControlller) { (result, error) in
-            if let error = error {
-                fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
-                completionHandler(false)
-                return
-            }
-            
-            guard let accessToken = FBSDKAccessToken.current() else {
-                fromViewControlller.view.makeToast("Failed to get access token")
-                completionHandler(false)
-                return
-            }
-            
-            fromViewControlller.showHUD()
-            let credential = FIRFacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
-            // Perform login by calling Firebase APIs
-            FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-                if error != nil {
-                    fromViewControlller.view.makeToast((error?.localizedDescription)!, duration: 2.0, position: .center)
-                    completionHandler(false)
-                } else {
-                    var email = ""
-                    if user?.email != nil {
-                        email = (user?.email)!
-                    } else {
-                        email = (user?.refreshToken)! + "@gmail.com"
-                    }
-                    
-                    var name = ""
-                    if user?.displayName != nil {
-                        name = (user?.displayName)!
-                    } else {
-                        name = "contact"
-                    }
-                    
-                    /**
-                     Check user information
-                     Reset data if signed other account (remove information in UserDefault)
-                     Keep data when signed old account
-                     **/
-                    let userName = UserDefaults.standard.object(forKey: "userName") as? String
-                    if userName != email {
-                        DatabaseManager.resetAllData(onCompletion: {_ in
-                            UserDefaults.standard.set(email, forKey: "userName")
-                            UserDefaults.standard.removeObject(forKey: "password")
-                            UserDefaults.standard.synchronize()
-                        })
-                    }
-                    
-                    //Update profile information
-                    self.refreshData(email: email, name: name, completionHandler: {isSuccess in
-                        if isSuccess {
-                            completionHandler(true)
-                        } else {
-                            //Create new user on firebase
-                            let id = app_delegate.firebaseObject.createUser(email:email,name: name)
-                            //Create profile in database
-                            DatabaseManager.updateProfile(id:id, email:email,name:name, latitude: 0, longitude: 0,onCompletionHandler: {_ in
-                                //Present after updated profile
-                                app_delegate.profile = DatabaseManager.getProfile()
-                                completionHandler(true)
-                            })
-                        }
-                    })
-                }
-            })
-        }
-    }
-    
-    //MARK: - Sign in with Google
-    func signInByGoogle(authentication: GIDAuthentication,fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
-        let credential = FIRGoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                          accessToken: authentication.accessToken)
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.signOut()
-            }
-        }
-        FIRAuth.auth()?.signIn(with: credential, completion: {(user, error) in
-            if error != nil {
-                fromViewControlller.view.makeToast((error?.localizedDescription)!, duration: 2.0, position: .center)
-                completionHandler(false)
-            } else {
-                var email = ""
-                if user?.email != nil {
-                    email = (user?.email)!
-                } else {
-                    email = (user?.refreshToken)! + "@gmail.com"
-                }
-                
-                var name = ""
-                if user?.displayName != nil {
-                    name = (user?.displayName)!
-                } else {
-                    name = "contact"
-                }
-                
-                /**
-                 Check user information
-                 Reset data if signed other account (remove information in UserDefault)
-                 Keep data when signed old account
-                 **/
-                let userName = UserDefaults.standard.object(forKey: "userName") as? String
-                if userName != email {
-                    DatabaseManager.resetAllData(onCompletion: {_ in
-                        UserDefaults.standard.set(email, forKey: "userName")
-                        UserDefaults.standard.removeObject(forKey: "password")
-                        UserDefaults.standard.synchronize()
-                    })
-                }
-                
-                //Update profile information
-                self.refreshData(email: email, name: name, completionHandler: {isSuccess in
-                    if isSuccess {
-                        completionHandler(true)
-                    } else {
-                        //Create new user on firebase
-                        let id = app_delegate.firebaseObject.createUser(email:email,name: name)
-                        //Create profile in database
-                        DatabaseManager.updateProfile(id:id, email:email, name:name, latitude: 0, longitude: 0,onCompletionHandler: {_ in
-                            //Present after updated profile
-                            app_delegate.profile = DatabaseManager.getProfile()
-                            completionHandler(true)
-                        })
-                    }
-                })
-            }
-        })
-    }
-    
-    //MARK: - Sign in with Google
-    func signInByTwitter(fromViewControlller: OriginalViewController, completionHandler: @escaping (Bool) -> ()) {
-        if (Twitter.sharedInstance().sessionStore.session() != nil) {
-            fromViewControlller.showHUD()
-        }
-        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
-            if user != nil {
-                self.signOut()
-            }
-        }
-        Twitter.sharedInstance().logIn(completion: { (session, error) in
-            fromViewControlller.showHUD()
-            if let error = error {
-                fromViewControlller.view.makeToast("Failed to login: \(error.localizedDescription)")
-                completionHandler(false)
-                return
-            }
-            
-            guard let authToken = session?.authToken else {
-                fromViewControlller.view.makeToast("Failed to get auth Token")
-                completionHandler(false)
-                return
-            }
-            
-            fromViewControlller.showHUD()
-            let credential = FIRTwitterAuthProvider.credential(withToken: authToken, secret: (session?.authTokenSecret)!)
-            // Perform login by calling Firebase APIs
-            FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-                if error != nil {
-                    completionHandler(false)
-                } else {
-                    var email = ""
-                    if user?.email != nil {
-                        email = (user?.email)!
-                    } else {
-                        email = (user?.displayName)! + "@gmail.com"
-                    }
-                    
-                    var name = ""
-                    if user?.displayName != nil {
-                        name = (user?.displayName)!
-                    } else {
-                        name = "contact"
-                    }
-                    
-                    /**
-                     Check user information
-                     Reset data if signed other account (remove information in UserDefault)
-                     Keep data when signed old account
-                     **/
-                    let userName = UserDefaults.standard.object(forKey: "userName") as? String
-                    if userName != email {
-                        DatabaseManager.resetAllData(onCompletion: {_ in
-                            UserDefaults.standard.set(email, forKey: "userName")
-                            UserDefaults.standard.removeObject(forKey: "password")
-                            UserDefaults.standard.synchronize()
-                        })
-                    }
-                    
-                    //Update profile information
-                    self.refreshData(email: email, name: name, completionHandler: {isSuccess in
-                        if isSuccess {
-                            completionHandler(true)
-                        } else {
-                            //Create new user on firebase
-                            let id = app_delegate.firebaseObject.createUser(email:email,name: name)
-                            //Create profile in database
-                            DatabaseManager.updateProfile(id:id, email:email, name:name, latitude: 0, longitude: 0,onCompletionHandler: {_ in
-                                //Present after updated profile
-                                app_delegate.profile = DatabaseManager.getProfile()
-                                completionHandler(true)
-                            })
-                        }
-                    })
-                }
-            })
-        })
     }
     
     //Sign out
@@ -468,32 +140,7 @@ class FirebaseAction: NSObject {
     }
     
     //MARK: - Contact
-    //Search contact to contact List
-    func searchContactWithEmail(email: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
-        var searchString = ""
-        
-        if email != nil {
-            searchString = email!
-        }
-        
-        ref.queryOrdered(byChild: "email").queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}").observe(.value, with: { snapshot in
-            var array = [ContactModel]()
-            let snapDic = snapshot.value as? [String:Any]
-            guard snapDic != nil else {
-                completionHandler(array)
-                return
-            }
-            for child in snapDic! {
-                var allDict = child.value as? [String:Any]
-                allDict?["id"] = child.key
-                let contactModel = ContactModel()
-                contactModel.initContactModel(dict: allDict!)
-                array.append(contactModel)
-                print(child)
-            }
-            completionHandler(array)
-        })
-    }
+
     
     //Search contact to contact List
     func searchContactWithName(name: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
@@ -503,7 +150,6 @@ class FirebaseAction: NSObject {
             searchString = name!
         }
         
-//        .queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}")
         ref.queryOrdered(byChild: "name").observe(.value, with: { snapshot in
             var array = [ContactModel]()
             let snapDic = snapshot.value as? [String:Any]
@@ -531,7 +177,6 @@ class FirebaseAction: NSObject {
     }
     
     func searchLocation(searchString: String, onCompletionHandler: @escaping ([LocationModel]) -> ()) {
-//        .queryOrdered(byChild: "name").queryStarting(atValue: searchString).queryEnding(atValue: searchString + "\u{f8ff}")
         ref.child("locationList").observe(.value, with: { snapshot in
             var array = [LocationModel]()
             let snapDic = snapshot.value as? [String:Any]
@@ -543,7 +188,7 @@ class FirebaseAction: NSObject {
                 var allDict = child.value as? [String:Any]
                 allDict?["id"] = child.key
                 let name = allDict?["name"] as! String
-                if name.contains(searchString) {
+                if name.uppercased().contains(searchString.uppercased()) {
                     let locationModel = LocationModel()
                     locationModel.initLocationModel(dict: allDict!)
                     array.append(locationModel)
@@ -554,75 +199,28 @@ class FirebaseAction: NSObject {
         })
     }
     
-    func getInformationForKey(contactId:String,isShare: Int?,onCompletionHandler: @escaping () -> ()) {
-        ref.child(contactId).observe(.value, with: { (snapshot) in
-                 self.isAllowUpdateContact = false
-                var snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-                snapDict["isShare"] = isShare as AnyObject?
-                snapDict["id"] = contactId as AnyObject?
-                self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
-                    onCompletionHandler()
-                })
-        })
-    }
-    
     func deleteContact(contactId: String, atUserId: String, onCompletionHandler: @escaping () -> ()) {
-        DatabaseManager.deleteContact(contactId: contactId, onCompletion: {_ in
-            onCompletionHandler()
-        })
         ref.child(atUserId).child("contact").child(contactId).removeValue()
         ref.child(contactId).child("contact").child(atUserId).removeValue()
+        onCompletionHandler()
     }
     
-    func requestLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
+    func shareLocation(toContact: ContactModel, onCompletetionHandler: @escaping () -> ()) {
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-        let profile = DatabaseManager.getProfile()
         
         //comform to contact id
-        resultRef = ref.child((toContact.id)!)
+        resultRef = ref.child(toContact.id)
         //comform to waiting share property
-        resultRef.child("contact").child((profile?.id)!).setValue(ShareStatus.kRequestShare.rawValue)
-        
-        ref.child((profile?.id)!).child("contact").child(toContact.id!).setValue(ShareStatus.kwaitingShared.rawValue)
-        onCompletetionHandler()
-    }
-    
-    func shareLocation(toContact:Contact, onCompletetionHandler: @escaping () -> ()) {
-        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-        let profile = DatabaseManager.getProfile()
-        
-        //comform to contact id
-        resultRef = ref.child((toContact.id)!)
-        //comform to waiting share property
-        resultRef.child("contact").child((profile?.id)!).setValue(ShareStatus.kShared.rawValue)
-        ref.child((profile?.id)!).child("contact").child(toContact.id!).setValue(ShareStatus.kShared.rawValue)
+        resultRef.child("contact").child(app_delegate.profile.id).setValue(ShareStatus.kShared.rawValue)
+    ref.child(app_delegate.profile.id).child("contact").child(toContact.id).setValue(ShareStatus.kShared.rawValue)
         
         onCompletetionHandler()
-    }
-    
-    func referentToContact(onCompletionHandler: @escaping () -> ()) {
-        ref.observe(.childChanged, with: { (snapshot) in
-            if !self.isAllowUpdateData {
-                onCompletionHandler()
-                return
-            } else {
-                self.isAllowUpdateData = false
-                //Update database
-                let snapDict = snapshot.value as? [String : AnyObject] ?? [:]
-                self.saveToDatabase(snapDict: snapDict, onCompletionHandler: {_ in
-                    //Allow update database
-                    self.isAllowUpdateData = true
-                    onCompletionHandler()
-                })
-            }
-        })
     }
     
     func changePassword(oldPassword: String, newPassword: String, onCompletionHandler: @escaping (Error?) -> ()) {
         let user = FIRAuth.auth()?.currentUser
-        let profile = DatabaseManager.getProfile()! as Profile
         
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: profile.email!, password: oldPassword)
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: app_delegate.profile.email, password: oldPassword)
         user?.reauthenticate(with: credential) { reAuthError in
             if reAuthError != nil {
                 onCompletionHandler(reAuthError!)
@@ -645,9 +243,8 @@ class FirebaseAction: NSObject {
     
     func changeEmail(newEmail: String, password: String, onCompletionHandler: @escaping (Error?) -> ()) {
         let user = FIRAuth.auth()?.currentUser
-        let profile = DatabaseManager.getProfile()! as Profile
         
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: profile.email!, password: password)
+        let credential = FIREmailPasswordAuthProvider.credential(withEmail: app_delegate.profile.email, password: password)
         user?.reauthenticate(with: credential) { reAuthError in
             if reAuthError != nil {
                 onCompletionHandler(reAuthError!)
@@ -660,212 +257,10 @@ class FirebaseAction: NSObject {
                         // Password updated.
                         UserDefaults.standard.set(newEmail, forKey: "userName")
                         UserDefaults.standard.synchronize()
-                        
-                        DatabaseManager.updateProfile(id: (profile.id)!, email: newEmail,name: profile.name!, latitude: profile.latitude, longitude: profile.longitude,onCompletionHandler: {_ in
-                            //Present after updated profile
-                            app_delegate.profile = DatabaseManager.getProfile()
-                            onCompletionHandler(nil)
-                        })
+                        onCompletionHandler(nil)
                     }
                 })
             }
         }
-    }
-    
-    func removeObServerContact() {
-        ref.removeAllObservers()
-    }
-    
-    //MARK: - Refresh Data
-    func refreshData(email: String, name: String?, completionHandler: @escaping (Bool) -> ()) {
-        self.searchContactWithEmail(email: email, completionHandler: { array in
-            if array.count > 0 {
-                let newProfile: ContactModel = array.first!
-                
-                //Save profile after login
-                DatabaseManager.updateProfile(id: newProfile.id, email: newProfile.email, name: newProfile.name, latitude: newProfile.latitude, longitude: newProfile.longitude,onCompletionHandler: {_ in
-                    
-                    self.getLocationList(fromId: newProfile.id) {
-                        
-                    }
-                    //New Account which hasn't yet any contact in contacts list
-                    if newProfile.contact.keys.count == 0 {
-                        if newProfile.group.count == 0 {
-                            completionHandler(true)
-                        } else {
-                            self.getGroup(groupIdArray: newProfile.group, onCompletionHandler: {
-                                completionHandler(true)
-                            })
-                        }
-                    } else {
-                        var count = 0
-                        //update contact information in contacts list
-                        for dict in newProfile.contact {
-                            self.getInformationForKey(contactId: dict.key, isShare:dict.value as? Int,onCompletionHandler: {_ in
-                                count += 1
-                                if newProfile.group.count == 0 {
-                                    completionHandler(true)
-                                } else {
-                                    self.getGroup(groupIdArray: newProfile.group, onCompletionHandler: {
-                                        completionHandler(true)
-                                    })
-                                }
-                            })
-                        }
-                    }
-                })
-            } else {
-                completionHandler(false)
-            }
-        })
-    }
-    
-    //MARK: - Location list
-    func getLocationList(fromId: String, onCompletionHandler: @escaping () -> ()) {
-        ref.child(fromId).child("locationList").observe(.value, with: { (snapshot) in
-            if !self.isAllowUpdateData {
-                onCompletionHandler()
-                return
-            } else {
-                self.isAllowUpdateLocation = false
-                let snapDict = snapshot.value as? [String: AnyObject] ?? [:]
-                
-                LocationEntity.mr_truncateAll()
-                for dict in snapDict {
-                    let location = dict.value as? [String: Any]
-                    let name = location!["name"] as! String
-                    let latitude = location!["latitude"] as! Double
-                    let longitude = location!["longitude"] as! Double
-                    
-                    DatabaseManager.updateLocationList(id: dict.key, name: name , latitude: latitude, longitude: longitude, onCompletionHandler: {
-                        if dict.key == Array(snapDict.keys).last {
-                            print(snapDict.description)
-                            self.isAllowUpdateLocation = true
-                            onCompletionHandler()
-                        }
-                    })
-                }
-            }
-        })
-    }
-    
-    func deleteLocation(locationId: String, onCompletionHandler: @escaping () -> ()) {
-        let profile = DatabaseManager.getProfile()
-        ref.child((profile?.id!)!).child("locationList").child(locationId).removeValue()
-        
-        DatabaseManager.deleteLocation(locationId: locationId, onCompletion: {_ in
-            onCompletionHandler()
-        })
-    }
-    
-    //MARK: - Save database
-    func saveToDatabase(snapDict: [String : AnyObject], onCompletionHandler: @escaping () -> ()) {
-        var id = ""
-        let profile = DatabaseManager.getProfile()
-
-        if snapDict["id"] != nil {
-            id = snapDict["id"] as! String
-        }
-        print(snapDict.description)
-        if snapDict["email"] != nil {
-            let email = snapDict["email"] as! String
-            let currentLocationDictionary = snapDict["currentLocations"] as! [String: Any]
-            let name = snapDict["name"] as! String
-            if profile?.email == email {
-                //Update profile
-                DatabaseManager.updateProfile(id: (profile?.id)!, email: email, name: name, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, onCompletionHandler: {_ in
-                    self.getLocationList(fromId: (profile?.id)!, onCompletionHandler: {_ in
-                    })
-                    
-                    if snapDict["contact"] != nil {
-                        let contactDictionary = snapDict["contact"] as! [String:Any]
-                        for dict in contactDictionary {
-                            let isShare = (dict.value as! NSNumber).intValue
-                            DatabaseManager.updateContact(id: dict.key, name: nil, latitude: nil, longitude: nil, isShare: isShare, onCompletion: {
-                                if dict.key == Array(contactDictionary.keys).last {
-                                    //Update group list
-                                    if snapDict["group"] != nil {
-                                        let groupArray = snapDict["group"] as! [String]
-                                        self.getGroup(groupIdArray: groupArray, onCompletionHandler: {
-                                            onCompletionHandler()
-                                        })
-                                    } else {
-                                        onCompletionHandler()
-                                    }
-                                }
-                            })
-                        }
-                    } else {
-                        onCompletionHandler()
-                    }
-                })
-            } else {
-                //Update contact
-                var isShare:Int? = nil
-                if snapDict["isShare"] != nil {
-                    isShare = snapDict["isShare"] as? Int
-                }
-                
-                let name = snapDict["name"] == nil ? "" : snapDict["name"] as! String
-                
-                DatabaseManager.updateContactWithEmail(id:id,email: email, name: name, latitude: currentLocationDictionary["latitude"] as! Double, longitude: currentLocationDictionary["longitude"] as! Double, isShare: isShare, onCompletion: {
-                    onCompletionHandler()
-                })
-            }
-            
-        }
-    }
-    
-    //MARK: - Send Comment about App
-    func sendCommentAboutApp(comment: String, onCompletetionHandler: @escaping () -> ()) {
-        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
-        resultRef = ref.child("comment")
-        
-        let profile = DatabaseManager.getProfile()
-        /**
-         Key: profile id
-         Value: comment
-        **/
-        let dictionary = [(profile?.id)!: comment]
-        
-        resultRef.childByAutoId().setValue(dictionary)
-        onCompletetionHandler()
-    }
-    
-    func getAbout(onCompletionHandler: @escaping () -> ()) {
-        ref.child("about").observe(.value, with: { (snapshot) in
-            UserDefaults.standard.set(snapshot.value as? String, forKey: "about")
-            onCompletionHandler()
-        })
-    }
-    
-    //MARK: - Share link
-    func shareOnFacebook() {
-        let content = FBSDKShareLinkContent()
-        content.contentURL = URL(string: "itms-apps://itunes.apple.com/app/id1290389869" )
-        let dialog : FBSDKShareDialog = FBSDKShareDialog()
-        dialog.mode = .native
-        // if you don't set this before canShow call, canShow would always return YES
-        if !dialog.canShow() {
-            // fallback presentation when there is no FB app
-            dialog.mode = .browser
-        }
-        dialog.show()
-    }
-    
-    func shareOnTwitter() {
-        let tweetText = "Location share"
-        let tweetUrl = URL(string: "itms-apps://itunes.apple.com/app/id1290389869")
-        
-        let shareString = "https://twitter.com/intent/tweet?text=\(tweetText)&url=\(String(describing: tweetUrl))"
-        
-        // encode a space to %20 for example
-        let escapedShareString = shareString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        
-        // cast to an url
-        let url = URL(string: escapedShareString)
-        
-        // open in safari
-        UIApplication.shared.openURL(url!)
     }
 }

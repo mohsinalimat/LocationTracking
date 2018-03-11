@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import GoogleMaps
 import GooglePlaces
-import MagicalRecord
 import Firebase
 import FBSDKCoreKit
 import GoogleSignIn
@@ -21,19 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var firebaseObject = FirebaseAction()
-    var profile: Profile?
     var refHandler = FIRDatabaseReference()
-    var savingContactIdArray  = [String]()
-    var savingGroupIdArray    = [String]()
-    var savingLocationIdArray = [String]()
-
+    var profile  = ContactModel()
+    var contactArray    = [String]()
+    var groupArray = [String]()
+    var locationArray = [String]()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //Set up Google API Key
         GMSServices.provideAPIKey("AIzaSyB-vkbuoB24Hb8StdNS_mw4VaAN7oiZMe0")
         GMSPlacesClient.provideAPIKey("AIzaSyB-vkbuoB24Hb8StdNS_mw4VaAN7oiZMe0")
-
-        //Init Magical Record
-        MagicalRecord.setupCoreDataStack()
         
         //Init Firebase
         firebaseObject.initFirebase()
@@ -48,8 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Twitter.sharedInstance().start(withConsumerKey: kConsumerKey, consumerSecret: kConsumerSecret)
         
         GADMobileAds.configure(withApplicationID: kApplicationId)
-
-        profile = DatabaseManager.getProfile()
         
         //Auto Signin
         self.autoSignIn()
@@ -112,9 +106,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     if visibleViewController is MapViewController {return}
                     
-                    if (isSuccess) {
+                    if (isSuccess) {                        
                         //SignIn is successful
-                        app_delegate.profile = DatabaseManager.getProfile()
                         let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
                         let nav = UINavigationController.init(rootViewController: mapViewController)
                         

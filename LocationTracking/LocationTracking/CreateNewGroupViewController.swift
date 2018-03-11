@@ -12,14 +12,12 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var groupNameTextField: UITextField!
     var selectedContactArray = [String]()
-    var contactArray = [Contact]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupNavigationBar()
         self.setupTableView()
-        let profile = DatabaseManager.getProfile()
-        selectedContactArray.append((profile?.id)!)
+        selectedContactArray.append(app_delegate.profile.id)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,7 +35,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     func setupTableView() {
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         //Get contact list
-        self.getContactList()
+        tableView.reloadData()
     }
     
     //MARK: - Action
@@ -58,12 +56,6 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     
     override func tappedLeftBarButton(sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    //MARK: - Get contact list
-    func getContactList() {
-        contactArray += DatabaseManager.getContactSharedLocation(contetxt: nil)
-        tableView.reloadData()
     }
     
     //MARK: - UITableView Delegate,Datasource
@@ -88,8 +80,13 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     }
     
     //MARK: - Cell Delegate
-    func saveGroup(indexPath: IndexPath) {
-        let contact: Contact = contactArray[indexPath.row]
+    func addToGroup(indexPath: IndexPath) {
+        let contact: ContactModel = contactArray[indexPath.row]
         selectedContactArray.append(contact.id!)
+    }
+    
+    func deleteFromGroup(indexPath: IndexPath) {
+        let contact: ContactModel = contactArray[indexPath.row]
+        selectedContactArray = selectedContactArray.filter{$0 != contact.id!}
     }
 }

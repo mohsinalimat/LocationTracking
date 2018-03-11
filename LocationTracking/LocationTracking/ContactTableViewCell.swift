@@ -9,8 +9,8 @@
 import UIKit
 
 protocol ContactTableViewCellDelegate {
-    func requestLocation(contact: Contact)
-    func shareLocation(contact: Contact)
+    func requestLocation(contact: ContactModel)
+    func shareLocation(contact: ContactModel)
 }
 
 class ContactTableViewCell: UITableViewCell {
@@ -20,7 +20,7 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var shareLocationButton: UIButton!
     @IBOutlet weak var requestLocationButton: UIButton!
-    var contactObject: Contact?
+    var contactObject: ContactModel?
     var indexPath = IndexPath()
     
     var delegate: ContactTableViewCellDelegate?
@@ -49,7 +49,7 @@ class ContactTableViewCell: UITableViewCell {
     }
     
     //MARK: - Setup Cell
-    func setupCell(contact:Contact) {
+    func setupCell(contact:ContactModel) {
         contactObject = contact
         if contact.name != nil {
             userNameLabel.text = contact.name
@@ -85,29 +85,28 @@ class ContactTableViewCell: UITableViewCell {
         }
     }
     
-    func setupGroupCell(group: GroupEntity,memberCount: NSInteger) {
+    func setupGroupCell(group: GroupModel,memberCount: NSInteger) {
         userNameLabel.text = group.name
         currentLocationLabel.isHidden = false
         requestLocationButton.isHidden = true
         shareLocationButton.isHidden = true
-        let profile = DatabaseManager.getProfile()
         let ownerString = "Owner:"
         let memberArray = group.member?.split(separator: ",")
         let memberCount = "Members: " + String(describing: (memberArray?.count)!) + "\n"
         
-        if group.owner == profile?.id {
-            currentLocationLabel.text = memberCount + ownerString + (profile?.name!)!
+        if group.owner == app_delegate.profile.id {
+            currentLocationLabel.text = memberCount + ownerString + app_delegate.profile.name
         } else {
-            let owner = DatabaseManager.getContact(id: group.owner!, contetxt: nil)
-            if owner != nil {
-                currentLocationLabel.text = memberCount + ownerString + (owner?.name!)!
-            } else {
-                currentLocationLabel.text = memberCount + ""
-            }
+//            let owner = DatabaseManager.getContact(id: group.owner!, contetxt: nil)
+//            if owner != nil {
+//                currentLocationLabel.text = memberCount + ownerString + (owner?.name!)!
+//            } else {
+//                currentLocationLabel.text = memberCount + ""
+//            }
         }
     }
     
-    func setupLocationCell(location: LocationEntity) {
+    func setupLocationCell(location: LocationModel) {
         userNameLabel.text = location.name
         currentLocationLabel.isHidden = false
         requestLocationButton.isHidden = true

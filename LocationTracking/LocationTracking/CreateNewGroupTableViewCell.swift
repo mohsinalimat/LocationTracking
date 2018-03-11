@@ -9,7 +9,8 @@
 import UIKit
 
 protocol createGroupDelegate {
-    func saveGroup(indexPath:IndexPath)
+    func addToGroup(indexPath:IndexPath)
+    func deleteFromGroup(indexPath:IndexPath)
 }
 
 class CreateNewGroupTableViewCell: UITableViewCell {
@@ -32,10 +33,14 @@ class CreateNewGroupTableViewCell: UITableViewCell {
 
     @IBAction func tappedSelectedMember(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.saveGroup(indexPath: indexPath)
+        if sender.isSelected {
+            delegate?.addToGroup(indexPath: indexPath)
+        } else {
+            delegate?.deleteFromGroup(indexPath: indexPath)
+        }
     }
     
-    func setupCell(contact:Contact) {
+    func setupCell(contact:ContactModel) {
         memberNameLabel.text = contact.email
         Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
             self.memberLocationLabel.text = address

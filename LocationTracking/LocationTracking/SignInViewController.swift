@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import GoogleSignIn
 
-class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignInUIDelegate {
+class SignInViewController: OriginalViewController {
 
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var emailView: UIView!
@@ -45,9 +44,6 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
         passwordView.customBorder(radius: 3,color: .clear)
         signInButton.customBorder(radius: 3,color: .clear)
         signUpButton.customBorder(radius: 3,color: .clear)
-//        signInFacebookButton.customBorder(radius: 3,color: .clear)
-//        signInGoogleButton.customBorder(radius: 3,color: .clear)
-//        signInTwitterButton.customBorder(radius: 3,color: .clear)
     }
     
     func resetTextField() {
@@ -86,8 +82,8 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
                 self.hideHUD()
                 if isSuccess {
                     //SignIn is successful
-                    app_delegate.profile = DatabaseManager.getProfile()
                     self.resetTextField()
+                    
                     let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
                     let nav = UINavigationController.init(rootViewController: mapViewController)
                     self.present(nav, animated: true, completion: nil)
@@ -102,81 +98,7 @@ class SignInViewController: OriginalViewController, GIDSignInDelegate, GIDSignIn
         }
     }
     
-    @IBAction func tappedSignInWithFacebook(_ sender: UIButton) {
-        app_delegate.firebaseObject.signInByFacebook(fromViewControlller: self,completionHandler: {isSuccess in
-            self.hideHUD()
-            if isSuccess {
-                //SignIn is successful
-                app_delegate.profile = DatabaseManager.getProfile()
-                let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                let nav = UINavigationController.init(rootViewController: mapViewController)
-                self.present(nav, animated: true, completion: nil)
-            } else {
-                /*
-                 SignIn is failure
-                 Show Toast to notify result
-                 */
-            }
-        })
-    }
-    
-    @IBAction func tappedSignInWithGoogle(_ sender: UIButton) {
-        self.showHUD()
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().signIn()
-        if GIDSignIn.sharedInstance().currentUser == nil {
-            self.hideHUD()
-        }
-    }
-    
-    @IBAction func tappedSignWithTwitter(_ sender: UIButton) {
-        app_delegate.firebaseObject.signInByTwitter(fromViewControlller: self,completionHandler: {isSuccess in
-            self.hideHUD()
-            if isSuccess {
-                //SignIn is successful
-                app_delegate.profile = DatabaseManager.getProfile()
-                let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                let nav = UINavigationController.init(rootViewController: mapViewController)
-                self.present(nav, animated: true, completion: nil)
-            } else {
-                /*
-                 SignIn is failure
-                 Show Toast to notify result
-                 */
-            }
-        })
-
-    }
-    
     @IBAction func tappedSignUp(_ sender: UIButton) {
         
-    }
-    
-    //MARK: - Google Sign in Delegate
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        if error != nil {
-            return
-        }
-        guard let authentication = user.authentication else { return }
-        self.showHUD()
-        app_delegate.firebaseObject.signInByGoogle(authentication: authentication,fromViewControlller: self,completionHandler: {isSuccess in
-            self.hideHUD()
-            if isSuccess {
-                //SignIn is successful
-                app_delegate.profile = DatabaseManager.getProfile()
-                let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                let nav = UINavigationController.init(rootViewController: mapViewController)
-                self.present(nav, animated: true, completion: nil)
-            } else {
-                /*
-                 SignIn is failure
-                 Show Toast to notify result
-                 */
-            }
-        })
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
     }
 }

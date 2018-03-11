@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 enum ShareStatus: Int {
-    case kShared        = 0
-    case kwaitingShared = 1
-    case kRequestShare  = 2
+    case kShared        = 0     //Shared location with me
+    case kwaitingShared = 1     //waiting to share with me
+    case kRequestShare  = 2     //I requested to share 
     case kNotYetShared  = 3
 }
 

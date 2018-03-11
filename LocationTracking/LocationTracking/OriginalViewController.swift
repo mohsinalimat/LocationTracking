@@ -97,18 +97,6 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     
     //MARK: - Function
     
-    func getListContactId() -> [String]? {
-        let contactArray = DatabaseManager.getAllContact()
-        var array = [String]()
-        
-        if contactArray!.count > 0 {
-            for contact in contactArray! {
-                array.append(String(describing: contact.id!))
-            }
-        }
-        return array
-    }
-    
     func showHUD() {
         RappleActivityIndicatorView.startAnimating()
     }

@@ -64,18 +64,15 @@ class SignUpViewController: OriginalViewController {
                 
                 //Create new user on firebase
                 app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!,name: self.nameTextField.text!,  onCompletionHandler: {id in
-                    //Create profile in databasee
-                    DatabaseManager.updateProfile(id:id, email:self.emailTextField.text!, name: self.nameTextField.text!, latitude: 0, longitude: 0,onCompletionHandler: {_ in
-                        //Present after updated profile
-                        app_delegate.profile = DatabaseManager.getProfile()
-                        self.dismiss(animated: false, completion: {_ in
-                            let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                            let nav = UINavigationController.init(rootViewController: mapViewController)
-                            
-                            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-                            visibleViewController.present(nav, animated: true, completion: nil)
-                            self.hideHUD()
-                        })
+
+                    //Present after updated profile
+                    self.dismiss(animated: false, completion: {_ in
+                        let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                        let nav = UINavigationController.init(rootViewController: mapViewController)
+                        
+                        let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
+                        visibleViewController.present(nav, animated: true, completion: nil)
+                        self.hideHUD()
                     })
                 })
             }
