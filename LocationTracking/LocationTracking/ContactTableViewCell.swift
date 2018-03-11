@@ -91,8 +91,8 @@ class ContactTableViewCell: UITableViewCell {
         requestLocationButton.isHidden = true
         shareLocationButton.isHidden = true
         let ownerString = "Owner:"
-        let memberArray = group.member?.split(separator: ",")
-        let memberCount = "Members: " + String(describing: (memberArray?.count)!) + "\n"
+        let memberArray = group.member.split(separator: ",")
+        let memberCount = "Members: " + String(describing: memberArray.count) + "\n"
         
         if group.owner == app_delegate.profile.id {
             currentLocationLabel.text = memberCount + ownerString + app_delegate.profile.name

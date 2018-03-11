@@ -78,13 +78,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
-        if segmented.selectedSegmentIndex == kLocationListIndex {
-            cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
-        } else if segmented.selectedSegmentIndex == kGroupListIndex {
-            cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
-        } else {
-            cell.setupCell(contact: app_delegate.contactArray[indexPath.row])
-        }
+//        if segmented.selectedSegmentIndex == kLocationListIndex {
+//            cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
+//        } else if segmented.selectedSegmentIndex == kGroupListIndex {
+//            cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
+//        } else {
+//            cell.setupCell(contact: app_delegate.contactArray[indexPath.row])
+//        }
         cell.delegate = self
         cell.indexPath = indexPath
         return cell
