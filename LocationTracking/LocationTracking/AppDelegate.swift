@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if let visibleViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController) as? OriginalViewController {
                     
-                    if visibleViewController is MapViewController {return}
+                    if !(visibleViewController is SignInViewController) {return}
                     
                     if (isSuccess) {                        
                         //SignIn is successful

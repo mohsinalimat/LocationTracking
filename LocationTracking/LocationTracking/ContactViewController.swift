@@ -11,11 +11,12 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentIndex = kSharedContactIndex
+    var currentIndex = SegmentedIndex.kSharedContactIndex
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
+        self.addObserveNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,9 +28,35 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
         // Dispose of any resources that can be recreated.
     }
     
+    //Observe notification
+    func addObserveNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadSharedContact), name: Notification.Name("ChangedContact"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadGroup), name: Notification.Name("ChangedGroup"), object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadLocation), name: Notification.Name("ChangedLocation"), object: nil)
+    }
+    
+    func reloadLocation() {
+        if segmented.selectedSegmentIndex == SegmentedIndex.kLocationListIndex.rawValue {
+            tableView.reloadData()
+        }
+    }
+    
+    func reloadGroup() {
+        if segmented.selectedSegmentIndex == SegmentedIndex.kGroupListIndex.rawValue {
+            tableView.reloadData()
+        }
+    }
+    
+    func reloadSharedContact() {
+        if segmented.selectedSegmentIndex == SegmentedIndex.kSharedContactIndex.rawValue {
+            tableView.reloadData()
+        }
+    }
     //MARK: - Init Object
     func initView() {
-        segmented.selectedSegmentIndex = currentIndex
+        segmented.selectedSegmentIndex = currentIndex.rawValue
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
         self.addLeftBarItem(imageName: "icon_close", title: "")
@@ -64,13 +91,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmented.selectedSegmentIndex == kGroupListIndex {
+        if segmented.selectedSegmentIndex == SegmentedIndex.kGroupListIndex.rawValue {
             return app_delegate.groupArray.count
         }
-        if segmented.selectedSegmentIndex == kLocationListIndex {
+        if segmented.selectedSegmentIndex == SegmentedIndex.kLocationListIndex.rawValue {
             return app_delegate.locationArray.count
         }
-        if segmented.selectedSegmentIndex == kRequestShareIndex {
+        if segmented.selectedSegmentIndex == SegmentedIndex.kRequestShareIndex.rawValue {
             let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
             
             return requestArray.count
@@ -82,15 +109,15 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
-        if segmented.selectedSegmentIndex == kLocationListIndex {
+        if segmented.selectedSegmentIndex == SegmentedIndex.kLocationListIndex.rawValue {
             
             cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
             
-        } else if segmented.selectedSegmentIndex == kGroupListIndex {
+        } else if segmented.selectedSegmentIndex == SegmentedIndex.kGroupListIndex.rawValue {
             
             cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
             
-        } else if segmented.selectedSegmentIndex == kRequestShareIndex {
+        } else if segmented.selectedSegmentIndex == SegmentedIndex.kRequestShareIndex.rawValue {
             
             let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
             cell.setupCell(contact: requestArray[indexPath.row])

@@ -38,7 +38,7 @@ class FirebaseAction: NSObject {
     }
     
     func observeLocation() {
-        ref.child(app_delegate.profile.id).child("locationList").observe(.value, with: {snapShot in
+        ref.child(app_delegate.profile.id).child("locationList").observe(.childChanged, with: {snapShot in
             let snapDic = snapShot.value as? [String:Any]
             guard snapDic != nil else {
                 return
@@ -56,6 +56,8 @@ class FirebaseAction: NSObject {
                 locationModel.initLocationModel(dict: allDict!)
                 app_delegate.locationArray.append(locationModel)
             }
+            
+            NotificationCenter.default.post(name: Notification.Name("ChangedLocation"), object: nil)
         })
     }
     
@@ -79,11 +81,13 @@ class FirebaseAction: NSObject {
                 groupModel.initGroupModel(dict: allDict!)
                 app_delegate.groupArray.append(groupModel)
             }
+            
+            NotificationCenter.default.post(name: Notification.Name("ChangedGroup"), object: nil)
         })
     }
     
     func observeContact() {
-        ref.child(app_delegate.profile.id).child("contact").observe(.value, with: {snapShot in
+        ref.child(app_delegate.profile.id).child("contact").observe(.childChanged, with: {snapShot in
             let snapDic = snapShot.value as? [String:Any]
             guard snapDic != nil else {
                 return
@@ -94,12 +98,19 @@ class FirebaseAction: NSObject {
             
             //fill data
             for child in snapDic! {
-                var allDict = child.value as? [String:Any]
-                allDict?["id"] = child.key
-                
-                let groupModel = GroupModel()
-                groupModel.initGroupModel(dict: allDict!)
-                app_delegate.groupArray.append(groupModel)
+                self.ref.child(child.key).observe(.value, with: {snap in
+                    var dict = snap.value as! [String: Any]
+                    
+                    dict["id"] = child.key
+                    let contact = ContactModel()
+                    contact.initContactModel(dict: dict)
+                    contact.isShare = child.value as! Int
+                    app_delegate.contactArray.append(contact)
+                    
+                    if app_delegate.contactArray.count == snapDic?.keys.count {
+                        NotificationCenter.default.post(name: Notification.Name("ChangedContact"), object: nil)
+                    }
+                })
             }
         })
     }

@@ -83,7 +83,7 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
             let index = (self.navigationController?.viewControllers.count)! - 2
             let mapViewController = self.navigationController?.viewControllers[index]
             let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-            contactViewController.currentIndex = 3
+            contactViewController.currentIndex = SegmentedIndex(rawValue: 3)!
             
             //Remove SearchLocationViewController
             self.navigationController?.viewControllers.removeLast()
