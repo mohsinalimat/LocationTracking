@@ -44,8 +44,10 @@ class FirebaseAction: NSObject {
                 return
             }
             
+            //clear data
             app_delegate.locationArray.removeAll()
 
+            //fill data
             for child in snapDic! {
                 var allDict = child.value as? [String:Any]
                 allDict?["id"] = child.key
@@ -55,7 +57,6 @@ class FirebaseAction: NSObject {
                 app_delegate.locationArray.append(locationModel)
             }
         })
-        
     }
     
     func observeGroup() {
@@ -64,19 +65,43 @@ class FirebaseAction: NSObject {
             guard snapDic != nil else {
                 return
             }
+            
+            //clear data
             app_delegate.groupArray.removeAll()
+            
+            //fill data
             
             for child in snapDic! {
                 var allDict = child.value as? [String:Any]
                 allDict?["id"] = child.key
-                let name = allDict?["name"] as! String
                 
                 let groupModel = GroupModel()
                 groupModel.initGroupModel(dict: allDict!)
                 app_delegate.groupArray.append(groupModel)
             }
         })
-        
+    }
+    
+    func observeContact() {
+        ref.child(app_delegate.profile.id).child("contact").observe(.value, with: {snapShot in
+            let snapDic = snapShot.value as? [String:Any]
+            guard snapDic != nil else {
+                return
+            }
+            
+            //clear data
+            app_delegate.contactArray.removeAll()
+            
+            //fill data
+            for child in snapDic! {
+                var allDict = child.value as? [String:Any]
+                allDict?["id"] = child.key
+                
+                let groupModel = GroupModel()
+                groupModel.initGroupModel(dict: allDict!)
+                app_delegate.groupArray.append(groupModel)
+            }
+        })
     }
     
     //MARK: - Update to firebase
@@ -164,6 +189,8 @@ class FirebaseAction: NSObject {
                     self.observeLocation()
                     
                     self.observeGroup()
+                    
+                    self.observeContact()
                     
                     completionHandler(true)
                 })

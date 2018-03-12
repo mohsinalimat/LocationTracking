@@ -11,7 +11,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentIndex = kContactListIndex
+    var currentIndex = kSharedContactIndex
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +38,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - Action
     @IBAction func tappedChangeSegmentedIndex(_ sender: UISegmentedControl) {
-        //Only reload when current index != selected index
-        if currentIndex != sender.selectedSegmentIndex {
-            currentIndex = sender.selectedSegmentIndex
-        }
+        tableView.reloadData()
     }
     
     override func tappedLeftBarButton(sender: UIButton) {
@@ -67,33 +64,50 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if segmented.selectedSegmentIndex == kGroupListIndex {
-//            return app_delegate.groupArray.count
-//        }
-//        if segmented.selectedSegmentIndex == kLocationListIndex {
-//            return app_delegate.locationArray.count
-//        }
-//        return app_delegate.contactArray.count
+        if segmented.selectedSegmentIndex == kGroupListIndex {
+            return app_delegate.groupArray.count
+        }
+        if segmented.selectedSegmentIndex == kLocationListIndex {
+            return app_delegate.locationArray.count
+        }
+        if segmented.selectedSegmentIndex == kRequestShareIndex {
+            let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
+            
+            return requestArray.count
+        }
+        let sharedArray = app_delegate.contactArray.filter{$0.isShare == 0}
         
-        return app_delegate.locationArray.count
+        return sharedArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
-//        if segmented.selectedSegmentIndex == kLocationListIndex {
+        if segmented.selectedSegmentIndex == kLocationListIndex {
+            
             cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
-//        } else if segmented.selectedSegmentIndex == kGroupListIndex {
-//            cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
-//        } else {
-//            cell.setupCell(contact: app_delegate.contactArray[indexPath.row])
-//        }
+            
+        } else if segmented.selectedSegmentIndex == kGroupListIndex {
+            
+            cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
+            
+        } else if segmented.selectedSegmentIndex == kRequestShareIndex {
+            
+            let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
+            cell.setupCell(contact: requestArray[indexPath.row])
+            
+        } else {
+            
+            let sharedArray = app_delegate.contactArray.filter{$0.isShare == 0}
+            cell.setupCell(contact: sharedArray[indexPath.row])
+            
+        }
         cell.delegate = self
         cell.indexPath = indexPath
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if segmented.selectedSegmentIndex == kContactListIndex || segmented.selectedSegmentIndex == kRequestShareIndex {
+//        if segmented.selectedSegmentIndex == kSharedContactIndex || segmented.selectedSegmentIndex == kRequestShareIndex {
 //            //Tapped contact cell
 //            let selectedContact = app_delegate.contactArray[indexPath.row]
 //            if selectedContact != 0 {
@@ -167,8 +181,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
 //            self .showHUD()
 //
 //            //Change selected index of segmented
-//            self.segmented.selectedSegmentIndex = kContactListIndex
-//            self.currentIndex = kContactListIndex
+//            self.segmented.selectedSegmentIndex = kSharedContactIndex
+//            self.currentIndex = kSharedContactIndex
 //            let profile = DatabaseManager.getProfile()
 //
 //            app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {

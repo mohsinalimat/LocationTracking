@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationTracking/FirebaseAction.swift"
-            timestampString = "542535215.446804"
+            timestampString = "542546158.205152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318">
+            startingLineNumber = "344"
+            endingLineNumber = "344">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -23,12 +23,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LocationTracking/ContactViewController.swift"
-            timestampString = "542535215.446888"
+            filePath = "LocationTracking/FirebaseAction.swift"
+            timestampString = "542546158.205773"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233">
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "observeContact()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
