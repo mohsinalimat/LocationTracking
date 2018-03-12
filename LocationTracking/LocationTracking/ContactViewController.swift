@@ -67,19 +67,21 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmented.selectedSegmentIndex == kGroupListIndex {
-            return app_delegate.groupArray.count
-        }
-        if segmented.selectedSegmentIndex == kLocationListIndex {
-            return app_delegate.locationArray.count
-        }
-        return app_delegate.contactArray.count
+//        if segmented.selectedSegmentIndex == kGroupListIndex {
+//            return app_delegate.groupArray.count
+//        }
+//        if segmented.selectedSegmentIndex == kLocationListIndex {
+//            return app_delegate.locationArray.count
+//        }
+//        return app_delegate.contactArray.count
+        
+        return app_delegate.locationArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
 //        if segmented.selectedSegmentIndex == kLocationListIndex {
-//            cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
+            cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
 //        } else if segmented.selectedSegmentIndex == kGroupListIndex {
 //            cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
 //        } else {
