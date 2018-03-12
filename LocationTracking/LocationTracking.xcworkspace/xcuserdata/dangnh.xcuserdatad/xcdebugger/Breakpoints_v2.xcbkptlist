@@ -10,13 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LocationTracking/FirebaseAction.swift"
-            timestampString = "531913926.48276"
+            timestampString = "542533044.14021"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "604"
-            endingLineNumber = "604"
-            landmarkName = "removeObServerContact()"
-            landmarkType = "7">
+            startingLineNumber = "319"
+            endingLineNumber = "319">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -30,41 +28,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "296"
-            endingLineNumber = "296"
-            landmarkName = "deleteObject(indexPath:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LocationTracking.ContactViewController.deleteObject(indexPath: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "LocationTracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/ContactViewController.swift"
-                  timestampString = "542083945.939993"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "296"
-                  endingLineNumber = "296"
-                  offsetFromSymbolStart = "1095">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in LocationTracking.ContactViewController.deleteObject(indexPath: Foundation.IndexPath) -&gt; ()"
-                  moduleName = "LocationTracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/DATA/Project/location/LocationTracking/LocationTracking/ContactViewController.swift"
-                  timestampString = "542083945.944209"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "296"
-                  endingLineNumber = "296"
-                  offsetFromSymbolStart = "92">
-               </Location>
-            </Locations>
+            endingLineNumber = "296">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

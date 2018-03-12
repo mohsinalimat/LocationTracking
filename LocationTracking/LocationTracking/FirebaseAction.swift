@@ -37,6 +37,48 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func observeLocation() {
+        ref.child(app_delegate.profile.id).child("locationList").observe(.value, with: {snapShot in
+            let snapDic = snapShot.value as? [String:Any]
+            guard snapDic != nil else {
+                return
+            }
+            
+            app_delegate.locationArray.removeAll()
+
+            for child in snapDic! {
+                var allDict = child.value as? [String:Any]
+                allDict?["id"] = child.key
+                
+                let locationModel = LocationModel()
+                locationModel.initLocationModel(dict: allDict!)
+                app_delegate.locationArray.append(locationModel)
+            }
+        })
+        
+    }
+    
+    func observeGroup() {
+        ref.child(app_delegate.profile.id).child("group").observe(.value, with: {snapShot in
+            let snapDic = snapShot.value as? [String:Any]
+            guard snapDic != nil else {
+                return
+            }
+            app_delegate.groupArray.removeAll()
+            
+            for child in snapDic! {
+                var allDict = child.value as? [String:Any]
+                allDict?["id"] = child.key
+                let name = allDict?["name"] as! String
+                
+                let groupModel = GroupModel()
+                groupModel.initGroupModel(dict: allDict!)
+                app_delegate.groupArray.append(groupModel)
+            }
+        })
+        
+    }
+    
     //MARK: - Update to firebase
     func updateLocation(id: String, lat: Double, long: Double) {
         ref.child(id).child("currentLocations").setValue(["latitude":lat,"longitude":long])
@@ -113,10 +155,19 @@ class FirebaseAction: NSObject {
                     var dict = snapDict.values.first as! [String: Any]
                     dict["id"] = snapDict.keys.first
                     app_delegate.profile.initContactModel(dict: dict)
-                    print("profile" + app_delegate.profile.id)
+                    
+                    /** Add observe
+                     - Location
+                     - Group
+                     - Contact
+                     **/
+                    self.observeLocation()
+                    
+                    self.observeGroup()
+                    
                     completionHandler(true)
                 })
-
+                
             } else {
                 completionHandler(false)
             }

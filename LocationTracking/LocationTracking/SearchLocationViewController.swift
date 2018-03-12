@@ -50,13 +50,13 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
                 app_delegate.firebaseObject.searchLocation(searchString: searchLocationTextField.text!, onCompletionHandler: {(array) in
                     self.locationArray.removeAll()
                     
-                    if array.count > 0 {
-                        for locationModel in array as [LocationModel] {
-                            if !(app_delegate.locationArray.contains(locationModel.id)) {
-                                self.locationArray.append(locationModel)
-                            }
-                        }
-                    }
+//                    if array.count > 0 {
+//                        for locationModel in array as [LocationModel] {
+//                            if !(app_delegate.locationArray.contains(locationModel.id)) {
+//                                self.locationArray.append(locationModel)
+//                            }
+//                        }
+//                    }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         self.hideHUD()

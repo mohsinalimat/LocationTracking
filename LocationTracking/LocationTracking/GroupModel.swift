@@ -14,7 +14,7 @@ class GroupModel: NSObject {
     var id: String = ""
     var name: String = ""
     
-    func initLocationModel(dict: [String:Any]) {
+    func initGroupModel(dict: [String:Any]) {
         if dict["name"] != nil {
             self.name = dict["name"] as! String
         }
