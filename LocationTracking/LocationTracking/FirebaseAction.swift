@@ -37,28 +37,42 @@ class FirebaseAction: NSObject {
         })
     }
     
-    func observeLocation() {
-        ref.child(app_delegate.profile.id).child("locationList").observe(.childChanged, with: {snapShot in
-            let snapDic = snapShot.value as? [String:Any]
-            guard snapDic != nil else {
-                return
-            }
-            
-            //clear data
-            app_delegate.locationArray.removeAll()
+    func observeChangedLocation() {
+        //Child changed
+        ref.child(app_delegate.profile.id).child("locationList").observe(.value, with: {snapShot in
+            print("Key Snapshot: " + snapShot.key + snapShot.description)
 
-            //fill data
-            for child in snapDic! {
-                var allDict = child.value as? [String:Any]
-                allDict?["id"] = child.key
-                
-                let locationModel = LocationModel()
-                locationModel.initLocationModel(dict: allDict!)
-                app_delegate.locationArray.append(locationModel)
-            }
+            self.reloadLocationDataWhenChanged(snapDic: snapShot.value as? [String:Any])
+        })
+        ref.child(app_delegate.profile.id).child("locationList").observe(.childRemoved, with: {snapShot in
+            //Remove location that removed
+            app_delegate.locationArray = app_delegate.locationArray.filter{$0.id != snapShot.key}
             
+            //Post notification to update UI
             NotificationCenter.default.post(name: Notification.Name("ChangedLocation"), object: nil)
         })
+    }
+    
+    func reloadLocationDataWhenChanged(snapDic: [String:Any]?) {
+        guard snapDic != nil else {
+            return
+        }
+        
+        //clear data
+        app_delegate.locationArray.removeAll()
+        
+        //fill data
+        for child in snapDic! {
+            var allDict = child.value as? [String:Any]
+            
+            allDict?["id"] = child.key
+            
+            let locationModel = LocationModel()
+            locationModel.initLocationModel(dict: allDict!)
+            app_delegate.locationArray.append(locationModel)
+        }
+        
+        NotificationCenter.default.post(name: Notification.Name("ChangedLocation"), object: nil)
     }
     
     func observeGroup() {
@@ -79,15 +93,25 @@ class FirebaseAction: NSObject {
                 
                 let groupModel = GroupModel()
                 groupModel.initGroupModel(dict: allDict!)
-                app_delegate.groupArray.append(groupModel)
+                if !app_delegate.groupArray.contains(groupModel) {
+                    app_delegate.groupArray.append(groupModel)
+                }
             }
             
+            NotificationCenter.default.post(name: Notification.Name("ChangedGroup"), object: nil)
+        })
+        
+        ref.child(app_delegate.profile.id).child("group").observe(.childRemoved, with: {snapShot in
+            //Remove location that removed
+            app_delegate.groupArray = app_delegate.groupArray.filter{$0.id != snapShot.key}
+            
+            //Post notification to update UI
             NotificationCenter.default.post(name: Notification.Name("ChangedGroup"), object: nil)
         })
     }
     
     func observeContact() {
-        ref.child(app_delegate.profile.id).child("contact").observe(.childChanged, with: {snapShot in
+        ref.child(app_delegate.profile.id).child("contact").observe(.value, with: {snapShot in
             let snapDic = snapShot.value as? [String:Any]
             guard snapDic != nil else {
                 return
@@ -105,13 +129,24 @@ class FirebaseAction: NSObject {
                     let contact = ContactModel()
                     contact.initContactModel(dict: dict)
                     contact.isShare = child.value as! Int
-                    app_delegate.contactArray.append(contact)
+                    
+                    if !app_delegate.contactArray.contains(contact) {
+                        app_delegate.contactArray.append(contact)
+                    }
                     
                     if app_delegate.contactArray.count == snapDic?.keys.count {
                         NotificationCenter.default.post(name: Notification.Name("ChangedContact"), object: nil)
                     }
                 })
             }
+        })
+        
+        ref.child(app_delegate.profile.id).child("contact").observe(.childRemoved, with: {snapShot in
+            //Remove location that removed
+            app_delegate.contactArray = app_delegate.contactArray.filter{$0.id != snapShot.key}
+            
+            //Post notification to update UI
+            NotificationCenter.default.post(name: Notification.Name("ChangedContact"), object: nil)
         })
     }
     
@@ -197,7 +232,7 @@ class FirebaseAction: NSObject {
                      - Group
                      - Contact
                      **/
-                    self.observeLocation()
+                    self.observeChangedLocation()
                     
                     self.observeGroup()
                     
@@ -230,7 +265,6 @@ class FirebaseAction: NSObject {
     
     //MARK: - Contact
 
-    
     //Search contact to contact List
     func searchContactWithName(name: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
         var searchString = ""
@@ -351,5 +385,27 @@ class FirebaseAction: NSObject {
                 })
             }
         }
+    }
+    
+    //MARK: - About
+    func getAbout(onCompletionHandler: @escaping () -> ()) {
+        ref.child("about").observe(.value, with: { (snapshot) in
+            UserDefaults.standard.set(snapshot.value as? String, forKey: "about")
+            onCompletionHandler()
+        })
+    }
+    
+    func sendCommentAboutApp(comment: String, onCompletetionHandler: @escaping () -> ()) {
+        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        resultRef = ref.child("comment")
+        
+        /**
+         Key: profile id
+         Value: comment
+         **/
+        let dictionary = [app_delegate.profile.id: comment]
+        
+        resultRef.childByAutoId().setValue(dictionary)
+        onCompletetionHandler()
     }
 }

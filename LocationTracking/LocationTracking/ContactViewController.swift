@@ -80,8 +80,8 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     override func tappedRightBarButton(sender: UIButton) {
-//        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-//        self.navigationController?.pushViewController(profileViewController, animated: true)
+        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        self.navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     //Hide keyboard

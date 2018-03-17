@@ -32,6 +32,10 @@
 		D256083120559B4E00CEA39B /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256083020559B4E00CEA39B /* ContactViewController.swift */; };
 		D256083420559B6B00CEA39B /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256083320559B6B00CEA39B /* ContactTableViewCell.swift */; };
 		D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269F6541FA789BF00BEDD9A /* TextField.swift */; };
+		D289D98D205D83B9008A0AAF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98C205D83B9008A0AAF /* ProfileViewController.swift */; };
+		D289D990205D840B008A0AAF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98E205D840B008A0AAF /* AboutViewController.swift */; };
+		D289D991205D840B008A0AAF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */; };
+		D289D993205D8444008A0AAF /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D992205D8443008A0AAF /* CommentViewController.swift */; };
 		EA460EE71FCBC8770002D9BF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA460EE61FCBC8770002D9BF /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +70,10 @@
 		D256083020559B4E00CEA39B /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		D256083320559B6B00CEA39B /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		D269F6541FA789BF00BEDD9A /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		D289D98C205D83B9008A0AAF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		D289D98E205D840B008A0AAF /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		D289D992205D8443008A0AAF /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		EA460EE61FCBC8770002D9BF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +151,7 @@
 		846C92C81EF5170C000993CE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D289D98B205D839D008A0AAF /* Profile */,
 				D256082D205595D400CEA39B /* Contact */,
 				841781611EF58EB10020858C /* SignIn */,
 				8485A2061EE8694800D79A61 /* Map */,
@@ -228,6 +237,17 @@
 				D256083320559B6B00CEA39B /* ContactTableViewCell.swift */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		D289D98B205D839D008A0AAF /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D289D992205D8443008A0AAF /* CommentViewController.swift */,
+				D289D98E205D840B008A0AAF /* AboutViewController.swift */,
+				D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */,
+				D289D98C205D83B9008A0AAF /* ProfileViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,8 +431,11 @@
 				D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */,
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
+				D289D98D205D83B9008A0AAF /* ProfileViewController.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
+				D289D991205D840B008A0AAF /* ChangePasswordViewController.swift in Sources */,
+				D289D993205D8444008A0AAF /* CommentViewController.swift in Sources */,
 				D256082F205595FD00CEA39B /* SearchLocationViewController.swift in Sources */,
 				D256083120559B4E00CEA39B /* ContactViewController.swift in Sources */,
 				843C03EE1EFADE4C00BE605B /* ContactModel.swift in Sources */,
@@ -426,6 +449,7 @@
 				D256083420559B6B00CEA39B /* ContactTableViewCell.swift in Sources */,
 				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
 				84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */,
+				D289D990205D840B008A0AAF /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

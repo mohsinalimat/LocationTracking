@@ -38,11 +38,10 @@ class ProfileViewController: OriginalViewController {
     
     //MARK: - Init Data
     func initData() {
-        let profile = DatabaseManager.getProfile()
         let password = UserDefaults.standard.object(forKey: "password") as? String
 
-        nameTextField.text = profile?.name
-        emailTextField.text = profile?.email
+        nameTextField.text = app_delegate.profile.name
+        emailTextField.text = app_delegate.profile.email
         passwordTextField.text = password!
 
         //disable textfield
