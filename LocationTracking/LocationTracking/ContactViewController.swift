@@ -53,6 +53,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     func reloadSharedContact() {
         tableView.reloadData()
     }
+    
     //MARK: - Init Object
     func initView() {
         segmented.selectedSegmentIndex = currentIndex
