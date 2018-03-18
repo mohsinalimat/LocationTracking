@@ -104,7 +104,7 @@ class ProfileViewController: OriginalViewController {
             if (emailTextField.text?.count)! > 0 {
                 //Chang email in firebase Authentication
                 app_delegate.firebaseObject.changeEmail(newEmail: emailTextField.text!, password: passwordTextField.text!, onCompletionHandler: {error in
-                    //Update email infirebase database
+                    //Update email
                     app_delegate.firebaseObject.updateEmail(email: self.emailTextField.text!)
                     
                     //Update user name

@@ -36,6 +36,10 @@
 		D289D990205D840B008A0AAF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98E205D840B008A0AAF /* AboutViewController.swift */; };
 		D289D991205D840B008A0AAF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */; };
 		D289D993205D8444008A0AAF /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D992205D8443008A0AAF /* CommentViewController.swift */; };
+		D289D998205D8CD1008A0AAF /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D997205D8CD1008A0AAF /* AddContactViewController.swift */; };
+		D289D99A205D8CED008A0AAF /* SearchContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */; };
+		D289D99E205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */; };
+		D289D99F205D8E99008A0AAF /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */; };
 		EA460EE71FCBC8770002D9BF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA460EE61FCBC8770002D9BF /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +78,10 @@
 		D289D98E205D840B008A0AAF /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		D289D992205D8443008A0AAF /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		D289D997205D8CD1008A0AAF /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContactTableViewCell.swift; sourceTree = "<group>"; };
+		D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewGroupTableViewCell.swift; sourceTree = "<group>"; };
+		D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
 		EA460EE61FCBC8770002D9BF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +159,10 @@
 		846C92C81EF5170C000993CE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D289D99B205D8E8E008A0AAF /* Group */,
+				D289D996205D8C4B008A0AAF /* About */,
+				D289D995205D8C36008A0AAF /* Comment */,
+				D289D994205D8C25008A0AAF /* Location */,
 				D289D98B205D839D008A0AAF /* Profile */,
 				D256082D205595D400CEA39B /* Contact */,
 				841781611EF58EB10020858C /* SignIn */,
@@ -164,7 +176,6 @@
 			children = (
 				D235E1991FCAB03E00A87DAF /* Cell */,
 				8485A2071EE869C800D79A61 /* MapViewController.swift */,
-				D256082E205595FC00CEA39B /* SearchLocationViewController.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -227,6 +238,7 @@
 			children = (
 				D256083220559B5100CEA39B /* Cell */,
 				D256083020559B4E00CEA39B /* ContactViewController.swift */,
+				D289D997205D8CD1008A0AAF /* AddContactViewController.swift */,
 			);
 			name = Contact;
 			sourceTree = "<group>";
@@ -234,6 +246,7 @@
 		D256083220559B5100CEA39B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */,
 				D256083320559B6B00CEA39B /* ContactTableViewCell.swift */,
 			);
 			name = Cell;
@@ -242,12 +255,51 @@
 		D289D98B205D839D008A0AAF /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				D289D992205D8443008A0AAF /* CommentViewController.swift */,
-				D289D98E205D840B008A0AAF /* AboutViewController.swift */,
 				D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */,
 				D289D98C205D83B9008A0AAF /* ProfileViewController.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		D289D994205D8C25008A0AAF /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				D256082E205595FC00CEA39B /* SearchLocationViewController.swift */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
+		D289D995205D8C36008A0AAF /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				D289D992205D8443008A0AAF /* CommentViewController.swift */,
+			);
+			name = Comment;
+			sourceTree = "<group>";
+		};
+		D289D996205D8C4B008A0AAF /* About */ = {
+			isa = PBXGroup;
+			children = (
+				D289D98E205D840B008A0AAF /* AboutViewController.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		D289D99B205D8E8E008A0AAF /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				D289D9A0205D8E9D008A0AAF /* Cell */,
+				D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */,
+			);
+			name = Group;
+			sourceTree = "<group>";
+		};
+		D289D9A0205D8E9D008A0AAF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,12 +481,14 @@
 				D256082C20556A8900CEA39B /* GroupModel.swift in Sources */,
 				EA460EE71FCBC8770002D9BF /* APIManager.swift in Sources */,
 				D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */,
+				D289D99F205D8E99008A0AAF /* CreateNewGroupViewController.swift in Sources */,
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
 				D289D98D205D83B9008A0AAF /* ProfileViewController.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
 				D289D991205D840B008A0AAF /* ChangePasswordViewController.swift in Sources */,
+				D289D99E205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift in Sources */,
 				D289D993205D8444008A0AAF /* CommentViewController.swift in Sources */,
 				D256082F205595FD00CEA39B /* SearchLocationViewController.swift in Sources */,
 				D256083120559B4E00CEA39B /* ContactViewController.swift in Sources */,
@@ -444,10 +498,12 @@
 				841781651EF59E320020858C /* SignUpViewController.swift in Sources */,
 				D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */,
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
+				D289D99A205D8CED008A0AAF /* SearchContactTableViewCell.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
 				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,
 				D256083420559B6B00CEA39B /* ContactTableViewCell.swift in Sources */,
 				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
+				D289D998205D8CD1008A0AAF /* AddContactViewController.swift in Sources */,
 				84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */,
 				D289D990205D840B008A0AAF /* AboutViewController.swift in Sources */,
 			);

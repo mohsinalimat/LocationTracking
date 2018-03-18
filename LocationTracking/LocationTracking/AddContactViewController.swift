@@ -42,11 +42,10 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
             if (searchTextField.text?.count)! > 0 {
                 app_delegate.firebaseObject.searchContactWithName(name: searchTextField.text!, completionHandler: {(array) in
                     self.contactArray.removeAll()
-                    let contactIdList = self.getListContactId()
                     
                     if array.count > 0 {
                         for contactModel in array as [ContactModel] {
-                            if !((contactIdList?.contains(contactModel.id)))! && app_delegate.profile.id != contactModel.id {
+                            if !app_delegate.contactArray.contains(contactModel) && app_delegate.profile.id != contactModel.id {
                                 self.contactArray.append(contactModel)
                             }
                         }

@@ -195,7 +195,6 @@ class FirebaseAction: NSObject {
             ref.child("locationList").child(id).setValue(userInfoDictionary)
     }
     
-    //MARK: - Create new location
     func addLocationToContact(id: String, locationAray: [LocationModel]) {
         //comform to contact id
         var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
@@ -204,6 +203,35 @@ class FirebaseAction: NSObject {
         for location in locationAray {
             let userInfoDictionary = ["name": location.name, "latitude": location.latitude, "longitude": location.longitude] as [String : Any]
             resultRef.child("locationList").child(location.id).setValue(userInfoDictionary)
+        }
+    }
+    
+    //MARK: - Create new Group
+    func createGroup(name: String, array: [String], onCompletionHandler: @escaping ()-> ()) {
+        if app_delegate.profile.id != nil {
+            //comform to contact id
+            //comform to waiting share property
+            let userInfoDictionary = ["name": name, "member":array, "owner": app_delegate.profile.id] as [String : Any]
+            
+            //create group
+            let group = ref.child("group").childByAutoId()
+            group.setValue(userInfoDictionary)
+            
+            var count = 0
+            //referent to user
+            for user in array {
+                ref.child(user).child("group").observe(.value, with: { (snapshot) in
+                    count += 1
+                    var snapDict = snapshot.value as? [String] ?? []
+                    if !snapDict.contains(group.key) {
+                        snapDict.append(group.key)
+                    }
+                    self.ref.child(user).child("group").setValue(snapDict)
+                    if count == array.count {
+                        onCompletionHandler()
+                    }
+                })
+            }
         }
     }
     

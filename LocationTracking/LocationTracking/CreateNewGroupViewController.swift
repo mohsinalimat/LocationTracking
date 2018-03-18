@@ -43,6 +43,10 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         self.showHUD()
         if (groupNameTextField.text?.count)! > 0 {
             
+            if selectedContactArray.count == 0 {
+                view.makeToast("Please add contact to this group!", duration: 2.0, position: .center)
+                return
+            }
             app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: selectedContactArray, onCompletionHandler: {
                 self.hideHUD()
                 self.navigationController?.popViewController(animated: true)
@@ -50,7 +54,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
             
         } else {
             self.hideHUD()
-            view.makeToast("Please input group name.", duration: 2.0, position: .center)
+            view.makeToast("Please input group name!", duration: 2.0, position: .center)
         }
     }
     
@@ -68,25 +72,30 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactArray.count
+        let sharedContactArray = app_delegate.contactArray.filter{$0.isShare == 0}
+        return sharedContactArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CreateNewGroupTableViewCell") as! CreateNewGroupTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
-        cell.setupCell(contact: contactArray[indexPath.row])
+        
+        let sharedContactArray = app_delegate.contactArray.filter{$0.isShare == 0}
+        cell.setupCell(contact: sharedContactArray[indexPath.row])
         return cell
     }
     
     //MARK: - Cell Delegate
     func addToGroup(indexPath: IndexPath) {
-        let contact: ContactModel = contactArray[indexPath.row]
-        selectedContactArray.append(contact.id!)
+        let sharedContactArray = app_delegate.contactArray.filter{$0.isShare == 0}
+        let contact: ContactModel = sharedContactArray[indexPath.row]
+        selectedContactArray.append(contact.id)
     }
     
     func deleteFromGroup(indexPath: IndexPath) {
-        let contact: ContactModel = contactArray[indexPath.row]
-        selectedContactArray = selectedContactArray.filter{$0 != contact.id!}
+        let sharedContactArray = app_delegate.contactArray.filter{$0.isShare == 0}
+        let contact: ContactModel = sharedContactArray[indexPath.row]
+        selectedContactArray = selectedContactArray.filter{$0 != contact.id}
     }
 }
