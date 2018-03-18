@@ -58,7 +58,7 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     func addTitleNavigation(title : String) {
         let titleLabel = UILabel.init(frame: CGRect.init(x: 0, y: 0, width: screen_width - 120, height: 44))
         titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 22)
         titleLabel.textColor = UIColor.white
         titleLabel.textAlignment = .center
         titleLabel.text = title
@@ -71,7 +71,7 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         let titleButton = UIButton.init(type: .custom)
         titleButton.isExclusiveTouch = true
         titleButton.frame = CGRect.init(x: 0, y: 0, width: screen_width - 120, height: 44)
-        titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         titleButton.titleLabel?.numberOfLines = 2
         titleButton.setTitle(title, for: .normal)
         titleButton.addTarget(self, action: #selector(tappedTitleButton), for: .touchUpInside)

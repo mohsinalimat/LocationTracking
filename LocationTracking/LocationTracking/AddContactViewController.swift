@@ -9,6 +9,7 @@
 import UIKit
 
 class AddContactViewController: OriginalViewController,UITableViewDelegate,UITableViewDataSource,SearchContactDelegate {
+    
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
@@ -41,15 +42,18 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
             self.showHUD()
             if (searchTextField.text?.count)! > 0 {
                 app_delegate.firebaseObject.searchContactWithName(name: searchTextField.text!, completionHandler: {(array) in
-                    self.contactArray.removeAll()
                     
-                    if array.count > 0 {
-                        for contactModel in array as [ContactModel] {
-                            if !app_delegate.contactArray.contains(contactModel) && app_delegate.profile.id != contactModel.id {
-                                self.contactArray.append(contactModel)
-                            }
-                        }
+                    self.contactArray.removeAll()
+                    self.contactArray += array as [ContactModel]
+
+                    //Remove me from contact list
+                    self.contactArray = self.contactArray.filter{$0.id != app_delegate.profile.id}
+                    
+                    //Remove contacts who I added to my contact array
+                    for contact in app_delegate.contactArray {
+                        self.contactArray = self.contactArray.filter{$0.id != contact.id}
                     }
+
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                         self.hideHUD()
@@ -62,15 +66,9 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     //Save contact into Favorite
     override func tappedRightBarButton(sender: UIButton) {
         if selectedContactArray.count > 0 {
-            //Remove contacts that added to the list
-                for contact in self.selectedContactArray {
-                    if let ix = self.contactArray.index(of: contact) {
-                        self.contactArray.remove(at: ix)
-                    }
-                }
-                self.tableView.reloadData()
+            app_delegate.firebaseObject.requestToShareLocation(selectContactArray: selectedContactArray)
         } else {
-            view.makeToast("Please choose a account from the list.", duration: 2.0, position: .center)
+            view.makeToast("Please select a account from the list!", duration: 2.0, position: .center)
         }
     }
     
@@ -97,12 +95,26 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
         cell.delegate = self
         cell.indexPath = indexPath
         cell.setupCell(contact: contactArray[indexPath.row])
+        
+        let currentContact = contactArray[indexPath.row]
+        if selectedContactArray.contains(currentContact) {
+            cell.selectionButton.isSelected = true
+        } else {
+            cell.selectionButton.isSelected = false
+        }
+        
         return cell
     }
     
     //MARK: - Cell Delegate
     func SaveContact(indexPath: IndexPath) {
         selectedContactArray.append(contactArray[indexPath.row])
+    }
+    
+    func unSelected(indexPath: IndexPath) {
+        if selectedContactArray.contains(contactArray[indexPath.row]) {
+            selectedContactArray = selectedContactArray.filter{$0 != contactArray[indexPath.row]}
+        }
     }
     
     //MARK: - TextField Delegate

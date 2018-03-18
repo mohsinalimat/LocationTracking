@@ -14,7 +14,7 @@ class ContactModel: NSObject {
     var latitude: Double = 0
     var longitude: Double = 0
     var id: String = ""
-    var isShare : Int = 0
+    var isShare : Int = 1
     var contact = [String: Any]()
     var group = [String]()
     var locationList = [String: Any]()
@@ -48,6 +48,9 @@ class ContactModel: NSObject {
         if dict["locationList"] != nil {
             locationList = dict["locationList"] as! [String: Any]
         }
-        isShare = ShareStatus.kNotYetShared.rawValue
+        
+        if app_delegate.profile.contact[self.id] != nil {
+            isShare = app_delegate.profile.contact[self.id] as! Int
+        }
     }
 }

@@ -9,12 +9,9 @@
 import Foundation
 import UIKit
 
-enum ShareStatus: Int {
-    case kShared        = 0     //Shared location with me
-    case kwaitingShared = 1     //waiting to share with me
-    case kRequestShare  = 2     //I requested to share 
-    case kNotYetShared  = 3
-}
+let kShared        = 0     //Shared location with me
+let kRequested     = 1     //I requested
+let kRequestedToMe = 2     //Requested me
 
 //MARK: - Key
 //Twitter
@@ -28,8 +25,8 @@ let kApplicationId        = "ca-app-pub-7161181863245899~5560133192"
 
 //MARK: - Index
 let kSharedContactIndex    = 0     //Shared location with me
-let kRequestShareIndex     = 1     //waiting to share with me
-let kGroupListIndex        = 2     //I requested to share
+let kRequestShareIndex     = 1     //Contacts who request to me
+let kGroupListIndex        = 2     //Group list
 let kLocationListIndex     = 3     //Location list
 
 let main_storyboard     = UIStoryboard(name: "Main", bundle: nil)

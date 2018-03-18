@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ContactViewController : OriginalViewController,UITableViewDelegate,UITableViewDataSource,ContactTableViewCellDelegate {
+class ContactViewController : OriginalViewController, UITableViewDelegate, UITableViewDataSource, ContactTableViewCellDelegate {
+    
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
@@ -50,9 +51,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func reloadSharedContact() {
-        if segmented.selectedSegmentIndex == kSharedContactIndex {
-            tableView.reloadData()
-        }
+        tableView.reloadData()
     }
     //MARK: - Init Object
     func initView() {
@@ -98,12 +97,12 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             return app_delegate.locationArray.count
         }
         if segmented.selectedSegmentIndex == kRequestShareIndex {
-            let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
-            
+            let requestArray = app_delegate.contactArray.filter{$0.isShare == kRequestedToMe}
+
             return requestArray.count
         }
-        let sharedArray = app_delegate.contactArray.filter{$0.isShare == 0}
-        
+        let sharedArray = app_delegate.contactArray.filter{$0.isShare != kRequestedToMe}
+
         return sharedArray.count
     }
     
@@ -119,12 +118,12 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             
         } else if segmented.selectedSegmentIndex == kRequestShareIndex {
             
-            let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
+            let requestArray = app_delegate.contactArray.filter{$0.isShare == kRequestedToMe}
             cell.setupCell(contact: requestArray[indexPath.row])
             
         } else {
             
-            let sharedArray = app_delegate.contactArray.filter{$0.isShare == 0}
+            let sharedArray = app_delegate.contactArray.filter{$0.isShare != kRequestedToMe}
             cell.setupCell(contact: sharedArray[indexPath.row])
             
         }
@@ -152,14 +151,6 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             self.deleteCellAtIndexPath(indexPath: indexPath)
         }
     }
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if (editingStyle == .delete) {
-//        }
-//    }
-//    
-//    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-//        return .delete
-//    }
     
     //MARK: - Marker
     func displayMarker(indexPath: IndexPath) {
@@ -195,30 +186,14 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     //MARK: - ContactTableViewCell Delegate
-    func requestLocation(contact: ContactModel) {
-//        self .showHUD()
-//        app_delegate.firebaseObject.requestLocation(toContact: contact, onCompletetionHandler: {
-//            self.tableView.reloadData()
-//            self.hideHUD()
-//        })
-    }
-    
     func shareLocation(contact: ContactModel) {
-//        self.showAlert(title: "Confirm", message: "Do you want share your location with this friend", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {
-//            self .showHUD()
-//
-//            //Change selected index of segmented
-//            self.segmented.selectedSegmentIndex = kSharedContactIndex
-//            self.currentIndex = kSharedContactIndex
-//            let profile = DatabaseManager.getProfile()
-//
-//            app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {
-//                app_delegate.firebaseObject.refreshData(email: (profile?.email)!, name: (profile?.name)!, completionHandler: {isSuccess in
-//                    self.hideHUD()
-//                    self.refreshContactData()
-//                })
-//            })
-//        })
+        self.showAlert(title: "Confirm", message: "Do you want share your location with this friend", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {
+            self .showHUD()
+
+            app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {
+                self.hideHUD()
+            })
+        })
     }
     
     //Delete cell
@@ -257,11 +232,21 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
             app_delegate.firebaseObject.deleteLocation(locationId: location.id)
             hideHUD()
             break
+        case kRequestedToMe:
+            let requestArray = app_delegate.contactArray.filter{$0.isShare == kRequestedToMe}
+
+            let contact = requestArray[indexPath.row]
+            app_delegate.firebaseObject.deleteContact(contactId: contact.id, atUserId: app_delegate.profile.id, onCompletionHandler: {_ in
+                self.hideHUD()
+            })
+            break
         default:
-//            let contact = contactArray[indexPath.row]
-//            app_delegate.firebaseObject.deleteContact(contactId: contact.id!, atUserId: (app_delegate.profile?.id)!, onCompletionHandler: {_ in
-//                self.hideHUD()
-//            })
+            let sharedArray = app_delegate.contactArray.filter{$0.isShare != kRequestedToMe}
+
+            let contact = sharedArray[indexPath.row]
+            app_delegate.firebaseObject.deleteContact(contactId: contact.id, atUserId: app_delegate.profile.id, onCompletionHandler: {_ in
+                self.hideHUD()
+            })
             break
         }
     }

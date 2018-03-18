@@ -193,7 +193,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="xe3-Zk-Fxt">
-                                <rect key="frame" x="20" y="160" width="280.5" height="35"/>
+                                <rect key="frame" x="20" y="160" width="280" height="35"/>
                                 <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xe3-Zk-Fxt" secondAttribute="height" multiplier="8:1" id="AAJ-oZ-QJM"/>
@@ -208,7 +208,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tV4-uA-XEV">
-                                <rect key="frame" x="20" y="350" width="280.5" height="35"/>
+                                <rect key="frame" x="20" y="350" width="280" height="35"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tV4-uA-XEV" secondAttribute="height" multiplier="8:1" id="bZ0-8f-TO2"/>
@@ -222,7 +222,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Rbw-kg-nbU">
-                                <rect key="frame" x="20" y="250" width="280.5" height="35"/>
+                                <rect key="frame" x="20" y="250" width="280" height="35"/>
                                 <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Rbw-kg-nbU" secondAttribute="height" multiplier="8:1" id="Juj-cC-4eU"/>
@@ -235,7 +235,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Hm8-si-SgI">
-                                <rect key="frame" x="20" y="295" width="280.5" height="35"/>
+                                <rect key="frame" x="20" y="295" width="280" height="35"/>
                                 <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Hm8-si-SgI" secondAttribute="height" multiplier="8:1" id="s3L-4K-5FY"/>
@@ -259,7 +259,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="xX1-yL-vmD">
-                                <rect key="frame" x="20" y="205" width="280.5" height="35"/>
+                                <rect key="frame" x="20" y="205" width="280" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xX1-yL-vmD" secondAttribute="height" multiplier="8:1" id="ArR-HE-WG8"/>
                                 </constraints>
@@ -1268,31 +1268,16 @@
                                                         <action selector="tappedShareLocation:" destination="5TQ-gH-dvK" eventType="touchUpInside" id="Rxh-LX-l5p"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fO1-et-9M6">
-                                                    <rect key="frame" x="60" y="44.5" width="100" height="25"/>
-                                                    <color key="backgroundColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="16"/>
-                                                    <state key="normal" title="Request" image="shareLocation">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="tappedRequestLocation:" destination="5TQ-gH-dvK" eventType="touchUpInside" id="kCZ-Jf-QxP"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Z9r-m7-Y0M" firstAttribute="leading" secondItem="gSY-JT-urN" secondAttribute="leading" id="2tK-le-tsc"/>
                                                 <constraint firstAttribute="trailing" secondItem="gSY-JT-urN" secondAttribute="trailing" constant="20" id="5Lf-XH-m2o"/>
                                                 <constraint firstItem="K0Q-JC-jvl" firstAttribute="trailing" secondItem="gSY-JT-urN" secondAttribute="trailing" id="9El-1Q-7IZ"/>
                                                 <constraint firstItem="K0Q-JC-jvl" firstAttribute="top" secondItem="gSY-JT-urN" secondAttribute="bottom" constant="5" id="D3t-mS-iHu"/>
-                                                <constraint firstItem="fO1-et-9M6" firstAttribute="leading" secondItem="gSY-JT-urN" secondAttribute="leading" id="GY1-NT-6QO"/>
                                                 <constraint firstItem="D0w-EX-9GP" firstAttribute="top" secondItem="jsX-u9-gUg" secondAttribute="top" constant="15" id="KGu-Vn-sUi"/>
                                                 <constraint firstItem="gSY-JT-urN" firstAttribute="top" secondItem="D0w-EX-9GP" secondAttribute="top" id="O2T-J8-uHL"/>
-                                                <constraint firstItem="fO1-et-9M6" firstAttribute="top" secondItem="Z9r-m7-Y0M" secondAttribute="top" id="YSZ-oE-4Tu"/>
-                                                <constraint firstItem="fO1-et-9M6" firstAttribute="leading" secondItem="Z9r-m7-Y0M" secondAttribute="leading" id="Ywb-3H-cH0"/>
                                                 <constraint firstItem="Z9r-m7-Y0M" firstAttribute="leading" secondItem="K0Q-JC-jvl" secondAttribute="leading" id="c9y-Om-mub"/>
                                                 <constraint firstItem="D0w-EX-9GP" firstAttribute="leading" secondItem="jsX-u9-gUg" secondAttribute="leading" constant="10" id="enT-vs-4in"/>
-                                                <constraint firstItem="fO1-et-9M6" firstAttribute="bottom" secondItem="Z9r-m7-Y0M" secondAttribute="bottom" id="jdT-P8-dCd"/>
-                                                <constraint firstItem="fO1-et-9M6" firstAttribute="trailing" secondItem="Z9r-m7-Y0M" secondAttribute="trailing" id="lM2-ll-bC8"/>
                                                 <constraint firstItem="gSY-JT-urN" firstAttribute="leading" secondItem="D0w-EX-9GP" secondAttribute="trailing" constant="10" id="mfs-TN-i5Z"/>
                                                 <constraint firstItem="Z9r-m7-Y0M" firstAttribute="top" secondItem="gSY-JT-urN" secondAttribute="bottom" constant="10" id="oMu-Gk-yx0"/>
                                             </constraints>
@@ -1300,7 +1285,6 @@
                                         <connections>
                                             <outlet property="avatarImageView" destination="D0w-EX-9GP" id="bb3-SJ-b6P"/>
                                             <outlet property="currentLocationLabel" destination="K0Q-JC-jvl" id="Cx6-Ci-L6x"/>
-                                            <outlet property="requestLocationButton" destination="fO1-et-9M6" id="k7L-DJ-qnu"/>
                                             <outlet property="shareLocationButton" destination="Z9r-m7-Y0M" id="kSs-IN-bVx"/>
                                             <outlet property="userNameLabel" destination="gSY-JT-urN" id="JbF-A8-snW"/>
                                         </connections>

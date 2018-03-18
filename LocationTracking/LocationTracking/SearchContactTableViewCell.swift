@@ -12,6 +12,7 @@ import UIKit
 
 protocol SearchContactDelegate {
     func SaveContact(indexPath:IndexPath)
+    func unSelected(indexPath:IndexPath)
 }
 
 class SearchContactTableViewCell : UITableViewCell {
@@ -35,7 +36,11 @@ class SearchContactTableViewCell : UITableViewCell {
     //MARK: - Action
     @IBAction func tappedSelectedContact(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.SaveContact(indexPath: indexPath)
+        if sender.isSelected {
+            delegate?.SaveContact(indexPath: indexPath)
+        } else {
+            delegate?.unSelected(indexPath: indexPath)
+        }
     }
     
     func setupCell(contact:ContactModel) {

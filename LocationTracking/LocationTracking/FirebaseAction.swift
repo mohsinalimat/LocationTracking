@@ -329,7 +329,7 @@ class FirebaseAction: NSObject {
                 if allDict?["name"] != nil {
                     name = allDict?["name"] as! String
                 }
-                if name.contains(searchString) {
+                if name.uppercased().contains(searchString.uppercased()) {
                     let contactModel = ContactModel()
                     contactModel.initContactModel(dict: allDict!)
                     array.append(contactModel)
@@ -370,17 +370,33 @@ class FirebaseAction: NSObject {
     }
     
     func shareLocation(toContact: ContactModel, onCompletetionHandler: @escaping () -> ()) {
-        var resultRef: DatabaseReference = Database.database().reference()
+        //Remove me by this contact
+        ref.child(toContact.id).child("contact").child(app_delegate.profile.id).setValue(kShared)
         
-        //comform to contact id
-        resultRef = ref.child(toContact.id)
-        //comform to waiting share property
-        resultRef.child("contact").child(app_delegate.profile.id).setValue(ShareStatus.kShared.rawValue)
-    ref.child(app_delegate.profile.id).child("contact").child(toContact.id).setValue(ShareStatus.kShared.rawValue)
+        //Remove this contact by me
+        ref.child(app_delegate.profile.id).child("contact").child(toContact.id).setValue(kShared)
         
         onCompletetionHandler()
     }
     
+    func requestToShareLocation(selectContactArray: [ContactModel]) {
+        var contactList = app_delegate.profile.contact
+        
+        for selectContact in selectContactArray {
+            contactList[selectContact.id] = kRequested
+            
+            //Add me to selected contact
+            var selectContactList = selectContact.contact
+            selectContactList[app_delegate.profile.id] = kRequestedToMe
+            
+            ref.child(selectContact.id).child("contact").setValue(selectContactList)
+        }
+        
+        //Add new contact to my contact array
+        ref.child(app_delegate.profile.id).child("contact").setValue(contactList)
+    }
+    
+    //MARK: - Change user information
     func changePassword(oldPassword: String, newPassword: String, onCompletionHandler: @escaping (Error?) -> ()) {
         let user = Auth.auth().currentUser
         
