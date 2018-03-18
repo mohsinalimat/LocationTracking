@@ -126,7 +126,7 @@ class FirebaseAction: NSObject {
                     contact.initContactModel(dict: dict)
                     contact.isShare = child.value as! Int
                     
-                    if !app_delegate.contactArray.contains(contact) {
+                    if !app_delegate.contactArray.contains(contact) && contact.contact[app_delegate.profile.id] != nil {
                         app_delegate.contactArray.append(contact)
                     }
                     
