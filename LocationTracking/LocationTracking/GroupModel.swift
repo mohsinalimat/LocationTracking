@@ -23,7 +23,7 @@ class GroupModel: NSObject {
         }
         
         if dict["owner"] != nil {
-            self.owner = dict["owners"] as! String
+            self.owner = dict["owner"] as! String
         }
         if dict["member"] != nil {
             self.member = dict["member"] as! [String]

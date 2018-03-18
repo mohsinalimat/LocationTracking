@@ -45,7 +45,7 @@ class SignUpViewController: OriginalViewController {
     @IBAction func tappedSignUp(_ sender: UIButton) {
         self.showHUD()
         
-        if (emailTextField.text?.count)! > 0 && (passwordTextField.text?.characters.count)! > 0 && (confirmPasswordTextField.text?.characters.count)! > 0 && (nameTextField.text?.characters.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
+        if (emailTextField.text?.count)! > 0 && (passwordTextField.text?.count)! > 0 && (confirmPasswordTextField.text?.count)! > 0 && (nameTextField.text?.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
             if (passwordTextField.text?.count)! < 6 {
                 self.showAlert(title: "", message: "Password must be more than 6 characters", cancelTitle: "", okTitle: "OK", onOKAction: {_ in
                     
@@ -54,7 +54,7 @@ class SignUpViewController: OriginalViewController {
                 return
             }
             
-            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 
                 if error != nil {
                     self.view.makeToast((error?.localizedDescription)!, duration: 2.0, position: .center)

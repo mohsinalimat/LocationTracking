@@ -8,21 +8,12 @@ target 'LocationTracking' do
 	pod 'GooglePlaces'
   	pod 'RappleProgressHUD'
 	pod 'Firebase', '>= 2.5.0'
+	pod 'FirebaseCore’
 	pod 'Firebase/AdMob'
 	pod 'Firebase/Analytics'
-	pod 'Firebase/AppIndexing'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Crash'
 	pod 'Firebase/Database'
-	pod 'Firebase/DynamicLinks'
-	pod 'Firebase/Invites'
-	pod 'Firebase/Messaging'
-	pod 'Firebase/RemoteConfig'
-	pod 'Firebase/Storage'
-	pod 'FBSDKLoginKit'
-	pod 'FBSDKShareKit’
-	pod 'GoogleSignIn'
-	pod 'TwitterKit'
 	pod 'Alamofire'
 	pod 'SwiftyJSON'
 end

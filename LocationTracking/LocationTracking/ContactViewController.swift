@@ -11,7 +11,7 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentIndex = SegmentedIndex.kSharedContactIndex
+    var currentIndex = kSharedContactIndex
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,25 +38,25 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     }
     
     func reloadLocation() {
-        if segmented.selectedSegmentIndex == SegmentedIndex.kLocationListIndex.rawValue {
+        if segmented.selectedSegmentIndex == kLocationListIndex {
             tableView.reloadData()
         }
     }
     
     func reloadGroup() {
-        if segmented.selectedSegmentIndex == SegmentedIndex.kGroupListIndex.rawValue {
+        if segmented.selectedSegmentIndex == kGroupListIndex {
             tableView.reloadData()
         }
     }
     
     func reloadSharedContact() {
-        if segmented.selectedSegmentIndex == SegmentedIndex.kSharedContactIndex.rawValue {
+        if segmented.selectedSegmentIndex == kSharedContactIndex {
             tableView.reloadData()
         }
     }
     //MARK: - Init Object
     func initView() {
-        segmented.selectedSegmentIndex = currentIndex.rawValue
+        segmented.selectedSegmentIndex = currentIndex
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
         self.addLeftBarItem(imageName: "icon_close", title: "")
@@ -91,13 +91,13 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //MARK: - UITableView Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmented.selectedSegmentIndex == SegmentedIndex.kGroupListIndex.rawValue {
+        if segmented.selectedSegmentIndex == kGroupListIndex {
             return app_delegate.groupArray.count
         }
-        if segmented.selectedSegmentIndex == SegmentedIndex.kLocationListIndex.rawValue {
+        if segmented.selectedSegmentIndex == kLocationListIndex {
             return app_delegate.locationArray.count
         }
-        if segmented.selectedSegmentIndex == SegmentedIndex.kRequestShareIndex.rawValue {
+        if segmented.selectedSegmentIndex == kRequestShareIndex {
             let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
             
             return requestArray.count
@@ -109,15 +109,15 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
-        if segmented.selectedSegmentIndex == SegmentedIndex.kLocationListIndex.rawValue {
+        if segmented.selectedSegmentIndex == kLocationListIndex {
             
             cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
             
-        } else if segmented.selectedSegmentIndex == SegmentedIndex.kGroupListIndex.rawValue {
+        } else if segmented.selectedSegmentIndex == kGroupListIndex {
             
             cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
             
-        } else if segmented.selectedSegmentIndex == SegmentedIndex.kRequestShareIndex.rawValue {
+        } else if segmented.selectedSegmentIndex == kRequestShareIndex {
             
             let requestArray = app_delegate.contactArray.filter{$0.isShare != 0}
             cell.setupCell(contact: requestArray[indexPath.row])
@@ -223,51 +223,46 @@ class ContactViewController : OriginalViewController,UITableViewDelegate,UITable
     
     //Delete cell
     func deleteCellAtIndexPath(indexPath: IndexPath) {
-//        var message = ""
-//
-//        switch segmented.selectedSegmentIndex {
-//        case kGroupListIndex:
-//            let group = groupArray[indexPath.row]
-//            message = "Do you want to delete group: " + group.name!
-//            break
-//        case kLocationListIndex:
-//            let location = locationArray[indexPath.row]
-//            message = "Do you want to delete location: " + location.name!
-//            break
-//        default:
+        var message = ""
+
+        switch segmented.selectedSegmentIndex {
+        case kGroupListIndex:
+            let group = app_delegate.groupArray[indexPath.row]
+            message = "Do you want to delete group: " + group.name
+            break
+        case kLocationListIndex:
+            let location = app_delegate.locationArray[indexPath.row]
+            message = "Do you want to delete location: " + location.name
+            break
+        default:
 //            let contact = contactArray[indexPath.row]
-//            message = "Do you want to delete contact: " + contact.name!
-//            break
-//        }
-//        self.showAlert(title: message, message: "", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
-//            self.deleteObject(indexPath: indexPath)
-//        })
+            message = "Do you want to delete contact: " //+ contact.name!
+            break
+        }
+        self.showAlert(title: message, message: "", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+            self.deleteObject(indexPath: indexPath)
+        })
     }
     
     func deleteObject(indexPath: IndexPath) {
-//        self.showHUD()
-//        switch segmented.selectedSegmentIndex {
-//        case kGroupListIndex:
-//            let group = groupArray[indexPath.row]
-//            app_delegate.firebaseObject.deleteGroup(group: group, onCompletionHandler: {_ in
-//                self.refreshContactData()
-//                self.hideHUD()
-//            })
-//            break
-//        case kLocationListIndex:
-//            let location = locationArray[indexPath.row]
-//            app_delegate.firebaseObject.deleteLocation(locationId: location.id! ,onCompletionHandler: {_ in
-//                self.refreshContactData()
-//                self.hideHUD()
-//            })
-//            break
-//        default:
+        self.showHUD()
+        switch segmented.selectedSegmentIndex {
+        case kGroupListIndex:
+            let group = app_delegate.groupArray[indexPath.row]
+            app_delegate.firebaseObject.deleteGroup(group: group)
+            hideHUD()
+            break
+        case kLocationListIndex:
+            let location = app_delegate.locationArray[indexPath.row]
+            app_delegate.firebaseObject.deleteLocation(locationId: location.id)
+            hideHUD()
+            break
+        default:
 //            let contact = contactArray[indexPath.row]
 //            app_delegate.firebaseObject.deleteContact(contactId: contact.id!, atUserId: (app_delegate.profile?.id)!, onCompletionHandler: {_ in
-//                self.refreshContactData()
 //                self.hideHUD()
 //            })
-//            break
-//        }
+            break
+        }
     }
 }

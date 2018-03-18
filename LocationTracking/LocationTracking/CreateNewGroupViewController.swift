@@ -40,20 +40,19 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     
     //MARK: - Action
     override func tappedRightBarButton(sender: UIButton) {
-        self.showHUD()
         if (groupNameTextField.text?.count)! > 0 {
             
-            if selectedContactArray.count == 0 {
+            if selectedContactArray.count < 2 {
                 view.makeToast("Please add contact to this group!", duration: 2.0, position: .center)
                 return
             }
+            self.showHUD()
             app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: selectedContactArray, onCompletionHandler: {
                 self.hideHUD()
                 self.navigationController?.popViewController(animated: true)
             })
             
         } else {
-            self.hideHUD()
             view.makeToast("Please input group name!", duration: 2.0, position: .center)
         }
     }

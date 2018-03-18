@@ -8,21 +8,15 @@
 
 import UIKit
 import Firebase
-import FBSDKCoreKit
-import FBSDKLoginKit
-import FBSDKShareKit
-import GoogleSignIn
-import TwitterKit
-import TwitterCore
 import Social
 
 class FirebaseAction: NSObject {
     
-    lazy var ref: FIRDatabaseReference = FIRDatabase.database().reference()
+    lazy var ref: DatabaseReference = Database.database().reference()
     
     func initFirebase() {
-        FIRApp.configure()
-        FIRDatabase.database().reference()
+        FirebaseApp.configure()
+        Database.database().reference()
     }
     
     //MARK: - Get from firebase
@@ -77,8 +71,8 @@ class FirebaseAction: NSObject {
     
     func observeGroup() {
         ref.child(app_delegate.profile.id).child("group").observe(.value, with: {snapShot in
-            let snapDic = snapShot.value as? [String:Any]
-            guard snapDic != nil else {
+            let groupArray = snapShot.value as? [String]
+            guard groupArray != nil else {
                 return
             }
             
@@ -86,24 +80,26 @@ class FirebaseAction: NSObject {
             app_delegate.groupArray.removeAll()
             
             //fill data
-            
-            for child in snapDic! {
-                var allDict = child.value as? [String:Any]
-                allDict?["id"] = child.key
-                
-                let groupModel = GroupModel()
-                groupModel.initGroupModel(dict: allDict!)
-                if !app_delegate.groupArray.contains(groupModel) {
-                    app_delegate.groupArray.append(groupModel)
-                }
+            for groupName in groupArray! {
+                self.ref.child("group").child(groupName).observe(.value, with: {snap in
+                    var dict = snap.value as! [String: Any]
+                    dict["id"] = groupName
+                    let groupModel = GroupModel()
+                    groupModel.initGroupModel(dict: dict)
+                    
+                    app_delegate.groupArray = app_delegate.groupArray.filter{$0.id != groupName}
+                    app_delegate.groupArray.insert(groupModel, at: 0)
+                    
+                    if app_delegate.groupArray.count == groupArray?.count {
+                        NotificationCenter.default.post(name: Notification.Name("ChangedGroup"), object: nil)
+                    }
+                })
             }
-            
-            NotificationCenter.default.post(name: Notification.Name("ChangedGroup"), object: nil)
         })
         
         ref.child(app_delegate.profile.id).child("group").observe(.childRemoved, with: {snapShot in
             //Remove location that removed
-            app_delegate.groupArray = app_delegate.groupArray.filter{$0.id != snapShot.key}
+            app_delegate.groupArray = app_delegate.groupArray.filter{$0.id != snapShot.value as? String}
             
             //Post notification to update UI
             NotificationCenter.default.post(name: Notification.Name("ChangedGroup"), object: nil)
@@ -166,7 +162,7 @@ class FirebaseAction: NSObject {
     //MARK: USER INFORMATION
     //Create new user to sign up firebase
     func createUser(email: String, name:String) -> String{
-        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        var resultRef: DatabaseReference = Database.database().reference()
 
         let userInfoDictionary = ["currentLocations": ["latitude":0.0,"longitude":0.0],"email":email,"name":name] as [String : Any]
         resultRef = ref.childByAutoId()
@@ -185,7 +181,7 @@ class FirebaseAction: NSObject {
     //MARK: - Create new location
     func createNewLocation(latitude: Double, longitude: Double, name: String) {
             //comform to contact id
-            var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        var resultRef: DatabaseReference = Database.database().reference()
             resultRef = ref.child(app_delegate.profile.id)
             //comform to waiting share property
             let userInfoDictionary = ["name": name, "latitude":latitude, "longitude": longitude] as [String : Any]
@@ -197,7 +193,7 @@ class FirebaseAction: NSObject {
     
     func addLocationToContact(id: String, locationAray: [LocationModel]) {
         //comform to contact id
-        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        var resultRef: DatabaseReference = Database.database().reference()
         resultRef = ref.child(id)
         //comform to waiting share property
         for location in locationAray {
@@ -206,44 +202,61 @@ class FirebaseAction: NSObject {
         }
     }
     
+    func deleteLocation(locationId: String){
+        ref.child(app_delegate.profile.id).child("locationList").child(locationId).removeValue()
+    }
+    
     //MARK: - Create new Group
     func createGroup(name: String, array: [String], onCompletionHandler: @escaping ()-> ()) {
-        if app_delegate.profile.id != nil {
-            //comform to contact id
-            //comform to waiting share property
-            let userInfoDictionary = ["name": name, "member":array, "owner": app_delegate.profile.id] as [String : Any]
-            
-            //create group
-            let group = ref.child("group").childByAutoId()
-            group.setValue(userInfoDictionary)
-            
-            var count = 0
-            //referent to user
-            for user in array {
-                ref.child(user).child("group").observe(.value, with: { (snapshot) in
-                    count += 1
-                    var snapDict = snapshot.value as? [String] ?? []
-                    if !snapDict.contains(group.key) {
-                        snapDict.append(group.key)
-                    }
-                    self.ref.child(user).child("group").setValue(snapDict)
-                    if count == array.count {
-                        onCompletionHandler()
-                    }
-                })
-            }
+        //comform to contact id
+        //comform to waiting share property
+        let userInfoDictionary = ["name": name, "member":array, "owner": app_delegate.profile.id] as [String : Any]
+        
+        //create group
+        let group = ref.child("group").childByAutoId()
+        group.setValue(userInfoDictionary)
+        
+        var count = 0
+        //referent to user
+        for user in array {
+            ref.child(user).child("group").observe(.value, with: { (snapshot) in
+                count += 1
+                var snapDict = snapshot.value as? [String] ?? []
+                if !snapDict.contains(group.key) {
+                    snapDict.append(group.key)
+                }
+                self.ref.child(user).child("group").setValue(snapDict)
+                if count == array.count {
+                    onCompletionHandler()
+                }
+            })
         }
     }
     
+    func deleteGroup(group: GroupModel) {
+        let newGroupArray = app_delegate.groupArray.filter{$0.id != group.id}
+        var groupIdArray = [String]()
+        let memberIdArray = group.member.filter{$0 != app_delegate.profile.id}
+        
+        for newGroup in newGroupArray {
+            groupIdArray.append(newGroup.id)
+        }
+
+        //Update Group list
+        ref.child(app_delegate.profile.id).child("group").setValue(groupIdArray)
+        
+        ref.child("group").child(group.id).child("member").setValue(memberIdArray)
+    }
+    
+    //MARK: - User
     func resetPasswordToEmail(email: String, onCompletionHandler: @escaping () -> ()) {
-        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: {_ in
+        Auth.auth().sendPasswordReset(withEmail: email, completion: {_ in
             onCompletionHandler()
         })
     }
     
-    //MARK: - Sign in with Email
     func signInWith(email: String, name: String?, password: String, completionHandler: @escaping (Bool) -> ()) {
-        FIRAuth.auth()?.signIn(withEmail:email, password: password) { (user, error) in
+        Auth.auth().signIn(withEmail:email, password: password) { (user, error) in
             if error == nil {
                 UserDefaults.standard.set(email, forKey: "userName")
                 UserDefaults.standard.set(password, forKey: "password")
@@ -278,7 +291,7 @@ class FirebaseAction: NSObject {
     //Sign out
     func signOut(){
         do{
-            try FIRAuth.auth()?.signOut()
+            try Auth.auth().signOut()
         }catch{
             print("Error while signing out!")
         }
@@ -286,7 +299,7 @@ class FirebaseAction: NSObject {
     
     //Reset password 
     func resetPassword(email: String, onComplehandler: @escaping () -> ()) {
-        FIRAuth.auth()?.sendPasswordReset(withEmail: email) { error in
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
             onComplehandler()
         }
     }
@@ -357,7 +370,7 @@ class FirebaseAction: NSObject {
     }
     
     func shareLocation(toContact: ContactModel, onCompletetionHandler: @escaping () -> ()) {
-        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        var resultRef: DatabaseReference = Database.database().reference()
         
         //comform to contact id
         resultRef = ref.child(toContact.id)
@@ -369,15 +382,16 @@ class FirebaseAction: NSObject {
     }
     
     func changePassword(oldPassword: String, newPassword: String, onCompletionHandler: @escaping (Error?) -> ()) {
-        let user = FIRAuth.auth()?.currentUser
+        let user = Auth.auth().currentUser
         
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: app_delegate.profile.email, password: oldPassword)
+        let credential = EmailAuthProvider.credential(withEmail: app_delegate.profile.email, password: oldPassword)
+        
         user?.reauthenticate(with: credential) { reAuthError in
             if reAuthError != nil {
                 onCompletionHandler(reAuthError!)
                 // An error happened.
             } else {
-                user?.updatePassword(newPassword) { error in
+                user?.updatePassword(to: newPassword, completion:{ error in
                     if error != nil {
                         onCompletionHandler(error!)
                     } else {
@@ -387,21 +401,21 @@ class FirebaseAction: NSObject {
                         
                         onCompletionHandler(nil)
                     }
-                }
+                })
             }
         }
     }
     
     func changeEmail(newEmail: String, password: String, onCompletionHandler: @escaping (Error?) -> ()) {
-        let user = FIRAuth.auth()?.currentUser
+        let user = Auth.auth().currentUser
         
-        let credential = FIREmailPasswordAuthProvider.credential(withEmail: app_delegate.profile.email, password: password)
+        let credential = EmailAuthProvider.credential(withEmail: app_delegate.profile.email, password: password)
         user?.reauthenticate(with: credential) { reAuthError in
             if reAuthError != nil {
                 onCompletionHandler(reAuthError!)
                 // An error happened.
             } else {
-                user?.updateEmail(newEmail, completion: { error in
+                user?.updateEmail(to: newEmail, completion: { error in
                     if error != nil {
                         onCompletionHandler(error!)
                     } else {
@@ -424,7 +438,7 @@ class FirebaseAction: NSObject {
     }
     
     func sendCommentAboutApp(comment: String, onCompletetionHandler: @escaping () -> ()) {
-        var resultRef: FIRDatabaseReference = FIRDatabase.database().reference()
+        var resultRef: DatabaseReference = Database.database().reference()
         resultRef = ref.child("comment")
         
         /**

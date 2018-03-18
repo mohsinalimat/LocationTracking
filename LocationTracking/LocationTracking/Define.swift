@@ -27,12 +27,10 @@ let kInterstitialAdUnitID = "ca-app-pub-7161181863245899/7581514074"
 let kApplicationId        = "ca-app-pub-7161181863245899~5560133192"
 
 //MARK: - Index
-enum SegmentedIndex: Int {
-    case kSharedContactIndex    = 0     //Shared location with me
-    case kRequestShareIndex     = 1     //waiting to share with me
-    case kGroupListIndex        = 2     //I requested to share
-    case kLocationListIndex     = 3     //Location list
-}
+let kSharedContactIndex    = 0     //Shared location with me
+let kRequestShareIndex     = 1     //waiting to share with me
+let kGroupListIndex        = 2     //I requested to share
+let kLocationListIndex     = 3     //Location list
 
 let main_storyboard     = UIStoryboard(name: "Main", bundle: nil)
 let screen_width        = UIScreen.main.bounds.width
