@@ -134,17 +134,21 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if segmented.selectedSegmentIndex == kSharedContactIndex || segmented.selectedSegmentIndex == kRequestShareIndex {
-//            //Tapped contact cell
-//            let selectedContact = app_delegate.contactArray[indexPath.row]
-//            if selectedContact != 0 {
-//                view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)
-//                return
-//            }
-//        }
-//
-//        self.displayMarker(indexPath: indexPath)
-//        self.tappedLeftBarButton(sender: UIButton())
+        if segmented.selectedSegmentIndex == kSharedContactIndex {
+            //Tapped contact cell
+            let selectedContact = app_delegate.contactArray[indexPath.row]
+            if selectedContact.isShare != 0 {
+                view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)
+                return
+            }
+        }
+        
+        if segmented.selectedSegmentIndex == kRequestedToMe {
+            return
+        }
+        
+        self.displayMarker(indexPath: indexPath)
+        self.tappedLeftBarButton(sender: UIButton())
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -156,34 +160,35 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     //MARK: - Marker
     func displayMarker(indexPath: IndexPath) {
         //Show Map View
-//        let mapViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! MapViewController
-//            
-//            mapViewController.currentContactArray.removeAll()
-//            if segmented.selectedSegmentIndex == kGroupListIndex {
-//                //Tapped group cell
-//
-//                let sharedContactArray = DatabaseManager.getContactSharedLocation(contetxt: nil)
-//                let group = groupArray[indexPath.row]
-//                
-//                for contact in sharedContactArray! {
-//                    if (group.member?.contains(contact.id!))! {
-//                        mapViewController.currentContactArray.append(contact)
-//                    }
-//                }
-//                //Add observer when changed contact
-//                mapViewController.updateMarker()
-//
-//            } else if segmented.selectedSegmentIndex == kLocationListIndex {
-//                let location = locationArray[indexPath.row]
-//                //Add observer when changed contact
-//                mapViewController.reDrawMarkerWithPosition(latitude: location.latitude, longitude: location.longitude, name: location.name!)
-//
-//            } else {
-//                mapViewController.currentContact = contactArray[indexPath.row]
-//                mapViewController.currentContactArray.append(contactArray[indexPath.row])
-//                //Add observer when changed contact
-//                mapViewController.updateMarker()
-//            }
+        let mapViewController = self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 2] as! MapViewController
+        
+            mapViewController.currentContactArray.removeAll()
+            if segmented.selectedSegmentIndex == kGroupListIndex {
+                //Tapped group cell
+
+                let sharedContactArray = app_delegate.contactArray.filter{$0.isShare != kRequestedToMe}
+                let group = app_delegate.groupArray[indexPath.row]
+                
+                for contact in sharedContactArray {
+                    if group.member.contains(contact.id) {
+                        mapViewController.currentContactArray.append(contact)
+                    }
+                }
+                //Add observer when changed contact
+                mapViewController.updateMarker()
+
+            } else if segmented.selectedSegmentIndex == kLocationListIndex {
+                let location = app_delegate.locationArray[indexPath.row]
+                //Add observer when changed contact
+                mapViewController.reDrawMarkerWithPosition(latitude: location.latitude, longitude: location.longitude, name: location.name)
+
+            } else {
+                let sharedContactArray = app_delegate.contactArray.filter{$0.isShare != kRequestedToMe}
+
+                mapViewController.currentContactArray.append(sharedContactArray[indexPath.row])
+                //Add observer when changed contact
+                mapViewController.updateMarker()
+            }
     }
     
     //MARK: - ContactTableViewCell Delegate
