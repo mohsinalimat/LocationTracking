@@ -11,6 +11,7 @@ import CoreData
 import GoogleMaps
 import GooglePlaces
 import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

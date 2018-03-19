@@ -9,11 +9,11 @@ target 'LocationTracking' do
   	pod 'RappleProgressHUD'
 	pod 'Firebase', '>= 2.5.0'
 	pod 'FirebaseCore’
-	pod 'Firebase/AdMob'
 	pod 'Firebase/Analytics'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Crash'
 	pod 'Firebase/Database'
 	pod 'Alamofire'
 	pod 'SwiftyJSON'
+	pod 'Firebase/AdMob'
 end

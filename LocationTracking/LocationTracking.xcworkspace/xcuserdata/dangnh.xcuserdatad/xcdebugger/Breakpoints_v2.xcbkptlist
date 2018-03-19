@@ -14,7 +14,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "344"
-            endingLineNumber = "344">
+            endingLineNumber = "344"
+            landmarkName = "searchLocation(searchString:onCompletionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -29,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
             endingLineNumber = "95"
-            landmarkName = "observeContact()"
+            landmarkName = "observeGroup()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '6F5A8B34BDF0036B95D235A32CDA914B'
-               BlueprintName = 'RappleProgressHUD'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RappleProgressHUD.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9D042412B2099113ACEE59676B640E97"
+               BlueprintName = "RappleProgressHUD"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "RappleProgressHUD.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
