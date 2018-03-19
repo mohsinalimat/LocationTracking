@@ -40,10 +40,10 @@ class SignInViewController: OriginalViewController {
     
     //MARK: - Function
     func CustomLayout() {
-        emailView.customBorder(radius: 3,color: .clear)
-        passwordView.customBorder(radius: 3,color: .clear)
-        signInButton.customBorder(radius: 3,color: .clear)
-        signUpButton.customBorder(radius: 3,color: .clear)
+        emailView.customBorder(radius: 4,color: .clear)
+        passwordView.customBorder(radius: 4,color: .clear)
+        signInButton.customBorder(radius: 4,color: .clear)
+        signUpButton.customBorder(radius: 4,color: .clear)
     }
     
     func resetTextField() {

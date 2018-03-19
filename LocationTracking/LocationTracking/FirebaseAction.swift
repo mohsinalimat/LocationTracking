@@ -126,7 +126,8 @@ class FirebaseAction: NSObject {
                     contact.initContactModel(dict: dict)
                     contact.isShare = child.value as! Int
                     
-                    if !app_delegate.contactArray.contains(contact) && contact.contact[app_delegate.profile.id] != nil {
+                    if contact.contact[app_delegate.profile.id] != nil {
+                        app_delegate.contactArray = app_delegate.contactArray.filter{$0.id != contact.id}
                         app_delegate.contactArray.append(contact)
                     }
                     
@@ -422,10 +423,12 @@ class FirebaseAction: NSObject {
         }
     }
     
-    func changeEmail(newEmail: String, password: String, onCompletionHandler: @escaping (Error?) -> ()) {
+    func changeEmail(newEmail: String, onCompletionHandler: @escaping (Error?) -> ()) {
         let user = Auth.auth().currentUser
         
-        let credential = EmailAuthProvider.credential(withEmail: app_delegate.profile.email, password: password)
+        let password = UserDefaults.standard.object(forKey: "password") ?? ""
+
+        let credential = EmailAuthProvider.credential(withEmail: app_delegate.profile.email, password: password as! String)
         user?.reauthenticate(with: credential) { reAuthError in
             if reAuthError != nil {
                 onCompletionHandler(reAuthError!)

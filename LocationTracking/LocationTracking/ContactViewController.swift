@@ -110,23 +110,28 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
         if segmented.selectedSegmentIndex == kLocationListIndex {
-            
-            cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
+            if app_delegate.locationArray.count > indexPath.row {
+                cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
+            }
             
         } else if segmented.selectedSegmentIndex == kGroupListIndex {
             
-            cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
+            if app_delegate.groupArray.count > indexPath.row {
+                cell.setupGroupCell(group: app_delegate.groupArray[indexPath.row], memberCount: app_delegate.groupArray.count)
+            }
             
         } else if segmented.selectedSegmentIndex == kRequestShareIndex {
             
             let requestArray = app_delegate.contactArray.filter{$0.isShare == kRequestedToMe}
-            cell.setupCell(contact: requestArray[indexPath.row])
+            if requestArray.count > indexPath.row {
+                cell.setupCell(contact: requestArray[indexPath.row])
+            }
             
         } else {
-            
             let sharedArray = app_delegate.contactArray.filter{$0.isShare != kRequestedToMe}
-            cell.setupCell(contact: sharedArray[indexPath.row])
-            
+            if sharedArray.count > indexPath.row {
+                cell.setupCell(contact: sharedArray[indexPath.row])
+            }
         }
         cell.delegate = self
         cell.indexPath = indexPath

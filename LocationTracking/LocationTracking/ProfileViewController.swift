@@ -9,10 +9,9 @@
 import UIKit
 
 class ProfileViewController: OriginalViewController {
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var emailTextField: TextField!
+    @IBOutlet weak var nameTextField: TextField!
     @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
@@ -26,6 +25,8 @@ class ProfileViewController: OriginalViewController {
         //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
+        
+        self.setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,18 +37,26 @@ class ProfileViewController: OriginalViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK: - Set up UI
+    func setupUI() {
+        changePasswordButton.customBorder(radius: 4.0, color: Common.mainColor())
+        aboutButton.customBorder(radius: 4.0, color: Common.mainColor())
+        nameTextField.customBorder(radius: 4.0, color: Common.mainColor())
+        emailTextField.customBorder(radius: 4.0, color: Common.mainColor())
+        
+        nameTextField.textRect(forBounds: nameTextField.bounds)
+        emailTextField.textRect(forBounds: emailTextField.bounds)
+    }
+    
     //MARK: - Init Data
     func initData() {
-        let password = UserDefaults.standard.object(forKey: "password") as? String
 
         nameTextField.text = app_delegate.profile.name
         emailTextField.text = app_delegate.profile.email
-        passwordTextField.text = password!
 
         //disable textfield
         nameTextField.isEnabled = false
         emailTextField.isEnabled = false
-        passwordTextField.isEnabled = false
     }
     
     //MARK: Action
@@ -62,7 +71,6 @@ class ProfileViewController: OriginalViewController {
             
             nameTextField.isEnabled = true
             emailTextField.isEnabled = true
-            passwordTextField.isEnabled = true
         } else {
             //Change profile
             self.showHUD()
@@ -100,29 +108,24 @@ class ProfileViewController: OriginalViewController {
     
     //MARK: - Function
     func updateProfile(onCompletionHandler: @escaping () -> ()) {
-        if (passwordTextField.text?.count)! > 0 {
-            if (emailTextField.text?.count)! > 0 {
-                //Chang email in firebase Authentication
-                app_delegate.firebaseObject.changeEmail(newEmail: emailTextField.text!, password: passwordTextField.text!, onCompletionHandler: {error in
-                    //Update email
-                    app_delegate.firebaseObject.updateEmail(email: self.emailTextField.text!)
-                    
-                    //Update user name
-                    self.updateUserName()
-                    
-                    //Call back after update successfull
-                    onCompletionHandler()
-                })
-            } else {
-                //Only change user name
+        if (emailTextField.text?.count)! > 0 {
+            //Chang email in firebase Authentication
+            app_delegate.firebaseObject.changeEmail(newEmail: emailTextField.text!, onCompletionHandler: {error in
+                //Update email
+                app_delegate.firebaseObject.updateEmail(email: self.emailTextField.text!)
+                
+                //Update user name
                 self.updateUserName()
                 
                 //Call back after update successfull
-                onCompletionHandler()                
-            }
-        } else {
-            self.showAlert(title: "Error", message: "Please check again information", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+                onCompletionHandler()
             })
+        } else {
+            //Only change user name
+            self.updateUserName()
+            
+            //Call back after update successfull
+            onCompletionHandler()
         }
     }
     
