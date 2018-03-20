@@ -1248,10 +1248,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9X-ff-LcF">
-                                <rect key="frame" x="135" y="498" width="50" height="50"/>
+                                <rect key="frame" x="130" y="488" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Gwq-RG-iWJ"/>
-                                    <constraint firstAttribute="width" constant="50" id="hCg-pq-d2F"/>
+                                    <constraint firstAttribute="height" constant="60" id="Gwq-RG-iWJ"/>
+                                    <constraint firstAttribute="width" constant="60" id="hCg-pq-d2F"/>
                                 </constraints>
                                 <state key="normal" image="contacts"/>
                                 <connections>
@@ -1292,6 +1292,7 @@
                         <outlet property="allowUpdateLocationSwitch" destination="EN0-G1-lHx" id="KCk-Wx-g5b"/>
                         <outlet property="bannerView" destination="7J1-bL-8zx" id="dOX-e0-by1"/>
                         <outlet property="closeAddNewLocationButton" destination="LVc-um-tRL" id="RW7-F9-a4l"/>
+                        <outlet property="contactsListButton" destination="U9X-ff-LcF" id="yXj-M1-S9E"/>
                         <outlet property="hybridTypeButton" destination="jeo-fS-Ex7" id="qIu-bW-zx0"/>
                         <outlet property="menuView" destination="I2Y-ue-wS3" id="nl3-Ms-rvH"/>
                         <outlet property="newLatitudeLabel" destination="0C5-Nc-5Yx" id="Rfk-Ze-yVy"/>
@@ -1318,7 +1319,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-yL-Pkl">
-                                <rect key="frame" x="15" y="30" width="290" height="36"/>
+                                <rect key="frame" x="15" y="85" width="290" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="aQ2-Es-xkQ"/>
                                 </constraints>
@@ -1334,8 +1335,9 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="86" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rii-NB-TQb">
-                                <rect key="frame" x="0.0" y="85" width="320" height="483"/>
+                                <rect key="frame" x="0.0" y="140" width="320" height="428"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="ContactTableViewCell" rowHeight="85" id="5TQ-gH-dvK" customClass="ContactTableViewCell" customModule="LocationTracking" customModuleProvider="target">
@@ -1407,13 +1409,27 @@
                                     <outlet property="delegate" destination="dlV-Ev-EFu" id="iII-FX-iMd"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc3-Yx-95T">
+                                <rect key="frame" x="10" y="20" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="JdV-yf-xam"/>
+                                    <constraint firstAttribute="width" constant="45" id="xjQ-Y2-0Gl"/>
+                                </constraints>
+                                <state key="normal" image="ico_close"/>
+                                <connections>
+                                    <action selector="tappedDismiss:" destination="dlV-Ev-EFu" eventType="touchUpInside" id="MmL-8W-mhL"/>
+                                    <action selector="tappedDismiss:" destination="H6R-h1-k9P" eventType="touchUpInside" id="TgU-V0-tjw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zI8-hs-3v7" firstAttribute="top" secondItem="rii-NB-TQb" secondAttribute="bottom" id="4VP-3B-Caa"/>
+                            <constraint firstItem="Jc3-Yx-95T" firstAttribute="top" secondItem="Ogu-Gw-5OL" secondAttribute="top" constant="20" id="Hq5-6c-eEA"/>
                             <constraint firstAttribute="trailing" secondItem="rii-NB-TQb" secondAttribute="trailing" id="IFp-79-0hA"/>
+                            <constraint firstItem="hMJ-yL-Pkl" firstAttribute="top" secondItem="Jc3-Yx-95T" secondAttribute="bottom" constant="20" id="LKX-Ea-aAt"/>
+                            <constraint firstItem="Jc3-Yx-95T" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" constant="10" id="Sys-6d-Ycz"/>
                             <constraint firstAttribute="trailing" secondItem="hMJ-yL-Pkl" secondAttribute="trailing" constant="15" id="Tkw-d9-ael"/>
-                            <constraint firstItem="hMJ-yL-Pkl" firstAttribute="top" secondItem="RfQ-c4-RGg" secondAttribute="bottom" constant="10" id="bk9-o5-vzA"/>
                             <constraint firstItem="hMJ-yL-Pkl" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" constant="15" id="hxO-RK-L5q"/>
                             <constraint firstItem="rii-NB-TQb" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" id="jRB-be-B6N"/>
                             <constraint firstItem="rii-NB-TQb" firstAttribute="top" secondItem="hMJ-yL-Pkl" secondAttribute="bottom" constant="20" id="xhO-bc-Aac"/>

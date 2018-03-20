@@ -29,7 +29,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var hybridTypeButton: UIButton!
     @IBOutlet weak var newLongitudeLabel: UILabel!
     @IBOutlet weak var newLatitudeLabel: UILabel!
-    
+        @IBOutlet weak var contactsListButton: UIButton!
     var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -139,6 +139,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         view.bringSubview(toFront: normalTypeButton)
         view.bringSubview(toFront: hybridTypeButton)
         view.bringSubview(toFront: searchLocationButton)
+        view.bringSubview(toFront: contactsListButton)
     }
     
     //Init Location
