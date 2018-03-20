@@ -11,10 +11,10 @@ import Firebase
 
 class SignUpViewController: OriginalViewController {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var emailTextField: TextField!
+    @IBOutlet weak var nameTextField: TextField!
+    @IBOutlet weak var passwordTextField: TextField!
+    @IBOutlet weak var confirmPasswordTextField: TextField!
     @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidLoad() {
@@ -36,6 +36,11 @@ class SignUpViewController: OriginalViewController {
         confirmPasswordTextField.customBorder(radius: confirmPasswordTextField.frame.height/2,color: .clear)
         nameTextField.customBorder(radius: nameTextField.frame.height/2,color: .clear)
         passwordTextField.customBorder(radius: passwordTextField.frame.height/2,color: .clear)
+        
+        emailTextField.textRect(forBounds: emailTextField.bounds)
+        nameTextField.textRect(forBounds: nameTextField.bounds)
+        passwordTextField.textRect(forBounds: passwordTextField.bounds)
+        confirmPasswordTextField.textRect(forBounds: confirmPasswordTextField.bounds)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
