@@ -19,15 +19,23 @@ class SignUpViewController: OriginalViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signUpButton.isExclusiveTouch = true
-        signUpButton.customBorder(radius: 5,color: .clear)
         self.addLeftBarItem(imageName: "ic_close_popup",title: "")
         view.tappedDismissKeyboard()
+        self.CustomLayout()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func CustomLayout() {
+        signUpButton.isExclusiveTouch = true
+        signUpButton.customBorder(radius: signUpButton.frame.height/2,color: .clear)
+        emailTextField.customBorder(radius: emailTextField.frame.height/2,color: .clear)
+        confirmPasswordTextField.customBorder(radius: confirmPasswordTextField.frame.height/2,color: .clear)
+        nameTextField.customBorder(radius: nameTextField.frame.height/2,color: .clear)
+        passwordTextField.customBorder(radius: passwordTextField.frame.height/2,color: .clear)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

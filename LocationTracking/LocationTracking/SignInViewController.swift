@@ -46,8 +46,7 @@ class SignInViewController: OriginalViewController {
         passwordTextField.customBorder(radius: passwordTextField.frame.height/2,color: .clear)
         showPasswordButton.customBorder(radius: showPasswordButton.frame.height/2,color: .clear)
 
-        signInButton.customBorder(radius: 4,color: .clear)
-        signUpButton.customBorder(radius: 4,color: .clear)
+        signInButton.customBorder(radius: signInButton.frame.height/2,color: .clear)
     }
     
     func resetTextField() {
