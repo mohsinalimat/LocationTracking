@@ -51,7 +51,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     override func viewDidLoad() {
         super.viewDidLoad()
         isAllowUpdateLocation = true
-        self.addLeftBarItem(imageName: "ic_menu",title: "")
+        self.addLeftBarItem(imageName: "profile",title: "")
         self.addRightBarItem(imageName: "ic_add",title: "")
         self.initMapView()
         //Init Ads
@@ -287,18 +287,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     //MARK: - Action
     override func tappedLeftBarButton(sender: UIButton) {
-        self.navigationItem.leftBarButtonItem?.isEnabled = false
-
-        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-
-        //Init CATransition
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-        self.navigationController?.pushViewController(contactViewController, animated: true)
+        let profileViewController = main_storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        self.present(profileViewController, animated: true, completion: nil)
     }
     
     override func tappedRightBarButton(sender: UIButton) {

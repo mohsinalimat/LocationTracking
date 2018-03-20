@@ -19,8 +19,6 @@ class ProfileViewController: OriginalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
-        self.addRightBarItem(imageName: "", title: "Edit")
-        self.addTitleNavigation(title: "Profile")
         
         //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
@@ -61,7 +59,7 @@ class ProfileViewController: OriginalViewController {
     
     //MARK: Action
     override func tappedLeftBarButton(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     override func tappedRightBarButton(sender: UIButton) {
@@ -80,6 +78,8 @@ class ProfileViewController: OriginalViewController {
         }
     }
     
+    @IBAction func tappedDismiss(_ sender: UIButton) {
+    }
     @IBAction func tappedUpdateAvatar(_ sender: UIButton) {
     }
 
