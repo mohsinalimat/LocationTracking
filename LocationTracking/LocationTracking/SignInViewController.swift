@@ -40,8 +40,12 @@ class SignInViewController: OriginalViewController {
     
     //MARK: - Function
     func CustomLayout() {
-        emailView.customBorder(radius: 4,color: .clear)
-        passwordView.customBorder(radius: 4,color: .clear)
+        emailView.customBorder(radius: emailView.frame.height/2,color: .clear)
+        passwordView.customBorder(radius: passwordView.frame.height/2,color: .clear)
+        emailTextField.customBorder(radius: emailTextField.frame.height/2,color: .clear)
+        passwordTextField.customBorder(radius: passwordTextField.frame.height/2,color: .clear)
+        showPasswordButton.customBorder(radius: showPasswordButton.frame.height/2,color: .clear)
+
         signInButton.customBorder(radius: 4,color: .clear)
         signUpButton.customBorder(radius: 4,color: .clear)
     }

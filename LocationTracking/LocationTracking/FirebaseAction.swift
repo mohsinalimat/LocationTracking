@@ -73,6 +73,8 @@ class FirebaseAction: NSObject {
         ref.child(app_delegate.profile.id).child("group").observe(.value, with: {snapShot in
             let groupArray = snapShot.value as? [String]
             guard groupArray != nil else {
+                app_delegate.groupArray.removeAll()
+                NotificationCenter.default.post(name: Notification.Name("ChangedGroup"), object: nil)
                 return
             }
             
@@ -217,9 +219,26 @@ class FirebaseAction: NSObject {
         let group = ref.child("group").childByAutoId()
         group.setValue(userInfoDictionary)
         
+        var newGroupIdArray = [String]()
+        
+        //Get current group list
+        for groupModel in app_delegate.groupArray {
+            newGroupIdArray.append(groupModel.id)
+        }
+        
+        //Add new group is
+        newGroupIdArray.append(group.key)
+
+        //Add new group to my group list
+        self.ref.child(app_delegate.profile.id).child("group").setValue(newGroupIdArray)
+
         var count = 0
         //referent to user
         for user in array {
+            if user == app_delegate.profile.id {
+                onCompletionHandler()
+                return
+            }
             ref.child(user).child("group").observe(.value, with: { (snapshot) in
                 count += 1
                 var snapDict = snapshot.value as? [String] ?? []

@@ -60,23 +60,28 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIx-Ra-xZK">
-                                <rect key="frame" x="20" y="240" width="280" height="40"/>
+                                <rect key="frame" x="30" y="240" width="260" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="LSp-hv-m8X">
-                                        <rect key="frame" x="3" y="2" width="274" height="36"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="10" y="2" width="247" height="36"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="cfO-c7-M0M" id="SZ3-pW-BEe"/>
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="LSp-hv-m8X" firstAttribute="leading" secondItem="AIx-Ra-xZK" secondAttribute="leading" constant="3" id="KMR-i2-Amc"/>
+                                    <constraint firstItem="LSp-hv-m8X" firstAttribute="leading" secondItem="AIx-Ra-xZK" secondAttribute="leading" constant="10" id="KMR-i2-Amc"/>
                                     <constraint firstAttribute="height" constant="40" id="LvM-Ub-dEM"/>
                                     <constraint firstAttribute="trailing" secondItem="LSp-hv-m8X" secondAttribute="trailing" constant="3" id="UAe-jH-nPT"/>
                                     <constraint firstItem="LSp-hv-m8X" firstAttribute="top" secondItem="AIx-Ra-xZK" secondAttribute="top" constant="2" id="WBw-5D-qhu"/>
@@ -84,39 +89,46 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vy7-6h-lhH">
-                                <rect key="frame" x="20" y="290" width="280" height="40"/>
+                                <rect key="frame" x="30" y="290" width="260" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wGB-iC-I9p">
-                                        <rect key="frame" x="3" y="3" width="234" height="35"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="10" y="3" width="212" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.19539620539999999" green="0.64670758930000005" blue="0.85485491069999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="delegate" destination="cfO-c7-M0M" id="EaB-ER-IdJ"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7Z-f5-gZy">
-                                        <rect key="frame" x="240" y="3" width="35" height="35"/>
+                                        <rect key="frame" x="225" y="5.5" width="30" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="esH-1U-Zwq"/>
-                                            <constraint firstAttribute="width" constant="35" id="evd-4X-miL"/>
+                                            <constraint firstAttribute="height" constant="30" id="esH-1U-Zwq"/>
+                                            <constraint firstAttribute="width" constant="30" id="evd-4X-miL"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="hidePassword"/>
+                                        <state key="normal" image="hidePassword">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <state key="selected" image="showPassword"/>
                                         <connections>
                                             <action selector="tappedShowPassword:" destination="cfO-c7-M0M" eventType="touchUpInside" id="qVc-vo-ggO"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="t7Z-f5-gZy" secondAttribute="trailing" constant="5" id="0xv-9y-6Q4"/>
-                                    <constraint firstItem="wGB-iC-I9p" firstAttribute="leading" secondItem="vy7-6h-lhH" secondAttribute="leading" constant="3" id="Aew-Hh-ngm"/>
+                                    <constraint firstItem="wGB-iC-I9p" firstAttribute="leading" secondItem="vy7-6h-lhH" secondAttribute="leading" constant="10" id="Aew-Hh-ngm"/>
                                     <constraint firstItem="t7Z-f5-gZy" firstAttribute="leading" secondItem="wGB-iC-I9p" secondAttribute="trailing" constant="3" id="BvV-Oa-KAA"/>
                                     <constraint firstItem="t7Z-f5-gZy" firstAttribute="centerY" secondItem="vy7-6h-lhH" secondAttribute="centerY" id="ZZC-b6-rAb"/>
                                     <constraint firstItem="wGB-iC-I9p" firstAttribute="top" secondItem="vy7-6h-lhH" secondAttribute="top" constant="3" id="hla-Hb-3Lg"/>
@@ -139,7 +151,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znq-JG-l15">
-                                <rect key="frame" x="170" y="335" width="130" height="30"/>
+                                <rect key="frame" x="160" y="335" width="130" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="K7S-1s-MXS"/>
                                 </constraints>
@@ -164,7 +176,7 @@
                             <constraint firstItem="AIx-Ra-xZK" firstAttribute="top" secondItem="Lye-Zs-iO1" secondAttribute="bottom" constant="40" id="UWQ-QR-ce3"/>
                             <constraint firstItem="WQQ-Kd-HIK" firstAttribute="centerX" secondItem="ahs-FQ-cd2" secondAttribute="centerX" id="WRh-Cj-pGU"/>
                             <constraint firstItem="3Ox-bQ-bik" firstAttribute="centerX" secondItem="ahs-FQ-cd2" secondAttribute="centerX" id="XPT-63-5nE"/>
-                            <constraint firstItem="AIx-Ra-xZK" firstAttribute="leading" secondItem="ahs-FQ-cd2" secondAttribute="leading" constant="20" id="XX2-cg-TwY"/>
+                            <constraint firstItem="AIx-Ra-xZK" firstAttribute="leading" secondItem="ahs-FQ-cd2" secondAttribute="leading" constant="30" id="XX2-cg-TwY"/>
                             <constraint firstItem="vy7-6h-lhH" firstAttribute="trailing" secondItem="AIx-Ra-xZK" secondAttribute="trailing" id="Xf6-hA-sob"/>
                             <constraint firstItem="Znq-JG-l15" firstAttribute="trailing" secondItem="AIx-Ra-xZK" secondAttribute="trailing" id="Xfa-Gn-Nhb"/>
                             <constraint firstItem="vy7-6h-lhH" firstAttribute="top" secondItem="AIx-Ra-xZK" secondAttribute="bottom" constant="10" id="cFW-Qx-fGJ"/>
@@ -172,7 +184,7 @@
                             <constraint firstItem="vy7-6h-lhH" firstAttribute="leading" secondItem="AIx-Ra-xZK" secondAttribute="leading" id="exU-Q7-5sF"/>
                             <constraint firstItem="rSL-S1-vD7" firstAttribute="top" secondItem="ahs-FQ-cd2" secondAttribute="top" id="km8-BY-0a7"/>
                             <constraint firstItem="vy7-6h-lhH" firstAttribute="height" secondItem="AIx-Ra-xZK" secondAttribute="height" id="lgE-uU-eya"/>
-                            <constraint firstAttribute="trailing" secondItem="AIx-Ra-xZK" secondAttribute="trailing" constant="20" id="mX6-87-YSM"/>
+                            <constraint firstAttribute="trailing" secondItem="AIx-Ra-xZK" secondAttribute="trailing" constant="30" id="mX6-87-YSM"/>
                             <constraint firstItem="6aP-0D-MvR" firstAttribute="top" secondItem="vy7-6h-lhH" secondAttribute="bottom" constant="60" id="mbO-Zm-viZ"/>
                             <constraint firstItem="Lye-Zs-iO1" firstAttribute="centerX" secondItem="ahs-FQ-cd2" secondAttribute="centerX" id="o0J-ez-gwZ"/>
                             <constraint firstAttribute="trailing" secondItem="rSL-S1-vD7" secondAttribute="trailing" id="pZE-d3-tLc"/>
@@ -1682,7 +1694,7 @@ AAAAAAAAAAAAAAAAD1w
         <image name="check_off" width="22" height="22"/>
         <image name="check_on" width="22" height="22"/>
         <image name="done" width="35" height="35"/>
-        <image name="hidePassword" width="35" height="35"/>
+        <image name="hidePassword" width="32" height="32"/>
         <image name="hybrid" width="40" height="40"/>
         <image name="ic_avar" width="75" height="75"/>
         <image name="ico_close" width="16" height="16"/>
@@ -1691,6 +1703,6 @@ AAAAAAAAAAAAAAAAD1w
         <image name="logo" width="150" height="150"/>
         <image name="normal" width="40" height="40"/>
         <image name="shareLocation" width="30" height="30"/>
-        <image name="showPassword" width="35" height="35"/>
+        <image name="showPassword" width="32" height="32"/>
     </resources>
 </document>
