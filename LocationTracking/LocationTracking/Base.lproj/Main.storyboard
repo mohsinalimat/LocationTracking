@@ -1247,6 +1247,14 @@
                                     <action selector="tappedNormalMapType:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CLK-f2-CnS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9X-ff-LcF">
+                                <rect key="frame" x="135" y="513" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Gwq-RG-iWJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="hCg-pq-d2F"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="W9Q-Ev-QUF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="90c-38-bNl"/>
@@ -1258,6 +1266,7 @@
                             <constraint firstItem="jeo-fS-Ex7" firstAttribute="leading" secondItem="Ewk-ug-haI" secondAttribute="leading" id="KeT-pr-5PX"/>
                             <constraint firstItem="jeo-fS-Ex7" firstAttribute="top" secondItem="Ewk-ug-haI" secondAttribute="bottom" constant="15" id="Kxg-JK-y0c"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Qy5-hM-fbh"/>
+                            <constraint firstItem="U9X-ff-LcF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bQw-AX-ADc"/>
                             <constraint firstAttribute="trailing" secondItem="7J1-bL-8zx" secondAttribute="trailing" id="gOS-pd-Jlb"/>
                             <constraint firstItem="jeo-fS-Ex7" firstAttribute="height" secondItem="Ewk-ug-haI" secondAttribute="height" id="gnh-Nz-Lvi"/>
                             <constraint firstItem="W9Q-Ev-QUF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="h9w-JY-8BU"/>
@@ -1267,6 +1276,7 @@
                             <constraint firstItem="IGi-cb-GhH" firstAttribute="leading" secondItem="EN0-G1-lHx" secondAttribute="leading" id="u7D-dH-NeL"/>
                             <constraint firstAttribute="trailing" secondItem="I2Y-ue-wS3" secondAttribute="trailing" id="uF8-BK-5Tx"/>
                             <constraint firstAttribute="trailing" secondItem="W9Q-Ev-QUF" secondAttribute="trailing" id="vs6-dq-KyR"/>
+                            <constraint firstAttribute="bottom" secondItem="U9X-ff-LcF" secondAttribute="bottom" constant="5" id="w5Q-Uo-toh"/>
                             <constraint firstItem="EN0-G1-lHx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="zyL-xI-wdq"/>
                         </constraints>
                     </view>
