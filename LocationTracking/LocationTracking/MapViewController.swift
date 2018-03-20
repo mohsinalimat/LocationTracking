@@ -368,6 +368,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         mapView.mapType = .hybrid
     }
     
+    @IBAction func tappedShowContactList(_ sender: UIButton) {
+        let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+        self.present(contactViewController, animated: true, completion: nil)
+    }
+    
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {
         newLatitudeLabel.text = String(format: "Lat: %.10f", newLocation.latitude)
         newLongitudeLabel.text = String(format: "Long: %.10f", newLocation.longitude)

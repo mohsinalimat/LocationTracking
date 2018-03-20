@@ -19,10 +19,6 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
         self.initView()
         self.addObserveNotification()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController!.view.layer.removeAllAnimations()
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
