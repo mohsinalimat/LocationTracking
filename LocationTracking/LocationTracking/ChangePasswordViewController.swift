@@ -17,7 +17,6 @@ class ChangePasswordViewController: OriginalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
-        self.addTitleNavigation(title: "Change password")
         self.setupUI()
         
         //Add tapGesture to View
@@ -65,7 +64,7 @@ class ChangePasswordViewController: OriginalViewController {
                 } else {
                     //Update password at Userdefault
                     self.view.makeToast("Changed password successfully", duration: 1.5, position: .center)
-                    self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
                 }
             })
         } else {

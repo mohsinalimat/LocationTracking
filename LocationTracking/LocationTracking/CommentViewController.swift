@@ -38,7 +38,6 @@ class CommentViewController: OriginalViewController {
     //MARK: - Set up UI
     func setupUI() {
         self.addLeftBarItem(imageName: "ico_back", title: "")
-        self.addTitleNavigation(title: "Comment")
         commentTextView.customBorder(radius: 4,color: .white)
         sendButton.customBorder(radius: sendButton.frame.height/2, color: Common.mainColor())
     }

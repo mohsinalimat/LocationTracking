@@ -64,17 +64,6 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
         tableView.reloadData()
     }
     
-    override func tappedLeftBarButton(sender: UIButton) {
-        //Init CATransition
-        let transition:CATransition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromRight
-        self.navigationController!.view.layer.add(transition, forKey: kCATransition)
-        self.navigationController?.popViewController(animated: true)
-    }
-    
     @IBAction func tappedDismiss(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }

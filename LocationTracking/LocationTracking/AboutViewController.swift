@@ -18,7 +18,6 @@ class AboutViewController: OriginalViewController {
         super.viewDidLoad()
         commentButton.customBorder(radius: 3,color: .clear)
         initView()
-        self.setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,16 +35,12 @@ class AboutViewController: OriginalViewController {
     }
     
     func setupUI() {
-        commentButton.customBorder(radius: commentButton.frame.height/2, color: Common.mainColor())
     }
     
     func initView() {
-        //Init navigation bar
-        self.addLeftBarItem(imageName: "ico_back", title: "")
-        self.addTitleNavigation(title: "About")
-        
         //Display about from USerDefault
         let about = UserDefaults.standard.object(forKey: "about")
+        commentButton.customBorder(radius: commentButton.frame.height/2, color: Common.mainColor())
         self.aboutLabel.text = about as! String?
         self.scrollView.contentSize = CGSize.init(width: self.scrollView.contentSize.width, height: self.aboutLabel.frame.size.height + commentButton.frame.height + 20)
     }
