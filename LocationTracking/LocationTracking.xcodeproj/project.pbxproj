@@ -27,6 +27,7 @@
 		84E871BC1EF9932200F9B817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E871BB1EF9932200F9B817 /* Assets.xcassets */; };
 		D235E1981FCAA66400A87DAF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E1971FCAA66400A87DAF /* LocationModel.swift */; };
 		D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */; };
+		D23EC3962062A5F0003ECADA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23EC3952062A5F0003ECADA /* SplashViewController.swift */; };
 		D256082C20556A8900CEA39B /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256082B20556A8900CEA39B /* GroupModel.swift */; };
 		D256082F205595FD00CEA39B /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256082E205595FC00CEA39B /* SearchLocationViewController.swift */; };
 		D256083120559B4E00CEA39B /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256083020559B4E00CEA39B /* ContactViewController.swift */; };
@@ -69,6 +70,7 @@
 		84E871BB1EF9932200F9B817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D235E1971FCAA66400A87DAF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewCell.swift; sourceTree = "<group>"; };
+		D23EC3952062A5F0003ECADA /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D256082B20556A8900CEA39B /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		D256082E205595FC00CEA39B /* SearchLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		D256083020559B4E00CEA39B /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				84DC8A6A1EE07C6000B6F9A0 /* AppDelegate.swift */,
+				D23EC3952062A5F0003ECADA /* SplashViewController.swift */,
 				84DC8A761EE07C6000B6F9A0 /* LaunchScreen.storyboard */,
 				84BAAF111F23C6B600DC0718 /* Main.storyboard */,
 				843C03EC1EFADE3000BE605B /* Model */,
@@ -475,6 +478,7 @@
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
 				D289D98D205D83B9008A0AAF /* ProfileViewController.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,
+				D23EC3962062A5F0003ECADA /* SplashViewController.swift in Sources */,
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
 				D289D991205D840B008A0AAF /* ChangePasswordViewController.swift in Sources */,
 				D289D99E205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift in Sources */,

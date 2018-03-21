@@ -34,9 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GADMobileAds.configure(withApplicationID: kApplicationId)
         
-        //Auto Signin
-        self.autoSignIn()
-
         return true
     }
     
@@ -63,31 +60,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
     }
     
-    //MARK: - Sign in
-    func autoSignIn() {
-        let userName = UserDefaults.standard.object(forKey: "userName") as? String
-        let password = UserDefaults.standard.object(forKey: "password") as? String
-        
-        if userName != nil && password != nil {
-            self.firebaseObject.signInWith(email: userName!, name:nil, password: password!, completionHandler: {(isSuccess) in
-                
-                if let visibleViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController) as? OriginalViewController {
-                    
-                    if !(visibleViewController is SignInViewController) {return}
-                    
-                    if (isSuccess) {                        
-                        //SignIn is successful
-                        let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                        let nav = UINavigationController.init(rootViewController: mapViewController)
-                        
-                        visibleViewController.present(nav, animated: true, completion: nil)
-                    }
-                    visibleViewController.hideHUD()
-                }
-            })
-        } else {
-            let rootViewController = self.window?.rootViewController as! OriginalViewController
-            rootViewController.hideHUD()
-        }
-    }
 }
