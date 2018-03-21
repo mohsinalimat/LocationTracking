@@ -860,7 +860,7 @@
                                     <outlet property="delegate" destination="Ecd-9d-43U" id="EDt-V4-3tS"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="xu9-fS-HJZ" customClass="TextField" customModule="LocationTracking" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="user name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="xu9-fS-HJZ" customClass="TextField" customModule="LocationTracking" customModuleProvider="target">
                                 <rect key="frame" x="30" y="230" width="260" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="calibratedWhite"/>
                                 <constraints>
