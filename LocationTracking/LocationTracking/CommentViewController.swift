@@ -39,9 +39,10 @@ class CommentViewController: OriginalViewController {
     func setupUI() {
         self.addLeftBarItem(imageName: "ico_back", title: "")
         self.addTitleNavigation(title: "Comment")
-        sendButton.customBorder(radius: 3,color: .clear)
         commentTextView.customBorder(radius: 4,color: .white)
+        sendButton.customBorder(radius: sendButton.frame.height/2, color: Common.mainColor())
     }
+
     //MARK: - Keyboard
     func handleKeyboard() {
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillAppear(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -86,7 +87,7 @@ class CommentViewController: OriginalViewController {
         }
     }
 
-    override func tappedLeftBarButton(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func tappedDismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

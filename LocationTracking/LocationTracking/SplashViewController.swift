@@ -31,14 +31,18 @@ class SplashViewController: OriginalViewController {
             
             app_delegate.firebaseObject.signInWith(email: userName!, name:nil, password: password!, completionHandler: {(isSuccess) in
                 
-                let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-                let nav = UINavigationController.init(rootViewController: mapViewController)
-                
+                if isSuccess {
+                    let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+                    let nav = UINavigationController.init(rootViewController: mapViewController)
+                    app_delegate.window?.rootViewController = nav
+                } else {
+                    let signInViewController = main_storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+                    app_delegate.window?.rootViewController = signInViewController
+                }
                 self.hideHUD()
-                self.present(nav, animated: true, completion: nil)
             })
         } else {
-            let signInViewController = storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+            let signInViewController = main_storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
             self.present(signInViewController, animated: true, completion: nil)
         }
     }

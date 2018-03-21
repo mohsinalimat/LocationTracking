@@ -18,6 +18,7 @@ class AboutViewController: OriginalViewController {
         super.viewDidLoad()
         commentButton.customBorder(radius: 3,color: .clear)
         initView()
+        self.setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -34,6 +35,10 @@ class AboutViewController: OriginalViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupUI() {
+        commentButton.customBorder(radius: commentButton.frame.height/2, color: Common.mainColor())
+    }
+    
     func initView() {
         //Init navigation bar
         self.addLeftBarItem(imageName: "ico_back", title: "")
@@ -48,10 +53,11 @@ class AboutViewController: OriginalViewController {
     //MARK: - IBAction
     @IBAction func tappedSendComment(_ sender: UIButton) {
         let commentViewController = main_storyboard.instantiateViewController(withIdentifier: "CommentViewController") as! CommentViewController
-        self.navigationController?.pushViewController(commentViewController, animated: true)
+        self.present(commentViewController, animated: true, completion: nil)
     }
     
-    override func tappedLeftBarButton(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+    @IBAction func tappedDismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
+    
 }

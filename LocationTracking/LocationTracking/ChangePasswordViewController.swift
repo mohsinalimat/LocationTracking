@@ -10,29 +10,44 @@ import UIKit
 
 class ChangePasswordViewController: OriginalViewController {
 
-    @IBOutlet weak var oldPasswordTextfield: UITextField!
+    @IBOutlet weak var oldPasswordTextfield: TextField!
     @IBOutlet weak var changePasswordButton: UIButton!
-    @IBOutlet weak var newPasswordTextField: UITextField!
-    @IBOutlet weak var confirmNewPasswordTextField: UITextField!
+    @IBOutlet weak var newPasswordTextField: TextField!
+    @IBOutlet weak var confirmNewPasswordTextField: TextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
         self.addTitleNavigation(title: "Change password")
+        self.setupUI()
         
         //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
 
+    //MARK: - Set up UI
+    func setupUI() {
+        oldPasswordTextfield.customBorder(radius: oldPasswordTextfield.frame.height/2, color: Common.mainColor())
+        newPasswordTextField.customBorder(radius: newPasswordTextField.frame.height/2, color: .clear)
+        confirmNewPasswordTextField.customBorder(radius: confirmNewPasswordTextField.frame.height/2, color: .clear)
+        changePasswordButton.customBorder(radius: changePasswordButton.frame.height/2, color: .clear)
+        
+        oldPasswordTextfield.textRect(forBounds: oldPasswordTextfield.bounds)
+        newPasswordTextField.textRect(forBounds: newPasswordTextField.bounds)
+        confirmNewPasswordTextField.textRect(forBounds: confirmNewPasswordTextField.bounds)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     //MARK: - Action
-    override func tappedLeftBarButton(sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+
+    @IBAction func tappedDismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func tappedChangePassword(_ sender: UIButton) {
         
         if (oldPasswordTextfield.text?.count)! > 0 && (newPasswordTextField.text?.count)! > 0 && newPasswordTextField.text == confirmNewPasswordTextField.text {

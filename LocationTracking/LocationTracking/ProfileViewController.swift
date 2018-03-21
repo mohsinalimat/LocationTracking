@@ -10,8 +10,8 @@ import UIKit
 
 class ProfileViewController: OriginalViewController {
     
-    @IBOutlet weak var emailTextField: TextField!
     @IBOutlet weak var nameTextField: TextField!
+    @IBOutlet weak var emailTextField: TextField!
     @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
@@ -37,10 +37,10 @@ class ProfileViewController: OriginalViewController {
     
     //MARK: - Set up UI
     func setupUI() {
-        changePasswordButton.customBorder(radius: 4.0, color: Common.mainColor())
-        aboutButton.customBorder(radius: 4.0, color: Common.mainColor())
-        nameTextField.customBorder(radius: 4.0, color: Common.mainColor())
-        emailTextField.customBorder(radius: 4.0, color: Common.mainColor())
+        changePasswordButton.customBorder(radius: changePasswordButton.frame.height/2, color: Common.mainColor())
+        aboutButton.customBorder(radius: aboutButton.frame.height/2, color: .clear)
+        nameTextField.customBorder(radius: nameTextField.frame.height/2, color: .clear)
+        emailTextField.customBorder(radius: emailTextField.frame.height/2, color: .clear)
         
         nameTextField.textRect(forBounds: nameTextField.bounds)
         emailTextField.textRect(forBounds: emailTextField.bounds)
@@ -48,36 +48,11 @@ class ProfileViewController: OriginalViewController {
     
     //MARK: - Init Data
     func initData() {
-
         nameTextField.text = app_delegate.profile.name
         emailTextField.text = app_delegate.profile.email
-
-        //disable textfield
-        nameTextField.isEnabled = false
-        emailTextField.isEnabled = false
     }
     
     //MARK: Action
-    override func tappedLeftBarButton(sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    override func tappedRightBarButton(sender: UIButton) {
-        if !nameTextField.isEnabled {
-            //Allow edit profile
-            self.addRightBarItem(imageName: "", title: "Save")
-            
-            nameTextField.isEnabled = true
-            emailTextField.isEnabled = true
-        } else {
-            //Change profile
-            self.showHUD()
-            self.updateProfile {
-                self.hideHUD()
-            }
-        }
-    }
-    
     @IBAction func tappedDismiss(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -88,19 +63,20 @@ class ProfileViewController: OriginalViewController {
     @IBAction func tappedSignOut(_ sender: UIButton) {
         self.showAlert(title: "Do you want sign out?", message: "", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
             app_delegate.firebaseObject.signOut()
-            let rootViewController = self.navigationController?.viewControllers.first
-            rootViewController?.dismiss(animated: true, completion: nil)
+            
+            let signInViewController = main_storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+            app_delegate.window?.rootViewController = signInViewController
         })
     }
     
     @IBAction func tappedChangePassword(_ sender: UIButton) {
         let changePasswordViewController = main_storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
-        self.navigationController?.pushViewController(changePasswordViewController, animated: true)
+        self.present(changePasswordViewController, animated: true, completion: nil)
     }
     
     @IBAction func tappedAbout(_ sender: UIButton) {
         let aboutViewController = main_storyboard.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
-        self.navigationController?.pushViewController(aboutViewController, animated: true)
+        self.present(aboutViewController, animated: true, completion: nil)
     }
     
     //Hide keyboard
