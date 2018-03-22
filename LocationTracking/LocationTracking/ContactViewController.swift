@@ -56,7 +56,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
         self.addLeftBarItem(imageName: "icon_close", title: "")
-        self.addRightBarItem(imageName: "profile", title: "")
+        self.addTitleNavigation(title: "Contacts")
     }
     
     //MARK: - Action
@@ -66,6 +66,10 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     
     @IBAction func tappedDismiss(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func tappedLeftBarButton(sender: UIButton) {
+        self.navigationController?.dismiss(animated: true, completion: nil)
     }
     
     //Hide keyboard

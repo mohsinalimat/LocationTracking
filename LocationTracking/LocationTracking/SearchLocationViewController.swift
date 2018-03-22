@@ -49,8 +49,11 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
             if (searchLocationTextField.text?.count)! > 0 {
                 app_delegate.firebaseObject.searchLocation(searchString: searchLocationTextField.text!, onCompletionHandler: {(array) in
                     self.locationArray.removeAll()
-                    
+                    self.searchButton.isHidden = false
+
                     if array.count > 0 {
+                        self.searchButton.isHidden = true
+
                         for locationModel in array as [LocationModel] {
                             if !(app_delegate.locationArray.contains(locationModel)) {
                                 self.locationArray.append(locationModel)
@@ -112,7 +115,7 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+        return 80
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

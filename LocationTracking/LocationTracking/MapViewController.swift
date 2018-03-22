@@ -235,8 +235,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         let marker = GMSMarker(position: position)
         marker.icon = UIImage.init(named: "requestLocation")
         marker.title = name
-        let newCamera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoomLevel)
+        let newCamera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: self.mapView.camera.zoom)
         mapView.camera = newCamera
+        mapView.animate(toLocation: position)
         
         marker.map = mapView
         self.updateLocationAddress(address: name)
@@ -373,7 +374,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     @IBAction func tappedShowContactList(_ sender: UIButton) {
         let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-        self.present(contactViewController, animated: true, completion: nil)
+        let nav = UINavigationController.init(rootViewController: contactViewController)
+        self.present(nav, animated: true, completion: nil)
     }
     
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {
