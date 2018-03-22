@@ -70,6 +70,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.referentCurrentContact()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        app_delegate.mapViewController = self
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         menuView.isHidden = true
         view.endEditing(true)
@@ -78,7 +82,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     func updateLocationAddress(address: String) {
         let titleLabel = self.navigationItem.titleView as! UILabel
         titleLabel.text = address
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.font = UIFont.systemFont(ofSize: 15)
     }
     
     override func didReceiveMemoryWarning() {
@@ -231,9 +235,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         let marker = GMSMarker(position: position)
         marker.icon = UIImage.init(named: "requestLocation")
         marker.title = name
-        marker.map = mapView
-        let newCamera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: self.mapView.camera.zoom)
+        let newCamera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoomLevel)
         mapView.camera = newCamera
+        
+        marker.map = mapView
         self.updateLocationAddress(address: name)
     }
     
@@ -323,10 +328,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
-        //Hide menu view
-//        menuView.isHidden = true
-//        
-//        //Show action sheet
+        //Show action sheet
         self.showActionSheet(titleArray: ["Add new location","Search to add new location"], onTapped: {title in
             if title == "Add new location" {
                 //Show view to add new location

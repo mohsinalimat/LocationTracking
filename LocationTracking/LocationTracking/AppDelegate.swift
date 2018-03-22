@@ -17,12 +17,13 @@ import GoogleMobileAds
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var firebaseObject  = FirebaseAction()
-    var refHandler      = DatabaseReference()
-    var profile         = ContactModel()
-    var contactArray    = [ContactModel]()
-    var groupArray      = [GroupModel]()
-    var locationArray   = [LocationModel]()
+    var firebaseObject      = FirebaseAction()
+    var refHandler          = DatabaseReference()
+    var profile             = ContactModel()
+    var contactArray        = [ContactModel]()
+    var groupArray          = [GroupModel]()
+    var locationArray       = [LocationModel]()
+    var mapViewController   = MapViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //Set up Google API Key
