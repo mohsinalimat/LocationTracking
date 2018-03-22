@@ -51,7 +51,14 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
             self.showHUD()
             app_delegate.firebaseObject.createGroup(name: groupNameTextField.text!, array: selectedContactArray, onCompletionHandler: {
                 self.hideHUD()
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.viewControllers.removeLast()
+
+                let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+                contactViewController.currentIndex = kGroupListIndex
+
+                let nav = UINavigationController.init(rootViewController: contactViewController)
+                app_delegate.mapViewController.present(nav, animated: true, completion: nil)
+
             })
             
         } else {

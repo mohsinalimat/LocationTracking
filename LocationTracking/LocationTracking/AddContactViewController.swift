@@ -67,6 +67,14 @@ class AddContactViewController: OriginalViewController,UITableViewDelegate,UITab
     override func tappedRightBarButton(sender: UIButton) {
         if selectedContactArray.count > 0 {
             app_delegate.firebaseObject.requestToShareLocation(selectContactArray: selectedContactArray)
+            self.navigationController?.viewControllers.removeLast()
+
+            let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+            contactViewController.currentIndex = kSharedContactIndex
+            
+            let nav = UINavigationController.init(rootViewController: contactViewController)
+            app_delegate.mapViewController.present(nav, animated: true, completion: nil)
+
         } else {
             view.makeToast("Please select a account from the list!", duration: 2.0, position: .center)
         }

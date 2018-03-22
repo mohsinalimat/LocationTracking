@@ -82,17 +82,13 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
             app_delegate.firebaseObject.addLocationToContact(id: app_delegate.profile.id, locationAray: selectedLocationArray)
         
             self.hideHUD()
-            //Index of Map View Controller
-            let index = (self.navigationController?.viewControllers.count)! - 2
-            let mapViewController = self.navigationController?.viewControllers[index]
-            let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
-            contactViewController.currentIndex = kLocationListIndex
             
-            //Remove SearchLocationViewController
             self.navigationController?.viewControllers.removeLast()
             
-            //Push to contactViewController from MapViewController
-            mapViewController?.navigationController?.pushViewController(contactViewController, animated: true)
+            let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
+            contactViewController.currentIndex = kLocationListIndex
+            let nav = UINavigationController.init(rootViewController: contactViewController)
+            app_delegate.mapViewController.present(nav, animated: true, completion: nil)
         } else {
             view.makeToast("Please choose a location from the list.", duration: 2.0, position: .center)
         }
