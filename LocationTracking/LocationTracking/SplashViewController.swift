@@ -43,7 +43,7 @@ class SplashViewController: OriginalViewController {
             })
         } else {
             let signInViewController = main_storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
-            self.present(signInViewController, animated: true, completion: nil)
+            app_delegate.window?.rootViewController = signInViewController
         }
     }
 }

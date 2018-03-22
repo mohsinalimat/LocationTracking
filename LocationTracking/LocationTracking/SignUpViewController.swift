@@ -78,6 +78,9 @@ class SignUpViewController: OriginalViewController {
                 //Create new user on firebase
                 app_delegate.firebaseObject.registerNewAccount(email: self.emailTextField.text!, password: self.passwordTextField.text!,name: self.nameTextField.text!,  onCompletionHandler: {id in
 
+                    let dict = ["email": self.emailTextField.text!, "name": self.nameTextField.text!, "id": id]
+                    app_delegate.profile.initContactModel(dict: dict)
+                    
                     //Present after updated profile
                     self.dismiss(animated: false, completion: {_ in
                         let mapViewController = main_storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
