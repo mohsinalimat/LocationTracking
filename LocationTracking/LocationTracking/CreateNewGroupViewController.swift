@@ -9,8 +9,8 @@
 import UIKit
 
 class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, createGroupDelegate {
+    @IBOutlet weak var groupNameTextField: TextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var groupNameTextField: UITextField!
     var selectedContactArray = [String]()
     
     override func viewDidLoad() {
@@ -30,6 +30,8 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         self.addLeftBarItem(imageName: "ico_back",title: "")
         self.addRightBarItem(imageName: "save", title: "")
         self.addTitleNavigation(title: "Add new group")
+        groupNameTextField.textRect(forBounds: groupNameTextField.bounds)
+        groupNameTextField.setupBorder()
     }
     
     func setupTableView() {
