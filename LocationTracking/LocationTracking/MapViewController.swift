@@ -75,7 +75,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        menuView.isHidden = true
         view.endEditing(true)
     }
     
