@@ -21,7 +21,7 @@ class FirebaseAction: NSObject {
     
     //MARK: - Get from firebase
     func getContact(email: String, onCompletionHandler: @escaping ([String:Any]) -> ()) {
-        ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email + "\u{f8ff}").observe(.value, with: { snapshot in
+        ref.queryOrdered(byChild: "email").queryStarting(atValue: email).queryEnding(atValue: email + "\u{f8ff}").observeSingleEvent(of: .value, with: { snapshot in
             let snapDic = snapshot.value as? [String:Any]
             guard snapDic != nil else {
                 onCompletionHandler([String:Any]())
