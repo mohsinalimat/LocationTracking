@@ -242,21 +242,19 @@ class FirebaseAction: NSObject {
         var count = 0
         //referent to user
         for user in array {
-            if user == app_delegate.profile.id {
-                onCompletionHandler()
-                return
+            if user != app_delegate.profile.id {
+                ref.child(user).child("group").observe(.value, with: { (snapshot) in
+                    count += 1
+                    var snapDict = snapshot.value as? [String] ?? []
+                    if !snapDict.contains(group.key) {
+                        snapDict.append(group.key)
+                    }
+                    self.ref.child(user).child("group").setValue(snapDict)
+                    if count == array.count {
+                        onCompletionHandler()
+                    }
+                })
             }
-            ref.child(user).child("group").observe(.value, with: { (snapshot) in
-                count += 1
-                var snapDict = snapshot.value as? [String] ?? []
-                if !snapDict.contains(group.key) {
-                    snapDict.append(group.key)
-                }
-                self.ref.child(user).child("group").setValue(snapDict)
-                if count == array.count {
-                    onCompletionHandler()
-                }
-            })
         }
     }
     
