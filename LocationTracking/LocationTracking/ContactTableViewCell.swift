@@ -43,9 +43,11 @@ class ContactTableViewCell: UITableViewCell {
         contactObject = contact
         userNameLabel.text = contact.name
         currentLocationLabel.text = "Loading..."
-        let status = app_delegate.profile.contact[contact.id] as! Int
+        guard let status = app_delegate.profile.contact[contact.id] else {
+            return
+        }
         
-        switch status {
+        switch status as! Int {
         case kRequested:
             //I requested
             shareLocationButton.isHidden = true

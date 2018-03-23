@@ -63,7 +63,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.leftBarButtonItem?.isEnabled = true
-        
+        menuView.isHidden = true
         self.addTitleNavigation(title: "Location Tracking")
 
         //Real time contact location

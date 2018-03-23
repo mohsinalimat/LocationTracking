@@ -149,6 +149,13 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func observeProfile() {
+        ref.child(app_delegate.profile.id).observe(.value, with: { snapshot in
+            guard let dict = snapshot.value as? [String: Any] else {return}
+            app_delegate.profile.initContactModel(dict: dict)
+        })
+    }
+        
     //MARK: - Update to firebase
     func updateLocation(id: String, lat: Double, long: Double) {
         ref.child(id).child("currentLocations").setValue(["latitude":lat,"longitude":long])
@@ -298,6 +305,8 @@ class FirebaseAction: NSObject {
                     self.observeGroup()
                     
                     self.observeContact()
+                    
+                    self.observeProfile()
                     
                     completionHandler(true)
                 })
