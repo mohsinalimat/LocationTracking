@@ -138,7 +138,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
             }
         }
         
-        if segmented.selectedSegmentIndex == kRequestedToMe {
+        if segmented.selectedSegmentIndex == kRequestShareIndex {
             return
         }
         
