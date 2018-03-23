@@ -10,13 +10,11 @@ import UIKit
 
 class SignInViewController: OriginalViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var signInFacebookButton: UIButton!
-    @IBOutlet weak var signInGoogleButton: UIButton!
-    @IBOutlet weak var signInTwitterButton: UIButton!
     @IBOutlet weak var showPasswordButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
