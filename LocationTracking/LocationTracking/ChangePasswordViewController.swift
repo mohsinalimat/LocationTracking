@@ -15,6 +15,8 @@ class ChangePasswordViewController: OriginalViewController {
     @IBOutlet weak var newPasswordTextField: TextField!
     @IBOutlet weak var confirmNewPasswordTextField: TextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    var activeTextField = TextField()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
@@ -93,5 +95,10 @@ class ChangePasswordViewController: OriginalViewController {
     //Hide keyboard
     func hideKeyboard() {
         view.endEditing(true)
+    }
+    
+    //MARK: - UITextField Delegate
+    func textFieldDidBeginEditing(textField: UITextField) {
+        activeTextField = textField as! TextField
     }
 }

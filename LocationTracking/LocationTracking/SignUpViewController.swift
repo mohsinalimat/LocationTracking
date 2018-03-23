@@ -17,7 +17,8 @@ class SignUpViewController: OriginalViewController {
     @IBOutlet weak var confirmPasswordTextField: TextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    
+    var activeTextField = TextField()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ic_close_popup",title: "")
@@ -113,5 +114,10 @@ class SignUpViewController: OriginalViewController {
             self.hideHUD()
             view.makeToast("Please input email, username and password exactly", duration: 2.0, position: .center)
         }
+    }
+    
+    //MARK: - UITextField Delegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = textField as! TextField
     }
 }

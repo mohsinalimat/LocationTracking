@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: OriginalViewController {
+class ProfileViewController: OriginalViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: TextField!
     @IBOutlet weak var emailTextField: TextField!
@@ -17,6 +17,8 @@ class ProfileViewController: OriginalViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var activeTextField = TextField()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
@@ -134,5 +136,11 @@ class ProfileViewController: OriginalViewController {
         if (nameTextField.text?.count)! > 0 {
             app_delegate.firebaseObject.updateName(name: nameTextField.text!)
         }
+    }
+    
+    //MARK: - UITextField Delegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = textField as! TextField
+
     }
 }
