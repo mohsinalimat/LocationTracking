@@ -60,6 +60,9 @@ class SignUpViewController: OriginalViewController {
             return
         }
         scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+        if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
+        }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
@@ -116,7 +119,7 @@ class SignUpViewController: OriginalViewController {
         }
     }
     
-    //MARK: - UITextField Delegate
+    //MARK: - TextField Delegate
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = textField as! TextField
     }

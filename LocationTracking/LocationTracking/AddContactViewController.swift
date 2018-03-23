@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddContactViewController: OriginalViewController,UITableViewDelegate,UITableViewDataSource,SearchContactDelegate {
+class AddContactViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, SearchContactDelegate {
     
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchButton: UIButton!

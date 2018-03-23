@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: OriginalViewController, UITextFieldDelegate {
+class ProfileViewController: OriginalViewController {
     
     @IBOutlet weak var nameTextField: TextField!
     @IBOutlet weak var emailTextField: TextField!
@@ -18,7 +18,7 @@ class ProfileViewController: OriginalViewController, UITextFieldDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var activeTextField = TextField()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
@@ -26,7 +26,6 @@ class ProfileViewController: OriginalViewController, UITextFieldDelegate {
         //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
-        
         self.setupUI()
     }
 
@@ -59,6 +58,9 @@ class ProfileViewController: OriginalViewController, UITextFieldDelegate {
             return
         }
         scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+        if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
+        }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
@@ -138,9 +140,8 @@ class ProfileViewController: OriginalViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: - UITextField Delegate
+    //MARK: - TextField Delegate
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = textField as! TextField
-
     }
 }
