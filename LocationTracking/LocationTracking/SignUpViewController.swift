@@ -16,6 +16,7 @@ class SignUpViewController: OriginalViewController {
     @IBOutlet weak var passwordTextField: TextField!
     @IBOutlet weak var confirmPasswordTextField: TextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,22 @@ class SignUpViewController: OriginalViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    //MARK: - Keyboard
+    override func keyboardEventWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        
+        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+    }
+    
+    override func keyboardEventWillHide(_ notification: Notification) {
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
     }
     
     //MARK: - Action

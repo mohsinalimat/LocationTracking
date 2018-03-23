@@ -15,6 +15,7 @@ class ProfileViewController: OriginalViewController {
     @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,22 @@ class ProfileViewController: OriginalViewController {
         
         nameTextField.textRect(forBounds: nameTextField.bounds)
         emailTextField.textRect(forBounds: emailTextField.bounds)
+    }
+    
+    //MARK: - Keyboard
+    override func keyboardEventWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        
+        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+    }
+    
+    override func keyboardEventWillHide(_ notification: Notification) {
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
     }
     
     //MARK: - Init Data

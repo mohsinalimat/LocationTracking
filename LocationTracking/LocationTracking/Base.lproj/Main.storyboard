@@ -443,6 +443,9 @@
                                     <constraint firstItem="mKD-NH-3Rb" firstAttribute="centerX" secondItem="8ws-Lw-zZ0" secondAttribute="centerX" id="lSO-a9-xy1"/>
                                     <constraint firstAttribute="bottom" secondItem="mKD-NH-3Rb" secondAttribute="bottom" id="uvL-lh-8ik"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="H6R-h1-k9P" id="GWz-LU-gMJ"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -462,6 +465,7 @@
                         <outlet property="emailTextField" destination="xe3-Zk-Fxt" id="b6I-6b-kNy"/>
                         <outlet property="nameTextField" destination="xX1-yL-vmD" id="w23-pX-Ufq"/>
                         <outlet property="passwordTextField" destination="Rbw-kg-nbU" id="ysN-OJ-6JV"/>
+                        <outlet property="scrollView" destination="8ws-Lw-zZ0" id="n4k-yG-djc"/>
                         <outlet property="signUpButton" destination="tV4-uA-XEV" id="V8m-K1-cg0"/>
                     </connections>
                 </viewController>
@@ -487,7 +491,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3M-rT-8Sz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voY-qY-6At">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voY-qY-6At" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NxM-D9-zjo">
@@ -610,6 +614,9 @@
                                     <constraint firstAttribute="trailing" secondItem="voY-qY-6At" secondAttribute="trailing" id="YvK-Yb-mNd"/>
                                     <constraint firstItem="voY-qY-6At" firstAttribute="centerX" secondItem="x3M-rT-8Sz" secondAttribute="centerX" id="t47-Si-zf1"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="Fzx-u1-MVN" id="paU-NW-wkf"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -630,6 +637,7 @@
                         <outlet property="confirmNewPasswordTextField" destination="ZJf-eP-JsW" id="4xu-6t-1LO"/>
                         <outlet property="newPasswordTextField" destination="CX1-Xg-kTE" id="cTh-V1-0Bk"/>
                         <outlet property="oldPasswordTextfield" destination="g45-vd-EQ3" id="0sO-pT-lbq"/>
+                        <outlet property="scrollView" destination="x3M-rT-8Sz" id="1E2-Se-kGk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3cJ-Ef-3bK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -800,6 +808,7 @@
                         <outlet property="emailTextField" destination="tdY-Rw-Qzd" id="l3D-X0-bMo"/>
                         <outlet property="nameTextField" destination="xu9-fS-HJZ" id="0bf-q3-iHM"/>
                         <outlet property="saveButton" destination="yBY-J7-Nhd" id="c6P-Ld-oNT"/>
+                        <outlet property="scrollView" destination="80H-c0-F0u" id="dn0-PZ-OcN"/>
                         <outlet property="signOutButton" destination="cJr-x2-GNG" id="Sfs-HL-oy1"/>
                     </connections>
                 </viewController>
