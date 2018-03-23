@@ -79,7 +79,14 @@ class ContactTableViewCell: UITableViewCell {
         let memberArray = group.member.split(separator: ",")
         let memberCount = "Members: " + String(describing: memberArray.count) + "\n"
         
-        currentLocationLabel.text = memberCount + ownerString + group.owner
+        if app_delegate.profile.id == group.owner {
+            currentLocationLabel.text = memberCount + ownerString + "me"
+        } else {
+            let contact = app_delegate.contactArray.filter{$0.id == group.owner}.first
+            if contact != nil {
+                currentLocationLabel.text = memberCount + ownerString + (contact?.name)!
+            }
+        }
     }
     
     func setupLocationCell(location: LocationModel) {
