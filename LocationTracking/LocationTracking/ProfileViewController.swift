@@ -82,6 +82,7 @@ class ProfileViewController: OriginalViewController {
         if (nameTextField.text?.count)! > 0 && (emailTextField.text?.count)! > 0 {
             self.showHUD()
             self.updateProfile {
+                self.view.makeToast("Successfully", duration: 2.0, position: .center)
                 self.hideHUD()
             }
         } else {

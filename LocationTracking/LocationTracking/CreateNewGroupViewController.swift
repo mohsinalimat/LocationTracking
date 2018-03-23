@@ -29,7 +29,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     func setupNavigationBar() {
         self.addLeftBarItem(imageName: "ico_back",title: "")
         self.addRightBarItem(imageName: "save", title: "")
-        self.addTitleNavigation(title: "Add new group")
+        self.addTitleNavigation(title: "Create new group")
         groupNameTextField.textRect(forBounds: groupNameTextField.bounds)
         groupNameTextField.setupBorder()
     }

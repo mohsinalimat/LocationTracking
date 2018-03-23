@@ -32,6 +32,7 @@ class AddContactViewController: OriginalViewController, UITableViewDelegate, UIT
     func initLayout() {
         self.addLeftBarItem(imageName: "ico_back",title: "")
         self.addRightBarItem(imageName: "save", title: "")
+        self.addTitleNavigation(title: "Search contacts")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         searchView.setupBorder()
     }
