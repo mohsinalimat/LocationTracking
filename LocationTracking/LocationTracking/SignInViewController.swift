@@ -49,6 +49,21 @@ class SignInViewController: OriginalViewController {
         passwordTextField.text = ""
     }
     
+    override func keyboardEventWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        
+        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+    }
+    
+    override func keyboardEventWillHide(_ notification: Notification) {
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

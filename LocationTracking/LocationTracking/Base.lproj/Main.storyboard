@@ -74,15 +74,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="rSL-S1-vD7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uFI-HL-iwp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nnx-xr-yBt" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="rSL-S1-vD7">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                            </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Lye-Zs-iO1">
                                                 <rect key="frame" x="85" y="30" width="150" height="150"/>
                                                 <constraints>
@@ -216,7 +216,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="AIx-Ra-xZK" secondAttribute="trailing" constant="30" id="2qT-dv-OvQ"/>
                                             <constraint firstItem="Lye-Zs-iO1" firstAttribute="top" secondItem="Nnx-xr-yBt" secondAttribute="top" constant="30" id="4Nt-yd-Ui6"/>
@@ -224,17 +224,13 @@
                                             <constraint firstItem="3Ox-bQ-bik" firstAttribute="leading" secondItem="Znq-JG-l15" secondAttribute="leading" id="83a-Ny-LVh"/>
                                             <constraint firstItem="vy7-6h-lhH" firstAttribute="trailing" secondItem="AIx-Ra-xZK" secondAttribute="trailing" id="Epd-IB-6L2"/>
                                             <constraint firstItem="AIx-Ra-xZK" firstAttribute="top" secondItem="Lye-Zs-iO1" secondAttribute="bottom" constant="25" id="HwZ-mh-Ap7"/>
-                                            <constraint firstAttribute="trailing" secondItem="rSL-S1-vD7" secondAttribute="trailing" id="OKY-1D-dmp"/>
                                             <constraint firstItem="vy7-6h-lhH" firstAttribute="height" secondItem="AIx-Ra-xZK" secondAttribute="height" id="Qnw-2O-WI9"/>
                                             <constraint firstItem="Znq-JG-l15" firstAttribute="trailing" secondItem="AIx-Ra-xZK" secondAttribute="trailing" id="RcL-uA-0dY"/>
                                             <constraint firstItem="WQQ-Kd-HIK" firstAttribute="centerX" secondItem="Nnx-xr-yBt" secondAttribute="centerX" id="S56-kA-23h"/>
                                             <constraint firstItem="3Ox-bQ-bik" firstAttribute="trailing" secondItem="Znq-JG-l15" secondAttribute="trailing" id="WEi-iw-mTQ"/>
-                                            <constraint firstItem="rSL-S1-vD7" firstAttribute="leading" secondItem="Nnx-xr-yBt" secondAttribute="leading" id="Xdr-aO-TmF"/>
-                                            <constraint firstAttribute="bottom" secondItem="rSL-S1-vD7" secondAttribute="bottom" id="YVL-9u-Ybn"/>
                                             <constraint firstItem="Znq-JG-l15" firstAttribute="top" secondItem="vy7-6h-lhH" secondAttribute="bottom" constant="3" id="eC4-Yy-Alc"/>
                                             <constraint firstItem="6aP-0D-MvR" firstAttribute="centerX" secondItem="Nnx-xr-yBt" secondAttribute="centerX" id="eoy-BQ-voI"/>
                                             <constraint firstItem="AIx-Ra-xZK" firstAttribute="leading" secondItem="Nnx-xr-yBt" secondAttribute="leading" constant="30" id="fOQ-t9-Kma"/>
-                                            <constraint firstItem="rSL-S1-vD7" firstAttribute="top" secondItem="Nnx-xr-yBt" secondAttribute="top" id="gHU-F6-HcO"/>
                                             <constraint firstItem="3Ox-bQ-bik" firstAttribute="top" secondItem="Znq-JG-l15" secondAttribute="bottom" id="n2c-uh-lU3"/>
                                             <constraint firstItem="6aP-0D-MvR" firstAttribute="top" secondItem="vy7-6h-lhH" secondAttribute="bottom" constant="60" id="oq1-BI-2Bj"/>
                                             <constraint firstItem="vy7-6h-lhH" firstAttribute="leading" secondItem="AIx-Ra-xZK" secondAttribute="leading" id="pAd-b8-efB"/>
@@ -243,6 +239,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Nnx-xr-yBt" firstAttribute="top" secondItem="uFI-HL-iwp" secondAttribute="top" id="7z8-Pv-EzB"/>
                                     <constraint firstItem="Nnx-xr-yBt" firstAttribute="centerY" secondItem="uFI-HL-iwp" secondAttribute="centerY" id="Dcy-Ue-NdM"/>
@@ -259,7 +256,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="uFI-HL-iwp" secondAttribute="bottom" id="EtW-fR-fGA"/>
+                            <constraint firstItem="rSL-S1-vD7" firstAttribute="top" secondItem="ahs-FQ-cd2" secondAttribute="top" id="FPA-St-Yg1"/>
                             <constraint firstAttribute="trailing" secondItem="uFI-HL-iwp" secondAttribute="trailing" id="FvV-zJ-Qoz"/>
+                            <constraint firstAttribute="bottom" secondItem="rSL-S1-vD7" secondAttribute="bottom" id="c21-O3-XjB"/>
+                            <constraint firstAttribute="trailing" secondItem="rSL-S1-vD7" secondAttribute="trailing" id="d6d-PB-ELo"/>
+                            <constraint firstItem="rSL-S1-vD7" firstAttribute="leading" secondItem="ahs-FQ-cd2" secondAttribute="leading" id="dHh-FZ-JCL"/>
                             <constraint firstItem="uFI-HL-iwp" firstAttribute="leading" secondItem="ahs-FQ-cd2" secondAttribute="leading" id="xnL-Vt-T3B"/>
                             <constraint firstItem="uFI-HL-iwp" firstAttribute="top" secondItem="ahs-FQ-cd2" secondAttribute="top" id="yC1-hf-fPc"/>
                         </constraints>

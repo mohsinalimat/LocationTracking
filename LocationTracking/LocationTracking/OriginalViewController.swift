@@ -16,12 +16,11 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.barTintColor = Common.mainColor()
-        // Do any additional setup after loading the view.
+        self.registerKeyboardEvents()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     //MARK: - UINavigation Bar
@@ -76,6 +75,18 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         titleButton.setTitle(title, for: .normal)
         titleButton.addTarget(self, action: #selector(tappedTitleButton), for: .touchUpInside)
         self.navigationItem.titleView = titleButton
+    }
+    
+    //MARK: - Observe
+    func registerKeyboardEvents() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardEventWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardEventWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func keyboardEventWillShow(_ notification: Notification) {
+    }
+    
+    func keyboardEventWillHide(_ notification: Notification) {
     }
     
     //MARK: - Action
