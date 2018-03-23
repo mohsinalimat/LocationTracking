@@ -14,7 +14,7 @@ class ProfileViewController: OriginalViewController {
     @IBOutlet weak var emailTextField: TextField!
     @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
-    @IBOutlet weak var aboutButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +37,8 @@ class ProfileViewController: OriginalViewController {
     
     //MARK: - Set up UI
     func setupUI() {
+        saveButton.customBorder(radius: saveButton.frame.height/2, color: Common.mainColor())
         changePasswordButton.customBorder(radius: changePasswordButton.frame.height/2, color: Common.mainColor())
-        aboutButton.customBorder(radius: aboutButton.frame.height/2, color: .clear)
         nameTextField.customBorder(radius: nameTextField.frame.height/2, color: .clear)
         emailTextField.customBorder(radius: emailTextField.frame.height/2, color: .clear)
         
@@ -57,6 +57,17 @@ class ProfileViewController: OriginalViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func tappedSave(_ sender: UIButton) {
+        if (nameTextField.text?.count)! > 0 && (emailTextField.text?.count)! > 0 {
+            self.showHUD()
+            self.updateProfile {
+                self.hideHUD()
+            }
+        } else {
+            view.makeToast("User name and email is empty!", duration: 2.0, position: .center)
+        }
+    }
+    
     @IBAction func tappedUpdateAvatar(_ sender: UIButton) {
     }
 
@@ -72,11 +83,6 @@ class ProfileViewController: OriginalViewController {
     @IBAction func tappedChangePassword(_ sender: UIButton) {
         let changePasswordViewController = main_storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
         self.present(changePasswordViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func tappedAbout(_ sender: UIButton) {
-        let aboutViewController = main_storyboard.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
-        self.present(aboutViewController, animated: true, completion: nil)
     }
     
     //Hide keyboard

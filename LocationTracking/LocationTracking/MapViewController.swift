@@ -57,13 +57,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         //Init Ads
         self.initAdsView()
         self.setupLayer()
+        self.getCurrentLocation()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         
-        self.getCurrentLocation()
         self.addTitleNavigation(title: "Location Tracking")
 
         //Real time contact location

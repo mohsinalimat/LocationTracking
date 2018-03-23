@@ -34,9 +34,7 @@
 		D256083420559B6B00CEA39B /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256083320559B6B00CEA39B /* ContactTableViewCell.swift */; };
 		D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D269F6541FA789BF00BEDD9A /* TextField.swift */; };
 		D289D98D205D83B9008A0AAF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98C205D83B9008A0AAF /* ProfileViewController.swift */; };
-		D289D990205D840B008A0AAF /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98E205D840B008A0AAF /* AboutViewController.swift */; };
 		D289D991205D840B008A0AAF /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */; };
-		D289D993205D8444008A0AAF /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D992205D8443008A0AAF /* CommentViewController.swift */; };
 		D289D998205D8CD1008A0AAF /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D997205D8CD1008A0AAF /* AddContactViewController.swift */; };
 		D289D99A205D8CED008A0AAF /* SearchContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */; };
 		D289D99E205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */; };
@@ -77,9 +75,7 @@
 		D256083320559B6B00CEA39B /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		D269F6541FA789BF00BEDD9A /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		D289D98C205D83B9008A0AAF /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		D289D98E205D840B008A0AAF /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		D289D98F205D840B008A0AAF /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		D289D992205D8443008A0AAF /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		D289D997205D8CD1008A0AAF /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContactTableViewCell.swift; sourceTree = "<group>"; };
 		D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewGroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,8 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				D289D99B205D8E8E008A0AAF /* Group */,
-				D289D996205D8C4B008A0AAF /* About */,
-				D289D995205D8C36008A0AAF /* Comment */,
 				D289D994205D8C25008A0AAF /* Location */,
 				D289D98B205D839D008A0AAF /* Profile */,
 				D256082D205595D400CEA39B /* Contact */,
@@ -270,22 +264,6 @@
 				D256082E205595FC00CEA39B /* SearchLocationViewController.swift */,
 			);
 			name = Location;
-			sourceTree = "<group>";
-		};
-		D289D995205D8C36008A0AAF /* Comment */ = {
-			isa = PBXGroup;
-			children = (
-				D289D992205D8443008A0AAF /* CommentViewController.swift */,
-			);
-			name = Comment;
-			sourceTree = "<group>";
-		};
-		D289D996205D8C4B008A0AAF /* About */ = {
-			isa = PBXGroup;
-			children = (
-				D289D98E205D840B008A0AAF /* AboutViewController.swift */,
-			);
-			name = About;
 			sourceTree = "<group>";
 		};
 		D289D99B205D8E8E008A0AAF /* Group */ = {
@@ -482,7 +460,6 @@
 				84B0FB4C1EF8303700F3ABDE /* UIViewExtension.swift in Sources */,
 				D289D991205D840B008A0AAF /* ChangePasswordViewController.swift in Sources */,
 				D289D99E205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift in Sources */,
-				D289D993205D8444008A0AAF /* CommentViewController.swift in Sources */,
 				D256082F205595FD00CEA39B /* SearchLocationViewController.swift in Sources */,
 				D256083120559B4E00CEA39B /* ContactViewController.swift in Sources */,
 				843C03EE1EFADE4C00BE605B /* ContactModel.swift in Sources */,
@@ -498,7 +475,6 @@
 				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
 				D289D998205D8CD1008A0AAF /* AddContactViewController.swift in Sources */,
 				84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */,
-				D289D990205D840B008A0AAF /* AboutViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
