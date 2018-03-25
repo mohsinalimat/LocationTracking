@@ -75,9 +75,8 @@ class ContactTableViewCell: UITableViewCell {
         userNameLabel.text = group.name
         currentLocationLabel.isHidden = false
         shareLocationButton.isHidden = true
-        let ownerString = "Owner:"
-        let memberArray = group.member.split(separator: ",")
-        let memberCount = "Members: " + String(describing: memberArray.count) + "\n"
+        let ownerString = "Owner:  "
+        let memberCount = "Members:  " + String(describing: group.member.count) + "\n"
         
         if app_delegate.profile.id == group.owner {
             currentLocationLabel.text = memberCount + ownerString + "me"
@@ -94,7 +93,7 @@ class ContactTableViewCell: UITableViewCell {
         currentLocationLabel.isHidden = false
         shareLocationButton.isHidden = true
         
-        let locationString = "Lat: " + String(describing: location.latitude) + "\n" + "Long:" + String(describing: location.longitude)
+        let locationString = "Latitude: " + String(describing: location.latitude) + "\n" + "Longitude:" + String(describing: location.longitude)
         currentLocationLabel.text = locationString
     }
 }

@@ -19,9 +19,9 @@ let kConsumerKey          = "tyUS13Zcb3luNoCF7MeUiiLyz"
 let kConsumerSecret       = "aNiteoUYaYJX5iG7j2yZuZkvjt2IYklv2o77oFJOg2cxYtXvMW"
 
 //Admob
-let kBannerAdUnitId       = "ca-app-pub-7161181863245899/7966804686"
-let kInterstitialAdUnitID = "ca-app-pub-7161181863245899/7581514074"
-let kApplicationId        = "ca-app-pub-7161181863245899~5560133192"
+let kBannerAdUnitId       = "ca-app-pub-4981657393585558/9434507014"
+let kInterstitialAdUnitID = "ca-app-pub-4981657393585558/1141918176"
+let kApplicationId        = "ca-app-pub-4981657393585558~7459914518"
 
 //MARK: - Index
 let kSharedContactIndex    = 0     //Shared location with me
