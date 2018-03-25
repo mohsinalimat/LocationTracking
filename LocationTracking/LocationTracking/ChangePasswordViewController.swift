@@ -81,12 +81,11 @@ class ChangePasswordViewController: OriginalViewController {
                 
                 if error != nil {
                     self.showAlert(title: "", message: (error?.localizedDescription)!, cancelTitle: "", okTitle: "OK", onOKAction: {_ in
-                        
+                        self.view.makeToast((error?.localizedDescription)!, duration: 1.5, position: .center)
                     })
                 } else {
                     //Update password at Userdefault
                     self.view.makeToast("Changed password successfully", duration: 1.5, position: .center)
-                    self.dismiss(animated: true, completion: nil)
                 }
             })
         } else {
