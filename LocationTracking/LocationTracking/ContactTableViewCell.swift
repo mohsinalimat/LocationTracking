@@ -17,6 +17,7 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var currentLocationLabel: UILabel!
     @IBOutlet weak var shareLocationButton: UIButton!
+    @IBOutlet weak var informationButton: UIButton!
     var contactObject: ContactModel?
     var indexPath = IndexPath()
     
@@ -36,6 +37,9 @@ class ContactTableViewCell: UITableViewCell {
         if contactObject != nil {
             delegate?.shareLocation(contact: contactObject!)
         }
+    }
+    
+    @IBAction func tappedShowInformation(_ sender: UIButton) {
     }
     
     //MARK: - Setup Cell

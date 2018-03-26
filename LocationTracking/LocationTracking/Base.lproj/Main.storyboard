@@ -1272,13 +1272,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nguyễn Hải Đăng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSY-JT-urN">
-                                                    <rect key="frame" x="60" y="15" width="240" height="20.5"/>
+                                                    <rect key="frame" x="60" y="15" width="215" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0Q-JC-jvl">
-                                                    <rect key="frame" x="60" y="40.5" width="240" height="0.0"/>
+                                                    <rect key="frame" x="60" y="40.5" width="215" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1299,23 +1299,37 @@
                                                         <action selector="tappedShareLocation:" destination="5TQ-gH-dvK" eventType="touchUpInside" id="Rxh-LX-l5p"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efh-O5-SpB">
+                                                    <rect key="frame" x="275" y="22.5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="Q1n-oE-7oC"/>
+                                                        <constraint firstAttribute="height" constant="40" id="TTj-21-q2R"/>
+                                                    </constraints>
+                                                    <state key="normal" image="infomation"/>
+                                                    <connections>
+                                                        <action selector="tappedShowInformation:" destination="5TQ-gH-dvK" eventType="touchUpInside" id="wqb-Gu-ar1"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Z9r-m7-Y0M" firstAttribute="leading" secondItem="gSY-JT-urN" secondAttribute="leading" id="2tK-le-tsc"/>
-                                                <constraint firstAttribute="trailing" secondItem="gSY-JT-urN" secondAttribute="trailing" constant="20" id="5Lf-XH-m2o"/>
                                                 <constraint firstItem="K0Q-JC-jvl" firstAttribute="trailing" secondItem="gSY-JT-urN" secondAttribute="trailing" id="9El-1Q-7IZ"/>
+                                                <constraint firstItem="efh-O5-SpB" firstAttribute="centerY" secondItem="jsX-u9-gUg" secondAttribute="centerY" id="C3Y-U8-Jb0"/>
                                                 <constraint firstItem="K0Q-JC-jvl" firstAttribute="top" secondItem="gSY-JT-urN" secondAttribute="bottom" constant="5" id="D3t-mS-iHu"/>
                                                 <constraint firstItem="D0w-EX-9GP" firstAttribute="top" secondItem="jsX-u9-gUg" secondAttribute="top" constant="15" id="KGu-Vn-sUi"/>
                                                 <constraint firstItem="gSY-JT-urN" firstAttribute="top" secondItem="D0w-EX-9GP" secondAttribute="top" id="O2T-J8-uHL"/>
                                                 <constraint firstItem="Z9r-m7-Y0M" firstAttribute="leading" secondItem="K0Q-JC-jvl" secondAttribute="leading" id="c9y-Om-mub"/>
                                                 <constraint firstItem="D0w-EX-9GP" firstAttribute="leading" secondItem="jsX-u9-gUg" secondAttribute="leading" constant="10" id="enT-vs-4in"/>
+                                                <constraint firstAttribute="trailing" secondItem="efh-O5-SpB" secondAttribute="trailing" constant="5" id="h28-7T-HaD"/>
                                                 <constraint firstItem="gSY-JT-urN" firstAttribute="leading" secondItem="D0w-EX-9GP" secondAttribute="trailing" constant="10" id="mfs-TN-i5Z"/>
                                                 <constraint firstItem="Z9r-m7-Y0M" firstAttribute="top" secondItem="gSY-JT-urN" secondAttribute="bottom" constant="10" id="oMu-Gk-yx0"/>
+                                                <constraint firstItem="efh-O5-SpB" firstAttribute="leading" secondItem="gSY-JT-urN" secondAttribute="trailing" id="vMl-71-Uno"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="avatarImageView" destination="D0w-EX-9GP" id="bb3-SJ-b6P"/>
                                             <outlet property="currentLocationLabel" destination="K0Q-JC-jvl" id="Cx6-Ci-L6x"/>
+                                            <outlet property="informationButton" destination="efh-O5-SpB" id="Nsc-50-djX"/>
                                             <outlet property="shareLocationButton" destination="Z9r-m7-Y0M" id="kSs-IN-bVx"/>
                                             <outlet property="userNameLabel" destination="gSY-JT-urN" id="JbF-A8-snW"/>
                                         </connections>
@@ -1705,6 +1719,7 @@ AAAAAAAAAAAAAAAAD1w
         <image name="ico_close" width="16" height="16"/>
         <image name="ico_search" width="18" height="18"/>
         <image name="icon_close" width="30" height="30"/>
+        <image name="infomation" width="40" height="40"/>
         <image name="logo" width="150" height="150"/>
         <image name="normal" width="40" height="40"/>
         <image name="shareLocation" width="30" height="30"/>
