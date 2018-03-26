@@ -83,7 +83,7 @@ class FirebaseAction: NSObject {
             
             //fill data
             for groupName in groupArray! {
-                self.ref.child("group").child(groupName).observe(.value, with: {snap in
+                self.ref.child("group").child(groupName).observeSingleEvent(of: .value, with: {snap in
                     var dict = snap.value as! [String: Any]
                     dict["id"] = groupName
                     let groupModel = GroupModel()
