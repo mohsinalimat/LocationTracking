@@ -26,6 +26,10 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
         self.initLayout()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.initAdsView()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
