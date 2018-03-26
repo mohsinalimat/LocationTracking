@@ -54,8 +54,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.addLeftBarItem(imageName: "profile",title: "")
         self.addRightBarItem(imageName: "ic_add",title: "")
         self.initMapView()
-        //Init Ads
-        self.initAdsView()
         self.setupLayer()
         self.getCurrentLocation()
     }
@@ -65,9 +63,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         menuView.isHidden = true
         self.addTitleNavigation(title: "Location Tracking")
-
-        //Real time contact location
-        self.referentCurrentContact()
+        
+        //Init Ads
+        self.initAdsView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -179,18 +177,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         request.testDevices = [kGADSimulatorID]
         bannerView.load(request)
         self.interstitial = createAndLoadInterstitial()
-    }
-    
-    // MARK: - Update Location
-    //Update when contact changed location
-    func referentCurrentContact() {
-//        app_delegate.firebaseObject.referentToContact(onCompletionHandler: {_ in
-//            let visibleViewController: UIViewController = Common.getVisibleViewController(UIApplication.shared.keyWindow?.rootViewController)!
-//            if visibleViewController is MapViewController {
-//                let mapVC = visibleViewController as! MapViewController
-//                mapVC.updateMarker()
-//            }
-//        })
     }
 
     // MARK: - Init Interstitial

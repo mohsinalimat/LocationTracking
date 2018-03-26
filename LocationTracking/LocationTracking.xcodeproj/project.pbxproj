@@ -28,6 +28,7 @@
 		D235E1981FCAA66400A87DAF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E1971FCAA66400A87DAF /* LocationModel.swift */; };
 		D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */; };
 		D23EC3962062A5F0003ECADA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23EC3952062A5F0003ECADA /* SplashViewController.swift */; };
+		D24720DD2069508C0035E5CA /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24720DC2069508C0035E5CA /* GroupDetailViewController.swift */; };
 		D256082C20556A8900CEA39B /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256082B20556A8900CEA39B /* GroupModel.swift */; };
 		D256082F205595FD00CEA39B /* SearchLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256082E205595FC00CEA39B /* SearchLocationViewController.swift */; };
 		D256083120559B4E00CEA39B /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256083020559B4E00CEA39B /* ContactViewController.swift */; };
@@ -69,6 +70,7 @@
 		D235E1971FCAA66400A87DAF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewCell.swift; sourceTree = "<group>"; };
 		D23EC3952062A5F0003ECADA /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		D24720DC2069508C0035E5CA /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
 		D256082B20556A8900CEA39B /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		D256082E205595FC00CEA39B /* SearchLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchLocationViewController.swift; sourceTree = "<group>"; };
 		D256083020559B4E00CEA39B /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			children = (
 				D289D9A0205D8E9D008A0AAF /* Cell */,
 				D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */,
+				D24720DC2069508C0035E5CA /* GroupDetailViewController.swift */,
 			);
 			name = Group;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				D269F6551FA789BF00BEDD9A /* TextField.swift in Sources */,
 				84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */,
 				D289D99A205D8CED008A0AAF /* SearchContactTableViewCell.swift in Sources */,
+				D24720DD2069508C0035E5CA /* GroupDetailViewController.swift in Sources */,
 				8485A2081EE869C800D79A61 /* MapViewController.swift in Sources */,
 				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,
 				D256083420559B6B00CEA39B /* ContactTableViewCell.swift in Sources */,

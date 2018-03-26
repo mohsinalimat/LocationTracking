@@ -44,6 +44,7 @@ class ContactTableViewCell: UITableViewCell {
     
     //MARK: - Setup Cell
     func setupCell(contact:ContactModel) {
+        informationButton.isHidden = true
         contactObject = contact
         userNameLabel.text = contact.name
         currentLocationLabel.text = "Loading..."
@@ -79,6 +80,8 @@ class ContactTableViewCell: UITableViewCell {
         userNameLabel.text = group.name
         currentLocationLabel.isHidden = false
         shareLocationButton.isHidden = true
+        informationButton.isHidden = false
+
         let ownerString = "Owner:  "
         let memberCount = "Members:  " + String(describing: group.member.count) + "\n"
         
@@ -96,6 +99,7 @@ class ContactTableViewCell: UITableViewCell {
         userNameLabel.text = location.name
         currentLocationLabel.isHidden = false
         shareLocationButton.isHidden = true
+        informationButton.isHidden = true
         
         let locationString = "Latitude: " + String(describing: location.latitude) + "\n" + "Longitude:" + String(describing: location.longitude)
         currentLocationLabel.text = locationString

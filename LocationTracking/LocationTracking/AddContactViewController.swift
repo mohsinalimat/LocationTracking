@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class AddContactViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, SearchContactDelegate {
+class AddContactViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, SearchContactDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
+
     var contactArray = [ContactModel]()
     var selectedContactArray = [ContactModel]()
     
@@ -23,6 +26,10 @@ class AddContactViewController: OriginalViewController, UITableViewDelegate, UIT
         self.initLayout()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.initAdsView()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -130,5 +137,33 @@ class AddContactViewController: OriginalViewController, UITableViewDelegate, UIT
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.tappedSearchContact(searchButton)
         return true
+    }
+    
+    //Init Banner View
+    func initAdsView() {
+        bannerView.adUnitID = kBannerAdUnitId;
+        bannerView.rootViewController = self;
+        bannerView.delegate = self
+        bannerView.adSize = kGADAdSizeSmartBannerPortrait
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID]
+        bannerView.load(request)
+        self.interstitial = createAndLoadInterstitial()
+    }
+    
+    // MARK: - Init Interstitial
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: kInterstitialAdUnitID)
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return GADInterstitial() //interstitial
+    }
+    
+    func showInterstitialAds() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("[Admob] Ad wasn't ready!")
+        }
     }
 }

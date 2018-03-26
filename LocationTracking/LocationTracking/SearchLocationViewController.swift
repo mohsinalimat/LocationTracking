@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class SearchLocationViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, SearchLocationDelegate {
+class SearchLocationViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, SearchLocationDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var searchLocationTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
-    
+    @IBOutlet weak var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
+
     var locationArray = [LocationModel]()
     var selectedLocationArray = [LocationModel]()
 
@@ -131,5 +134,33 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
             cell.selectedButton.isSelected = false
         }
         return cell
+    }
+    
+    //Init Banner View
+    func initAdsView() {
+        bannerView.adUnitID = kBannerAdUnitId;
+        bannerView.rootViewController = self;
+        bannerView.delegate = self
+        bannerView.adSize = kGADAdSizeSmartBannerPortrait
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID]
+        bannerView.load(request)
+        self.interstitial = createAndLoadInterstitial()
+    }
+    
+    // MARK: - Init Interstitial
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: kInterstitialAdUnitID)
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return GADInterstitial() //interstitial
+    }
+    
+    func showInterstitialAds() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("[Admob] Ad wasn't ready!")
+        }
     }
 }

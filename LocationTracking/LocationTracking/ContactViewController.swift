@@ -6,18 +6,24 @@
 //  Copyright © 2017 Nguyen Hai Dang. All rights reserved.
 
 import UIKit
+import GoogleMobileAds
 
-class ContactViewController : OriginalViewController, UITableViewDelegate, UITableViewDataSource, ContactTableViewCellDelegate {
+class ContactViewController : OriginalViewController, UITableViewDelegate, UITableViewDataSource, ContactTableViewCellDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var segmented: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
     var currentIndex = kSharedContactIndex
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
         self.addObserveNotification()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.initAdsView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -247,6 +253,34 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
                 self.hideHUD()
             })
             break
+        }
+    }
+    
+    //Init Banner View
+    func initAdsView() {
+        bannerView.adUnitID = kBannerAdUnitId;
+        bannerView.rootViewController = self;
+        bannerView.delegate = self
+        bannerView.adSize = kGADAdSizeSmartBannerPortrait
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID]
+        bannerView.load(request)
+        self.interstitial = createAndLoadInterstitial()
+    }
+    
+    // MARK: - Init Interstitial
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: kInterstitialAdUnitID)
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return GADInterstitial() //interstitial
+    }
+    
+    func showInterstitialAds() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("[Admob] Ad wasn't ready!")
         }
     }
 }
