@@ -258,7 +258,7 @@ class FirebaseAction: NSObject {
         }
     }
     
-    func addContactToGroup(groupId: String, contactArray: [ContactModel], onCompletionHandler: @escaping () -> ()) {
+    func addContactToGroup(groupId: String, contactArray: [ContactModel], onCompletionHandler: @escaping (GroupModel) -> ()) {
         self.ref.child("group").child(groupId).child("member").observeSingleEvent(of: .value, with: {(snapshot) in
             //Add contacts to group
             var snapDict = snapshot.value as? [String] ?? []
@@ -278,10 +278,23 @@ class FirebaseAction: NSObject {
                     }
                     self.ref.child(contact.id).child("group").setValue(snapDict)
                     if count == contactArray.count {
-                        onCompletionHandler()
+                        self.updateGroup(groupId: groupId, onCompletionHandler: {(groupModel) in
+                            onCompletionHandler(groupModel)
+                        })
                     }
                 })
             }
+        })
+    }
+    
+    func updateGroup(groupId: String, onCompletionHandler: @escaping (GroupModel) -> ()) {
+        self.ref.child("group").child(groupId).observeSingleEvent(of: .value, with: {snap in
+            var dict = snap.value as! [String: Any]
+            dict["id"] = groupId
+            let groupModel = GroupModel()
+            groupModel.initGroupModel(dict: dict)
+            
+            onCompletionHandler(groupModel)
         })
     }
     

@@ -57,7 +57,8 @@ class AddContactToGroupViewController: OriginalViewController, UITableViewDelega
     }
     
     override func tappedRightBarButton(sender: UIButton) {
-        app_delegate.firebaseObject.addContactToGroup(groupId: group.id, contactArray: selectContactArray, onCompletionHandler: {_ in
+        app_delegate.firebaseObject.addContactToGroup(groupId: group.id, contactArray: selectContactArray, onCompletionHandler: {newGroup in
+            app_delegate.groupArray.filter({$0.id == self.group.id}).first?.member = newGroup.member
             self.navigationController?.popViewController(animated: true)
         })
     }
