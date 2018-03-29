@@ -10,6 +10,7 @@ import UIKit
 
 protocol ContactTableViewCellDelegate {
     func shareLocation(contact: ContactModel)
+    func showGroupInformation(group: GroupModel)
 }
 
 class ContactTableViewCell: UITableViewCell {
@@ -40,6 +41,8 @@ class ContactTableViewCell: UITableViewCell {
     }
     
     @IBAction func tappedShowInformation(_ sender: UIButton) {
+        let group = app_delegate.groupArray[indexPath.row]
+        delegate?.showGroupInformation(group: group)
     }
     
     //MARK: - Setup Cell

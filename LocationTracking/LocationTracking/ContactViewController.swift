@@ -103,6 +103,8 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
+        cell.indexPath = indexPath
+        
         if segmented.selectedSegmentIndex == kLocationListIndex {
             if app_delegate.locationArray.count > indexPath.row {
                 cell.setupLocationCell(location: app_delegate.locationArray[indexPath.row])
@@ -254,6 +256,12 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
             })
             break
         }
+    }
+    
+    func showGroupInformation(group: GroupModel) {
+        let groupDetailViewController = main_storyboard.instantiateViewController(withIdentifier: "GroupDetailViewController") as! GroupDetailViewController
+        groupDetailViewController.group = group
+        self.navigationController?.pushViewController(groupDetailViewController, animated: true)
     }
     
     //Init Banner View

@@ -333,6 +333,27 @@ class FirebaseAction: NSObject {
     
     //MARK: - Contact
 
+    func searchContactWithId(idArray: [String], completionHandler: @escaping ([ContactModel]) -> ()) {
+        var array = [ContactModel]()
+
+        for id in idArray {
+            ref.child(id).observeSingleEvent(of: .value, with: { snapshot in
+                var snapDic = snapshot.value as? [String:Any]
+                guard snapDic != nil else {
+                    completionHandler(array)
+                    return
+                }
+                snapDic?["id"] = snapshot.key
+                
+                let contactModel = ContactModel()
+                contactModel.initContactModel(dict: snapDic!)
+                array.append(contactModel)
+                completionHandler(array)
+            })
+
+        }
+    }
+    
     //Search contact to contact List
     func searchContactWithName(name: String?, completionHandler: @escaping ([ContactModel]) -> ()) {
         var searchString = ""
