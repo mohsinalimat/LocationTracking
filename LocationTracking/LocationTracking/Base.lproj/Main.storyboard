@@ -1581,29 +1581,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i0I-Z3-xmN">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="Bg7-M2-Mpm">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NVH-pG-KPH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                                            <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="NVH-pG-KPH" firstAttribute="leading" secondItem="Bg7-M2-Mpm" secondAttribute="leading" id="bJe-Z7-b2V"/>
-                                        <constraint firstAttribute="bottom" secondItem="NVH-pG-KPH" secondAttribute="bottom" id="c9N-h6-zOB"/>
-                                        <constraint firstItem="NVH-pG-KPH" firstAttribute="top" secondItem="Bg7-M2-Mpm" secondAttribute="top" id="wzI-gk-bUK"/>
-                                        <constraint firstAttribute="trailing" secondItem="NVH-pG-KPH" secondAttribute="trailing" id="zdn-2n-Jwk"/>
-                                    </constraints>
-                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="It6-Is-XuN">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="GroupDetailTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupDetailTableViewCell" rowHeight="80" id="It6-Is-XuN" customClass="GroupDetailTableViewCell" customModule="LocationTracking" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="It6-Is-XuN" id="CTd-zB-Zqt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
@@ -1625,7 +1605,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMM-Uh-3N8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="waiting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMM-Uh-3N8">
                                                     <rect key="frame" x="50" y="42" width="260" height="35.5"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
@@ -1644,8 +1624,16 @@
                                                 <constraint firstItem="GTo-GV-40y" firstAttribute="leading" secondItem="79J-Xd-rit" secondAttribute="trailing" constant="5" id="xBh-ey-0WT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="locationLabel" destination="iMM-Uh-3N8" id="msW-vf-rF6"/>
+                                            <outlet property="nameLabel" destination="GTo-GV-40y" id="hmp-vV-byS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XR6-7s-E2c" id="1uK-iC-5v5"/>
+                                    <outlet property="delegate" destination="XR6-7s-E2c" id="sdW-1N-SOE"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYq-v0-qrJ">
                                 <rect key="frame" x="0.0" y="478" width="320" height="40"/>
@@ -1689,13 +1677,14 @@
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="qO9-eE-6XR" id="IBn-ZE-Nzb"/>
+                        <outlet property="tableView" destination="i0I-Z3-xmN" id="X5O-Dc-RVH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4a-xm-7R4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2227.5" y="115.14084507042254"/>
         </scene>
-        <!--Create New Group View Controller-->
+        <!--Delegate-->
         <scene sceneID="zDF-XD-h41">
             <objects>
                 <viewController storyboardIdentifier="CreateNewGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BgX-gs-hrz" customClass="CreateNewGroupViewController" customModule="LocationTracking" customModuleProvider="target" sceneMemberID="viewController">
@@ -1727,7 +1716,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jHY-ET-RKx">
-                                <rect key="frame" x="0.0" y="126" width="320" height="442"/>
+                                <rect key="frame" x="0.0" y="126" width="320" height="392"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CreateNewGroupTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreateNewGroupTableViewCell" rowHeight="80" id="SJn-tH-WK1" customClass="CreateNewGroupTableViewCell" customModule="LocationTracking" customModuleProvider="target">
@@ -1796,21 +1785,40 @@
                                     <outlet property="delegate" destination="BgX-gs-hrz" id="Laz-RQ-RoL"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" restorationIdentifier="GADBannerView" translatesAutoresizingMaskIntoConstraints="NO" id="EzB-Y1-IC6" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="zJy-fs-TMQ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-7161181863245899/7781642863"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="BgX-gs-hrz" id="QhS-iF-Hel"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="EzB-Y1-IC6" secondAttribute="bottom" id="2CH-Wv-C40"/>
                             <constraint firstItem="JSR-bp-DHp" firstAttribute="leading" secondItem="NEi-rW-VBu" secondAttribute="leading" id="3VF-4V-7Xi"/>
                             <constraint firstItem="jHY-ET-RKx" firstAttribute="leading" secondItem="itX-nW-vpT" secondAttribute="leading" id="4h4-Dy-nup"/>
                             <constraint firstItem="NEi-rW-VBu" firstAttribute="top" secondItem="vWH-xG-zV6" secondAttribute="bottom" constant="15" id="7Jh-K4-g6e"/>
                             <constraint firstAttribute="trailing" secondItem="NEi-rW-VBu" secondAttribute="trailing" constant="20" id="827-Br-mAM"/>
-                            <constraint firstItem="CON-By-NHh" firstAttribute="top" secondItem="jHY-ET-RKx" secondAttribute="bottom" id="Vnj-eE-bHS"/>
                             <constraint firstItem="JSR-bp-DHp" firstAttribute="top" secondItem="NEi-rW-VBu" secondAttribute="bottom" constant="15" id="WdW-gX-AHN"/>
                             <constraint firstAttribute="trailing" secondItem="jHY-ET-RKx" secondAttribute="trailing" id="YfI-ur-Vqd"/>
+                            <constraint firstAttribute="trailing" secondItem="EzB-Y1-IC6" secondAttribute="trailing" id="cBZ-GF-O0x"/>
                             <constraint firstItem="NEi-rW-VBu" firstAttribute="leading" secondItem="itX-nW-vpT" secondAttribute="leading" constant="20" id="gMx-3c-KM0"/>
                             <constraint firstItem="jHY-ET-RKx" firstAttribute="top" secondItem="JSR-bp-DHp" secondAttribute="bottom" constant="15" id="ima-DU-JNV"/>
+                            <constraint firstItem="EzB-Y1-IC6" firstAttribute="top" secondItem="jHY-ET-RKx" secondAttribute="bottom" id="u88-g7-aOV"/>
+                            <constraint firstItem="EzB-Y1-IC6" firstAttribute="leading" secondItem="itX-nW-vpT" secondAttribute="leading" id="zci-xd-2De"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bannerView" destination="EzB-Y1-IC6" id="NWQ-cW-kcr"/>
                         <outlet property="groupNameTextField" destination="NEi-rW-VBu" id="t7I-3e-ABF"/>
                         <outlet property="tableView" destination="jHY-ET-RKx" id="kTJ-g4-d7w"/>
                     </connections>

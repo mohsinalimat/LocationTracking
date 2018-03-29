@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, createGroupDelegate {
+class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, createGroupDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
+    
     @IBOutlet weak var groupNameTextField: TextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
     var selectedContactArray = [String]()
     
     override func viewDidLoad() {
@@ -105,5 +109,33 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         let sharedContactArray = app_delegate.contactArray.filter{$0.isShare == 0}
         let contact: ContactModel = sharedContactArray[indexPath.row]
         selectedContactArray = selectedContactArray.filter{$0 != contact.id}
+    }
+    
+    //Init Banner View
+    func initAdsView() {
+        bannerView.adUnitID = kBannerAdUnitId;
+        bannerView.rootViewController = self;
+        bannerView.delegate = self
+        bannerView.adSize = kGADAdSizeSmartBannerPortrait
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID]
+        bannerView.load(request)
+        self.interstitial = createAndLoadInterstitial()
+    }
+    
+    // MARK: - Init Interstitial
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: kInterstitialAdUnitID)
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return GADInterstitial() //interstitial
+    }
+    
+    func showInterstitialAds() {
+        if interstitial.isReady {
+            interstitial.present(fromRootViewController: self)
+        } else {
+            print("[Admob] Ad wasn't ready!")
+        }
     }
 }

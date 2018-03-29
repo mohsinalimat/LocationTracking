@@ -40,6 +40,7 @@
 		D289D99A205D8CED008A0AAF /* SearchContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */; };
 		D289D99E205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */; };
 		D289D99F205D8E99008A0AAF /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */; };
+		EA152DA8206C861A00D1697B /* GroupDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA152DA7206C861A00D1697B /* GroupDetailTableViewCell.swift */; };
 		EA460EE71FCBC8770002D9BF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA460EE61FCBC8770002D9BF /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContactTableViewCell.swift; sourceTree = "<group>"; };
 		D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewGroupTableViewCell.swift; sourceTree = "<group>"; };
 		D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
+		EA152DA7206C861A00D1697B /* GroupDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailTableViewCell.swift; sourceTree = "<group>"; };
 		EA460EE61FCBC8770002D9BF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */,
+				EA152DA7206C861A00D1697B /* GroupDetailTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */,
 				D289D99F205D8E99008A0AAF /* CreateNewGroupViewController.swift in Sources */,
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
+				EA152DA8206C861A00D1697B /* GroupDetailTableViewCell.swift in Sources */,
 				846C92CC1EF5348B000993CE /* FirebaseAction.swift in Sources */,
 				D289D98D205D83B9008A0AAF /* ProfileViewController.swift in Sources */,
 				84B0FB4E1EF8370500F3ABDE /* Toast.swift in Sources */,

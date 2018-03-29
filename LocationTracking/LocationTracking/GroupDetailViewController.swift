@@ -12,8 +12,9 @@ import GoogleMobileAds
 class GroupDetailViewController: OriginalViewController, GADInterstitialDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var tableView: UITableView!
     var interstitial: GADInterstitial!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
