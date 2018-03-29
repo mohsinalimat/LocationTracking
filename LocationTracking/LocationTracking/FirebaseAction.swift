@@ -556,4 +556,9 @@ class FirebaseAction: NSObject {
         resultRef.childByAutoId().setValue(dictionary)
         onCompletetionHandler()
     }
+    
+    //MARK: - Message
+    func sendMessageToContact(talkId: String, senderId: String, message: String) {
+        ref.child("contactMessages").setValue([])
+    }
 }
