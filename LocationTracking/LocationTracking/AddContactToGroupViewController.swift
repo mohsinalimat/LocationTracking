@@ -1,54 +1,54 @@
 //
-//  GroupDetailViewController.swift
+//  AddContactToGroupViewController.swift
 //  LocationTracking
 //
-//  Created by Thuy Phan on 3/26/18.
+//  Created by Hai Dang Nguyen on 3/29/18.
 //  Copyright © 2018 Nguyen Hai Dang. All rights reserved.
 //
 
 import UIKit
 import GoogleMobileAds
 
-class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, GADInterstitialDelegate, GADBannerViewDelegate {
-    
+class AddContactToGroupViewController: OriginalViewController, UITableViewDelegate, UITableViewDataSource, SearchContactDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
+
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var tableView: UITableView!
     var interstitial: GADInterstitial!
     var group = GroupModel()
     var contactArray = [ContactModel]()
-    
+    var selectContactArray = [ContactModel]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //set up UI
         self.setupUI()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        self.initAdsView()
-        self.getContactModel()
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.initAdsView()
+        
+        self.getContactModel()
+    }
+    
     //MARK: - Function
     func setupUI() {
         self.addLeftBarItem(imageName: "ico_back", title: "")
         self.addTitleNavigation(title: group.name)
-        self.addRightBarItem(imageName: "ic_add", title: "")
+        self.addRightBarItem(imageName: "save", title: "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
     
     func getContactModel() {
-        app_delegate.firebaseObject.searchContactWithId(idArray: group.member, completionHandler: {array in
-            self.contactArray.removeAll()
-            self.contactArray += array
-            
-            self.tableView.reloadData()
-        })
+        for contact in app_delegate.contactArray {
+            if !group.member.contains(contact.id) {
+                contactArray.append(contact)
+            }
+        }
+        tableView.reloadData()
     }
     
     //MARK: - Action
@@ -57,10 +57,9 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
     }
     
     override func tappedRightBarButton(sender: UIButton) {
-        //Add contact to group
-        let addcontactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactToGroupViewController") as! AddContactToGroupViewController
-        addcontactViewController.group = group
-        self.navigationController?.pushViewController(addcontactViewController, animated: true)
+        app_delegate.firebaseObject.addContactToGroup(groupId: group.id, contactArray: selectContactArray, onCompletionHandler: {_ in
+            self.navigationController?.popViewController(animated: true)
+        })
     }
     
     //MARK: - TableView Delegate, Datasource
@@ -73,14 +72,28 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+        return 90
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupDetailTableViewCell") as! GroupDetailTableViewCell
-        cell.setupCell(contact: contactArray[indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchContactTableViewCell") as! SearchContactTableViewCell
+        cell.indexPath = indexPath
+        cell.delegate = self
         
+        cell.setupCell(contact: contactArray[indexPath.row])
+
         return cell
+    }
+    
+    //MARK: - Cell Delegate
+    func SaveContact(indexPath: IndexPath) {
+        selectContactArray.append(contactArray[indexPath.row])
+    }
+    
+    func unSelected(indexPath: IndexPath) {
+        if selectContactArray.contains(contactArray[indexPath.row]) {
+            selectContactArray = selectContactArray.filter{$0 != contactArray[indexPath.row]}
+        }
     }
     
     //Init Banner View

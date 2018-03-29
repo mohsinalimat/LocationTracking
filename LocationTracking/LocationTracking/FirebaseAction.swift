@@ -258,6 +258,33 @@ class FirebaseAction: NSObject {
         }
     }
     
+    func addContactToGroup(groupId: String, contactArray: [ContactModel], onCompletionHandler: @escaping () -> ()) {
+        self.ref.child("group").child(groupId).child("member").observeSingleEvent(of: .value, with: {(snapshot) in
+            //Add contacts to group
+            var snapDict = snapshot.value as? [String] ?? []
+            for contact in contactArray {
+                snapDict.append(contact.id)
+            }
+            self.ref.child("group").child(groupId).child("member").setValue(snapDict)
+            
+            //Add group to each contact
+            var count = 0
+            for contact in contactArray {
+                self.ref.child(contact.id).child("group").observeSingleEvent(of: .value, with: { (snapshot) in
+                    count += 1
+                    var snapDict = snapshot.value as? [String] ?? []
+                    if !snapDict.contains(groupId) {
+                        snapDict.append(groupId)
+                    }
+                    self.ref.child(contact.id).child("group").setValue(snapDict)
+                    if count == contactArray.count {
+                        onCompletionHandler()
+                    }
+                })
+            }
+        })
+    }
+    
     func deleteGroup(group: GroupModel) {
         let newGroupArray = app_delegate.groupArray.filter{$0.id != group.id}
         var groupIdArray = [String]()
