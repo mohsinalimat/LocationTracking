@@ -558,19 +558,33 @@ class FirebaseAction: NSObject {
     }
     
     //MARK: - Message
-    func getContactMessages(userId: String, oncompletionHandler: @escaping ([String: String]) -> ()) {
-        ref.child("contactMessages")
+    func observMessages(talkId: String, oncompletionHandler: @escaping ([String: String]) -> ()) {
+        ref.child("messageList").child(talkId).observe(.value, with: {(snapshot) in
+            let messageList = snapshot.value as! [String: String]
+            oncompletionHandler(messageList)
+        })
     }
     
-    func sendMessageToContact(talkId: String, senderId: String, message: String) {
-        var messageDict = [String: String]()
-        messageDict[senderId] = message
-        ref.child("contactMessages").child(talkId).setValue([messageDict])
+    func createTalk(message: String, contact: ContactModel) {
+        let talk = ref.child("messageList").childByAutoId()
+        
+        //Create new talk
+       self.sendMessageToContact(talkId: talk.key, message: message)
+
+        //Insert talk to me
+        var myMessageList = app_delegate.profile.messageList
+        myMessageList[app_delegate.profile.id] = message
+        ref.child(app_delegate.profile.id).child("messageList").setValue(myMessageList)
+        
+        //Insert talk to other contact
+        var contactMessageList = contact.messageList
+        contactMessageList[app_delegate.profile.id] = message
+        ref.child(contact.id).child("messageList").setValue(contactMessageList)
     }
     
-    func sendMessageToGroup(groupId: String, senderId: String, message: String) {
+    func sendMessageToContact(talkId: String, message: String) {
         var messageDict = [String: String]()
-        messageDict[senderId] = message
-        ref.child("groupMessages").child(groupId).setValue([messageDict])
+        messageDict[app_delegate.profile.id] = message
+        ref.child("messageList").child(talkId).setValue([messageDict])
     }
 }

@@ -18,6 +18,7 @@ class ContactModel: NSObject {
     var contact = [String: Any]()
     var group = [String]()
     var locationList = [String: Any]()
+    var messageList = [String: String]()
     
     func initContactModel(dict: [String:Any]) {
         if dict["email"] != nil {
@@ -48,7 +49,9 @@ class ContactModel: NSObject {
         if dict["locationList"] != nil {
             locationList = dict["locationList"] as! [String: Any]
         }
-        
+        if dict["messageList"] != nil {
+            messageList = dict["messageList"] as! [String: String]
+        }
         if app_delegate.profile.contact[self.id] != nil {
             isShare = app_delegate.profile.contact[self.id] as! Int
         }
