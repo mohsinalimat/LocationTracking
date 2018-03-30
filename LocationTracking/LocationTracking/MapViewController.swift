@@ -14,6 +14,10 @@ import GoogleMobileAds
 
 class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
 
+    @IBOutlet weak var messageView: UIView!
+    @IBOutlet weak var sendMessageButton: UIButton!
+    @IBOutlet weak var messageTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addNewLocationNameTextField: TextField!
     @IBOutlet weak var allowUpdateLocationSwitch: UISwitch!
     @IBOutlet weak var bannerView: GADBannerView!

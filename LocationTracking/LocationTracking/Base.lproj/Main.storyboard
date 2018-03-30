@@ -1319,6 +1319,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="tGj-QP-dRj"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bD-to-a8h">
                                         <rect key="frame" x="280" y="140" width="35" height="35"/>
@@ -1394,11 +1397,15 @@
                         <outlet property="contactsListButton" destination="U9X-ff-LcF" id="yXj-M1-S9E"/>
                         <outlet property="hybridTypeButton" destination="jeo-fS-Ex7" id="qIu-bW-zx0"/>
                         <outlet property="menuView" destination="I2Y-ue-wS3" id="nl3-Ms-rvH"/>
+                        <outlet property="messageTextField" destination="9Wg-Wf-8Xi" id="GDH-w4-sHC"/>
+                        <outlet property="messageView" destination="jhW-xh-E7q" id="NrM-h5-ijW"/>
                         <outlet property="newLatitudeLabel" destination="0C5-Nc-5Yx" id="Rfk-Ze-yVy"/>
                         <outlet property="newLongitudeLabel" destination="5HG-xz-d5B" id="yYr-iv-Tbr"/>
                         <outlet property="normalTypeButton" destination="Ewk-ug-haI" id="vqK-5T-NmE"/>
                         <outlet property="saveNewLocationButton" destination="EDV-Hy-euQ" id="8Xy-qF-aQH"/>
                         <outlet property="searchLocationButton" destination="IGi-cb-GhH" id="P34-E9-jsH"/>
+                        <outlet property="sendMessageButton" destination="0bD-to-a8h" id="gmj-4k-WER"/>
+                        <outlet property="tableView" destination="wKE-3E-2DJ" id="c7w-YS-JnP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

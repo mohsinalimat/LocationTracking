@@ -558,7 +558,19 @@ class FirebaseAction: NSObject {
     }
     
     //MARK: - Message
+    func getContactMessages(userId: String, oncompletionHandler: @escaping ([String: String]) -> ()) {
+        ref.child("contactMessages")
+    }
+    
     func sendMessageToContact(talkId: String, senderId: String, message: String) {
-        ref.child("contactMessages").setValue([])
+        var messageDict = [String: String]()
+        messageDict[senderId] = message
+        ref.child("contactMessages").child(talkId).setValue([messageDict])
+    }
+    
+    func sendMessageToGroup(groupId: String, senderId: String, message: String) {
+        var messageDict = [String: String]()
+        messageDict[senderId] = message
+        ref.child("groupMessages").child(groupId).setValue([messageDict])
     }
 }
