@@ -81,6 +81,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     override func viewWillDisappear(_ animated: Bool) {
         view.endEditing(true)
+        self.hideAllCustomView()
     }
     
     func updateLocationAddress(address: String) {
@@ -138,6 +139,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                 self.messageArray.removeAll()
                 self.messageArray = messages
                 self.tableView.reloadData()
+                self.tableView.contentOffset = CGPoint.init(x: 0, y: self.tableView.contentSize.height - self.tableView.frame.height)
             })
         }
     }
@@ -472,5 +474,13 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
         
         return cell
+    }
+    
+    //MARK: - UITextField delegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= 100
     }
 }
