@@ -25,6 +25,7 @@
 		84DC8A6B1EE07C6000B6F9A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC8A6A1EE07C6000B6F9A0 /* AppDelegate.swift */; };
 		84DC8A781EE07C6000B6F9A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84DC8A761EE07C6000B6F9A0 /* LaunchScreen.storyboard */; };
 		84E871BC1EF9932200F9B817 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84E871BB1EF9932200F9B817 /* Assets.xcassets */; };
+		D20D0DAD206E85CC00A72AFB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20D0DAC206E85CC00A72AFB /* MessageTableViewCell.swift */; };
 		D235E1981FCAA66400A87DAF /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E1971FCAA66400A87DAF /* LocationModel.swift */; };
 		D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */; };
 		D23EC3962062A5F0003ECADA /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23EC3952062A5F0003ECADA /* SplashViewController.swift */; };
@@ -69,6 +70,7 @@
 		84DC8A791EE07C6000B6F9A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84DC8A821EE07CE000B6F9A0 /* LocationTracking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationTracking.entitlements; sourceTree = "<group>"; };
 		84E871BB1EF9932200F9B817 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D20D0DAC206E85CC00A72AFB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		D235E1971FCAA66400A87DAF /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocationTableViewCell.swift; sourceTree = "<group>"; };
 		D23EC3952062A5F0003ECADA /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				D235E19A1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift */,
+				D20D0DAC206E85CC00A72AFB /* MessageTableViewCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				846C92AC1EF4D9D3000993CE /* Common.swift in Sources */,
 				D256083420559B6B00CEA39B /* ContactTableViewCell.swift in Sources */,
 				846C92A91EF4D7AB000993CE /* NavigationBarExtension.swift in Sources */,
+				D20D0DAD206E85CC00A72AFB /* MessageTableViewCell.swift in Sources */,
 				D289D998205D8CD1008A0AAF /* AddContactViewController.swift in Sources */,
 				84BF7F7D1F2A1902001B8A40 /* ProgressView.swift in Sources */,
 			);

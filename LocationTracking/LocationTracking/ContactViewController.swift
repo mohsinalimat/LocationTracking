@@ -176,6 +176,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
                     }
                 }
                 //Add observer when changed contact
+                app_delegate.mapViewController.group = group
                 app_delegate.mapViewController.updateMarker()
 
             } else if segmented.selectedSegmentIndex == kLocationListIndex {

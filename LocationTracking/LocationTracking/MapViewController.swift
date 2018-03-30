@@ -12,7 +12,7 @@ import GoogleMaps
 import GooglePlaces
 import GoogleMobileAds
 
-class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate {
+class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationManagerDelegate, GADInterstitialDelegate, GADBannerViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var sendMessageButton: UIButton!
@@ -34,6 +34,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var newLongitudeLabel: UILabel!
     @IBOutlet weak var newLatitudeLabel: UILabel!
         @IBOutlet weak var contactsListButton: UIButton!
+    @IBOutlet weak var messageButton: UIButton!
     var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
     var currentLocation = CLLocation()
@@ -45,6 +46,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     var isAddLocation: Bool?
     var isAllowUpdateLocation: Bool?
     var newLocation: CLLocationCoordinate2D?
+    var group = GroupModel()
+    var messageArray = [[String : String]]()
     
     // An array to hold the list of likely places.
     var likelyPlaces: [GMSPlace] = []
@@ -94,6 +97,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     //MARK: - Init View
     
     func setupLayer() {
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+
         addContactButton.isExclusiveTouch = true
         addLocationButton.isExclusiveTouch = true
         addGroupButton.isExclusiveTouch = true
@@ -112,6 +117,29 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     func hideAllCustomView() {
         menuView.isHidden = true
         addNewLocationView.isHidden = true
+        messageView.isHidden = true
+    }
+    
+    func getMessageList() {
+        var talkId: String?
+        
+        if currentContactArray.count == 1 {
+            //Chat one to one
+            talkId = app_delegate.profile.messageList[(currentContactArray.first?.id)!]
+        } else {
+            //Chat group
+            talkId = app_delegate.profile.messageList[group.id]
+        }
+        
+        //Add message to list
+        if talkId != nil {
+            // Talk is exist
+            app_delegate.firebaseObject.observeMessages(talkId: talkId!, oncompletionHandler: {(messages) in
+                self.messageArray.removeAll()
+                self.messageArray = messages
+                self.tableView.reloadData()
+            })
+        }
     }
     
     //Init MapView
@@ -145,6 +173,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         view.bringSubview(toFront: hybridTypeButton)
         view.bringSubview(toFront: searchLocationButton)
         view.bringSubview(toFront: contactsListButton)
+        view.bringSubview(toFront: messageButton)
+        view.bringSubview(toFront: messageView)
     }
     
     //Init Location
@@ -215,11 +245,16 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                 })
             }
         }
+        
+        //Show tableView
+        messageView.isHidden = false
+
+        self.getMessageList()
     }
     
     func reDrawMarkerWithPosition(latitude: Double, longitude: Double, name: String) {
         mapView.clear()
-
+        
         let position = CLLocationCoordinate2DMake(latitude,longitude)
         let marker = GMSMarker(position: position)
         marker.icon = UIImage.init(named: "requestLocation")
@@ -230,6 +265,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         
         marker.map = mapView
         self.updateLocationAddress(address: name)
+        
+        //Remove tableView
+        messageView.isHidden = true
     }
     
 // MARK: - GMSMapViewDelegate
@@ -273,6 +311,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         menuView.isHidden = true
+        messageView.isHidden = true
+
         view.endEditing(true)
         if !addNewLocationView.isHidden {
             newLocation = coordinate
@@ -361,6 +401,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         mapView.mapType = .hybrid
     }
     
+    @IBAction func tappedShowChat(_ sender: UIButton) {
+        messageView.isHidden = false
+    }
+    
     @IBAction func tappedShowContactList(_ sender: UIButton) {
         let contactViewController = main_storyboard.instantiateViewController(withIdentifier: "ContactViewController") as! ContactViewController
         let nav = UINavigationController.init(rootViewController: contactViewController)
@@ -368,13 +412,60 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedSendMessage(_ sender: UIButton) {
-        guard messageTextField.text?.count == 0 else {
+        guard messageTextField.text?.count != 0 else {
             return
         }
         
+        var talkId: String?
+        
+        if currentContactArray.count == 1 {
+            //Chat one to one
+            talkId = app_delegate.profile.messageList[(currentContactArray.first?.id)!]
+        } else {
+            //Chat group
+            talkId = app_delegate.profile.messageList[group.id]
+        }
+        
+        //Add message to list
+        if talkId != nil {
+            // Talk is exist
+            app_delegate.firebaseObject.sendMessageToContact(talkId: talkId!, message: messageTextField.text!)
+        } else {
+            app_delegate.firebaseObject.createTalk(message: messageTextField.text!, contact: (currentContactArray.first)!)
+        }
     }
+    
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {
         newLatitudeLabel.text = String(format: "Lat: %.10f", newLocation.latitude)
         newLongitudeLabel.text = String(format: "Long: %.10f", newLocation.longitude)
+    }
+    
+    //MARK: - TableView Delegate, DataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messageArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell") as! MessageTableViewCell
+        let dict = messageArray[indexPath.row]
+        cell.nameLabel.text = dict.keys.first
+        cell.messageLabel.text = dict.values.first
+
+        if app_delegate.profile.id == dict.keys.first {
+            cell.nameLabel.text = app_delegate.profile.name
+        } else {
+            for contact in app_delegate.contactArray {
+                if contact.id == dict.keys.first {
+                    cell.nameLabel.text = contact.name
+                    break
+                }
+            }
+        }
+        
+        return cell
     }
 }

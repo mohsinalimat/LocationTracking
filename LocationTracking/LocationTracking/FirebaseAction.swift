@@ -558,9 +558,12 @@ class FirebaseAction: NSObject {
     }
     
     //MARK: - Message
-    func observMessages(talkId: String, oncompletionHandler: @escaping ([String: String]) -> ()) {
+    func observeMessages(talkId: String, oncompletionHandler: @escaping ([[String: String]]) -> ()) {
         ref.child("messageList").child(talkId).observe(.value, with: {(snapshot) in
-            let messageList = snapshot.value as! [String: String]
+            var messageList = [[String: String]]()
+            if ((snapshot.value as? NSNull) == nil) {
+                messageList = snapshot.value as! [[String: String]]
+            }
             oncompletionHandler(messageList)
         })
     }
@@ -573,18 +576,26 @@ class FirebaseAction: NSObject {
 
         //Insert talk to me
         var myMessageList = app_delegate.profile.messageList
-        myMessageList[app_delegate.profile.id] = message
+        myMessageList[contact.id] = talk.key
         ref.child(app_delegate.profile.id).child("messageList").setValue(myMessageList)
         
         //Insert talk to other contact
         var contactMessageList = contact.messageList
-        contactMessageList[app_delegate.profile.id] = message
+        contactMessageList[app_delegate.profile.id] = talk.key
         ref.child(contact.id).child("messageList").setValue(contactMessageList)
     }
     
     func sendMessageToContact(talkId: String, message: String) {
         var messageDict = [String: String]()
         messageDict[app_delegate.profile.id] = message
-        ref.child("messageList").child(talkId).setValue([messageDict])
+        
+        ref.child("messageList").child(talkId).observeSingleEvent(of: .value, with: {(snapshot) in
+            var array = [[String: String]]()
+            if ((snapshot.value as? NSNull) == nil) {
+                array = snapshot.value as! [[String: String]]
+            }
+            array.append(messageDict)
+            self.ref.child("messageList").child(talkId).setValue(array)
+        })
     }
 }
