@@ -402,6 +402,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     @IBAction func tappedShowChat(_ sender: UIButton) {
+        if currentContactArray.count == 0 {
+            view.makeToast("Please select contact to chat!", duration: 2.0, position: .center)
+            return
+        }
         messageView.isHidden = false
     }
     
@@ -433,6 +437,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         } else {
             app_delegate.firebaseObject.createTalk(message: messageTextField.text!, contact: (currentContactArray.first)!)
         }
+        messageTextField.text = ""
     }
     
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {

@@ -1365,7 +1365,7 @@
                                         </connections>
                                     </tableView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="message" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Wg-Wf-8Xi">
-                                        <rect key="frame" x="10" y="139.5" width="265" height="35"/>
+                                        <rect key="frame" x="10" y="139.5" width="260" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="Bmw-89-yoL"/>
                                         </constraints>
@@ -1393,7 +1393,7 @@
                                     <constraint firstItem="wKE-3E-2DJ" firstAttribute="top" secondItem="jhW-xh-E7q" secondAttribute="top" id="3Lr-tV-Nz6"/>
                                     <constraint firstAttribute="trailing" secondItem="0bD-to-a8h" secondAttribute="trailing" constant="5" id="8hd-py-Ilp"/>
                                     <constraint firstAttribute="bottom" secondItem="0bD-to-a8h" secondAttribute="bottom" constant="5" id="9Vw-vg-In2"/>
-                                    <constraint firstItem="0bD-to-a8h" firstAttribute="leading" secondItem="9Wg-Wf-8Xi" secondAttribute="trailing" constant="5" id="JzZ-Bx-Xup"/>
+                                    <constraint firstItem="0bD-to-a8h" firstAttribute="leading" secondItem="9Wg-Wf-8Xi" secondAttribute="trailing" constant="10" id="JzZ-Bx-Xup"/>
                                     <constraint firstAttribute="height" constant="180" id="K6w-sg-GhY"/>
                                     <constraint firstItem="9Wg-Wf-8Xi" firstAttribute="leading" secondItem="jhW-xh-E7q" secondAttribute="leading" constant="10" id="Xol-Bw-CcH"/>
                                     <constraint firstItem="0bD-to-a8h" firstAttribute="centerY" secondItem="9Wg-Wf-8Xi" secondAttribute="centerY" id="ZcA-Wt-zWG"/>
