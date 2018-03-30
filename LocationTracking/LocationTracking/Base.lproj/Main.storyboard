@@ -1330,6 +1330,9 @@
                                             <constraint firstAttribute="width" constant="35" id="JxD-ji-0Pe"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="tappedSendMessage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uHh-kj-XpO"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

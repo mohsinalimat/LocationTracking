@@ -367,6 +367,12 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.present(nav, animated: true, completion: nil)
     }
     
+    @IBAction func tappedSendMessage(_ sender: UIButton) {
+        guard messageTextField.text?.count == 0 else {
+            return
+        }
+        
+    }
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {
         newLatitudeLabel.text = String(format: "Lat: %.10f", newLocation.latitude)
         newLongitudeLabel.text = String(format: "Long: %.10f", newLocation.longitude)
