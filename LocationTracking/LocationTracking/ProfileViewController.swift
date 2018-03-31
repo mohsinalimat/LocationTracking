@@ -145,4 +145,11 @@ class ProfileViewController: OriginalViewController {
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeTextField = textField as! TextField
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= 50
+    }
 }

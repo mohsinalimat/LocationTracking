@@ -69,8 +69,12 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         super.viewWillAppear(animated)
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         menuView.isHidden = true
-        self.addTitleNavigation(title: "Location Tracking")
         
+        if group.name.count > 0 {
+            self.addTitleNavigation(title: group.name)
+        } else {
+            self.addTitleNavigation(title: "Location Tracking")
+        }
         //Init Ads
         self.initAdsView()
     }
@@ -136,10 +140,17 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         if talkId != nil {
             // Talk is exist
             app_delegate.firebaseObject.observeMessages(talkId: talkId!, oncompletionHandler: {(messages) in
-                self.messageArray.removeAll()
-                self.messageArray = messages
-                self.tableView.reloadData()
-                self.tableView.contentOffset = CGPoint.init(x: 0, y: self.tableView.contentSize.height - self.tableView.frame.height)
+                DispatchQueue.main.async {
+                    self.messageArray.removeAll()
+                    self.messageArray = messages
+                    
+                    self.tableView.reloadData()
+                    
+                    self.tableView.beginUpdates()
+                    self.tableView.scrollToRow(at: IndexPath.init(row: self.messageArray.count - 1, section: 0), at: .bottom, animated: true)
+                    self.tableView.endUpdates()
+
+                }
             })
         }
     }
