@@ -29,7 +29,7 @@ class ChangePasswordViewController: OriginalViewController {
 
     //MARK: - Set up UI
     func setupUI() {
-        oldPasswordTextfield.customBorder(radius: oldPasswordTextfield.frame.height/2, color: Common.mainColor())
+        oldPasswordTextfield.customBorder(radius: oldPasswordTextfield.frame.height/2, color: .clear)
         newPasswordTextField.customBorder(radius: newPasswordTextField.frame.height/2, color: .clear)
         confirmNewPasswordTextField.customBorder(radius: confirmNewPasswordTextField.frame.height/2, color: .clear)
         changePasswordButton.customBorder(radius: changePasswordButton.frame.height/2, color: .clear)

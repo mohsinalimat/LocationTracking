@@ -48,26 +48,24 @@ class AddContactViewController: OriginalViewController, UITableViewDelegate, UIT
     @IBAction func tappedSearchContact(_ sender: UIButton) {
         if (searchTextField.text?.count)! > 0 {
             self.showHUD()
-            if (searchTextField.text?.count)! > 0 {
-                app_delegate.firebaseObject.searchContactWithName(name: searchTextField.text!, completionHandler: {(array) in
-                    
-                    self.contactArray.removeAll()
-                    self.contactArray += array as [ContactModel]
+            app_delegate.firebaseObject.searchContactWithName(name: searchTextField.text!, completionHandler: {(array) in
+                
+                self.contactArray.removeAll()
+                self.contactArray += array as [ContactModel]
 
-                    //Remove me from contact list
-                    self.contactArray = self.contactArray.filter{$0.id != app_delegate.profile.id}
-                    
-                    //Remove contacts who I added to my contact array
-                    for contact in app_delegate.contactArray {
-                        self.contactArray = self.contactArray.filter{$0.id != contact.id}
-                    }
+                //Remove me from contact list
+                self.contactArray = self.contactArray.filter{$0.id != app_delegate.profile.id}
+                
+                //Remove contacts who I added to my contact array
+                for contact in app_delegate.contactArray {
+                    self.contactArray = self.contactArray.filter{$0.id != contact.id}
+                }
 
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.hideHUD()
-                    }
-                })
-            }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.hideHUD()
+                }
+            })
         }
     }
     
