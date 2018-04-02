@@ -153,7 +153,7 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
             }))
         }
         
-        actionSheetController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        actionSheetController.addAction(UIAlertAction(title: LocalizedString(key: "CANCEL"), style: UIAlertActionStyle.cancel, handler: nil))
         self.present(actionSheetController, animated: true, completion: nil)
     }
 }

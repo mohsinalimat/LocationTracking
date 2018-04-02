@@ -51,3 +51,7 @@
 "PLACE_HOLDER_OLD_PASSWORD"             = "古いパスワード";
 "PLACE_HOLDER_NEW_PASSWORD"             = "新しいパスワード";
 "PLACE_HOLDER_CONFIRM_PASSWORD"         = "パスワードを確認";
+
+//NOTIFY
+"ADD_NEW_LOCATION"                      = "新しい場所を追加";
+"SEARCH_EXISTS_LOCATION"                 = "場所を検索存在します";

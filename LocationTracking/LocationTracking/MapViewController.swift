@@ -381,7 +381,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
         //Show action sheet
-        self.showActionSheet(titleArray: ["Add new location","Search to add new location"], onTapped: {title in
+        self.showActionSheet(titleArray: [LocalizedString(key: "ADD_NEW_LOCATION"),LocalizedString(key: "SEARCH_EXISTS_LOCATION")], onTapped: {title in
             if title == "Add new location" {
                 //Show view to add new location
                 self.addNewLocationView.isHidden = false
