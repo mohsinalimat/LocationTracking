@@ -382,7 +382,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBAction func tappedAddNewLocation(_ sender: UIButton) {
         //Show action sheet
         self.showActionSheet(titleArray: [LocalizedString(key: "ACTION_SHEET_ADD_NEW_LOCATION"),LocalizedString(key: "ACTION_SHEET_SEARCH_EXISTS_LOCATION")], onTapped: {title in
-            if title == "Add new location" {
+            if title == LocalizedString(key: "ACTION_SHEET_ADD_NEW_LOCATION") {
                 //Show view to add new location
                 self.addNewLocationView.isHidden = false
                 self.menuView.isHidden = true
@@ -392,7 +392,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                 self.newLocation = CLLocationCoordinate2DMake(app_delegate.profile.latitude, app_delegate.profile.longitude)
                 self.setupNewLocation(newLocation: self.newLocation!)
                 
-            } else if title == "Search to add new location" {
+            } else if title == LocalizedString(key: "ACTION_SHEET_SEARCH_EXISTS_LOCATION") {
                 //Go to search location screen
                 let searchLocationViewController = main_storyboard.instantiateViewController(withIdentifier: "SearchLocationViewController") as! SearchLocationViewController
                 self.navigationController?.pushViewController(searchLocationViewController, animated: true)
