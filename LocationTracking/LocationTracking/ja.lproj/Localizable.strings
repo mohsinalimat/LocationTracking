@@ -39,6 +39,7 @@
 "FOTGOT_PASSWORD"                       = "パスワードをお忘れですか";
 
 //CONTACT LIST
+"CONTACT_TITTLE"                        = "コンタクト";
 "SEGMENTED_CONTACTS_TITTLE"             = "コンタクト";
 "SEGMENTED_REQUESTS_TITTLE"             = "リクエスト";
 "SEGMENTED_GROUPS_TITTLE"               = "グループ";
@@ -59,6 +60,7 @@
 
 "PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "連絡先を検索するための入力名";
 "PLACE_HOLDER_SEARCH_LOCATION_NAME" = "入力された場所の名前";
+"PLACE_HOLDER_INPUT_GROUP_NAME"     = "入力グループ名";
 
 //NOTIFY
 "ACTION_SHEET_ADD_NEW_LOCATION"         = "新しい場所を追加";

@@ -39,6 +39,7 @@
 "FOTGOT_PASSWORD"                   = "Forgot Password";
 
 //CONTACT LIST
+"CONTACT_TITTLE"                    = "CONTACTS";
 "SEGMENTED_CONTACTS_TITTLE"         = "Contacts";
 "SEGMENTED_REQUESTS_TITTLE"         = "Requests";
 "SEGMENTED_GROUPS_TITTLE"           = "Groups";
@@ -58,6 +59,7 @@
 "PLACE_HOLDER_NEW_LOCATION"         = "New location";
 "PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input name to search contacts";
 "PLACE_HOLDER_SEARCH_LOCATION_NAME" = "input location name";
+"PLACE_HOLDER_INPUT_GROUP_NAME"     = "input group name!";
 
 //NOTIFY
 "ACTION_SHEET_ADD_NEW_LOCATION"     = "Add new location";

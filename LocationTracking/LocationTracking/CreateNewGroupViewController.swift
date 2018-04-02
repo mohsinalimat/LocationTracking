@@ -14,6 +14,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     @IBOutlet weak var groupNameTextField: TextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bannerView: GADBannerView!
+    @IBOutlet weak var membersLabel: UILabel!
     var interstitial: GADInterstitial!
     var selectedContactArray = [String]()
     
@@ -24,6 +25,10 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         selectedContactArray.append(app_delegate.profile.id)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,6 +47,11 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         //Get contact list
         tableView.reloadData()
+    }
+    
+    func setupLanguage() {
+        groupNameTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_CONTACT_NAME")
+        membersLabel.text = LocalizedString(key: "NEW_GROUP_MEMBER")
     }
     
     //MARK: - Action

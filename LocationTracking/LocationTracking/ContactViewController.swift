@@ -63,7 +63,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
         self.addLeftBarItem(imageName: "icon_close", title: "")
-        self.addTitleNavigation(title: "Contacts")
+        self.addTitleNavigation(title: LocalizedString(key: "CONTACT_TITTLE"))
     }
     
     func setupLanguage() {

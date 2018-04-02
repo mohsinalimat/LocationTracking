@@ -2048,6 +2048,7 @@
                     <connections>
                         <outlet property="bannerView" destination="EzB-Y1-IC6" id="NWQ-cW-kcr"/>
                         <outlet property="groupNameTextField" destination="NEi-rW-VBu" id="t7I-3e-ABF"/>
+                        <outlet property="membersLabel" destination="JSR-bp-DHp" id="f0L-mP-tZf"/>
                         <outlet property="tableView" destination="jHY-ET-RKx" id="kTJ-g4-d7w"/>
                     </connections>
                 </viewController>

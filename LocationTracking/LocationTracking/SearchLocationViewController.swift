@@ -39,8 +39,8 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
     //MARK: - Layout
     func initLayout() {
         self.addLeftBarItem(imageName: "ico_back",title: "")
-        self.addRightBarItem(imageName: "save", title: "")
-        self.addTitleNavigation(title: "Search Location")
+        self.addRightBarItem(imageName: LocalizedString(key: "SAVE"), title: "")
+        self.addTitleNavigation(title: LocalizedString(key: "SEARCH_LOCATION_TITLE"))
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         searchView.setupBorder()
     }
