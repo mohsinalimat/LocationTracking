@@ -91,7 +91,10 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
                     let contact = self.contactArray[indexPath.row]
                     app_delegate.firebaseObject.deleteContactFromGroup(contact: contact, group: self.group)
                     app_delegate.firebaseObject.updateGroup(groupId: self.group.id, onCompletionHandler: {newGroup in
+                        //Update group
                         self.group = newGroup
+                        app_delegate.groupArray.filter({$0.id == self.group.id}).first?.member = newGroup.member
+
                         //Remove contact
                         self.contactArray = self.contactArray.filter{$0.id != contact.id}
                         self.tableView.reloadData()
