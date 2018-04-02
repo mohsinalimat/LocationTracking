@@ -26,6 +26,7 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
 
     override func viewWillAppear(_ animated: Bool) {
         self.initAdsView()
+        group = app_delegate.groupArray.filter({$0.id == group.id}).first!
         self.getContactModel()
     }
     
@@ -99,6 +100,8 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
                         //Remove contact
                         self.contactArray = self.contactArray.filter{$0.id != contact.id}
                         self.tableView.reloadData()
+                        
+                        self.hideHUD()
                     })
                 })
             } else {
