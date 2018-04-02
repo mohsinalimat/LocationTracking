@@ -83,6 +83,19 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if app_delegate.profile.id == group.owner {
+                self.showAlert(title: "Confirm", message: "Are you sure remove this member", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+                    let contact = self.contactArray[indexPath.row]
+                    app_delegate.firebaseObject.deleteContactFromGroup(contact: contact, group: self.group)
+                })
+            } else {
+                view.makeToast("Only owner can remove member!", duration: 2.0, position: .center)
+            }
+        }
+    }
+    
     //Init Banner View
     func initAdsView() {
         bannerView.adUnitID = kBannerAdUnitId;

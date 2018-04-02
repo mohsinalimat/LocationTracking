@@ -313,6 +313,16 @@ class FirebaseAction: NSObject {
         ref.child("group").child(group.id).child("member").setValue(memberIdArray)
     }
     
+    func deleteContactFromGroup(contact: ContactModel, group: GroupModel) {
+        let groupIdArray = contact.group.filter{$0 != group.id}
+        let memberIdArray = group.member.filter{$0 != contact.id}
+        
+        //Update Group list
+        ref.child(contact.id).child("group").setValue(groupIdArray)
+        
+        ref.child("group").child(group.id).child("member").setValue(memberIdArray)
+    }
+    
     //MARK: - User
     func resetPasswordToEmail(email: String, onCompletionHandler: @escaping () -> ()) {
         Auth.auth().sendPasswordReset(withEmail: email, completion: {_ in
