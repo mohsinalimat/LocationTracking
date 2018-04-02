@@ -37,10 +37,10 @@
 "SIGN_UP"                               = "サインアップ";
 
 //CONTACT LIST
-"SEGMENTED_CONTACTS_TITTLE"             = "リストコンタクト";
-"SEGMENTED_REQUESTS_TITTLE"             = "リストグループ";
-"SEGMENTED_GROUPS_TITTLE"               = "リクエスト";
-"SEGMENTED_LOCATIONS_TITTLE"            = "リクエロケーション";
+"SEGMENTED_CONTACTS_TITTLE"             = "コンタクト";
+"SEGMENTED_REQUESTS_TITTLE"             = "リクエスト";
+"SEGMENTED_GROUPS_TITTLE"               = "グループ";
+"SEGMENTED_LOCATIONS_TITTLE"            = "ロケーション";
 "OWNER"                                 = "オーナー";
 
 //PLACE HOLDER
