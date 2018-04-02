@@ -219,6 +219,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         addContactButton.setTitle(LocalizedString(key: "ADD_NEW_CONTACT"), for: .normal)
         addGroupButton.setTitle(LocalizedString(key: "ADD_NEW_GROUP"), for: .normal)
         addLocationButton.setTitle(LocalizedString(key: "ADD_NEW_LOCATION"), for: .normal)
+        
+        messageTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_MESSAGE")
+        addNewLocationNameTextField.placeholder = LocalizedString(key: "")
     }
     
     // MARK: - Admob
@@ -358,10 +361,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBAction func tappedAllowUpdateLocation(_ sender: UISwitch) {
         if sender.isOn {
             locationManager.startUpdatingLocation()
-            view.makeToast("Shared your location to friends", duration: 2, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_SHARED_LOCATION"), duration: 2, position: .center)
         } else {
             locationManager.stopUpdatingLocation()
-            view.makeToast("Stoped sharing your location to friends", duration: 2, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_STOPED_LOCATION"), duration: 2, position: .center)
         }
     }
     
@@ -403,11 +406,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     @IBAction func tappedSaveNewLocation(_ sender: UIButton) {
         if (newLocation == nil || (addNewLocationNameTextField.text?.count)! == 0) {
-            view.makeToast("Please input location name.", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_INPUT_LOCATION_NAME"), duration: 2.0, position: .center)
             return
         }
         app_delegate.firebaseObject.createNewLocation(latitude: (newLocation?.latitude)!, longitude: (newLocation?.longitude)!, name: addNewLocationNameTextField.text!)
-        view.makeToast("Saved new location successfully.", duration: 2.0, position: .center)
+        view.makeToast(LocalizedString(key: "TOAST_SAVE_LOCATION_SUCCESSFULLY"), duration: 2.0, position: .center)
         addNewLocationView.isHidden = true
     }
     
@@ -467,8 +470,8 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     }
     
     func setupNewLocation(newLocation: CLLocationCoordinate2D) {
-        newLatitudeLabel.text = String(format: "Lat: %.10f", newLocation.latitude)
-        newLongitudeLabel.text = String(format: "Long: %.10f", newLocation.longitude)
+        newLatitudeLabel.text = String.init(format: LocalizedString(key: "LATITUDE"),newLocation.latitude)
+        newLongitudeLabel.text = String.init(format: LocalizedString(key: "LONGITUDE"),newLocation.longitude)
     }
     
     //MARK: - TableView Delegate, DataSource

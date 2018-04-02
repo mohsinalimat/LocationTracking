@@ -94,7 +94,7 @@ class SignUpViewController: OriginalViewController {
         
         if (emailTextField.text?.count)! > 0 && (passwordTextField.text?.count)! > 0 && (confirmPasswordTextField.text?.count)! > 0 && (nameTextField.text?.count)! > 0 && confirmPasswordTextField.text == passwordTextField.text {
             if (passwordTextField.text?.count)! < 6 {
-                self.showAlert(title: "", message: "Password must be more than 6 characters", cancelTitle: "", okTitle: "OK", onOKAction: {_ in
+                self.showAlert(title: "", message: "Password must be more than 6 characters", cancelTitle: "", okTitle: LocalizedString(key: "OK"), onOKAction: {_ in
                     
                 })
                 self.hideHUD()
@@ -128,7 +128,7 @@ class SignUpViewController: OriginalViewController {
             }
         } else {
             self.hideHUD()
-            view.makeToast("Please input email, username and password exactly", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "ALERT_INFO_SIGN_UP"), duration: 2.0, position: .center)
         }
     }
     

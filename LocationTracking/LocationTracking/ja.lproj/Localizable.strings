@@ -35,6 +35,7 @@
 "UPDATE"                                = "更新";
 "SIGN_IN"                               = "サインイン";
 "SIGN_UP"                               = "サインアップ";
+"OK"                                    = "はい";
 
 //CONTACT LIST
 "SEGMENTED_CONTACTS_TITTLE"             = "コンタクト";
@@ -52,6 +53,20 @@
 "PLACE_HOLDER_NEW_PASSWORD"             = "新しいパスワード";
 "PLACE_HOLDER_CONFIRM_PASSWORD"         = "パスワードを確認";
 
+"PLACE_HOLDER_MESSAGE"                  = "メッセージ";
+"PLACE_HOLDER_NEW_LOCATION"             = "新しい場所";
+
 //NOTIFY
 "ACTION_SHEET_ADD_NEW_LOCATION"         = "新しい場所を追加";
 "ACTION_SHEET_SEARCH_EXISTS_LOCATION"   = "場所を検索存在します";
+
+"ALERT_INFO_SIGN_UP"                    = "ユーザー名を入力し、正確にメールしてください";
+"LATITUDE"                              = "緯度: %.10f";
+"LONGITUDE"                             = "経度: %.10f";
+
+"TOAST_SHARED_LOCATION"                 = "あなたは場所を共有しました";
+"TOAST_STOPED_LOCATION"                 = "あなたは場所を停止しました";
+"TOAST_INPUT_LOCATION_NAME"             = "地名を入力してください";
+"TOAST_INPUT_LOCATION_NAME"             = "地名を入力してください";
+"TOAST_SAVE_LOCATION_SUCCESSFULLY"      = "新しい場所が正常に保存されました";
+"TOAST_SELECT_CONTACT_TO_CHAT"          = "チャットする連絡先を選択してください";
