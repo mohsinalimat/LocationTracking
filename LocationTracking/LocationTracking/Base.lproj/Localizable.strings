@@ -8,6 +8,9 @@
 
 "COUNTRY_CODE" = "en";
 
+"en" = "English";
+"ja" = "Japanese";
+
 // MAP
 "MAP_TITTLE"                        = "LOCATION";
 "ADD_NEW_CONTACT"                   = "Contact";

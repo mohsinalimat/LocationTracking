@@ -71,7 +71,7 @@ class Common: NSObject {
     static func setupLanguage() {
         //Set up Multi Language
         if kUserDefault.object(forKey: kLanguageCode) == nil {
-            kUserDefault.set("ja", forKey: kLanguageCode)
+            kUserDefault.set("en", forKey: kLanguageCode)
         }
         LocalizationSetLanguage(language: kUserDefault.object(forKey: kLanguageCode) as! String)
     }

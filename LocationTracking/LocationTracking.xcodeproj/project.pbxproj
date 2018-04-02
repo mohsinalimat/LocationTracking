@@ -41,6 +41,8 @@
 		D289D99A205D8CED008A0AAF /* SearchContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */; };
 		D289D99E205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */; };
 		D289D99F205D8E99008A0AAF /* CreateNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */; };
+		D2D8AF162072B03B00B4E139 /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8AF152072B03B00B4E139 /* LanguageTableViewCell.swift */; };
+		D2D8AF182072B05200B4E139 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D8AF172072B05200B4E139 /* LanguageViewController.swift */; };
 		EA152DA8206C861A00D1697B /* GroupDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA152DA7206C861A00D1697B /* GroupDetailTableViewCell.swift */; };
 		EA152DAA206C98F000D1697B /* AddContactToGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA152DA9206C98F000D1697B /* AddContactToGroupViewController.swift */; };
 		EA460EE71FCBC8770002D9BF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA460EE61FCBC8770002D9BF /* APIManager.swift */; };
@@ -88,6 +90,8 @@
 		D289D999205D8CED008A0AAF /* SearchContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchContactTableViewCell.swift; sourceTree = "<group>"; };
 		D289D99C205D8E99008A0AAF /* CreateNewGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewGroupTableViewCell.swift; sourceTree = "<group>"; };
 		D289D99D205D8E99008A0AAF /* CreateNewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewGroupViewController.swift; sourceTree = "<group>"; };
+		D2D8AF152072B03B00B4E139 /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		D2D8AF172072B05200B4E139 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		EA152DA7206C861A00D1697B /* GroupDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailTableViewCell.swift; sourceTree = "<group>"; };
 		EA152DA9206C98F000D1697B /* AddContactToGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactToGroupViewController.swift; sourceTree = "<group>"; };
 		EA460EE61FCBC8770002D9BF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 		846C92C81EF5170C000993CE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D2D8AF142072B01800B4E139 /* Language */,
 				D289D99B205D8E8E008A0AAF /* Group */,
 				D289D994205D8C25008A0AAF /* Location */,
 				D289D98B205D839D008A0AAF /* Profile */,
@@ -304,6 +309,15 @@
 				EA152DA7206C861A00D1697B /* GroupDetailTableViewCell.swift */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		D2D8AF142072B01800B4E139 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				D2D8AF152072B03B00B4E139 /* LanguageTableViewCell.swift */,
+				D2D8AF172072B05200B4E139 /* LanguageViewController.swift */,
+			);
+			name = Language;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,7 +489,9 @@
 				846C92AE1EF4DAB7000993CE /* OriginalViewController.swift in Sources */,
 				D256082C20556A8900CEA39B /* GroupModel.swift in Sources */,
 				EA460EE71FCBC8770002D9BF /* APIManager.swift in Sources */,
+				D2D8AF162072B03B00B4E139 /* LanguageTableViewCell.swift in Sources */,
 				D235E19B1FCAB08C00A87DAF /* SearchLocationTableViewCell.swift in Sources */,
+				D2D8AF182072B05200B4E139 /* LanguageViewController.swift in Sources */,
 				D289D99F205D8E99008A0AAF /* CreateNewGroupViewController.swift in Sources */,
 				846C92B01EF4DC96000993CE /* Define.swift in Sources */,
 				EA152DA8206C861A00D1697B /* GroupDetailTableViewCell.swift in Sources */,

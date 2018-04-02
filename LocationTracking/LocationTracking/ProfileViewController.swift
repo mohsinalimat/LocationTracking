@@ -16,6 +16,7 @@ class ProfileViewController: OriginalViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var languageButton: UIButton!
     
     var activeTextField = TextField()
     
@@ -56,6 +57,7 @@ class ProfileViewController: OriginalViewController {
         saveButton.setTitle(LocalizedString(key: "SAVE"), for: .normal)
         changePasswordButton.setTitle(LocalizedString(key: "CHANGE_PASSWORD"), for: .normal)
         signOutButton.setTitle(LocalizedString(key: "SIGN_OUT"), for: .normal)
+        languageButton.setTitle(LocalizedString(key: kUserDefault.object(forKey: kLanguageCode) as! String), for: .normal)
     }
     
     //MARK: - Keyboard
@@ -115,6 +117,11 @@ class ProfileViewController: OriginalViewController {
     @IBAction func tappedChangePassword(_ sender: UIButton) {
         let changePasswordViewController = main_storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
         self.present(changePasswordViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func tappedChangeLanguage(_ sender: UIButton) {
+        let languageViewController = main_storyboard.instantiateViewController(withIdentifier: "LanguageViewController") as! LanguageViewController
+        self.present(languageViewController, animated: true, completion: nil)
     }
     
     //Hide keyboard
