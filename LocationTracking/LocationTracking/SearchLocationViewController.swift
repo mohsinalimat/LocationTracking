@@ -27,6 +27,7 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
         self.initAdsView()
     }
     
@@ -44,10 +45,14 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
         searchView.setupBorder()
     }
     
+    func setupLanguage() {
+        searchLocationTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_CONTACT_NAME")
+    }
+    
     //MARK: - Action
     @IBAction func tappedSearchLocation(_ sender: UIButton) {
         if (searchLocationTextField.text?.count)! == 0 {
-            view.makeToast("Please input location name to search.", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "PLACE_HOLDER_SEARCH_LOCATION_NAME"), duration: 2.0, position: .center)
             return
         }
         
@@ -97,7 +102,7 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
             let nav = UINavigationController.init(rootViewController: contactViewController)
             app_delegate.mapViewController.present(nav, animated: true, completion: nil)
         } else {
-            view.makeToast("Please choose a location from the list.", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_SELECT_LOCATION_FROM_LIST"), duration: 2.0, position: .center)
         }
     }
     

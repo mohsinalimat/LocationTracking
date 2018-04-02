@@ -428,7 +428,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     @IBAction func tappedShowChat(_ sender: UIButton) {
         if currentContactArray.count == 0 {
-            view.makeToast("Please select contact to chat!", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_SELECT_CONTACT_TO_CHAT"), duration: 2.0, position: .center)
             return
         }
         messageView.isHidden = false

@@ -27,6 +27,7 @@ class AddContactViewController: OriginalViewController, UITableViewDelegate, UIT
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
         self.initAdsView()
     }
     
@@ -42,6 +43,10 @@ class AddContactViewController: OriginalViewController, UITableViewDelegate, UIT
         self.addTitleNavigation(title: "Search contacts")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         searchView.setupBorder()
+    }
+    
+    func setupLanguage() {
+        searchTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_CONTACT_NAME")
     }
     
     //MARK: - Action
@@ -82,7 +87,7 @@ class AddContactViewController: OriginalViewController, UITableViewDelegate, UIT
             app_delegate.mapViewController.present(nav, animated: true, completion: nil)
 
         } else {
-            view.makeToast("Please select a account from the list!", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_SELECT_CONTACT_FROM_LIST"), duration: 2.0, position: .center)
         }
     }
     

@@ -149,7 +149,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
 
             let selectedContact = sharedArray[indexPath.row]
             if selectedContact.isShare != 0 {
-                view.makeToast("Please wait for the user to share the location with you.", duration: 1.5, position: .center)
+                view.makeToast(LocalizedString(key: "TOAST_NOT_SHARED_LOCATION"), duration: 1.5, position: .center)
                 return
             }
         }
@@ -203,7 +203,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     
     //MARK: - ContactTableViewCell Delegate
     func shareLocation(contact: ContactModel) {
-        self.showAlert(title: "Confirm", message: "Do you want share your location with this friend", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {
+        self.showAlert(title: LocalizedString(key: "ALERT_CONFIRM_TITLE"), message: LocalizedString(key: "ALERT_CONFIRM_SHARE_LOCATION"), cancelTitle: LocalizedString(key: "CANCEL"), okTitle: LocalizedString(key: "OK"), onOKAction: {
             self .showHUD()
 
             app_delegate.firebaseObject.shareLocation(toContact: contact, onCompletetionHandler: {
@@ -219,18 +219,18 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
         switch segmented.selectedSegmentIndex {
         case kGroupListIndex:
             let group = app_delegate.groupArray[indexPath.row]
-            message = "Do you want to delete group: " + group.name
+            message = LocalizedString(key: "ALERT_CONFIRM_DELETE_GROUP") + group.name
             break
         case kLocationListIndex:
             let location = app_delegate.locationArray[indexPath.row]
-            message = "Do you want to delete location: " + location.name
+            message = LocalizedString(key: "ALERT_CONFIRM_DELETE_LOCATION") + location.name
             break
         default:
 //            let contact = contactArray[indexPath.row]
-            message = "Do you want to delete contact: " //+ contact.name!
+            message = LocalizedString(key: "ALERT_CONFIRM_DELETE_CONTACT") //+ contact.name!
             break
         }
-        self.showAlert(title: message, message: "", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+        self.showAlert(title: message, message: "", cancelTitle: LocalizedString(key: "CANCEL"), okTitle: LocalizedString(key: "OK"), onOKAction: {_ in
             self.deleteObject(indexPath: indexPath)
         })
     }

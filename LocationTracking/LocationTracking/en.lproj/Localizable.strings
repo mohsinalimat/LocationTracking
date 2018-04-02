@@ -36,6 +36,7 @@
 "SIGN_IN"                           = "Sign in";
 "SIGN_UP"                           = "Sign up";
 "OK"                                = "OK";
+"FOTGOT_PASSWORD"                   = "Forgot Password";
 
 //CONTACT LIST
 "SEGMENTED_CONTACTS_TITTLE"         = "Contacts";
@@ -55,12 +56,24 @@
 
 "PLACE_HOLDER_MESSAGE"              = "Message";
 "PLACE_HOLDER_NEW_LOCATION"         = "New location";
+"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input name to search contacts";
+"PLACE_HOLDER_SEARCH_LOCATION_NAME" = "input location name";
 
 //NOTIFY
 "ACTION_SHEET_ADD_NEW_LOCATION"     = "Add new location";
 "ACTION_SHEET_SEARCH_EXISTS_LOCATION"      = "Search exists location";
 
+"ALERT_CONFIRM_TITLE"               = "Confirm";
+"ALERT_CONFIRM_SHARE_LOCATION"      = "Do you want to share your location with this friend";
+"ALERT_CONFIRM_SIGN_OUT"            = "Do you want sign out?";
 "ALERT_INFO_SIGN_UP"                = "Please input username, email exactly";
+"ALERT_CONFIRM_DELETE_GROUP"        = "Do you want to delete group: ";
+"ALERT_CONFIRM_DELETE_CONTACT"      = "Do you want to delete contact: ";
+"ALERT_CONFIRM_DELETE_LOCATION"     = "Do you want to delete location: ";
+"ALERT_ERROR_TITLE"                 = "Error";
+"ALERT_AGAIN_INFO"                  = "Please check again old password, new password and confirm password";
+"ALERT_CONFIRM_DELETE_MEMBER"       = "Are you sure remove this member";
+
 "LATITUDE"                          = "Latitude: %.10f";
 "LONGITUDE"                         = "Longitude: %.10f";
 
@@ -69,3 +82,16 @@
 "TOAST_INPUT_LOCATION_NAME"         = "Please input location name";
 "TOAST_SAVE_LOCATION_SUCCESSFULLY"  = "Saved new location successfully.";
 "TOAST_SELECT_CONTACT_TO_CHAT"      = "Please select contact to chat";
+"TOAST_PASSWORD_LENGTH"             = "Password must be more than 6 characters";
+"TOAST_PASSWORD_USER_NAME_WRONG"    = "Email or password is wrong.\n Please check again.";
+"TOAST_INPUT_EMAIL_FORGOT_PASSWORD" = "Please input your email";
+"TOAST_SENT_PASSWORD_TO_MAIL"       = "New password sent to your email, please check your email.";
+"TOAST_SELECT_CONTACT_FROM_LIST"    = "Please select a contact from the list!";
+"TOAST_NOT_SHARED_LOCATION"         = "Not shared";
+"TOAST_USER_NAME_EMPTY"             = "Username and email is empty!";
+"TOAST_SUCCESSFULLY"                = "Successfully";
+"TOAST_CHANGE_PASSWORD_SUCCESSFULLY" = "Changed password successfully";
+"TOAST_SELECT_LOCATION_FROM_LIST"   = "Please select a location from the list.";
+"TOAST_ONLY_OWNER_REMOVE_MEMBER"    = "Only owner can remove member!";
+"TOAST_ADD_CONTACT_TO_GROUP"        = "Please add contact to this group!";
+"TOAST_INPUT_GROUP_NAME"            = "Please input group name!";

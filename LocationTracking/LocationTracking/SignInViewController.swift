@@ -16,15 +16,12 @@ class SignInViewController: OriginalViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var showPasswordButton: UIButton!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userName = UserDefaults.standard.object(forKey: "userName") as? String
-        let password = UserDefaults.standard.object(forKey: "password") as? String
-        //Auto login
-        
         view.tappedDismissKeyboard()
         self.CustomLayout()
     }
@@ -54,6 +51,7 @@ class SignInViewController: OriginalViewController {
         
         signInButton.setTitle(LocalizedString(key: "SIGN_IN"), for: .normal)
         signUpButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
+        forgotPasswordButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
     }
     
     func resetTextField() {
@@ -89,12 +87,12 @@ class SignInViewController: OriginalViewController {
     @IBAction func tappedForgotPassword(_ sender: UIButton) {
         if (emailTextField.text?.count)! > 0 {
             app_delegate.firebaseObject.resetPassword(email: emailTextField.text!, onComplehandler: {_ in
-                self.showAlert(title: "", message: "New password sent to your email, please check your email.", cancelTitle: "", okTitle: "OK",onOKAction: {_ in
+                self.showAlert(title: "", message: LocalizedString(key: "TOAST_SENT_PASSWORD_TO_MAIL"), cancelTitle: "", okTitle: LocalizedString(key: "OK"),onOKAction: {_ in
                 
                 })
             })
         } else {
-            self.showAlert(title: "", message: "Please input your email", cancelTitle: "", okTitle: "OK", onOKAction: {_ in
+            self.showAlert(title: "", message: LocalizedString(key: "TOAST_INPUT_EMAIL_FORGOT_PASSWORD"), cancelTitle: "", okTitle: LocalizedString(key: "OK"), onOKAction: {_ in
             
             })
         }
@@ -117,7 +115,7 @@ class SignInViewController: OriginalViewController {
                      SignIn is failure
                      Show Toast to notify result
                     */
-                    self.view.makeToast("Email or password is wrong.\n Please check again.", duration: 2.0, position: .center)
+                    self.view.makeToast(LocalizedString(key: "TOAST_PASSWORD_USER_NAME_WRONG"), duration: 2.0, position: .center)
                 }
             })
         }

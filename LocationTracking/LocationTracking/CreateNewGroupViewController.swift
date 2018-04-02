@@ -33,7 +33,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     func setupNavigationBar() {
         self.addLeftBarItem(imageName: "ico_back",title: "")
         self.addRightBarItem(imageName: "save", title: "")
-        self.addTitleNavigation(title: "Create new group")
+        self.addTitleNavigation(title: LocalizedString(key: "NEW_GROUP_TITLE"))
         groupNameTextField.textRect(forBounds: groupNameTextField.bounds)
         groupNameTextField.setupBorder()
     }
@@ -49,7 +49,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
         if (groupNameTextField.text?.count)! > 0 {
             
             if selectedContactArray.count < 2 {
-                view.makeToast("Please add contact to this group!", duration: 2.0, position: .center)
+                view.makeToast(LocalizedString(key: "TOAST_ADD_CONTACT_TO_GROUP"), duration: 2.0, position: .center)
                 return
             }
             self.showHUD()
@@ -66,7 +66,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
             })
             
         } else {
-            view.makeToast("Please input group name!", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_INPUT_GROUP_NAME"), duration: 2.0, position: .center)
         }
     }
     

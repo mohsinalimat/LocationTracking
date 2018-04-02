@@ -92,11 +92,11 @@ class ProfileViewController: OriginalViewController {
         if (nameTextField.text?.count)! > 0 && (emailTextField.text?.count)! > 0 {
             self.showHUD()
             self.updateProfile {
-                self.view.makeToast("Successfully", duration: 2.0, position: .center)
+                self.view.makeToast(LocalizedString(key: "TOAST_SUCCESSFULLY"), duration: 2.0, position: .center)
                 self.hideHUD()
             }
         } else {
-            view.makeToast("User name and email is empty!", duration: 2.0, position: .center)
+            view.makeToast(LocalizedString(key: "TOAST_USER_NAME_EMPTY"), duration: 2.0, position: .center)
         }
     }
     
@@ -104,7 +104,7 @@ class ProfileViewController: OriginalViewController {
     }
 
     @IBAction func tappedSignOut(_ sender: UIButton) {
-        self.showAlert(title: "Do you want sign out?", message: "", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+        self.showAlert(title: LocalizedString(key: "ALERT_CONFIRM_SIGN_OUT"), message: "", cancelTitle: LocalizedString(key: "CANCEL"), okTitle: LocalizedString(key: "OK"), onOKAction: {_ in
             app_delegate.firebaseObject.signOut()
             
             let signInViewController = main_storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController

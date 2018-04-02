@@ -88,7 +88,7 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if app_delegate.profile.id == group.owner {
-                self.showAlert(title: "Confirm", message: "Are you sure remove this member", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+                self.showAlert(title: LocalizedString(key: "ALERT_CONFIRM_TITLE"), message: LocalizedString(key: "ALERT_CONFIRM_DELETE_MEMBER"), cancelTitle: LocalizedString(key: "CAnCEL"), okTitle: LocalizedString(key: "OK"), onOKAction: {_ in
                     self.showHUD()
                     let contact = self.contactArray[indexPath.row]
                     app_delegate.firebaseObject.deleteContactFromGroup(contact: contact, group: self.group)
@@ -105,7 +105,7 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
                     })
                 })
             } else {
-                view.makeToast("Only owner can remove member!", duration: 2.0, position: .center)
+                view.makeToast(LocalizedString(key: "TOAST_ONLY_OWNER_REMOVE_MEMBER"), duration: 2.0, position: .center)
             }
         }
     }

@@ -268,6 +268,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="LSp-hv-m8X" id="vbM-30-9sE"/>
                         <outlet property="emailView" destination="AIx-Ra-xZK" id="EG1-cD-hsg"/>
+                        <outlet property="forgotPasswordButton" destination="Znq-JG-l15" id="ppp-xB-KTJ"/>
                         <outlet property="passwordTextField" destination="wGB-iC-I9p" id="KeK-nk-SY5"/>
                         <outlet property="passwordView" destination="vy7-6h-lhH" id="BEy-uo-zOh"/>
                         <outlet property="scrollView" destination="uFI-HL-iwp" id="6mt-pe-uUg"/>

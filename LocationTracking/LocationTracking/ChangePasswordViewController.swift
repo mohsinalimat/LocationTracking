@@ -92,16 +92,16 @@ class ChangePasswordViewController: OriginalViewController {
                 self.hideHUD()
                 
                 if error != nil {
-                    self.showAlert(title: "", message: (error?.localizedDescription)!, cancelTitle: "", okTitle: "OK", onOKAction: {_ in
+                    self.showAlert(title: "", message: (error?.localizedDescription)!, cancelTitle: "", okTitle: LocalizedString(key: "OK"), onOKAction: {_ in
                         self.view.makeToast((error?.localizedDescription)!, duration: 1.5, position: .center)
                     })
                 } else {
                     //Update password at Userdefault
-                    self.view.makeToast("Changed password successfully", duration: 1.5, position: .center)
+                    self.view.makeToast(LocalizedString(key: "TOAST_CHANGE_PASSWORD_SUCCESSFULLY"), duration: 1.5, position: .center)
                 }
             })
         } else {
-            self.showAlert(title: "Error", message: "Please check again old password, new password and confirm password", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+            self.showAlert(title: LocalizedString(key: "ALERT_ERROR_TITLE"), message: LocalizedString(key: "ALERT_AGAIN_INFO"), cancelTitle: LocalizedString(key: "CANCEL"), okTitle: LocalizedString(key: "OK"), onOKAction: {_ in
             })
         }
     }
