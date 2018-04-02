@@ -88,6 +88,7 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
         if editingStyle == .delete {
             if app_delegate.profile.id == group.owner {
                 self.showAlert(title: "Confirm", message: "Are you sure remove this member", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
+                    self.showHUD()
                     let contact = self.contactArray[indexPath.row]
                     app_delegate.firebaseObject.deleteContactFromGroup(contact: contact, group: self.group)
                     app_delegate.firebaseObject.updateGroup(groupId: self.group.id, onCompletionHandler: {newGroup in
