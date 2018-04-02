@@ -53,5 +53,5 @@
 "PLACE_HOLDER_CONFIRM_PASSWORD"         = "パスワードを確認";
 
 //NOTIFY
-"ADD_NEW_LOCATION"                      = "新しい場所を追加";
-"SEARCH_EXISTS_LOCATION"                 = "場所を検索存在します";
+"ACTION_SHEET_ADD_NEW_LOCATION"         = "新しい場所を追加";
+"ACTION_SHEET_SEARCH_EXISTS_LOCATION"   = "場所を検索存在します";

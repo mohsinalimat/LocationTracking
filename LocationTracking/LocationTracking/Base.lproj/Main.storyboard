@@ -1495,7 +1495,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hMJ-yL-Pkl">
-                                <rect key="frame" x="15" y="35" width="345" height="36"/>
+                                <rect key="frame" x="10" y="35" width="355" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="aQ2-Es-xkQ"/>
                                 </constraints>
@@ -1618,10 +1618,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="rii-NB-TQb" secondAttribute="trailing" id="IFp-79-0hA"/>
-                            <constraint firstAttribute="trailing" secondItem="hMJ-yL-Pkl" secondAttribute="trailing" constant="15" id="Tkw-d9-ael"/>
+                            <constraint firstAttribute="trailing" secondItem="hMJ-yL-Pkl" secondAttribute="trailing" constant="10" id="Tkw-d9-ael"/>
                             <constraint firstAttribute="trailing" secondItem="TGR-YR-azO" secondAttribute="trailing" id="bE0-M8-Xp3"/>
                             <constraint firstItem="hMJ-yL-Pkl" firstAttribute="top" secondItem="RfQ-c4-RGg" secondAttribute="bottom" constant="15" id="d9h-UZ-Ai0"/>
-                            <constraint firstItem="hMJ-yL-Pkl" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" constant="15" id="hxO-RK-L5q"/>
+                            <constraint firstItem="hMJ-yL-Pkl" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" constant="10" id="hxO-RK-L5q"/>
                             <constraint firstAttribute="bottom" secondItem="TGR-YR-azO" secondAttribute="bottom" id="icS-Qp-lk1"/>
                             <constraint firstItem="rii-NB-TQb" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" id="jRB-be-B6N"/>
                             <constraint firstItem="TGR-YR-azO" firstAttribute="leading" secondItem="Ogu-Gw-5OL" secondAttribute="leading" id="pz5-91-0FS"/>

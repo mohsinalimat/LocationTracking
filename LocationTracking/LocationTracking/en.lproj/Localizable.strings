@@ -53,8 +53,8 @@
 "PLACE_HOLDER_CONFIRM_PASSWORD"     = "confirm password";
 
 //NOTIFY
-"ADD_NEW_LOCATION"                  = "Add new location";
-"SEARCH_EXISTS_LOCATION"             = "Search exists location";
+"ACTION_SHEET_ADD_NEW_LOCATION"     = "Add new location";
+"ACTION_SHEET_SEARCH_EXISTS_LOCATION"      = "Search exists location";
 
 
 
