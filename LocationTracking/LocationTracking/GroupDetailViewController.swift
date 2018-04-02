@@ -47,6 +47,7 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
             self.contactArray.removeAll()
             self.contactArray += array
             
+            self.contactArray = self.contactArray.filter{$0.id != app_delegate.profile.id}
             self.tableView.reloadData()
         })
     }
@@ -89,6 +90,12 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
                 self.showAlert(title: "Confirm", message: "Are you sure remove this member", cancelTitle: "Cancel", okTitle: "OK", onOKAction: {_ in
                     let contact = self.contactArray[indexPath.row]
                     app_delegate.firebaseObject.deleteContactFromGroup(contact: contact, group: self.group)
+                    app_delegate.firebaseObject.updateGroup(groupId: self.group.id, onCompletionHandler: {newGroup in
+                        self.group = newGroup
+                        //Remove contact
+                        self.contactArray = self.contactArray.filter{$0.id != contact.id}
+                        self.tableView.reloadData()
+                    })
                 })
             } else {
                 view.makeToast("Only owner can remove member!", duration: 2.0, position: .center)
