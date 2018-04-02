@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GADMobileAds.configure(withApplicationID: kApplicationId)
         
+        //Set up Language
+        Common.setupLanguage()
+        
         return true
     }
     

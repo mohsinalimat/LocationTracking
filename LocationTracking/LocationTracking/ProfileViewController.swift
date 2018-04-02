@@ -30,6 +30,7 @@ class ProfileViewController: OriginalViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
         self.initData()
     }
     
@@ -46,6 +47,15 @@ class ProfileViewController: OriginalViewController {
         
         nameTextField.textRect(forBounds: nameTextField.bounds)
         emailTextField.textRect(forBounds: emailTextField.bounds)
+    }
+    
+    func setupLanguage() {
+        nameTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_NAME")
+        emailTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_EMAIL")
+        
+        saveButton.setTitle(LocalizedString(key: "SAVE"), for: .normal)
+        changePasswordButton.setTitle(LocalizedString(key: "CHANGE_PASSWORD"), for: .normal)
+        signOutButton.setTitle(LocalizedString(key: "SIGN_OUT"), for: .normal)
     }
     
     //MARK: - Keyboard

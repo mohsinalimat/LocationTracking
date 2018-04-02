@@ -27,6 +27,10 @@ class ChangePasswordViewController: OriginalViewController {
         view.addGestureRecognizer(tapGesture)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
+    }
+    
     //MARK: - Set up UI
     func setupUI() {
         oldPasswordTextfield.customBorder(radius: oldPasswordTextfield.frame.height/2, color: .clear)
@@ -37,6 +41,14 @@ class ChangePasswordViewController: OriginalViewController {
         oldPasswordTextfield.textRect(forBounds: oldPasswordTextfield.bounds)
         newPasswordTextField.textRect(forBounds: newPasswordTextField.bounds)
         confirmNewPasswordTextField.textRect(forBounds: confirmNewPasswordTextField.bounds)
+    }
+    
+    func setupLanguage() {
+        oldPasswordTextfield.placeholder = LocalizedString(key: "PLACE_HOLDER_OLD_PASSWORD")
+        newPasswordTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_NEW_PASSWORD")
+        confirmNewPasswordTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_CONFIRM_PASSWORD")
+
+        changePasswordButton.setTitle(LocalizedString(key: "UPDATE"), for: .normal)
     }
     
     //MARK: - Keyboard

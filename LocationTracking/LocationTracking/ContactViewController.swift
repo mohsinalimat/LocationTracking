@@ -23,6 +23,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
         self.initAdsView()
     }
     
@@ -63,6 +64,13 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
         tableView.tableHeaderView = UIView.init(frame: CGRect.zero)
         self.addLeftBarItem(imageName: "icon_close", title: "")
         self.addTitleNavigation(title: "Contacts")
+    }
+    
+    func setupLanguage() {
+        segmented.setTitle(LocalizedString(key: "SEGMENTED_CONTACTS_TITTLE"), forSegmentAt: 0)
+        segmented.setTitle(LocalizedString(key: "SEGMENTED_REQUESTS_TITTLE"), forSegmentAt: 1)
+        segmented.setTitle(LocalizedString(key: "SEGMENTED_GROUPS_TITTLE"), forSegmentAt: 2)
+        segmented.setTitle(LocalizedString(key: "SEGMENTED_LOCATIONS_TITTLE"), forSegmentAt: 3)
     }
     
     //MARK: - Action

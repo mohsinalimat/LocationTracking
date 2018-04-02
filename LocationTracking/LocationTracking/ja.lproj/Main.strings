@@ -1,0 +1,144 @@
+
+/* Class = "UILabel"; text = "Lat:"; ObjectID = "0C5-Nc-5Yx"; */
+"0C5-Nc-5Yx.text" = "Lat:";
+
+/* Class = "UILabel"; text = "waiting..."; ObjectID = "0QV-62-fV6"; */
+"0QV-62-fV6.text" = "waiting...";
+
+/* Class = "UILabel"; text = "Long:"; ObjectID = "5HG-xz-d5B"; */
+"5HG-xz-d5B.text" = "Long:";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "6XE-Au-hIc"; */
+"6XE-Au-hIc.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "6aP-0D-MvR"; */
+"6aP-0D-MvR.normalTitle" = "Sign In";
+
+/* Class = "UILabel"; text = "Location Share"; ObjectID = "7tt-V5-vqG"; */
+"7tt-V5-vqG.text" = "Location Share";
+
+/* Class = "UIButton"; normalTitle = "Contact"; ObjectID = "9Eo-B9-pba"; */
+"9Eo-B9-pba.normalTitle" = "コンタクト";
+
+/* Class = "UITextField"; placeholder = "message"; ObjectID = "9Wg-Wf-8Xi"; */
+"9Wg-Wf-8Xi.placeholder" = "message";
+
+/* Class = "UILabel"; text = "Location name"; ObjectID = "C4w-Lc-m5P"; */
+"C4w-Lc-m5P.text" = "Location name";
+
+/* Class = "UITextField"; placeholder = "new password"; ObjectID = "CX1-Xg-kTE"; */
+"CX1-Xg-kTE.placeholder" = "new password";
+
+/* Class = "UIButton"; normalTitle = "Group"; ObjectID = "CwK-NR-nBO"; */
+"CwK-NR-nBO.normalTitle" = "グループ";
+
+/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "D7G-SG-Rpu"; */
+"D7G-SG-Rpu.normalTitle" = "Update";
+
+/* Class = "UILabel"; text = "waiting..."; ObjectID = "FnQ-u6-KdB"; */
+"FnQ-u6-KdB.text" = "waiting...";
+
+/* Class = "UILabel"; text = "waiting..."; ObjectID = "Fvn-pG-g0s"; */
+"Fvn-pG-g0s.text" = "waiting...";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "GTo-GV-40y"; */
+"GTo-GV-40y.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Change password"; ObjectID = "HGF-S6-0bL"; */
+"HGF-S6-0bL.normalTitle" = "Change password";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "Hm8-si-SgI"; */
+"Hm8-si-SgI.placeholder" = "Confirm Password";
+
+/* Class = "UILabel"; text = "Members:"; ObjectID = "JSR-bp-DHp"; */
+"JSR-bp-DHp.text" = "新しいグループ:";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "LSp-hv-m8X"; */
+"LSp-hv-m8X.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "input group name"; ObjectID = "NEi-rW-VBu"; */
+"NEi-rW-VBu.placeholder" = "input group name";
+
+/* Class = "UITextField"; placeholder = "input user name to search friends"; ObjectID = "QME-dB-nQi"; */
+"QME-dB-nQi.placeholder" = "input user name to search friends";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Rbw-kg-nbU"; */
+"Rbw-kg-nbU.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Location"; ObjectID = "TRW-2h-DQd"; */
+"TRW-2h-DQd.normalTitle" = "ロケーション";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "WG9-i0-21A"; */
+"WG9-i0-21A.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "WQQ-Kd-HIK"; */
+"WQQ-Kd-HIK.normalTitle" = "Sign up";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "XUO-l1-aSp"; */
+"XUO-l1-aSp.text" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Share"; ObjectID = "Z9r-m7-Y0M"; */
+"Z9r-m7-Y0M.normalTitle" = "Share";
+
+/* Class = "UITextField"; placeholder = "confirm new password"; ObjectID = "ZJf-eP-JsW"; */
+"ZJf-eP-JsW.placeholder" = "新しいパスワードを確認";
+
+/* Class = "UIButton"; normalTitle = "Forgot password?"; ObjectID = "Znq-JG-l15"; */
+"Znq-JG-l15.normalTitle" = "Forgot password?";
+
+/* Class = "UITextField"; placeholder = "input location name"; ObjectID = "b60-yW-9ci"; */
+"b60-yW-9ci.placeholder" = "グループ名を入カ";
+
+/* Class = "UIButton"; normalTitle = "Sign out"; ObjectID = "cJr-x2-GNG"; */
+"cJr-x2-GNG.normalTitle" = "サインアウト";
+
+/* Class = "UITextField"; placeholder = "old password"; ObjectID = "g45-vd-EQ3"; */
+"g45-vd-EQ3.placeholder" = "古いパスワード";
+
+/* Class = "UITextField"; placeholder = "new location"; ObjectID = "gN0-hr-wzR"; */
+"gN0-hr-wzR.placeholder" = "新しいパスワード";
+
+/* Class = "UILabel"; text = "Nguyễn Hải Đăng"; ObjectID = "gSY-JT-urN"; */
+"gSY-JT-urN.text" = "Nguyễn Hải Đăng";
+
+/* Class = "UISegmentedControl"; hMJ-yL-Pkl.segmentTitles[0] = "Contacts"; ObjectID = "hMJ-yL-Pkl"; */
+"hMJ-yL-Pkl.segmentTitles[0]" = "リストコンタクト";
+
+/* Class = "UISegmentedControl"; hMJ-yL-Pkl.segmentTitles[1] = "Requests"; ObjectID = "hMJ-yL-Pkl"; */
+"hMJ-yL-Pkl.segmentTitles[1]" = "リクエスト";
+
+/* Class = "UISegmentedControl"; hMJ-yL-Pkl.segmentTitles[2] = "Groups"; ObjectID = "hMJ-yL-Pkl"; */
+"hMJ-yL-Pkl.segmentTitles[2]" = "リストグループ";
+
+/* Class = "UISegmentedControl"; hMJ-yL-Pkl.segmentTitles[3] = "Locations"; ObjectID = "hMJ-yL-Pkl"; */
+"hMJ-yL-Pkl.segmentTitles[3]" = "リクエロケーション";
+
+/* Class = "UILabel"; text = "waiting"; ObjectID = "iMM-Uh-3N8"; */
+"iMM-Uh-3N8.text" = "waiting";
+
+/* Class = "UILabel"; text = "location"; ObjectID = "onz-R4-6BS"; */
+"onz-R4-6BS.text" = "location";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "tV4-uA-XEV"; */
+"tV4-uA-XEV.normalTitle" = "Sign Up";
+
+/* Class = "UITextField"; placeholder = "email"; ObjectID = "tdY-Rw-Qzd"; */
+"tdY-Rw-Qzd.placeholder" = "email";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "wGB-iC-I9p"; */
+"wGB-iC-I9p.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "User name"; ObjectID = "xX1-yL-vmD"; */
+"xX1-yL-vmD.placeholder" = "User name";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "xe3-Zk-Fxt"; */
+"xe3-Zk-Fxt.placeholder" = "Email";
+
+/* Class = "UITextField"; text = "Email"; ObjectID = "xe3-Zk-Fxt"; */
+"xe3-Zk-Fxt.text" = "Email";
+
+/* Class = "UITextField"; placeholder = "user name"; ObjectID = "xu9-fS-HJZ"; */
+"xu9-fS-HJZ.placeholder" = "user name";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "yBY-J7-Nhd"; */
+"yBY-J7-Nhd.normalTitle" = "保存";

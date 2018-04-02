@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  LocationTracking
+
+  Created by Hai Dang Nguyen on 4/2/18.
+  Copyright © 2018 Nguyen Hai Dang. All rights reserved.
+*/
+
+"COUNTRY_CODE" = "ja";
+
+// MAP
+"MAP_TITTLE"                            = "ロケーションを観察";
+"ADD_NEW_CONTACT"                       = "コンタクト";
+"ADD_NEW_GROUP"                         = "グループ";
+"ADD_NEW_LOCATION"                      = "ロケーション";
+
+//NEW GROUP
+"PLACE_HOLDER_GROUP_NAME"               = "グループ名を入カ";
+"NEW_GROUP_TITLE"                       = "新しいグループ";
+"NEW_GROUP_MEMBER"                      = "メンバー";
+
+//ADD CONTACT
+"PLACE_HOLDER_CONTACT_NAME"             = "ユーザー名";
+"SEARCH_CONTACT"                        = "コンタクトを検索";
+
+//ADD LOCATION
+"NEW_LOCATION"                          = "新しいロケーションを追加";
+"SEARCH_LOCATION_TITLE"                 = "ロケーションを検索";
+
+//BUTTON
+"CANCEL"                                = "キャンセル";
+"SAVE"                                  = "保存";
+"CHANGE_PASSWORD"                       = "パスワードを変更";
+"SIGN_OUT"                              = "サインアウト";
+"UPDATE"                                = "更新";
+"SIGN_IN"                               = "サインイン";
+"SIGN_UP"                               = "サインアップ";
+
+//CONTACT LIST
+"SEGMENTED_CONTACTS_TITTLE"             = "リストコンタクト";
+"SEGMENTED_REQUESTS_TITTLE"             = "リストグループ";
+"SEGMENTED_GROUPS_TITTLE"               = "リクエスト";
+"SEGMENTED_LOCATIONS_TITTLE"            = "リクエロケーション";
+"OWNER"                                 = "オーナー";
+
+//PLACE HOLDER
+"PLACE_HOLDER_NAME"                     = "ニックネーム";
+"PLACE_HOLDER_EMAIL"                    = "メール";
+"PLACE_HOLDER_PASSWORD"                 = "パスワード";
+
+"PLACE_HOLDER_OLD_PASSWORD"             = "古いパスワード";
+"PLACE_HOLDER_NEW_PASSWORD"             = "新しいパスワード";
+"PLACE_HOLDER_CONFIRM_PASSWORD"         = "パスワードを確認";

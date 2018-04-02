@@ -67,4 +67,12 @@ class Common: NSObject {
         let timeString = String.init(format: "%.0f", timestamp)
         return timeString
     }
+    
+    static func setupLanguage() {
+        //Set up Multi Language
+        if kUserDefault.object(forKey: kLanguageCode) == nil {
+            kUserDefault.set("ja", forKey: kLanguageCode)
+        }
+        LocalizationSetLanguage(language: kUserDefault.object(forKey: kLanguageCode) as! String)
+    }
 }

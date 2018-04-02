@@ -33,7 +33,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     @IBOutlet weak var hybridTypeButton: UIButton!
     @IBOutlet weak var newLongitudeLabel: UILabel!
     @IBOutlet weak var newLatitudeLabel: UILabel!
-        @IBOutlet weak var contactsListButton: UIButton!
+    @IBOutlet weak var contactsListButton: UIButton!
     @IBOutlet weak var messageButton: UIButton!
     var interstitial: GADInterstitial!
     var locationManager = CLLocationManager()
@@ -69,11 +69,12 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         super.viewWillAppear(animated)
         self.navigationItem.leftBarButtonItem?.isEnabled = true
         menuView.isHidden = true
+        self.setupLanguage()
         
         if group.name.count > 0 {
             self.addTitleNavigation(title: group.name)
         } else {
-            self.addTitleNavigation(title: "Location Tracking")
+            self.addTitleNavigation(title: LocalizedString(key: "MAP_TITTLE"))
         }
         //Init Ads
         self.initAdsView()
@@ -214,6 +215,14 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
     }
     
+    func setupLanguage() {
+        addContactButton.setTitle(LocalizedString(key: "ADD_NEW_CONTACT"), for: .normal)
+        addGroupButton.setTitle(LocalizedString(key: "ADD_NEW_GROUP"), for: .normal)
+        addLocationButton.setTitle(LocalizedString(key: "ADD_NEW_LOCATION"), for: .normal)
+    }
+    
+    // MARK: - Admob
+
     //Init Banner View
     func initAdsView() {
         bannerView.adUnitID = kBannerAdUnitId;
@@ -226,7 +235,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.interstitial = createAndLoadInterstitial()
     }
 
-    // MARK: - Init Interstitial
+    // Init Interstitial
     func createAndLoadInterstitial() -> GADInterstitial {
         let interstitial = GADInterstitial(adUnitID: kInterstitialAdUnitID)
         interstitial.delegate = self

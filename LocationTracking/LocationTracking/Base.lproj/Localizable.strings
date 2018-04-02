@@ -1,0 +1,56 @@
+/* 
+  Localizable.strings
+  LocationTracking
+
+  Created by Hai Dang Nguyen on 4/2/18.
+  Copyright © 2018 Nguyen Hai Dang. All rights reserved.
+*/
+
+"COUNTRY_CODE" = "en";
+
+// MAP
+"MAP_TITTLE"                        = "LOCATION";
+"ADD_NEW_CONTACT"                   = "Contact";
+"ADD_NEW_GROUP"                     = "Group";
+"ADD_NEW_LOCATION"                  = "Location";
+
+//NEW GROUP
+"PLACE_HOLDER_GROUP_NAME"           = "input group name";
+"NEW_GROUP_TITLE"                   = "NEW GROUP";
+"NEW_GROUP_MEMBER"                  = "Members";
+
+//ADD CONTACT
+"PLACE_HOLDER_CONTACT_NAME"         = "input contact name";
+"SEARCH_CONTACT"                    = "SEARCH CONTACTS";
+
+//ADD LOCATION
+"NEW_LOCATION"                      = "NEW LOCATION";
+"SEARCH_LOCATION_TITLE"             = "SEARCH LOCATION";
+
+//BUTTON
+"CANCEL"                            = "Cancel";
+"SAVE"                              = "Save";
+"CHANGE_PASSWORD"                   = "Change Password";
+"SIGN_OUT"                          = "Sign out";
+"UPDATE"                            = "Update";
+"SIGN_IN"                           = "Sign in";
+"SIGN_UP"                           = "Sign up";
+
+//CONTACT LIST
+"SEGMENTED_CONTACTS_TITTLE"         = "Contacts";
+"SEGMENTED_REQUESTS_TITTLE"         = "Requests";
+"SEGMENTED_GROUPS_TITTLE"           = "Groups";
+"SEGMENTED_LOCATIONS_TITTLE"        = "Locations";
+"OWNER"                             = "Owner";
+
+//PLACE HOLDER
+"PLACE_HOLDER_NAME"                 = "user name";
+"PLACE_HOLDER_EMAIL"                = "email";
+"PLACE_HOLDER_PASSWORD"             = "password";
+
+"PLACE_HOLDER_OLD_PASSWORD"         = "old password";
+"PLACE_HOLDER_NEW_PASSWORD"         = "new password";
+"PLACE_HOLDER_CONFIRM_PASSWORD"     = "confirm password";
+
+//NOTIFY
+

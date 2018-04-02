@@ -33,6 +33,10 @@ class SignInViewController: OriginalViewController {
         self.hideHUD()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
+    }
+    
     //MARK: - Function
     func CustomLayout() {
         emailView.customBorder(radius: emailView.frame.height/2,color: .clear)
@@ -42,6 +46,14 @@ class SignInViewController: OriginalViewController {
         showPasswordButton.customBorder(radius: showPasswordButton.frame.height/2,color: .clear)
 
         signInButton.customBorder(radius: signInButton.frame.height/2,color: .clear)
+    }
+    
+    func setupLanguage() {
+        passwordTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_PASSWORD")
+        emailTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_EMAIL")
+        
+        signInButton.setTitle(LocalizedString(key: "SIGN_IN"), for: .normal)
+        signUpButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
     }
     
     func resetTextField() {

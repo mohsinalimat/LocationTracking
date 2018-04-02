@@ -31,6 +31,10 @@ class SignUpViewController: OriginalViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.setupLanguage()
+    }
+    
     func CustomLayout() {
         signUpButton.isExclusiveTouch = true
         signUpButton.customBorder(radius: signUpButton.frame.height/2,color: .clear)
@@ -43,6 +47,15 @@ class SignUpViewController: OriginalViewController {
         nameTextField.textRect(forBounds: nameTextField.bounds)
         passwordTextField.textRect(forBounds: passwordTextField.bounds)
         confirmPasswordTextField.textRect(forBounds: confirmPasswordTextField.bounds)
+    }
+    
+    func setupLanguage() {
+        emailTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_EMAIL")
+        nameTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_NAME")
+        passwordTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_PASSWORD")
+        confirmPasswordTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_CONFIRM_PASSWORD")
+
+        signUpButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
