@@ -585,6 +585,25 @@ class FirebaseAction: NSObject {
         ref.child(contact.id).child("messageList").setValue(contactMessageList)
     }
     
+    func createGroupTalk(message: String, contactArray: [ContactModel], groupId: String) {
+        let talk = ref.child("messageList").childByAutoId()
+        
+        //Create new talk
+        self.sendMessageToContact(talkId: talk.key, message: message)
+        
+        //Insert talk to me
+        var myMessageList = app_delegate.profile.messageList
+        myMessageList[groupId] = talk.key
+        ref.child(app_delegate.profile.id).child("messageList").setValue(myMessageList)
+        
+        //Insert talk to other contact
+        for contact in contactArray {
+            var contactMessageList = contact.messageList
+            contactMessageList[groupId] = talk.key
+            ref.child(contact.id).child("messageList").setValue(contactMessageList)
+        }
+    }
+    
     func sendMessageToContact(talkId: String, message: String) {
         var messageDict = [String: String]()
         messageDict[app_delegate.profile.id] = message

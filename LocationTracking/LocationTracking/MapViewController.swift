@@ -448,7 +448,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             // Talk is exist
             app_delegate.firebaseObject.sendMessageToContact(talkId: talkId!, message: messageTextField.text!)
         } else {
-            app_delegate.firebaseObject.createTalk(message: messageTextField.text!, contact: (currentContactArray.first)!)
+            if currentContactArray.count == 1 {
+                app_delegate.firebaseObject.createTalk(message: messageTextField.text!, contact: (currentContactArray.first)!)
+            } else {
+                app_delegate.firebaseObject.createGroupTalk(message: messageTextField.text!, contactArray: currentContactArray, groupId: group.id)
+            }
         }
         messageTextField.text = ""
     }
