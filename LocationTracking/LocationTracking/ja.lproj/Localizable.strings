@@ -60,10 +60,9 @@
 
 "PLACE_HOLDER_MESSAGE"                  = "メッセージ";
 "PLACE_HOLDER_NEW_LOCATION"             = "新しい場所";
-
-"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "連絡先を検索するための入力名";
-"PLACE_HOLDER_SEARCH_LOCATION_NAME" = "入力された場所の名前";
-"PLACE_HOLDER_INPUT_GROUP_NAME"     = "入力グループ名";
+"PLACE_HOLDER_SEARCH_CONTACT_NAME"      = "コンタクトを検索するために名前を入カ";
+"PLACE_HOLDER_SEARCH_LOCATION_NAME"     = "入力された場所の名前";
+"PLACE_HOLDER_INPUT_GROUP_NAME"         = "入力グループ名";
 
 //NOTIFY
 "ACTION_SHEET_ADD_NEW_LOCATION"         = "新しい場所を追加";
@@ -74,18 +73,17 @@
 "ALERT_CONFIRM_SIGN_OUT"                = "サインアウトしますか";
 "ALERT_INFO_SIGN_UP"                    = "ユーザー名を入力し、正確にメールしてください";
 "ALERT_CONFIRM_DELETE_GROUP"            = "あなたはグループを削除しますか: ";
-"ALERT_CONFIRM_DELETE_CONTACT"      = "連絡先を削除しますか: ";
-"ALERT_CONFIRM_DELETE_LOCATION"     = "場所を削除しますか: ";
-"ALERT_ERROR_TITLE"                 = "エラー";
-"ALERT_AGAIN_INFO"                  = "もう一度古いパスワード、新しいパスワードを確認し、パスワードを確認してください";
-"ALERT_CONFIRM_DELETE_MEMBER"       = "このメンバーを削除してもよろしいですか。";
+"ALERT_CONFIRM_DELETE_CONTACT"          = "連絡先を削除しますか: ";
+"ALERT_CONFIRM_DELETE_LOCATION"         = "場所を削除しますか: ";
+"ALERT_ERROR_TITLE"                     = "エラー";
+"ALERT_AGAIN_INFO"                      = "もう一度古いパスワード、新しいパスワードを確認し、パスワードを確認してください";
+"ALERT_CONFIRM_DELETE_MEMBER"           = "このメンバーを削除してもよろしいですか。";
 
 "LATITUDE"                              = "緯度: %.10f";
 "LONGITUDE"                             = "経度: %.10f";
 
 "TOAST_SHARED_LOCATION"                 = "あなたは場所を共有しました";
 "TOAST_STOPED_LOCATION"                 = "あなたは場所を停止しました";
-"TOAST_INPUT_LOCATION_NAME"             = "地名を入力してください";
 "TOAST_INPUT_LOCATION_NAME"             = "地名を入力してください";
 "TOAST_SAVE_LOCATION_SUCCESSFULLY"      = "新しい場所が正常に保存されました";
 "TOAST_SELECT_CONTACT_TO_CHAT"          = "チャットする連絡先を選択してください";
