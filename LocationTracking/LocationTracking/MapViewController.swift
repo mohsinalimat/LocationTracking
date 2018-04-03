@@ -118,7 +118,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         hybridTypeButton.customBorder(radius: hybridTypeButton.frame.height/2, color: .clear)
         addNewLocationNameTextField.customBorder(radius: addNewLocationNameTextField.frame.height/2, color: .lightGray)
         addNewLocationNameTextField.textRect(forBounds: addNewLocationNameTextField.bounds)
-        messageTextField.customBorder(radius: messageTextField.frame.height/2, color: Common.mainColor())
+        messageTextField.customBorder(radius: messageTextField.frame.height/2, color: .white)
     }
     
     func hideAllCustomView() {
