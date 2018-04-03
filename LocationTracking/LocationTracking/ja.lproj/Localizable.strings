@@ -71,13 +71,13 @@
 "ALERT_CONFIRM_TITLE"                   = "確認する";
 "ALERT_CONFIRM_SHARE_LOCATION"          = "この友だちとあなたの場所を共有しますか。";
 "ALERT_CONFIRM_SIGN_OUT"                = "サインアウトしますか";
-"ALERT_INFO_SIGN_UP"                    = "ユーザー名を入力し、正確にメールしてください";
-"ALERT_CONFIRM_DELETE_GROUP"            = "あなたはグループを削除しますか: ";
-"ALERT_CONFIRM_DELETE_CONTACT"          = "連絡先を削除しますか: ";
-"ALERT_CONFIRM_DELETE_LOCATION"         = "場所を削除しますか: ";
+"ALERT_INFO_SIGN_UP"                    = "正しい名前とメールを入力してください";
+"ALERT_CONFIRM_DELETE_GROUP"            = "こちらグループを削除してもよろしいでしょうか: ";
+"ALERT_CONFIRM_DELETE_CONTACT"          = "こちらのコンタクトを削除してもよろしいでしょうか: ";
+"ALERT_CONFIRM_DELETE_LOCATION"         = "こちらのロケーションを削除してもよろしいでしょうか: ";
 "ALERT_ERROR_TITLE"                     = "エラー";
 "ALERT_AGAIN_INFO"                      = "入力した情報を確認してくだたい";
-"ALERT_CONFIRM_DELETE_MEMBER"           = "このメンバーを削除してもよろしいですか。";
+"ALERT_CONFIRM_DELETE_MEMBER"           = "こちらのメンバーを削除してもよろしいでしょうか。";
 
 "LATITUDE"                              = "緯度: %.10f";
 "LONGITUDE"                             = "経度: %.10f";
@@ -92,10 +92,10 @@
 "TOAST_INPUT_EMAIL_FORGOT_PASSWORD"     = "メールを入力して下さい";
 "TOAST_SENT_PASSWORD_TO_MAIL"           = "あなたのメールへ新しいパスワードを送信したのでメールをチェックして下さい";
 "TOAST_SELECT_CONTACT_FROM_LIST"        = "リストから連絡先を選択してください。";
-"TOAST_NOT_SHARED_LOCATION"             = "共有されていない。";
-"TOAST_USER_NAME_EMPTY"                 = "ユーザー名と電子メールは空です。";
-"TOAST_SUCCESSFULLY"                    = "うまく";
-"TOAST_CHANGE_PASSWORD_SUCCESSFULLY"    = "パスワードを正常に変更しました。";
+"TOAST_NOT_SHARED_LOCATION"             = "共有できない。";
+"TOAST_USER_NAME_EMPTY"                 = "アカウントとメールが無い。";
+"TOAST_SUCCESSFULLY"                    = "完了した";
+"TOAST_CHANGE_PASSWORD_SUCCESSFULLY"    = "パスワードを変更するのは完了した。";
 "TOAST_SELECT_LOCATION_FROM_LIST"       = "リストから場所を選択してください。";
 "TOAST_ONLY_OWNER_REMOVE_MEMBER"        = "オーナーのみがメンバーを削除できます。";
 "TOAST_ADD_CONTACT_TO_GROUP"            = "このグループへ移動するのためにコンタクトを選択してください";
