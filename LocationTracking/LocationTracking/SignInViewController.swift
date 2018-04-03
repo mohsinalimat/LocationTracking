@@ -51,7 +51,7 @@ class SignInViewController: OriginalViewController {
         
         signInButton.setTitle(LocalizedString(key: "SIGN_IN"), for: .normal)
         signUpButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
-        forgotPasswordButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
+        forgotPasswordButton.setTitle(LocalizedString(key: "FOTGOT_PASSWORD"), for: .normal)
     }
     
     func resetTextField() {
