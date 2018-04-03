@@ -76,7 +76,7 @@
 "ALERT_CONFIRM_DELETE_CONTACT"      = "Do you want to delete contact: ";
 "ALERT_CONFIRM_DELETE_LOCATION"     = "Do you want to delete location: ";
 "ALERT_ERROR_TITLE"                 = "Error";
-"ALERT_AGAIN_INFO"                  = "Please check again old password, new password and confirm password";
+"ALERT_AGAIN_INFO"                  = "Please check again informations";
 "ALERT_CONFIRM_DELETE_MEMBER"       = "Are you sure remove this member";
 
 "LATITUDE"                          = "Latitude: %.10f";
