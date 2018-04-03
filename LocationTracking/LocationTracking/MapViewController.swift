@@ -336,7 +336,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         menuView.isHidden = true
-        messageView.isHidden = true
+        UIView.animate(withDuration: 1.5, animations: {
+            self.messageView.alpha = 0.0
+        },completion: { _ in
+            self.messageView.isHidden = true
+        })
 
         view.endEditing(true)
         if !addNewLocationView.isHidden {
@@ -431,7 +435,12 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             view.makeToast(LocalizedString(key: "TOAST_SELECT_CONTACT_TO_CHAT"), duration: 2.0, position: .center)
             return
         }
+        messageView.alpha = 0.0
         messageView.isHidden = false
+
+        UIView.animate(withDuration: 1.5, animations: {
+            self.messageView.alpha = 1.0
+        })
     }
     
     @IBAction func tappedShowContactList(_ sender: UIButton) {
