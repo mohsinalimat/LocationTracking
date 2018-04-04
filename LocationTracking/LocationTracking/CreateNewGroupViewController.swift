@@ -26,6 +26,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.initAdsView()
         self.setupLanguage()
     }
     
