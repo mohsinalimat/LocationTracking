@@ -18,7 +18,7 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
         self.navigationController?.navigationBar.barTintColor = Common.mainColor()
         self.registerKeyboardEvents()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -81,6 +81,11 @@ class OriginalViewController: UIViewController, UITextViewDelegate, UITextFieldD
     func registerKeyboardEvents() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardEventWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardEventWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    func removeObserve() {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
     func keyboardEventWillShow(_ notification: Notification) {

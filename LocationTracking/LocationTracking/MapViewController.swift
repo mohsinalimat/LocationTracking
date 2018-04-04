@@ -54,6 +54,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     // The currently selected place.
     var selectedPlace: GMSPlace?
+    @IBOutlet weak var messageViewBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
         //Init Ads
         self.initAdsView()
+        
+        //Keyboard
+        self.registerKeyboardEvents()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,6 +91,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     override func viewWillDisappear(_ animated: Bool) {
         view.endEditing(true)
         self.hideAllCustomView()
+        self.removeObserve()
     }
     
     func updateLocationAddress(address: String) {
@@ -294,6 +299,22 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         
         //Remove tableView
         messageView.isHidden = true
+    }
+    
+    override func keyboardEventWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        
+        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        messageViewBottomConstraint.constant = keyboardSize.height - bannerView.frame.height
+    }
+    
+    override func keyboardEventWillHide(_ notification: Notification) {
+        messageViewBottomConstraint.constant = 0
     }
     
 // MARK: - GMSMapViewDelegate
