@@ -60,7 +60,7 @@
 
 "PLACE_HOLDER_MESSAGE"              = "Message";
 "PLACE_HOLDER_NEW_LOCATION"         = "New location";
-"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input name to search contacts";
+"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input contact name";
 "PLACE_HOLDER_SEARCH_LOCATION_NAME" = "input location name";
 "PLACE_HOLDER_INPUT_GROUP_NAME"     = "input group name!";
 

@@ -46,7 +46,7 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
     }
     
     func setupLanguage() {
-        searchLocationTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_CONTACT_NAME")
+        searchLocationTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_LOCATION_NAME")
     }
     
     //MARK: - Action
