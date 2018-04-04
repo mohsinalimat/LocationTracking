@@ -2018,20 +2018,80 @@
                                     <outlet property="delegate" destination="XR6-7s-E2c" id="1GZ-oK-WiC"/>
                                 </connections>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZZl-7X-dOG">
+                                <rect key="frame" x="10" y="214" width="300" height="140"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hI-tb-JZ5">
+                                        <rect key="frame" x="20" y="20" width="260" height="40"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="eIo-xi-eO7">
+                                                <rect key="frame" x="10" y="0.0" width="250" height="40"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="XR6-7s-E2c" id="XPc-A7-Z08"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="eIo-xi-eO7" secondAttribute="trailing" id="Lfr-bl-XpS"/>
+                                            <constraint firstItem="eIo-xi-eO7" firstAttribute="top" secondItem="7hI-tb-JZ5" secondAttribute="top" id="h3Y-Tc-1Eu"/>
+                                            <constraint firstItem="eIo-xi-eO7" firstAttribute="leading" secondItem="7hI-tb-JZ5" secondAttribute="leading" constant="10" id="lRa-hR-OfA"/>
+                                            <constraint firstAttribute="height" constant="40" id="nif-qy-DR4"/>
+                                            <constraint firstAttribute="bottom" secondItem="eIo-xi-eO7" secondAttribute="bottom" id="uxL-Gv-czZ"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HNl-yj-SX1">
+                                        <rect key="frame" x="90" y="80" width="120" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="MXK-0o-JeY"/>
+                                            <constraint firstAttribute="width" constant="120" id="nwX-ZG-ka2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedEditGroupName:" destination="XR6-7s-E2c" eventType="touchUpInside" id="zni-lK-9AS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1960784314" green="0.64705882349999999" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="7hI-tb-JZ5" firstAttribute="top" secondItem="ZZl-7X-dOG" secondAttribute="top" constant="20" id="6xW-R5-oSw"/>
+                                    <constraint firstAttribute="width" constant="300" id="B23-D8-IJI"/>
+                                    <constraint firstAttribute="trailing" secondItem="7hI-tb-JZ5" secondAttribute="trailing" constant="20" id="CEL-K3-zGZ"/>
+                                    <constraint firstItem="HNl-yj-SX1" firstAttribute="centerX" secondItem="ZZl-7X-dOG" secondAttribute="centerX" id="G6F-d5-c9X"/>
+                                    <constraint firstItem="7hI-tb-JZ5" firstAttribute="leading" secondItem="ZZl-7X-dOG" secondAttribute="leading" constant="20" id="T1s-fe-AH2"/>
+                                    <constraint firstAttribute="height" constant="140" id="rjG-ug-YNb"/>
+                                    <constraint firstAttribute="bottom" secondItem="HNl-yj-SX1" secondAttribute="bottom" constant="20" id="xHW-3P-JgU"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="i0I-Z3-xmN" firstAttribute="top" secondItem="lva-2f-5h9" secondAttribute="top" id="2Vq-aa-CuL"/>
+                            <constraint firstItem="ZZl-7X-dOG" firstAttribute="centerX" secondItem="lva-2f-5h9" secondAttribute="centerX" id="EDg-5a-iEh"/>
                             <constraint firstAttribute="bottom" secondItem="qO9-eE-6XR" secondAttribute="bottom" id="KhH-fr-h7o"/>
                             <constraint firstAttribute="trailing" secondItem="qO9-eE-6XR" secondAttribute="trailing" id="PEa-nM-dkD"/>
                             <constraint firstItem="qO9-eE-6XR" firstAttribute="leading" secondItem="lva-2f-5h9" secondAttribute="leading" id="aNj-S6-Fxr"/>
                             <constraint firstItem="qO9-eE-6XR" firstAttribute="top" secondItem="i0I-Z3-xmN" secondAttribute="bottom" id="izd-bw-rQR"/>
                             <constraint firstAttribute="trailing" secondItem="i0I-Z3-xmN" secondAttribute="trailing" id="nsr-Hf-95F"/>
                             <constraint firstItem="i0I-Z3-xmN" firstAttribute="leading" secondItem="lva-2f-5h9" secondAttribute="leading" id="uBM-qE-MeS"/>
+                            <constraint firstItem="ZZl-7X-dOG" firstAttribute="centerY" secondItem="lva-2f-5h9" secondAttribute="centerY" id="yHx-fO-iXN"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundTextFieldView" destination="7hI-tb-JZ5" id="Wq7-yc-KR2"/>
                         <outlet property="bannerView" destination="qO9-eE-6XR" id="IBn-ZE-Nzb"/>
+                        <outlet property="editGroupNameButton" destination="HNl-yj-SX1" id="PNw-MM-nyP"/>
+                        <outlet property="editGroupNameView" destination="ZZl-7X-dOG" id="aTY-67-C90"/>
+                        <outlet property="groupNameTextField" destination="eIo-xi-eO7" id="cdN-G0-8hn"/>
                         <outlet property="tableView" destination="i0I-Z3-xmN" id="X5O-Dc-RVH"/>
                     </connections>
                 </viewController>

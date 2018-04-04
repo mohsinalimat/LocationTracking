@@ -25,6 +25,7 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         self.setupLanguage()
         self.initAdsView()
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {

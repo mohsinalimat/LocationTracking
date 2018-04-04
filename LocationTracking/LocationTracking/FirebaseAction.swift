@@ -298,6 +298,11 @@ class FirebaseAction: NSObject {
         })
     }
     
+    func updateGroupName(newGroupName: String, groupId: String) {
+        self.ref.child("group").child(groupId).child("name").setValue(newGroupName)
+        app_delegate.groupArray.filter({$0.id == groupId}).first?.name = newGroupName
+    }
+    
     func deleteGroup(group: GroupModel) {
         let newGroupArray = app_delegate.groupArray.filter{$0.id != group.id}
         var groupIdArray = [String]()

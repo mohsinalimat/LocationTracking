@@ -16,18 +16,26 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
     var interstitial: GADInterstitial!
     var group = GroupModel()
     var contactArray = [ContactModel]()
+    @IBOutlet weak var editGroupNameView: UIView!
+    @IBOutlet weak var editGroupNameButton: UIButton!
+    @IBOutlet weak var groupNameTextField: UITextField!
+    @IBOutlet weak var backgroundTextFieldView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //set up UI
-        self.setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.initAdsView()
         group = app_delegate.groupArray.filter({$0.id == group.id}).first!
         self.getContactModel()
+        
+        //set up UI
+        self.setupUI()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        editGroupNameView.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,9 +46,24 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
     //MARK: - Function
     func setupUI() {
         self.addLeftBarItem(imageName: "ico_back", title: "")
-        self.addTitleNavigation(title: group.name)
         self.addRightBarItem(imageName: "ic_add", title: "")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        //Set up title
+        let titleButton = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 200, height: 40))
+        titleButton.tintColor = .white
+        titleButton.setTitle(group.name, for: .normal)
+        titleButton.addTarget(self, action: #selector(tappedShowEditGroupNameView), for: .touchUpInside)
+        
+        self.navigationItem.titleView = titleButton
+        
+        //Custom layer
+        editGroupNameView.customBorder(radius: 4.0, color: .clear)
+        editGroupNameButton.customBorder(radius: editGroupNameButton.frame.height/2, color: .clear)
+        editGroupNameButton.setTitle(LocalizedString(key: "OK"), for: .normal)
+        backgroundTextFieldView.customBorder(radius: groupNameTextField.frame.height/2, color: .white)
+        groupNameTextField.textAlignment = .center
+        groupNameTextField.text = group.name
     }
     
     func getContactModel() {
@@ -53,6 +76,10 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
         })
     }
     
+    @objc func tappedShowEditGroupNameView() {
+        editGroupNameView.isHidden = false
+    }
+    
     //MARK: - Action
     override func tappedLeftBarButton(sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -63,6 +90,17 @@ class GroupDetailViewController: OriginalViewController, UITableViewDelegate, UI
         let addcontactViewController = main_storyboard.instantiateViewController(withIdentifier: "AddContactToGroupViewController") as! AddContactToGroupViewController
         addcontactViewController.group = group
         self.navigationController?.pushViewController(addcontactViewController, animated: true)
+    }
+    
+    @IBAction func tappedEditGroupName(_ sender: UIButton) {
+        editGroupNameView.isHidden = true
+        if groupNameTextField.text!.count > 0 {
+            self.showHUD()
+            app_delegate.firebaseObject.updateGroupName(newGroupName: groupNameTextField.text!, groupId: group.id)
+            let titleButton = self.navigationItem.titleView as! UIButton
+            titleButton.setTitle(groupNameTextField.text!, for: .normal)
+            self.hideHUD()
+        }
     }
     
     //MARK: - TableView Delegate, Datasource
