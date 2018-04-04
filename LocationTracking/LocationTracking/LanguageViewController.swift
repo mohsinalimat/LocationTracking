@@ -12,7 +12,7 @@ class LanguageViewController: OriginalViewController,UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var closeButton: UIButton!
-    let languageArray = ["en", "ja"]
+    let languageArray = ["English", "日本語"]
     
     
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class LanguageViewController: OriginalViewController,UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageTableViewCell") as! LanguageTableViewCell
-        cell.languageLabel.text = LocalizedString(key: languageArray[indexPath.row])
+        cell.languageLabel.text = languageArray[indexPath.row]
         if languageArray[indexPath.row] == kUserDefault.object(forKey: kLanguageCode) as! String {
             cell.tickImageView.isHidden = false
         } else {

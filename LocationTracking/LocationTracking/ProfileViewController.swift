@@ -57,7 +57,7 @@ class ProfileViewController: OriginalViewController {
         saveButton.setTitle(LocalizedString(key: "SAVE"), for: .normal)
         changePasswordButton.setTitle(LocalizedString(key: "CHANGE_PASSWORD"), for: .normal)
         signOutButton.setTitle(LocalizedString(key: "SIGN_OUT"), for: .normal)
-        languageButton.setTitle(LocalizedString(key: kUserDefault.object(forKey: kLanguageCode) as! String), for: .normal)
+        languageButton.setTitle(kUserDefault.object(forKey: kLanguageCode) as? String, for: .normal)
     }
     
     //MARK: - Keyboard
