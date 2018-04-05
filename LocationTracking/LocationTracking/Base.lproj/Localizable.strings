@@ -6,10 +6,7 @@
   Copyright © 2018 Nguyen Hai Dang. All rights reserved.
 */
 
-"COUNTRY_CODE" = "en";
-
-"en" = "English";
-"ja" = "Japanese";
+"COUNTRY_CODE" = "English";
 
 // MAP
 "MAP_TITTLE"                        = "LOCATION";

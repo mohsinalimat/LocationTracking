@@ -73,7 +73,9 @@ class SignUpViewController: OriginalViewController {
             return
         }
         scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + keyboardSize.height + 20)
-        scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - confirmPasswordTextField.frame.origin.y - confirmPasswordTextField.frame.height))
+        if keyboardSize.height > (scrollView.frame.height - confirmPasswordTextField.frame.origin.y - confirmPasswordTextField.frame.height) {
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - confirmPasswordTextField.frame.origin.y - confirmPasswordTextField.frame.height))
+        }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {

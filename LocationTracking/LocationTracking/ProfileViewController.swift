@@ -55,7 +55,7 @@ class ProfileViewController: OriginalViewController {
         saveButton.setTitle(LocalizedString(key: "SAVE"), for: .normal)
         changePasswordButton.setTitle(LocalizedString(key: "CHANGE_PASSWORD"), for: .normal)
         signOutButton.setTitle(LocalizedString(key: "SIGN_OUT"), for: .normal)
-        languageButton.setTitle(kUserDefault.object(forKey: kLanguageCode) as? String, for: .normal)
+        languageButton.setTitle(Common.convertToLanguageString(languageId: (kUserDefault.object(forKey: kLanguageCode) as! String)), for: .normal)
     }
     
     //MARK: - Keyboard
@@ -68,7 +68,9 @@ class ProfileViewController: OriginalViewController {
             return
         }
         scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + keyboardSize.height + 20)
-        scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - emailTextField.frame.origin.y - emailTextField.frame.height))
+        if keyboardSize.height > (scrollView.frame.height - emailTextField.frame.origin.y - emailTextField.frame.height) {
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - emailTextField.frame.origin.y - emailTextField.frame.height))
+        }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {

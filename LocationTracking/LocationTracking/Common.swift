@@ -75,4 +75,13 @@ class Common: NSObject {
         }
         LocalizationSetLanguage(language: kUserDefault.object(forKey: kLanguageCode) as! String)
     }
+    
+    static func convertToLanguageString(languageId: String) -> String {
+        switch languageId {
+        case "en":
+            return "English"
+        default:
+            return "日本語"
+        }
+    }
 }

@@ -60,7 +60,9 @@ class ChangePasswordViewController: OriginalViewController {
             return
         }
         scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: changePasswordButton.frame.height + changePasswordButton.frame.origin.y + 20 + keyboardSize.height)
-        scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - confirmNewPasswordTextField.frame.origin.y - confirmNewPasswordTextField.frame.height))
+        if keyboardSize.height > (scrollView.frame.height - confirmNewPasswordTextField.frame.origin.y - confirmNewPasswordTextField.frame.height){
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - confirmNewPasswordTextField.frame.origin.y - confirmNewPasswordTextField.frame.height))
+        }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {

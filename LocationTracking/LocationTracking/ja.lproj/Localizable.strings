@@ -8,9 +8,6 @@
 
 "COUNTRY_CODE" = "ja";
 
-"en" = "英語";
-"ja" = "日本語";
-
 // MAP
 "MAP_TITTLE"                            = "ロケーションを観察";
 "ADD_NEW_CONTACT"                       = "コンタクト";
