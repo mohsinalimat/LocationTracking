@@ -34,12 +34,6 @@ class ProfileViewController: OriginalViewController {
         self.setupUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if (signOutButton.frame.height + signOutButton.frame.origin.y) > screen_height {
-            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + 20)
-        }
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
