@@ -17,7 +17,6 @@ class SignUpViewController: OriginalViewController {
     @IBOutlet weak var confirmPasswordTextField: TextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    var activeTextField = TextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +33,6 @@ class SignUpViewController: OriginalViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setupLanguage()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if (signUpButton.frame.height + signUpButton.frame.origin.y) > screen_height {
-            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.height + signUpButton.frame.origin.y + 20)
-        }
     }
     
     func CustomLayout() {
@@ -80,9 +73,7 @@ class SignUpViewController: OriginalViewController {
             return
         }
         scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + keyboardSize.height + 20)
-        if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
-            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
-        }
+        scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - confirmPasswordTextField.frame.origin.y - confirmPasswordTextField.frame.height))
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
@@ -140,10 +131,6 @@ class SignUpViewController: OriginalViewController {
     }
     
     //MARK: - TextField Delegate
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeTextField = textField as! TextField
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentString: NSString = textField.text! as NSString
         let newString: NSString =

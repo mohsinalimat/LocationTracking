@@ -18,8 +18,6 @@ class ProfileViewController: OriginalViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var languageButton: UIButton!
     
-    var activeTextField = TextField()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
@@ -70,9 +68,7 @@ class ProfileViewController: OriginalViewController {
             return
         }
         scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + keyboardSize.height + 20)
-        if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
-            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
-        }
+        scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - emailTextField.frame.origin.y - emailTextField.frame.height))
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
@@ -159,10 +155,6 @@ class ProfileViewController: OriginalViewController {
     }
     
     //MARK: - TextField Delegate
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeTextField = textField as! TextField
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentString: NSString = textField.text! as NSString
         let newString: NSString =
