@@ -34,6 +34,12 @@ class SignInViewController: OriginalViewController {
         self.setupLanguage()
     }
     
+    override func viewWillLayoutSubviews() {
+        if (signInButton.frame.height + signInButton.frame.origin.y + signUpButton.frame.height) > screen_height {
+            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signInButton.frame.height + signInButton.frame.origin.y + signUpButton.frame.height + 20)
+        }
+    }
+    
     //MARK: - Function
     func CustomLayout() {
         emailView.customBorder(radius: emailView.frame.height/2,color: .clear)
