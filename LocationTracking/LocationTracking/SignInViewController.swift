@@ -22,21 +22,23 @@ class SignInViewController: OriginalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.registerKeyboardEvents()
         view.tappedDismissKeyboard()
         self.CustomLayout()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         self.hideHUD()
+        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.setupLanguage()
     }
     
-    override func viewWillLayoutSubviews() {
+    override func viewDidAppear(_ animated: Bool) {
         if (signInButton.frame.height + signInButton.frame.origin.y + signUpButton.frame.height) > screen_height {
-            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signInButton.frame.height + signInButton.frame.origin.y + signUpButton.frame.height + 20)
+            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + 20)
         }
     }
     
@@ -73,11 +75,11 @@ class SignInViewController: OriginalViewController {
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + 20 + keyboardSize.height)
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + 20)
     }
     
     override func didReceiveMemoryWarning() {

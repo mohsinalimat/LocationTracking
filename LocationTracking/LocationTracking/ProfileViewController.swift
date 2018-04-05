@@ -23,16 +23,22 @@ class ProfileViewController: OriginalViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
-        
         //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
-        self.setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.setupLanguage()
         self.initData()
+        self.setupUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (signOutButton.frame.height + signOutButton.frame.origin.y) > screen_height {
+            scrollView.isUserInteractionEnabled = true
+            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + 20)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,7 +51,8 @@ class ProfileViewController: OriginalViewController {
         changePasswordButton.customBorder(radius: changePasswordButton.frame.height/2, color: Common.mainColor())
         nameTextField.customBorder(radius: nameTextField.frame.height/2, color: .clear)
         emailTextField.customBorder(radius: emailTextField.frame.height/2, color: .clear)
-        
+        signOutButton.customBorder(radius: signOutButton.frame.height/2, color: .clear)
+
         nameTextField.textRect(forBounds: nameTextField.bounds)
         emailTextField.textRect(forBounds: emailTextField.bounds)
     }
@@ -69,14 +76,14 @@ class ProfileViewController: OriginalViewController {
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + keyboardSize.height + 20)
         if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
             scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
         }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + 20)
     }
     
     //MARK: - Init Data

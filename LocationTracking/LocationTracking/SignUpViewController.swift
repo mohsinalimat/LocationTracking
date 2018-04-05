@@ -24,6 +24,7 @@ class SignUpViewController: OriginalViewController {
         self.addLeftBarItem(imageName: "ic_close_popup",title: "")
         view.tappedDismissKeyboard()
         self.CustomLayout()
+        self.registerKeyboardEvents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +34,12 @@ class SignUpViewController: OriginalViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.setupLanguage()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (signUpButton.frame.height + signUpButton.frame.origin.y) > screen_height {
+            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.height + signUpButton.frame.origin.y + 20)
+        }
     }
     
     func CustomLayout() {
@@ -72,14 +79,14 @@ class SignUpViewController: OriginalViewController {
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + keyboardSize.height + 20)
         if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
             scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
         }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.height + signUpButton.frame.origin.y + 20)
     }
     
     //MARK: - Action

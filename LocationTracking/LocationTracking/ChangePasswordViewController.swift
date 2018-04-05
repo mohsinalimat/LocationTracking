@@ -31,6 +31,13 @@ class ChangePasswordViewController: OriginalViewController {
         self.setupLanguage()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if (changePasswordButton.frame.height + changePasswordButton.frame.origin.y) > screen_height {
+            scrollView.isUserInteractionEnabled = true
+            scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: changePasswordButton.frame.height + changePasswordButton.frame.origin.y + 20)
+        }
+    }
+    
     //MARK: - Set up UI
     func setupUI() {
         oldPasswordTextfield.customBorder(radius: oldPasswordTextfield.frame.height/2, color: .clear)
@@ -60,14 +67,14 @@ class ChangePasswordViewController: OriginalViewController {
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: changePasswordButton.frame.height + changePasswordButton.frame.origin.y + 20 + keyboardSize.height)
         if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
             scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
         }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: changePasswordButton.frame.height + changePasswordButton.frame.origin.y + 20)
     }
     
     override func didReceiveMemoryWarning() {
