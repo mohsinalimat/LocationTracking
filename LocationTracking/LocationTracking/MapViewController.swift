@@ -176,10 +176,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                 }
             })
         }
-        let camera = GMSCameraPosition.camera(withLatitude:0.0,
-                                              longitude:0.0,
-                                              zoom: zoomLevel)
-        mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - bannerView.frame.size.height), camera: camera)
+        
+        
+        mapView = GMSMapView.init(frame: CGRect.init(x: 0, y: 0, width: screen_width, height: view.frame.size.height - bannerView.frame.size.height))
+        mapView.animate(toZoom: zoomLevel)
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
@@ -211,9 +211,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         
         let latitude  = locationManager.location != nil ? locationManager.location!.coordinate.latitude : 0
         let longitude = locationManager.location != nil ? locationManager.location!.coordinate.longitude : 0
+        let position = CLLocationCoordinate2DMake(latitude,longitude)
 
-        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoomLevel)
-        mapView.camera = camera
+        mapView.animate(toLocation: position)
+        mapView.animate(toZoom: zoomLevel)
         if allowUpdateLocationSwitch.isOn {
             locationManager.startUpdatingLocation()
         } else {
@@ -269,8 +270,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             marker.icon = UIImage.init(named: "requestLocation")
             marker.map = mapView
             if currentContactArray.count == 1 {
-                let newCamera = GMSCameraPosition.camera(withLatitude: contact.latitude, longitude: contact.longitude, zoom: self.mapView.camera.zoom)
-                mapView.camera = newCamera
+                mapView.animate(toLocation: position)
                 Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
                     self.updateLocationAddress(address: address)
                 })
@@ -290,10 +290,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         let marker = GMSMarker(position: position)
         marker.icon = UIImage.init(named: "requestLocation")
         marker.title = name
-        let newCamera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: self.mapView.camera.zoom)
-        mapView.camera = newCamera
         mapView.animate(toLocation: position)
-        
         marker.map = mapView
         self.updateLocationAddress(address: name)
         

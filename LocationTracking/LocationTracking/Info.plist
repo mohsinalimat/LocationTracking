@@ -58,12 +58,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Controls the camera, which defines how the map is oriented</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>used to updating your location on map when you moving.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>used to choose picture for updating profile.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
