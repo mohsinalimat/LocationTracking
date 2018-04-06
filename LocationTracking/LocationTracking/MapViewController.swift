@@ -61,9 +61,18 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         isAllowUpdateLocation = true
         self.addLeftBarItem(imageName: "profile",title: "")
         self.addRightBarItem(imageName: "ic_add",title: "")
+        
+        //Init mapview
         self.initMapView()
+        
+        //Custom layer
         self.setupLayer()
+        
+        //Current location
         self.getCurrentLocation()
+
+        //Add observer when change contact location
+        self.addObserveNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +86,7 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         } else {
             self.addTitleNavigation(title: LocalizedString(key: "MAP_TITTLE"))
         }
+        
         //Init Ads
         self.initAdsView()
         
@@ -94,10 +104,25 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         self.removeObserve()
     }
     
+    //MARK: - Function
+    //Observe notification
+    func addObserveNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateContactLocation), name: Notification.Name("ChangedContact"), object: nil)
+    }
+    
     func updateLocationAddress(address: String) {
         let titleLabel = self.navigationItem.titleView as! UILabel
         titleLabel.text = address
         titleLabel.font = UIFont.systemFont(ofSize: 15)
+    }
+    
+    func updateContactLocation() {
+        for contact in app_delegate.contactArray {
+            currentContactArray.filter{$0.id == contact.id}.first?.longitude    = contact.longitude
+            currentContactArray.filter{$0.id == contact.id}.first?.latitude     = contact.latitude
+        }
+        
+        self.updateContactMarker()
     }
     
     override func didReceiveMemoryWarning() {
@@ -156,7 +181,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                     self.tableView.beginUpdates()
                     self.tableView.scrollToRow(at: IndexPath.init(row: self.messageArray.count - 1, section: 0), at: .bottom, animated: true)
                     self.tableView.endUpdates()
-
                 }
             })
         }
@@ -261,8 +285,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
     }
     
-    func updateMarker() {
+    func updateContactMarker() {
         mapView.clear()
+
         for contact in currentContactArray {
             let position = CLLocationCoordinate2DMake(contact.latitude,contact.longitude)
             let marker = GMSMarker(position: position)
@@ -276,7 +301,11 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                 })
             }
         }
-        
+    }
+    
+    func updateMarker() {
+
+        self.updateContactMarker()
         //Show tableView
         messageView.isHidden = false
 
