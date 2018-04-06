@@ -79,13 +79,13 @@
 "LATITUDE"                              = "緯度: %.10f";
 "LONGITUDE"                             = "経度: %.10f";
 
-"TOAST_SHARED_LOCATION"                 = "あなたは場所を共有しました";
+"TOAST_SHARED_LOCATION"                 = "ロケーションを共有した";
 "TOAST_STOPED_LOCATION"                 = "あなたは場所を停止しました";
-"TOAST_INPUT_LOCATION_NAME"             = "地名を入力してください";
+"TOAST_INPUT_LOCATION_NAME"             = "ロケーション名を入力してください";
 "TOAST_SAVE_LOCATION_SUCCESSFULLY"      = "新しい場所が正常に保存されました";
 "TOAST_SELECT_CONTACT_TO_CHAT"          = "チャットする連絡先を選択してください";
 "TOAST_PASSWORD_LENGTH"                 = "パスワードは6文字以上でなければなりません";
-"TOAST_PASSWORD_USER_NAME_WRONG"        = "メールまたはパスワードが間違っています。\ nもう一度ご確認ください。";
+"TOAST_PASSWORD_USER_NAME_WRONG"        = "メールかパスワードが正しくなって、確認してください";
 "TOAST_INPUT_EMAIL_FORGOT_PASSWORD"     = "メールを入力して下さい";
 "TOAST_SENT_PASSWORD_TO_MAIL"           = "あなたのメールへ新しいパスワードを送信したのでメールをチェックして下さい";
 "TOAST_SELECT_CONTACT_FROM_LIST"        = "リストから連絡先を選択してください。";
