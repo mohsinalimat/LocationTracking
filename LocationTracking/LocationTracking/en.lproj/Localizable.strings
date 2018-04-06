@@ -41,7 +41,7 @@
 //CONTACT LIST
 "CONTACT_TITTLE"                    = "CONTACTS";
 "REQUEST_TITTLE"                    = "REQUESTS";
-"GROUP_TITTLE"                      = "REQUESTS";
+"GROUP_TITTLE"                      = "GROUPS";
 "LOCATION_TITTLE"                   = "LOCATIONS";
 
 "SEGMENTED_CONTACTS_TITTLE"         = "Contacts";
