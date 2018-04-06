@@ -1,12 +1,12 @@
-/* 
-  Localizable.strings
-  LocationTracking
+/*
+ Localizable.strings
+ LocationTracking
+ 
+ Created by Hai Dang Nguyen on 4/2/18.
+ Copyright © 2018 Nguyen Hai Dang. All rights reserved.
+ */
 
-  Created by Hai Dang Nguyen on 4/2/18.
-  Copyright © 2018 Nguyen Hai Dang. All rights reserved.
-*/
-
-"COUNTRY_CODE" = "English";
+"COUNTRY_CODE" = "en";
 
 // MAP
 "MAP_TITTLE"                        = "LOCATION";
@@ -40,6 +40,10 @@
 
 //CONTACT LIST
 "CONTACT_TITTLE"                    = "CONTACTS";
+"REQUEST_TITTLE"                    = "REQUESTS";
+"GROUP_TITTLE"                      = "REQUESTS";
+"LOCATION_TITTLE"                   = "LOCATIONS";
+
 "SEGMENTED_CONTACTS_TITTLE"         = "Contacts";
 "SEGMENTED_REQUESTS_TITTLE"         = "Requests";
 "SEGMENTED_GROUPS_TITTLE"           = "Groups";
@@ -57,7 +61,7 @@
 
 "PLACE_HOLDER_MESSAGE"              = "Message";
 "PLACE_HOLDER_NEW_LOCATION"         = "New location";
-"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input name to search contacts";
+"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input contact name";
 "PLACE_HOLDER_SEARCH_LOCATION_NAME" = "input location name";
 "PLACE_HOLDER_INPUT_GROUP_NAME"     = "input group name!";
 
@@ -73,7 +77,7 @@
 "ALERT_CONFIRM_DELETE_CONTACT"      = "Do you want to delete contact: ";
 "ALERT_CONFIRM_DELETE_LOCATION"     = "Do you want to delete location: ";
 "ALERT_ERROR_TITLE"                 = "Error";
-"ALERT_AGAIN_INFO"                  = "Please check again old password, new password and confirm password";
+"ALERT_AGAIN_INFO"                  = "Please check again informations";
 "ALERT_CONFIRM_DELETE_MEMBER"       = "Are you sure remove this member";
 
 "LATITUDE"                          = "Latitude: %.10f";

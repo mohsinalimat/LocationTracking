@@ -40,6 +40,10 @@
 
 //CONTACT LIST
 "CONTACT_TITTLE"                        = "コンタクト";
+"REQUEST_TITTLE"                        = "リクエスト";
+"GROUP_TITTLE"                          = "グループ";
+"LOCATION_TITTLE"                       = "ロケーション";
+
 "SEGMENTED_CONTACTS_TITTLE"             = "コンタクト";
 "SEGMENTED_REQUESTS_TITTLE"             = "リクエスト";
 "SEGMENTED_GROUPS_TITTLE"               = "グループ";

@@ -40,6 +40,10 @@
 
 //CONTACT LIST
 "CONTACT_TITTLE"                    = "CONTACTS";
+"REQUEST_TITTLE"                    = "REQUESTS";
+"GROUP_TITTLE"                      = "REQUESTS";
+"LOCATION_TITTLE"                   = "LOCATIONS";
+
 "SEGMENTED_CONTACTS_TITTLE"         = "Contacts";
 "SEGMENTED_REQUESTS_TITTLE"         = "Requests";
 "SEGMENTED_GROUPS_TITTLE"           = "Groups";

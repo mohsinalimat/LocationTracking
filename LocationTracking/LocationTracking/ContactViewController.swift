@@ -76,6 +76,24 @@ class ContactViewController : OriginalViewController, UITableViewDelegate, UITab
     
     //MARK: - Action
     @IBAction func tappedChangeSegmentedIndex(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            //Contacts
+            self.addTitleNavigation(title: LocalizedString(key: "CONTACT_TITTLE"))
+            break
+        case 1:
+            //Requests
+            self.addTitleNavigation(title: LocalizedString(key: "REQUEST_TITTLE"))
+            break
+        case 2:
+            //Groups
+            self.addTitleNavigation(title: LocalizedString(key: "GROUP_TITTLE"))
+            break
+        default:
+            //Locations
+            self.addTitleNavigation(title: LocalizedString(key: "LOCATION_TITTLE"))
+            break
+        }
         tableView.reloadData()
     }
     
