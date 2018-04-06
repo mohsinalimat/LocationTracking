@@ -188,18 +188,18 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     //Init MapView
     func initMapView() {
-        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized {
-            // Already Authorized
-        } else {
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted: Bool) -> Void in
-                if granted == true {
-                    // User granted
-                } else {
-                    return
-                    // User Rejected
-                }
-            })
-        }
+//        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized {
+//            // Already Authorized
+//        } else {
+//            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted: Bool) -> Void in
+//                if granted == true {
+//                    // User granted
+//                } else {
+//                    return
+//                    // User Rejected
+//                }
+//            })
+//        }
         
         
         mapView = GMSMapView.init(frame: CGRect.init(x: 0, y: 0, width: screen_width, height: view.frame.size.height - bannerView.frame.size.height))
