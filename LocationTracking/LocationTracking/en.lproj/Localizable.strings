@@ -84,7 +84,7 @@
 "LONGITUDE"                         = "Longitude: %.10f";
 
 "TOAST_SHARED_LOCATION"             = "You shared location";
-"TOAST_STOPED_LOCATION"             = "You shared location";
+"TOAST_STOPED_LOCATION"             = "You stoped location";
 "TOAST_INPUT_LOCATION_NAME"         = "Please input location name";
 "TOAST_SAVE_LOCATION_SUCCESSFULLY"  = "Saved new location successfully.";
 "TOAST_SELECT_CONTACT_TO_CHAT"      = "Please select contact to chat";
