@@ -670,7 +670,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LocationTracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "59be4a18-b8f4-4f7a-931b-7df0829f2c64";
+				PROVISIONING_PROFILE = "22844d65-ce53-46f4-9196-29b65cc02601";
 				PROVISIONING_PROFILE_SPECIFIER = LocationShareDistribution;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -693,7 +693,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LocationTracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "59be4a18-b8f4-4f7a-931b-7df0829f2c64";
+				PROVISIONING_PROFILE = "22844d65-ce53-46f4-9196-29b65cc02601";
 				PROVISIONING_PROFILE_SPECIFIER = LocationShareDistribution;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

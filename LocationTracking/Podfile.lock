@@ -40,7 +40,7 @@ PODS:
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - leveldb-library (~> 1.18)
-  - FirebaseInstanceID (2.0.9):
+  - FirebaseInstanceID (2.0.10):
     - FirebaseCore (~> 4.0)
   - Google-Mobile-Ads-SDK (7.28.0)
   - GoogleMaps (2.4.0):
@@ -95,7 +95,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 3bd047463058fa6b5d312c97502c52e45401cdfb
   FirebaseCrash: cded0fc566c03651aea606a101bc156085f333ca
   FirebaseDatabase: de4446507ccd3257fca37d16f40e1540324571fd
-  FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
   Google-Mobile-Ads-SDK: 7f9bc0011df363ae5616449de3682a14c4701612
   GoogleMaps: 8436ab5d1c25e36915b2f7416d0c8e3fa2e76c61
   GooglePlaces: aafe5990fa7951e98e078761bbdaaf236d7e0c65
@@ -107,6 +107,6 @@ SPEC CHECKSUMS:
   RappleProgressHUD: 3c776b1ac0a05e7d9b0165d819162581902d23a1
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 93f5a2aef6e92a613e2272077436338b7281ad45
+PODFILE CHECKSUM: 1119265b6feb3e9dcac095936cb4d9a29adb13fb
 
 COCOAPODS: 1.4.0

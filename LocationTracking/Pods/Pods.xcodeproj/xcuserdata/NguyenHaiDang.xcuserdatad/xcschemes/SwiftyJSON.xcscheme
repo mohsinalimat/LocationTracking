@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '96D028D8410E9A401CDCEFD40406EEC0'
-               BlueprintName = 'MagicalRecord'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'MagicalRecord.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B635772DEF8FE1D06DF59A92E3DA48EA"
+               BlueprintName = "SwiftyJSON"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "SwiftyJSON.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
