@@ -18,21 +18,18 @@ class ProfileViewController: OriginalViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var languageButton: UIButton!
     
-    var activeTextField = TextField()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addLeftBarItem(imageName: "ico_back", title: "")
-        
         //Add tapGesture to View
         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
-        self.setupUI()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         self.setupLanguage()
         self.initData()
+        self.setupUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,7 +42,8 @@ class ProfileViewController: OriginalViewController {
         changePasswordButton.customBorder(radius: changePasswordButton.frame.height/2, color: Common.mainColor())
         nameTextField.customBorder(radius: nameTextField.frame.height/2, color: .clear)
         emailTextField.customBorder(radius: emailTextField.frame.height/2, color: .clear)
-        
+        signOutButton.customBorder(radius: signOutButton.frame.height/2, color: .clear)
+
         nameTextField.textRect(forBounds: nameTextField.bounds)
         emailTextField.textRect(forBounds: emailTextField.bounds)
     }
@@ -57,7 +55,7 @@ class ProfileViewController: OriginalViewController {
         saveButton.setTitle(LocalizedString(key: "SAVE"), for: .normal)
         changePasswordButton.setTitle(LocalizedString(key: "CHANGE_PASSWORD"), for: .normal)
         signOutButton.setTitle(LocalizedString(key: "SIGN_OUT"), for: .normal)
-        languageButton.setTitle(LocalizedString(key: kUserDefault.object(forKey: kLanguageCode) as! String), for: .normal)
+        languageButton.setTitle(Common.convertToLanguageString(languageId: (kUserDefault.object(forKey: kLanguageCode) as! String)), for: .normal)
     }
     
     //MARK: - Keyboard
@@ -69,14 +67,14 @@ class ProfileViewController: OriginalViewController {
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
-        if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
-            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + keyboardSize.height + 20)
+        if keyboardSize.height > (scrollView.frame.height - emailTextField.frame.origin.y - emailTextField.frame.height) {
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - emailTextField.frame.origin.y - emailTextField.frame.height))
         }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signOutButton.frame.height + signOutButton.frame.origin.y + 20)
     }
     
     //MARK: - Init Data
@@ -159,10 +157,6 @@ class ProfileViewController: OriginalViewController {
     }
     
     //MARK: - TextField Delegate
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeTextField = textField as! TextField
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentString: NSString = textField.text! as NSString
         let newString: NSString =

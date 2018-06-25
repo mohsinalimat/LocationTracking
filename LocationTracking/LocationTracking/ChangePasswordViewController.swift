@@ -15,7 +15,6 @@ class ChangePasswordViewController: OriginalViewController {
     @IBOutlet weak var newPasswordTextField: TextField!
     @IBOutlet weak var confirmNewPasswordTextField: TextField!
     @IBOutlet weak var scrollView: UIScrollView!
-    var activeTextField = TextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,14 +59,14 @@ class ChangePasswordViewController: OriginalViewController {
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
-        if (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height) < keyboardSize.height {
-            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - activeTextField.frame.origin.y - activeTextField.frame.height))
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: changePasswordButton.frame.height + changePasswordButton.frame.origin.y + 20 + keyboardSize.height)
+        if keyboardSize.height > (scrollView.frame.height - confirmNewPasswordTextField.frame.origin.y - confirmNewPasswordTextField.frame.height){
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - confirmNewPasswordTextField.frame.origin.y - confirmNewPasswordTextField.frame.height))
         }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: changePasswordButton.frame.height + changePasswordButton.frame.origin.y + 20)
     }
     
     override func didReceiveMemoryWarning() {
@@ -109,10 +108,5 @@ class ChangePasswordViewController: OriginalViewController {
     //Hide keyboard
     func hideKeyboard() {
         view.endEditing(true)
-    }
-    
-    //MARK: - TextField Delegate
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeTextField = textField as! TextField
     }
 }

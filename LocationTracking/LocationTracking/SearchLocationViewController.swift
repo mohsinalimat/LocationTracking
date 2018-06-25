@@ -39,14 +39,14 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
     //MARK: - Layout
     func initLayout() {
         self.addLeftBarItem(imageName: "ico_back",title: "")
-        self.addRightBarItem(imageName: LocalizedString(key: "SAVE"), title: "")
+        self.addRightBarItem(imageName: "save", title: "")
         self.addTitleNavigation(title: LocalizedString(key: "SEARCH_LOCATION_TITLE"))
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         searchView.setupBorder()
     }
     
     func setupLanguage() {
-        searchLocationTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_CONTACT_NAME")
+        searchLocationTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_LOCATION_NAME")
     }
     
     //MARK: - Action
@@ -61,11 +61,7 @@ class SearchLocationViewController: OriginalViewController, UITableViewDelegate,
             if (searchLocationTextField.text?.count)! > 0 {
                 app_delegate.firebaseObject.searchLocation(searchString: searchLocationTextField.text!, onCompletionHandler: {(array) in
                     self.locationArray.removeAll()
-                    self.searchButton.isHidden = false
-
                     if array.count > 0 {
-                        self.searchButton.isHidden = true
-
                         for locationModel in array as [LocationModel] {
                             if !(app_delegate.locationArray.contains(locationModel)) {
                                 self.locationArray.append(locationModel)

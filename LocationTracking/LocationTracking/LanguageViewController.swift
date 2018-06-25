@@ -12,8 +12,9 @@ class LanguageViewController: OriginalViewController,UITableViewDelegate, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var closeButton: UIButton!
-    let languageArray = ["en", "ja"]
-    
+    let languageArray = ["English", "日本語"]
+    let languageIdArray = ["en", "ja"]
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +51,8 @@ class LanguageViewController: OriginalViewController,UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageTableViewCell") as! LanguageTableViewCell
-        cell.languageLabel.text = LocalizedString(key: languageArray[indexPath.row])
-        if languageArray[indexPath.row] == kUserDefault.object(forKey: kLanguageCode) as! String {
+        cell.languageLabel.text = languageArray[indexPath.row]
+        if languageArray[indexPath.row] == Common.convertToLanguageString(languageId: (kUserDefault.object(forKey: kLanguageCode) as! String)) {
             cell.tickImageView.isHidden = false
         } else {
             cell.tickImageView.isHidden = true
@@ -60,8 +61,8 @@ class LanguageViewController: OriginalViewController,UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        kUserDefault.set(languageArray[indexPath.row], forKey: kLanguageCode)
-        LocalizationSetLanguage(language: languageArray[indexPath.row])
+        kUserDefault.set(languageIdArray[indexPath.row], forKey: kLanguageCode)
+        LocalizationSetLanguage(language: languageIdArray[indexPath.row])
         tableView.reloadData()
     }
 }

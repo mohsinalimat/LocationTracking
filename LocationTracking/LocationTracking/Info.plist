@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.1</string>
+	<string>3.2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -44,7 +44,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>FacebookAppID</key>
 	<string>160414881182128</string>
 	<key>FacebookDisplayName</key>
@@ -58,12 +58,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Controls the camera, which defines how the map is oriented</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>used to updating your location on map when you moving.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>used to choose picture for updating profile.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

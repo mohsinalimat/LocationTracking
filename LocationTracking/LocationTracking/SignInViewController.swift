@@ -22,12 +22,14 @@ class SignInViewController: OriginalViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.registerKeyboardEvents()
         view.tappedDismissKeyboard()
         self.CustomLayout()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         self.hideHUD()
+        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +53,7 @@ class SignInViewController: OriginalViewController {
         
         signInButton.setTitle(LocalizedString(key: "SIGN_IN"), for: .normal)
         signUpButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
-        forgotPasswordButton.setTitle(LocalizedString(key: "SIGN_UP"), for: .normal)
+        forgotPasswordButton.setTitle(LocalizedString(key: "FOTGOT_PASSWORD"), for: .normal)
     }
     
     func resetTextField() {
@@ -67,11 +69,14 @@ class SignInViewController: OriginalViewController {
         guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
             return
         }
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height + keyboardSize.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + 20 + keyboardSize.height)
+        if keyboardSize.height > (scrollView.frame.height - passwordView.frame.origin.y - passwordView.frame.height) {
+            scrollView.contentOffset = CGPoint.init(x: 0, y: keyboardSize.height - (scrollView.frame.height - passwordView.frame.origin.y - passwordView.frame.height))
+        }
     }
     
     override func keyboardEventWillHide(_ notification: Notification) {
-        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: scrollView.frame.height)
+        scrollView.contentSize = CGSize.init(width: scrollView.frame.width, height: signUpButton.frame.origin.y + signUpButton.frame.height + 20)
     }
     
     override func didReceiveMemoryWarning() {

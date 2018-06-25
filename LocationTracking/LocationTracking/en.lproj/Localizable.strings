@@ -8,9 +8,6 @@
 
 "COUNTRY_CODE" = "en";
 
-"en" = "English";
-"ja" = "Japanese";
-
 // MAP
 "MAP_TITTLE"                        = "LOCATION";
 "ADD_NEW_CONTACT"                   = "Contact";
@@ -43,6 +40,10 @@
 
 //CONTACT LIST
 "CONTACT_TITTLE"                    = "CONTACTS";
+"REQUEST_TITTLE"                    = "REQUESTS";
+"GROUP_TITTLE"                      = "GROUPS";
+"LOCATION_TITTLE"                   = "LOCATIONS";
+
 "SEGMENTED_CONTACTS_TITTLE"         = "Contacts";
 "SEGMENTED_REQUESTS_TITTLE"         = "Requests";
 "SEGMENTED_GROUPS_TITTLE"           = "Groups";
@@ -60,7 +61,7 @@
 
 "PLACE_HOLDER_MESSAGE"              = "Message";
 "PLACE_HOLDER_NEW_LOCATION"         = "New location";
-"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input name to search contacts";
+"PLACE_HOLDER_SEARCH_CONTACT_NAME"  = "input contact name";
 "PLACE_HOLDER_SEARCH_LOCATION_NAME" = "input location name";
 "PLACE_HOLDER_INPUT_GROUP_NAME"     = "input group name!";
 
@@ -76,14 +77,14 @@
 "ALERT_CONFIRM_DELETE_CONTACT"      = "Do you want to delete contact: ";
 "ALERT_CONFIRM_DELETE_LOCATION"     = "Do you want to delete location: ";
 "ALERT_ERROR_TITLE"                 = "Error";
-"ALERT_AGAIN_INFO"                  = "Please check again old password, new password and confirm password";
+"ALERT_AGAIN_INFO"                  = "Please check again informations";
 "ALERT_CONFIRM_DELETE_MEMBER"       = "Are you sure remove this member";
 
 "LATITUDE"                          = "Latitude: %.10f";
 "LONGITUDE"                         = "Longitude: %.10f";
 
 "TOAST_SHARED_LOCATION"             = "You shared location";
-"TOAST_STOPED_LOCATION"             = "You shared location";
+"TOAST_STOPED_LOCATION"             = "You stoped location";
 "TOAST_INPUT_LOCATION_NAME"         = "Please input location name";
 "TOAST_SAVE_LOCATION_SUCCESSFULLY"  = "Saved new location successfully.";
 "TOAST_SELECT_CONTACT_TO_CHAT"      = "Please select contact to chat";

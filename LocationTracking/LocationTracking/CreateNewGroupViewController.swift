@@ -27,6 +27,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
 
     override func viewWillAppear(_ animated: Bool) {
         self.setupLanguage()
+        self.initAdsView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +51,7 @@ class CreateNewGroupViewController: OriginalViewController, UITableViewDelegate,
     }
     
     func setupLanguage() {
-        groupNameTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_SEARCH_CONTACT_NAME")
+        groupNameTextField.placeholder = LocalizedString(key: "PLACE_HOLDER_INPUT_GROUP_NAME")
         membersLabel.text = LocalizedString(key: "NEW_GROUP_MEMBER")
     }
     

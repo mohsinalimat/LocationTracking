@@ -54,15 +54,25 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     // The currently selected place.
     var selectedPlace: GMSPlace?
+    @IBOutlet weak var messageViewBottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         isAllowUpdateLocation = true
         self.addLeftBarItem(imageName: "profile",title: "")
         self.addRightBarItem(imageName: "ic_add",title: "")
+        
+        //Init mapview
         self.initMapView()
+        
+        //Custom layer
         self.setupLayer()
+        
+        //Current location
         self.getCurrentLocation()
+
+        //Add observer when change contact location
+        self.addObserveNotification()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -76,8 +86,12 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         } else {
             self.addTitleNavigation(title: LocalizedString(key: "MAP_TITTLE"))
         }
+        
         //Init Ads
         self.initAdsView()
+        
+        //Keyboard
+        self.registerKeyboardEvents()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,12 +101,28 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     override func viewWillDisappear(_ animated: Bool) {
         view.endEditing(true)
         self.hideAllCustomView()
+        self.removeObserve()
+    }
+    
+    //MARK: - Function
+    //Observe notification
+    func addObserveNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateContactLocation), name: Notification.Name("ChangedContact"), object: nil)
     }
     
     func updateLocationAddress(address: String) {
         let titleLabel = self.navigationItem.titleView as! UILabel
         titleLabel.text = address
         titleLabel.font = UIFont.systemFont(ofSize: 15)
+    }
+    
+    func updateContactLocation() {
+        for contact in app_delegate.contactArray {
+            currentContactArray.filter{$0.id == contact.id}.first?.longitude    = contact.longitude
+            currentContactArray.filter{$0.id == contact.id}.first?.latitude     = contact.latitude
+        }
+        
+        self.updateContactMarker()
     }
     
     override func didReceiveMemoryWarning() {
@@ -151,7 +181,6 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
                     self.tableView.beginUpdates()
                     self.tableView.scrollToRow(at: IndexPath.init(row: self.messageArray.count - 1, section: 0), at: .bottom, animated: true)
                     self.tableView.endUpdates()
-
                 }
             })
         }
@@ -159,22 +188,22 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
     
     //Init MapView
     func initMapView() {
-        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized {
-            // Already Authorized
-        } else {
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted: Bool) -> Void in
-                if granted == true {
-                    // User granted
-                } else {
-                    return
-                    // User Rejected
-                }
-            })
-        }
-        let camera = GMSCameraPosition.camera(withLatitude:0.0,
-                                              longitude:0.0,
-                                              zoom: zoomLevel)
-        mapView = GMSMapView.map(withFrame: CGRect.init(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - bannerView.frame.size.height), camera: camera)
+//        if AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) ==  AVAuthorizationStatus.authorized {
+//            // Already Authorized
+//        } else {
+//            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: { (granted: Bool) -> Void in
+//                if granted == true {
+//                    // User granted
+//                } else {
+//                    return
+//                    // User Rejected
+//                }
+//            })
+//        }
+        
+        
+        mapView = GMSMapView.init(frame: CGRect.init(x: 0, y: 0, width: screen_width, height: view.frame.size.height - bannerView.frame.size.height))
+        mapView.animate(toZoom: zoomLevel)
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
@@ -206,9 +235,10 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         
         let latitude  = locationManager.location != nil ? locationManager.location!.coordinate.latitude : 0
         let longitude = locationManager.location != nil ? locationManager.location!.coordinate.longitude : 0
+        let position = CLLocationCoordinate2DMake(latitude,longitude)
 
-        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: zoomLevel)
-        mapView.camera = camera
+        mapView.animate(toLocation: position)
+        mapView.animate(toZoom: zoomLevel)
         if allowUpdateLocationSwitch.isOn {
             locationManager.startUpdatingLocation()
         } else {
@@ -255,8 +285,9 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         }
     }
     
-    func updateMarker() {
+    func updateContactMarker() {
         mapView.clear()
+
         for contact in currentContactArray {
             let position = CLLocationCoordinate2DMake(contact.latitude,contact.longitude)
             let marker = GMSMarker(position: position)
@@ -264,14 +295,17 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
             marker.icon = UIImage.init(named: "requestLocation")
             marker.map = mapView
             if currentContactArray.count == 1 {
-                let newCamera = GMSCameraPosition.camera(withLatitude: contact.latitude, longitude: contact.longitude, zoom: self.mapView.camera.zoom)
-                mapView.camera = newCamera
+                mapView.animate(toLocation: position)
                 Common.convertToAddress(latitude: contact.latitude, longitude: contact.longitude, onCompletionHandler: {address in
                     self.updateLocationAddress(address: address)
                 })
             }
         }
-        
+    }
+    
+    func updateMarker() {
+
+        self.updateContactMarker()
         //Show tableView
         messageView.isHidden = false
 
@@ -285,15 +319,28 @@ class MapViewController: OriginalViewController, GMSMapViewDelegate, CLLocationM
         let marker = GMSMarker(position: position)
         marker.icon = UIImage.init(named: "requestLocation")
         marker.title = name
-        let newCamera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: self.mapView.camera.zoom)
-        mapView.camera = newCamera
         mapView.animate(toLocation: position)
-        
         marker.map = mapView
         self.updateLocationAddress(address: name)
         
         //Remove tableView
         messageView.isHidden = true
+    }
+    
+    override func keyboardEventWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else {
+            return
+        }
+        
+        guard let keyboardSize = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        messageViewBottomConstraint.constant = keyboardSize.height - bannerView.frame.height
+    }
+    
+    override func keyboardEventWillHide(_ notification: Notification) {
+        messageViewBottomConstraint.constant = 0
     }
     
 // MARK: - GMSMapViewDelegate
